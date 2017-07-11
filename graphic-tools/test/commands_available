@@ -1,0 +1,32 @@
+#!/bin/bash
+set -e
+
+CMD="docker run -it --rm $1"
+
+function check_command {
+	echo -n "Checking command $1 ... "
+	($CMD $1 $2 >/dev/null 2>&1 && echo "OK") \
+	|| (echo "MISSING" && exit -1)
+}
+
+function check_executable {
+	echo -n "Checking executable $1 ... "
+    ($CMD  bash -c "type $1" >/dev/null 2>&1 && echo "OK") \
+    || (echo "MISSING" && exit -1)
+}
+
+
+check_command optipng --version
+check_command pngquant --version
+check_command pngcrush -version
+check_command jpegoptim --version
+check_command exifautotran --version
+check_command jpegexiforient --version
+
+check_executable cjpeg
+check_executable djpeg
+check_executable jpegtran
+check_executable rdjpgcom
+check_executable tjbench
+check_executable wrjpgcom
+

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+
+COUNT=$(docker run --rm $1 find /tools/common_rc/ -type f | wc -l)
+
+if [ $COUNT -lt 3 ]; then
+	echo "ERROR: common rc scripts not found in filesystem."
+	exit 1
+fi
+
+exit 0
+

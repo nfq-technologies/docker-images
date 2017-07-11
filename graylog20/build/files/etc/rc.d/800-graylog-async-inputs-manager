@@ -1,0 +1,67 @@
+#!/bin/bash
+
+set -e
+
+source /tools/functions_init.sh
+
+
+function defaults_for()
+{
+	echo "
+		gelf.http:GELFHttpInput:12203
+		gelf.tcp:GELFTCPInput:12201
+		gelf.udp:GELFUDPInput:12201
+		raw.tcp:RawTCPInput:12202
+		raw.udp:RawUDPInput:12202
+		syslog.tcp:SyslogTCPInput:514
+		syslog.udp:SyslogUDPInput:514
+	" | grep $1: | cut -d: -f2,3
+}
+
+function add_input()
+{
+	curl -XPOST -H "Content-Type: application/json" --silent \
+		-u project:project http://localhost:12900/system/inputs \
+		-d '{"title":"'$1@$3'","type":"org.graylog2.inputs.'$1'.'$2'","global":true,"configuration":{"bind_address":"0.0.0.0","port":'$3'}}' \
+		>/dev/null
+}
+
+function manage_inputs()
+{
+	echo "++ Waiting for graylog api to respond"
+	if init_wait_for_connection http://project:project@localhost:12900/system/inputs/types 300 ; then
+		echo "++ Api responded"
+	else
+		error "-- graylog api timeout"
+		exit 1
+	fi
+
+	for input_spec in ${NFQ_GRAYLOG_INPUTS}
+	do
+		input=$(echo "$input_spec" | cut -d: -f1)
+		port=$(echo "$input_spec" | fgrep : | cut -d: -f2)
+		if [ -z "$port" ]; then
+			port=$(defaults_for $input | cut -d: -f2)
+		fi
+		class=$(defaults_for $input | cut -d: -f1)
+
+		echo "++ Adding input $input on port $port"
+		add_input $input $class $port
+	done
+}
+
+
+if [ "x${NFQ_GRAYLOG_INPUTS}" != "x" ]
+then
+	echo "++ Graylog inputs requested: ${NFQ_GRAYLOG_INPUTS}"
+	manage_inputs &
+else
+	echo "-- No graylog inputs requested via env variable, nothing to add."
+fi
+
+exit 0
+
+
+
+
+

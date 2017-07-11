@@ -1,0 +1,17 @@
+#!/bin/bash -e
+
+
+if [ -w /etc/environment ]
+then
+	echo "++ Exportig env vars"
+	/usr/bin/env \
+	| /bin/grep ^NFQ_ \
+	| /usr/bin/cut -d= -f1 \
+	| /usr/bin/xargs -n1 -I{} /bin/bash -c 'name={}; echo $name=\"${!name}\"' \
+	>> /etc/environment
+else
+	echo "-- WARNING: Can't export env vars. target file is not writable."
+fi
+
+exit 0
+

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+CMD="docker run -it -e NFQ_ENABLE_PHP_MODULES $1 run-parts /etc/rc.d"
+
+
+# test enabling some modules
+export NFQ_ENABLE_PHP_MODULES='pdo pdo_mysql xdebug'
+$CMD | grep -i 'Enabling.*php.*modules.*pdo pdo_mysql xdebug' &> /dev/null \
+|| (echo "Container did not reported enabling selected php modules" && exit -1)
+
+
+# test enabling all modules
+export NFQ_ENABLE_PHP_MODULES='apc adodb curl geoip imagick imap intl ldap mcrypt memcached mysql pdo pdo_mysql rrd snmp sqlite3 xdebug zend_loader'
+$CMD | grep -i 'Enabling.*php.*modules.*apc adodb curl geoip imagick imap intl ldap mcrypt memcached mysql pdo pdo_mysql rrd snmp sqlite3 xdebug zend_loader' &> /dev/null \
+|| (echo "Container did not reported enabling selected php modules" && exit -1)
+
+

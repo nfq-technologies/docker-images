@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e
+
+CMD="docker run -it -e NFQ_ENABLE_APACHE_MODULES $1 run-parts /etc/rc.d"
+
+
+# test enabling some modules
+export NFQ_ENABLE_APACHE_MODULES='rewrite'
+$CMD | grep -i 'Enabling.*apache.*modules.*rewrite' &> /dev/null \
+|| (echo "Container did not reported enabling selected apache modules" && exit -1)
+
+
+# test enabling all modules
+export NFQ_ENABLE_APACHE_MODULES='actions alias asis auth_basic auth_digest authn_alias authn_anon authn_dbd authn_dbm authn_default authn_file authnz_ldap authz_dbm authz_default authz_groupfile authz_host authz_owner authz_user autoindex cache cern_meta cgi cgid charset_lite dav dav_fs dav_lock dbd deflate dir disk_cache dump_io env expires ext_filter file_cache filter headers ident imagemap include info ldap log_forensic mem_cache mime mime_magic negotiation php5 proxy proxy_ajp proxy_balancer proxy_connect proxy_ftp proxy_http proxy_scgi reqtimeout rewrite setenvif speling ssl status substitute suexec unique_id userdir usertrack vhost_alias'
+$CMD | grep -i 'Enabling.*apache.*modules.*actions alias asis auth_basic auth_digest authn_alias authn_anon authn_dbd authn_dbm authn_default authn_file authnz_ldap authz_dbm authz_default authz_groupfile authz_host authz_owner authz_user autoindex cache cern_meta cgi cgid charset_lite dav dav_fs dav_lock dbd deflate dir disk_cache dump_io env expires ext_filter file_cache filter headers ident imagemap include info ldap log_forensic mem_cache mime mime_magic negotiation php5 proxy proxy_ajp proxy_balancer proxy_connect proxy_ftp proxy_http proxy_scgi reqtimeout rewrite setenvif speling ssl status substitute suexec unique_id userdir usertrack vhost_alias' &> /dev/null \
+|| (echo "Container did not reported enabling selected php modules" && exit -1)
+
+

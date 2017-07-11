@@ -1,0 +1,100 @@
+#!/bin/bash
+set -e
+
+INPUT="$1"
+SOURCE="/tmp/package"
+OUTPUT_PATH="$2"
+
+# helper methods
+update_control_field()
+{
+	field=$1
+	value=$2
+	line="$field: $value"
+	control_file="$SOURCE/DEBIAN/control"
+
+	echo $line
+
+	if fgrep -q "$field:" $control_file
+	then
+		sed -i "s/^$field: .*$/$line/" $control_file
+	else
+		echo "$line" >> $control_file
+	fi
+}
+
+update_nfq_version()
+{
+	update_control_field "Version" "$1"
+}
+
+update_installed_size()
+{
+	size_kb=$(du -sk $SOURCE | sed 's/^\([0-9]*\)[^0-9].*$/\1/')
+
+	update_control_field "Installed-Size" $size_kb
+}
+
+add_md5sums()
+{
+	current_path=$(pwd)
+	cd $SOURCE
+	md5sum $(find ./ -type f | grep -v '^\.\/DEBIAN\/') > DEBIAN/md5sums
+	cd $current_path
+}
+
+# Executtion start
+# ---------------------
+
+if [[ -z "$INPUT" || -z "$OUTPUT_PATH" ]]; then
+	echo "Usage: $0 source_forlder output_folder"
+	exit 1
+fi
+
+if [[ ! -d "$INPUT" ]]; then
+	echo "$INPUT is not accesible"
+	exit 2
+fi
+
+# Check if control license and changelogs are present
+REQUIRED="DEBIAN/control copyright changelog"
+for file in $REQUIRED; do
+	if [[ ! -f "$INPUT/$file" ]]; then
+		echo "Required file '$file' is missing, will not continue"
+		exit 3
+	fi
+done 
+
+# Prepare temporary folder for package building
+sudo rm -rf "$SOURCE"
+cp -r "$INPUT" /tmp/.
+
+# Extract info about the package
+ARCH="$(grep ^Architecture: $SOURCE/DEBIAN/control | cut -d' ' -f2-)"
+VERSION="$(grep ^Version: $SOURCE/DEBIAN/control | cut -d' ' -f2-)-$(date +%s)"
+NAME="$(grep ^Package: $SOURCE/DEBIAN/control | cut -d' ' -f2-)"
+DEB_NAME="${NAME}_${VERSION}_${ARCH}.deb"
+
+# Prepare changelogs and license
+mkdir -p "$SOURCE/usr/share/doc/$NAME"
+mv "$SOURCE/copyright" "$SOURCE/usr/share/doc/$NAME/"
+gzip -9 -nc "$SOURCE/changelog" > "$SOURCE/usr/share/doc/$NAME/changelog.Debian.gz"
+rm $SOURCE/changelog
+if [[ -f "$SOURCE/changelog-upstream" ]]; then
+	gzip -9 -nc "$SOURCE/changelog-upstream" > "$SOURCE/usr/share/doc/$NAME/changelog.gz"
+	rm $SOURCE/changelog-upstream
+fi
+
+# Version update and additional info for deb package
+update_nfq_version "$VERSION"
+update_installed_size
+add_md5sums
+
+# build deb packge and test it with lintian
+sudo chown -R root:root "$SOURCE"
+dpkg-deb --build "$SOURCE" $OUTPUT_PATH/$DEB_NAME
+lintian --display-info --pedantic $OUTPUT_PATH/$DEB_NAME || true
+
+# cleanup
+sudo rm -rf "$SOURCE"
+

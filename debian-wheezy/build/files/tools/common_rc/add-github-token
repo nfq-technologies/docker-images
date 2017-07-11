@@ -1,0 +1,27 @@
+#!/bin/bash
+set -e
+
+source /etc/environment
+if [ -f /etc/environment-vm ]; then
+	source /etc/environment-vm
+fi
+
+source /tools/common_rc/functions.sh
+
+if [ ! -z $VM_GITHUB_TOKEN ]; then
+	JSON_ENABLED=0
+
+	if ! php -m | grep -q json; then
+		phpEnableModule json
+	else
+		JSON_ENABLED=1	
+	fi
+
+	echo "++ Adding github token to composer"
+	composer --no-interaction -q config -g github-oauth.github.com "$VM_GITHUB_TOKEN" || true
+
+	if [[ $JSON_ENABLED -eq 0 ]]; then
+		phpDisableModule json
+	fi
+fi
+

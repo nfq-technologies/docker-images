@@ -1,0 +1,5 @@
+JAVA=/usr/bin/java
+GRAYLOG_SERVER_JAVA_OPTS="-Xms1g -Xmx1g -XX:NewRatio=1 -server -XX:+ResizeTLAB -XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled -XX:+CMSClassUnloadingEnabled -XX:+UseParNewGC -XX:-OmitStackTraceInFastThrow"
+GRAYLOG_SERVER_ARGS=""
+GRAYLOG_COMMAND_WRAPPER="exec"
+

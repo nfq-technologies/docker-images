@@ -1,0 +1,107 @@
+# base-data-image-Makefile
+
+IMAGE_BASE_NAME = $(shell basename $(shell pwd))
+IMAGE_TYPE = $(shell basename $(shell dirname $(shell pwd)))
+IMAGE_REGISTRY = $(shell ../_tools/makefiles/get_default_registry.sh)
+IMAGE_FULL_NAME = $(IMAGE_REGISTRY)$(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
+CHILDREN = $(shell ../_tools/relational_sorting.php)
+IMAGE_PUBLISH_NAME=$(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
+
+COMMANDS = help all build test push
+SILENT_COMMANDS = status registry-status registry-status-full calc-start calc-stop get-image-name inheritance-status inheritance-status-full
+
+.PHONY: $(COMMANDS) $(SILENT_COMMANDS)
+.SILENT: $(SILENT_COMMANDS)
+.NOTPARALLEL:
+
+
+help:
+	@echo "Image name: $(IMAGE_FULL_NAME)"
+	@echo "Available commands: $(COMMANDS) $(SILENT_COMMANDS)"
+
+
+all:
+	make build && make test && make push
+
+
+build:
+	@echo
+	@echo "# Building image..."
+	@echo
+	bash build.sh $(IMAGE_FULL_NAME) $(IMAGE_REGISTRY)
+	make status
+
+
+test:
+	@echo
+	@echo "# Testing image..."
+	@echo
+	if [ -d test ]; then\
+		run-parts -v -a $(IMAGE_FULL_NAME) test; \
+	fi
+	@echo
+	@echo "Tests passed. ($(shell run-parts --test test | wc -l))"
+	@echo
+
+
+push:
+	@echo
+	@echo "# Pushing image to registry..."
+	@echo
+	docker push $(IMAGE_FULL_NAME)
+
+
+publish:
+	@echo
+	@echo "# Publishing image to docker hub..."
+	@echo
+	docker pull ${IMAGE_FULL_NAME}
+	docker tag ${IMAGE_FULL_NAME} ${IMAGE_PUBLISH_NAME}
+	docker push ${IMAGE_PUBLISH_NAME}
+	docker rmi ${IMAGE_PUBLISH_NAME}
+
+
+clean:
+	@echo
+	@echo "# Removing local containers and images..."
+	@echo
+	docker stop $(shell docker ps -a | grep ' $(IMAGE_FULL_NAME):' | cut -d' ' -f1) 2>/dev/null || true
+	docker stop $(shell docker ps -a | grep ' $(IMAGE_FULL_NAME) ' | cut -d' ' -f1) 2>/dev/null || true
+	docker rm -f $(shell docker ps -a | grep ' $(IMAGE_FULL_NAME):' | cut -d' ' -f1) 2>/dev/null || true
+	docker rm -f $(shell docker ps -a | grep ' $(IMAGE_FULL_NAME) ' | cut -d' ' -f1) 2>/dev/null || true
+	bash -c "docker images |\
+		grep '^$(IMAGE_FULL_NAME) ' |\
+		tr -s ' ' ':' |\
+		cut -d: -f2 |\
+		xargs -n1 -IT docker rmi $(IMAGE_FULL_NAME):T 2>/dev/null || true"
+	make status
+
+
+status:
+	echo
+	echo "# Showing image status..."
+	echo
+	docker images | grep -i "^$(IMAGE_FULL_NAME) " || true
+	echo
+
+
+registry-status:
+	printf "%-30s %s\n" "$(IMAGE_TYPE)/$(IMAGE_BASE_NAME)" \
+	"$(shell ../../tools/makefiles/registry-status-info.sh "$(IMAGE_TYPE)/$(IMAGE_BASE_NAME)" latest)"
+
+registry-status-full:
+	printf "%-30s %s\n" "$(IMAGE_TYPE)/$(IMAGE_BASE_NAME)" \
+	"$(shell ../../tools/makefiles/registry-status-info.sh "$(IMAGE_TYPE)/$(IMAGE_BASE_NAME)" latest full)"
+
+inheritance-status inheritance-status-full:
+	printf "%-30s NOT IMPLEMENTED\n" "$(IMAGE_TYPE)/$(IMAGE_BASE_NAME)"
+
+calc-start:
+	../_tools/start-stop-time-calc.php --start
+
+calc-stop:
+	../_tools/start-stop-time-calc.php --stop
+
+get-image-name:
+	echo $(IMAGE_FULL_NAME)
+

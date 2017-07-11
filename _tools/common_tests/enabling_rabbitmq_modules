@@ -1,0 +1,10 @@
+#!/bin/bash
+
+CMD="docker run -it -e NFQ_ENABLE_RABBITMQ_MODULES $1 run-parts /etc/rc.d"
+
+# test enabling some modules
+export NFQ_ENABLE_RABBITMQ_MODULES='rabbitmq_management rabbitmq_test'
+$CMD | grep -i 'Enabling.*rabbitmq.*modules.*rabbitmq_management rabbitmq_test' &> /dev/null \
+|| (echo "Container did not reported enabling selected RabbitMQ modules" && exit -1)
+
+

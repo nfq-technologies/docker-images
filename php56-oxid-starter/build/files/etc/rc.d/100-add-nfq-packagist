@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e
+source "/tools/common_rc/functions.sh"
+
+JSON_ENABLED=0
+if ! php -m | grep -q json; then
+	phpEnableModule json
+else
+	JSON_ENABLED=1
+fi
+
+echo "++ Adding nfq packagist to composer"
+sudo -u project composer --no-interaction -q config -g repositories.nfq composer "https://packagist.nfq.lt"
+
+if [[ $JSON_ENABLED -eq 0 ]]; then
+	phpDisableModule json
+fi
+

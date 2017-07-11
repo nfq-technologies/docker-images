@@ -1,0 +1,31 @@
+#!/bin/bash -e
+
+# Common functions
+source "/tools/common_rc/functions.sh"
+
+if [ "x${NFQ_PROJECT_GIT_REPO}" == "x" ]
+then
+	echo "-- NFQ_PROJECT_GIT_REPO not specified via env vars. Nothing to clone."
+	exit 0
+fi
+
+if [ "x${NFQ_PROJECT_ROOT}" != "x" ]
+then
+	if [[ ! -d ${NFQ_PROJECT_ROOT} || $(ls -alh ${NFQ_PROJECT_ROOT} | wc -l) -eq 3 ]]
+	then
+	    echo "++ Cloning project from ${NFQ_PROJECT_GIT_REPO}:${NFQ_PROJECT_GIT_BRANCH} to ${NFQ_PROJECT_ROOT}"
+		mkdir -p ${NFQ_PROJECT_ROOT}
+		chown project:project ${NFQ_PROJECT_ROOT}
+
+		cd ${NFQ_PROJECT_ROOT}
+		sudo -u project git clone ${NFQ_PROJECT_GIT_REPO} .
+		init-git-flow "${NFQ_PROJECT_GIT_BRANCH}"
+	else
+		echo "-- NFQ_PROJECT_ROOT is not empty. No need to clone."
+	fi
+else
+	echo "-- NFQ_PROJECT_GIT_REPO is set but NFQ_PROJECT_ROOT not provided. Dont know where to clone."
+fi
+
+exit 0
+

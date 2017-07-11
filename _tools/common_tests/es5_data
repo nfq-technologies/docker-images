@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e
+
+name=test_box_$(date +%s%N)
+dataPath="/var/elasticsearch/data/nodes"
+
+cleanup () {
+	docker rm -v -f $name >/dev/null
+}
+trap cleanup EXIT
+
+if ! docker run --name $name $1 test -d $dataPath; then
+	echo "ERROR: path '$dataPath' doesn't exist"
+	exit 1
+fi
+
+exit 0
+

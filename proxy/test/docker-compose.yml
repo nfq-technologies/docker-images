@@ -1,0 +1,12 @@
+proxy:
+  image: docker.nfq.lt/nfqlt/proxy
+  links:
+    - web
+
+web:
+  image: docker.nfq.lt/nfqlt/apache24-php56
+  environment:
+    APACHE_DOCUMENTROOT: /home/project/src/web
+  volumes:
+    - ./:/home/project/src/web:ro
+

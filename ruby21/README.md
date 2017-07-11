@@ -1,0 +1,46 @@
+## Ruby 2.1 toolbox
+
+### Info
+This is an image of ruby 2.1 version in toolbox format
+
+### Global gems installed
+This image has pre-installed gems
+
+ - bundler
+ - sass
+ - compass
+ - zurb-foundation
+
+### Configuration
+Available binary paths for export:
+
+- /usr/bin/ruby
+- /usr/bin/gem
+- /usr/local/bin/bundle
+- /usr/local/bin/sass
+- /usr/local/bin/compass
+
+### Sample configuration
+```
+ruby:
+  image: docker.nfq.lt/nfqlt/ruby21
+  volumes:
+    - ./src:/home/project/src
+    - /tmp
+
+dev:
+  image: docker.nfq.lt/nfqlt/php56-dev
+  volumes_from:
+    - ruby
+  volumes:
+    - ./src:/home/project/src
+    - /home/project/.ssh:/home/project/.ssh
+    - /etc/ssh:/etc/ssh
+    - /etc/gitconfig:/etc/gitconfig
+    - /etc/environment:/etc/environment-vm:ro
+  environment:
+    NFQ_REMOTE_TOOL_RUBY: >
+      /usr/local/bin/bundle
+      /usr/local/bin/sass
+```
+

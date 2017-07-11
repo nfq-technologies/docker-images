@@ -1,0 +1,44 @@
+#!/bin/bash
+set -e
+
+# Script level settings
+cwd=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+yml="${cwd}/docker-compose.yml"
+image="$1"
+pid=${BASHPID}
+hostname=$(head -n1 $yml | cut -d: -f1)
+cname=test${pid}_${hostname}_1
+
+source "${cwd}/../../_tools/helpers/common.sh"
+
+# destroy containers and remove trash
+cleanup() {
+    set +e
+    docker-compose -p "test${pid}" -f $yml stop &>/dev/null
+    docker-compose -p "test${pid}" -f $yml rm -fv &>/dev/null
+    set -e
+}
+trap cleanup EXIT
+
+run_test() {
+	local url="$1"
+	local ip="$2"
+
+	if ! wget -e use_proxy=yes -e http_proxy=${ip}:80 -qt 1 -O /dev/null "$url"; then
+		echo "ERROR: failed to fetch $url"
+		return 1
+	fi
+
+	return 0
+}
+
+docker-compose -p "test${pid}" -f $yml up -d &>/dev/null
+box_ip=$(get_container_ip $cname)
+
+wait_for_connection $box_ip:80
+
+run_test "http://example.org/" $box_ip
+run_test "http://web.dev/" $box_ip
+
+exit 0
+

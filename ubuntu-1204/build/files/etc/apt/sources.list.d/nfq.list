@@ -1,0 +1,3 @@
+deb [arch=amd64] http://debian-repo.nfq.lt stable main
+deb [arch=amd64] http://debian-repo.nfq.lt testing main
+

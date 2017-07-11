@@ -1,0 +1,28 @@
+graylog:
+  image: docker.nfq.lt/nfqlt/graylog20
+  links:
+    - graymongo
+  environment:
+    NFQ_GRAYLOG_API_HOST: docker.dev
+    NFQ_GRAYLOG_INPUTS: gelf.tcp gelf.udp
+
+
+graymongo:
+  image: docker.nfq.lt/nfqlt/mongo24
+
+
+grayelastic:
+  image: docker.nfq.lt/nfqlt/elasticsearch22
+  environment:
+    NFQ_ENABLE_ELASTIC_MODULES: head hq bigdesk
+
+
+linker:
+  image: docker.nfq.lt/nfqlt/linker17
+  volumes:
+    - /run/docker.sock:/run/docker.sock
+  links:
+    - graylog
+    - grayelastic
+
+

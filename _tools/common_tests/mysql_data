@@ -1,0 +1,55 @@
+#!/bin/bash
+set -e
+
+tpl=$(realpath $0).tpl
+cwd=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+imageDir=$(dirname $cwd)
+mysqlImage=$(cat ${imageDir}/Dockerfile | grep FROM | sed 's/FROM //')
+mysqlDataImage="$1"
+pid=${BASHPID}
+
+source "${cwd}/../../_tools/helpers/common.sh"
+
+# destroy containers and remove trash
+cleanup() {
+     docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" stop &>/dev/null
+     docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" rm -fv &>/dev/null
+
+     rm -f "${cwd}/docker-compose-${pid}.yml"
+}
+
+trap cleanup EXIT
+
+# helper method to run actuall tests
+testQuery() {
+    user="$1"
+    password="$2"
+    query="$3"
+
+    echo -n "Testing query: '$query' .... "
+
+    if ! mysql -h 127.0.0.1 -P ${pid} -u ${user} -p${password} -e "${query}" >/dev/null; then
+		echo "ERROR"
+        exit 1
+    fi
+
+	echo "OK"
+}
+
+# start mysql server container with data volume from the tested image
+cat $tpl | sed \
+-e "s#__MYSQL_PORT__#${pid}#" \
+-e "s#__MYSQL_IMAGE__#${mysqlImage}#" \
+-e "s#__MYSQL_DATA_IMAGE__#${mysqlDataImage}#" \
+> "${cwd}/docker-compose-${pid}.yml"
+
+docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" up -d &>/dev/null
+
+wait_for_connection "localhost:${pid}"
+
+# actual tests
+testQuery project project "use project"
+testQuery project project "show databases"
+testQuery project project "create database project_test"
+testQuery project project "use project_test"
+

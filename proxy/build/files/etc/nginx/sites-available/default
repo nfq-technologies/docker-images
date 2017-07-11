@@ -1,0 +1,19 @@
+
+server {
+	listen 80;
+	server_name *.dev;
+
+	location / {
+		proxy_pass http://web;
+	}
+}
+
+server {
+	listen 80 default_server;
+	resolver ns.nfq.lt;
+
+	location / {
+		proxy_pass $scheme://$host$request_uri;
+	}
+}
+
