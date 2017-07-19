@@ -165,6 +165,8 @@ digraph G {
     "nfqlt/debian-wheezy"->"nfqlt/varnish30";
     "nfqlt/varnish40" [fillcolor=orange label="varnish40"];
     "nfqlt/debian-jessie"->"nfqlt/varnish40";
+    "nfqlt/varnish50" [fillcolor=orange label="varnish50"];
+    "nfqlt/debian-stretch"->"nfqlt/varnish50";
     "nfqlt/wkhtmltopdf" [fillcolor=orange label="wkhtmltopdf"];
     "nfqlt/toolbox"->"nfqlt/wkhtmltopdf";
     "nfqlt/xhgui" [fillcolor=orange label="xhgui"];
