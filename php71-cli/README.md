@@ -21,6 +21,10 @@ example:
 
 #### list of available modules
 
+* amqp
+* apcu_bc
+* apcu
+* ast
 * bcmath
 * bz2
 * calendar
@@ -28,24 +32,34 @@ example:
 * curl
 * dba
 * dom
+* ds
 * enchant
 * exif
 * fileinfo
 * ftp
 * gd
+* gearman
+* geoip
 * gettext
 * gmp
 * iconv
 * igbinary
+* imagick
 * imap
 * interbase
 * intl
 * json
 * ldap
+* mailparse
 * mbstring
 * mcrypt
+* memcached
+* memcache
+* mongodb
+* msgpack
 * mysqli
 * mysqlnd
+* oauth
 * odbc
 * opcache
 * pdo_dblib
@@ -58,21 +72,31 @@ example:
 * pgsql
 * phar
 * posix
+* propro
 * pspell
+* radius
+* raphf
 * readline
 * recode
 * redis
+* rrd
 * shmop
 * simplexml
+* smbclient
 * snmp
 * soap
 * sockets
+* solr
 * sqlite3
+* ssh2
+* stomp
 * sysvmsg
 * sysvsem
 * sysvshm
 * tidy
 * tokenizer
+* uploadprogress
+* uuid
 * wddx
 * xdebug
 * xml
@@ -80,6 +104,8 @@ example:
 * xmlrpc
 * xmlwriter
 * xsl
+* yaml
 * zip
+* zmq
 
 

@@ -43,12 +43,41 @@ apt-get install -y --no-install-recommends php7.1-cli \
     php7.1-xmlrpc \
     php7.1-xsl \
     php7.1-zip \
+    php-amqp \
+    php-apcu \
+    php-apcu-bc \
+    php-ast \
+    php-ds \
+    php-gearman \
+    php-geoip \
+    php-igbinary \
+    php-imagick \
+    php-mailparse \
+    php-memcache \
+    php-memcached \
+    php-mongodb \
+    php-msgpack \
+    php-oauth \
+    php-propro \
+    php-radius \
+    php-raphf \
+    php-redis \
+    php-rrd \
+    php-smbclient \
+    php-solr \
+    php-ssh2 \
+    php-stomp \
+    php-uploadprogress \
+    php-uuid \
+    php-yaml \
+    php-zmq \
     php-xdebug \
-	php-igbinary \
-	php-redis \
+
 
 # php7.1-embed - broke deb dependencies in 2017-03-06
-
+# php-yac - conflicts with php-apcu
+# php-gmagick - conflicts with php-imagick
+# php-mongo - depends on php 5.6 api
 
 # disable all php modules
 ls -1 /etc/php/7.1/mods-available/ | sed 's/\.ini$//g' | xargs -I{} -n1 phpdismod -v ALL -s ALL {} 2>/dev/null

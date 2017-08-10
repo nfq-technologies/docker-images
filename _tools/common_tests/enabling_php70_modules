@@ -49,6 +49,7 @@ test_modules_load() {
 ## parse modules from readme (modules depends on eatch other, cant use one by one testing)
 #MODULES="$(grep '^* [^ ]*$' README.md | cut -d' ' -f2 | xargs -n1 echo -n '')"
 
+test_modules_load apcu
 test_modules_load gd
 test_modules_load json
 test_modules_load mysqlnd mysqli # mysqli depends on mysqlnd
