@@ -11,7 +11,7 @@ apt-get install -y --no-install-recommends ruby ruby-dev build-essential
 
 # gems
 gem install bundler
-gem install sass
+gem install sass -v 3.4.22
 gem install compass
 gem install zurb-foundation
 
