@@ -57,7 +57,9 @@ apt-get install -y --no-install-recommends php5-cli \
 
 
 # install zend loader
-apt-get install -y --force-yes --no-install-recommends php54-zend-loader
+apt-get install -y --force-yes --no-install-recommends \
+	php54-zend-loader \
+	nfq-php-tideways \
 
 
 

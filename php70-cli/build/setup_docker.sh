@@ -53,6 +53,11 @@ apt-get install -y --no-install-recommends php7.0-cli \
 ls -1 /etc/php/7.0/mods-available/ | sed 's/\.ini$//g' | xargs -I{} -n1 phpdismod -v ALL -s ALL {} 2>/dev/null
 
 
+# install custom php modules
+apt-get install -y --force-yes --no-install-recommends \
+    nfq-php-tideways \
+
+
 # install dma (dragonfly mailer simple relay)
 debconf-set-selections <<< "dma dma/mailname string"
 debconf-set-selections <<< "dma dma/relayhost string mail"

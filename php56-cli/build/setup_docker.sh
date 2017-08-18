@@ -85,7 +85,7 @@ apt-get install -y --no-install-recommends php5-cli \
 apt-get install -y --force-yes --no-install-recommends \
 	php56-zend-loader \
 	php56-ioncube \
-	php56-tideways \
+	nfq-php-tideways \
 
 
 # disable all php modules

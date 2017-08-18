@@ -84,6 +84,12 @@ ls -1 /etc/php/7.1/mods-available/ | sed 's/\.ini$//g' | xargs -I{} -n1 phpdismo
 rm -fr /etc/php/5.6
 rm -fr /etc/php/7.0
 
+
+# install custom php modules
+apt-get install -y --force-yes --no-install-recommends \
+    nfq-php-tideways \
+
+
 # install dma (dragonfly mailer simple relay)
 debconf-set-selections <<< "dma dma/mailname string"
 debconf-set-selections <<< "dma dma/relayhost string mail"

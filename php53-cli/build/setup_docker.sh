@@ -60,7 +60,7 @@ mv /etc/php5/conf.d/* /etc/php5/mods-available/
 # install custom php modules
 apt-get install -y --force-yes --no-install-recommends \
 	php53-zend-loader \
-	php53-tideways \
+	nfq-php-tideways \
 
 
 # install dma (dragonfly mailer simple relay)
