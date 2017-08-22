@@ -5,12 +5,21 @@ set -e
 
 # Install dependencies
 apt-get update
-apt-get install -y --no-install-recommends ca-certificates mongodb-server php5-cli php5-mongo php5-mcrypt
+apt-get install -y --no-install-recommends mongodb-server
 
 # Prepare php code
 mkdir  -p /var/www
-cd /build
-tar -xzvf xhgui.tar.gz -C /var/www/.
+cd /tmp
+wget https://github.com/perftools/xhgui/archive/0.8.1.tar.gz -O xhgui.tar.gz
+tar -xzvf xhgui.tar.gz --strip-components=1 -C /var/www/. xhgui-0.8.1
+
+cd /var/www
+export NFQ_ENABLE_PHP_MODULES='mongodb mcrypt json iconv mbstring tokenizer dom ctype'
+/etc/rc.d/200-enable-php7-modules
+composer install --no-dev --prefer-dist
+composer require alcaeus/mongo-php-adapter --update-no-dev --prefer-dist --prefer-stable
+
+
 
 # Copy runtime files
 cp -frv /build/files/* /
@@ -34,3 +43,4 @@ kill -s SIGTERM $MONGO_PID
 
 # Clean up APT when done.
 source /usr/local/build_scripts/cleanup_apt.sh
+

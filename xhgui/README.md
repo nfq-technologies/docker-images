@@ -7,29 +7,28 @@ There is only a single port 80 that needs to be exposed: recommended value is 10
 Example:
 ```yaml
 xhgui:
-  image: docker.nfq.lt/nfqlt/xhgui
+  image: nfqlt/xhgui
   ports:
     - "10.24.2.49:1081:80"
 ```
-Additional to xhgui you'll need a php profiler extension enabled in your php or dev containers.
-Currently only __tideways__ is supported on php versions __5.6__ and __5.3__
+Additional to xhgui you'll need a php tideways extension enabled in your fpm and/or dev containers.
 
 ### Using tideways profiler and xhgui
-After enabling tideways extensions a prepared php file will be included in project execution chain with php 
-directive __auto_prepend_file__, but by default it will not profile anything, 
+After enabling tideways extension a prepared php file will be included in project execution chain with php
+directive __auto_prepend_file__, but by default it will not profile anything,
 so the impact at this stage will be minimal. To actually profile application there are few ways:
 
- - Web requests will be profiled automatically if cookie __NFQ_PROFILER__ will be detected
+ - Web requests will be profiled automatically if cookie __NFQ_PROFILER__ will be detected (make sure xdebug cookies are not present)
  - CLI runs can be profiled with environment variable __NFQ_PROFILER__ example: `NFQ_PROFILER=1 php ./script.php`
- - Custom code blocks can be profiled by surrounding code with 
- __NfqProfiler::startProfiler()__ and __NfqProfiler::stopProfiler()__ example:
+ - Custom code blocks can be profiled by surrounding code with
+ __\NfqProfiler::startProfiler()__ and __\NfqProfiler::stopProfiler()__ example:
 
 ```php
 public function magicMethod()
 {
-    NfqProfiler::startProfiler();
+    \NfqProfiler::startProfiler();
     $this->someHeavyAndBigLogic();
-    NfqProfiler::stopProfiler();
+    \NfqProfiler::stopProfiler();
 }
 ```
 ### Custom calls to start and stop profiler

@@ -1,4 +1,4 @@
-FROM nfqlt/debian-jessie
+FROM nfqlt/php70-dev
 
 EXPOSE 80
 CMD exec /entrypoint.sh

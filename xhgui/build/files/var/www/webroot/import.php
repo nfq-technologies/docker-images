@@ -4,7 +4,7 @@ if (!defined('XHGUI_ROOT_DIR')) {
 }
 
 $container = Xhgui_ServiceContainer::instance();
-$saver = $container['saverMongo'];
+$saver = $container['saver'];
 
 $data = json_decode(file_get_contents('php://input'), true);
 if ($data) {

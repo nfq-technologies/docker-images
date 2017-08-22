@@ -6,8 +6,10 @@ return array(
     'debug' => false,
     'mode' => 'development',
 
-    'save.handler' => 'mongodb',
+    //'save.handler' => 'file',
+    //'save.handler.filename' => dirname(__DIR__) . '/cache/' . 'xhgui.data.' . microtime(true) . '_' . substr(md5(microtime()), 0, 6),
 
+    'save.handler' => 'mongodb',
     'db.host' => 'mongodb://127.0.0.1:27017',
     'db.db' => 'xhprof',
 
