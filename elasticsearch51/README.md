@@ -4,7 +4,7 @@
 
 ```
 elasticsearch:
-  image: docker.nfq.lt/nfqlt/elasticsearch51
+  image: nfqlt/elasticsearch51
   ports:
     - "10.24.0.0:9200:9200"
   volumes_from:
@@ -14,7 +14,7 @@ elasticsearch:
 
 
 elasticsearchVol:
-  image: docker.nfq.lt/nfqlt/elasticsearch51-data
+  image: nfqlt/elasticsearch51-data
   volumes:
     - /var/elasticsearch/data
 

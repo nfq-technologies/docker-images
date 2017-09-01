@@ -8,7 +8,7 @@
 ### Sample configuration
 ```
 elasticsearch:
-  image: docker.nfq.lt/nfqlt/elasticsearch51
+  image: nfqlt/elasticsearch51
   ports:
     - "10.24.0.0:9200:9200"
   volumes_from:
@@ -16,13 +16,13 @@ elasticsearch:
 
 
 elasticsearchVol:
-  image: docker.nfq.lt/nfqlt/elasticsearch51-data
+  image: nfqlt/elasticsearch51-data
   volumes:
     - /var/elasticsearch/data
 
 
 elasticsearchTools:
-  image: docker.nfq.lt/nfqlt/elasticsearch-tools
+  image: nfqlt/elasticsearch-tools
   ports:
     - "10.24.0.0:9100:80"
   links:
@@ -30,7 +30,7 @@ elasticsearchTools:
 
 
 linker:
-  image: docker.nfq.lt/nfqlt/linker17
+  image: nfqlt/linker17
   volumes:
     - /run/docker.sock:/run/docker.sock
   links:

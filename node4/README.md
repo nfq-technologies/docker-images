@@ -26,13 +26,13 @@ Available binary paths for export:
 ### Sample configuration
 ```
 node:
-  image: docker.nfq.lt/nfqlt/node4
+  image: nfqlt/node4
   volumes:
     - './src:/home/project/src'
     - /tmp
 
 dev:
-  image: docker.nfq.lt/nfqlt/php56-dev
+  image: nfqlt/php56-dev
   volumes_from:
     - node
   volumes:
@@ -48,7 +48,7 @@ dev:
       /usr/bin/grunt
 
 linker:
-  image: docker.nfq.lt/nfqlt/linker17
+  image: nfqlt/linker17
   volumes:
     - /run/docker.sock:/run/docker.sock
 ```

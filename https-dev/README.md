@@ -10,7 +10,7 @@ And all merge requests opened for project with this image __will be declined__
 
 ```
 https-dev:
-  image: docker.nfq.lt/nfqlt/https-dev
+  image: nfqlt/https-dev
   ports:
     - '192.168.1.257:443:443'
   links:

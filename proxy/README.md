@@ -12,7 +12,7 @@ This image is build on __nginx16__ image and forwards port __80__
 ### Sample configuration
 ```
 proxy:
-  image: docker.nfq.lt/nfqlt/proxy
+  image: nfqlt/proxy
   ports:
     - "10.24.3.1:8080:80"
   links:

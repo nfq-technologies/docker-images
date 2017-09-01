@@ -13,13 +13,13 @@ Available binary paths for export:
 ### Sample configuration
 ```
 fontforge:
-  image: docker.nfq.lt/nfqlt/fontforge
+  image: nfqlt/fontforge
   volumes:
     - ./src:/home/project/src
     - /tmp
 
 node:
-  image: docker.nfq.lt/nfqlt/node4
+  image: nfqlt/node4
   volumes_from:
     - fontforge
   environment:
@@ -28,7 +28,7 @@ node:
       /usr/bin/fontforge
 
 dev:
-  image: docker.nfq.lt/nfqlt/php56-dev
+  image: nfqlt/php56-dev
   volumes_from:
     - fontforge
   volumes:

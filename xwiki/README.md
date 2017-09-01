@@ -24,7 +24,7 @@ mysql:
     MYSQL_ROOT_PASSWORD: root
 
 xwiki:
-  image: docker.nfq.lt/nfqlt/xwiki
+  image: nfqlt/xwiki
   links:
     - mysql
   ports:

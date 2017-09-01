@@ -12,13 +12,13 @@ Available binary paths for export:
 ### Sample configuration
 ```
 wkhtmltopdf:
-  image: docker.nfq.lt/nfqlt/wkhtmltopdf
+  image: nfqlt/wkhtmltopdf
   volumes_from:
     - './src:/home/project/src'
     - /tmp
 
 dev:
-  image: docker.nfq.lt/nfqlt/php56-dev
+  image: nfqlt/php56-dev
   volumes_from:
     - wkhtmltopdf
   volumes:
@@ -33,7 +33,7 @@ dev:
       /usr/bin/wkhtmltopdf
 
 linker:
-  image: docker.nfq.lt/nfqlt/linker17
+  image: nfqlt/linker17
   volumes:
     - /run/docker.sock:/run/docker.sock
 ```

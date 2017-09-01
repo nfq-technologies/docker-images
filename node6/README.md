@@ -26,13 +26,13 @@ Available binary paths for export:
 ### Sample configuration
 ```
 node:
-  image: docker.nfq.lt/nfqlt/node6
+  image: nfqlt/node6
   volumes:
     - './src:/home/project/src'
     - /tmp
 
 dev:
-  image: docker.nfq.lt/nfqlt/php56-dev
+  image: nfqlt/php56-dev
   volumes_from:
     - node
   volumes:

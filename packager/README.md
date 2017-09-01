@@ -24,13 +24,13 @@ Available binary paths for export:
 ### Sample configuration
 ```
 packager:
-  image: docker.nfq.lt/nfqlt/packager
+  image: nfqlt/packager
   volumes:
     - /tmp
     - ./src:/home/project/src
 
 dev:
-  image: docker.nfq.lt/nfqlt/php56-dev
+  image: nfqlt/php56-dev
   volumes_from:
     - packager
   volumes:
@@ -44,7 +44,7 @@ dev:
       /usr/local/bin/package-deb
 
 linker:
-  image: docker.nfq.lt/nfqlt/linker17
+  image: nfqlt/linker17
   volumes:
     - /run/docker.sock:/run/docker.sock
   links:

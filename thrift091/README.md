@@ -13,12 +13,12 @@ Available binary paths for export:
 ### Sample configuration
 ```
 thrift:
-  image: docker.nfq.lt/nfqlt/thrift091
+  image: nfqlt/thrift091
   volumes_from:
     - dev
 
 dev:
-  image: docker.nfq.lt/nfqlt/php56-dev
+  image: nfqlt/php56-dev
   volumes:
     - ./src:/home/project/src
     - /home/project/.ssh:/home/project/.ssh

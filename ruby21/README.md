@@ -23,13 +23,13 @@ Available binary paths for export:
 ### Sample configuration
 ```
 ruby:
-  image: docker.nfq.lt/nfqlt/ruby21
+  image: nfqlt/ruby21
   volumes:
     - ./src:/home/project/src
     - /tmp
 
 dev:
-  image: docker.nfq.lt/nfqlt/php56-dev
+  image: nfqlt/php56-dev
   volumes_from:
     - ruby
   volumes:

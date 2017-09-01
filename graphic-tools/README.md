@@ -24,13 +24,13 @@ Available binary paths for export:
 
 ```
 graphics:
-  image: docker.nfq.lt/nfqlt/graphic-tools
+  image: nfqlt/graphic-tools
   volumes:
     - './src:/home/project/src'
     - /tmp
 
 dev:
-  image: docker.nfq.lt/nfqlt/php56-dev
+  image: nfqlt/php56-dev
   volumes_from:
     - graphics
   volumes:
