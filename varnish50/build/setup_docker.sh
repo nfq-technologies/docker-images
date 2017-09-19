@@ -6,7 +6,7 @@ set -e
 
 apt-get update
 
-apt-get install -y --no-install-recommends varnish
+apt-get install -y --no-install-recommends varnish varnish-modules
 
 
 cp -frv /build/files/* /

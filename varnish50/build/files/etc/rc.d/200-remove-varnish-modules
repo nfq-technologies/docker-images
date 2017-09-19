@@ -1,0 +1,22 @@
+#!/bin/bash
+set -ex
+
+
+MODULES_PATH="usr/lib/x86_64-linux-gnu/varnish/vmods"
+
+available_modules=$(ls $MODULES_PATH | cut -d. -f1 | cut -d_ -f2- | sort | uniq)
+
+while read -r module; do
+        if [ -z "$(echo " $NFQ_ENABLE_VARNISH_MODULES " | fgrep " $module ")" ]; then
+                rm $MODULES_PATH/libvmod_$module.*
+        else
+                echo "++ Enabling module: '$module'"
+        fi
+done <<< "$available_modules"
+
+
+for module in $NFQ_ENABLE_VARNISH_MODULES; do
+        if [ -z "$(echo "$available_modules" | fgrep "$module")" ]; then
+                echo "-- WARNING: module '$module' is not available"
+        fi
+done
