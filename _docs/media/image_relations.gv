@@ -85,6 +85,8 @@ digraph G {
     "nfqlt/toolbox"->"nfqlt/node4";
     "nfqlt/node6" [fillcolor=orange label="node6"];
     "nfqlt/toolbox"->"nfqlt/node6";
+    "nfqlt/node8" [fillcolor=orange label="node8"];
+    "nfqlt/toolbox"->"nfqlt/node8";
     "nfqlt/nodeserver6" [fillcolor=orange label="nodeserver6"];
     "nfqlt/debian-jessie"->"nfqlt/nodeserver6";
     "nfqlt/packager" [fillcolor=orange label="packager"];
@@ -149,8 +151,8 @@ digraph G {
     "nfqlt/debian-jessie"->"nfqlt/redis2817";
     "nfqlt/router" [fillcolor=orange label="router"];
     "nfqlt/debian-jessie"->"nfqlt/router";
-    "nfqlt/ruby21" [fillcolor=orange label="ruby21"];
-    "nfqlt/toolbox"->"nfqlt/ruby21";
+    "nfqlt/ruby2" [fillcolor=orange label="ruby2"];
+    "nfqlt/toolbox"->"nfqlt/ruby2";
     "nfqlt/solr36" [fillcolor=orange label="solr36"];
     "nfqlt/debian-jessie"->"nfqlt/solr36";
     "nfqlt/sphinxsearch" [fillcolor=orange label="sphinxsearch"];
@@ -158,7 +160,7 @@ digraph G {
     "nfqlt/thrift091" [fillcolor=orange label="thrift091"];
     "nfqlt/toolbox"->"nfqlt/thrift091";
     "nfqlt/toolbox" [fillcolor=orange label="toolbox"];
-    "nfqlt/debian-jessie"->"nfqlt/toolbox";
+    "nfqlt/debian-stretch"->"nfqlt/toolbox";
     "nfqlt/ubuntu-1204" [fillcolor=orange label="ubuntu-1204"];
     "ubuntu"->"nfqlt/ubuntu-1204";
     "nfqlt/varnish30" [fillcolor=orange label="varnish30"];
