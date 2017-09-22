@@ -1,7 +1,7 @@
-## Ruby 2.1 toolbox
+## Ruby 2 toolbox
 
 ### Info
-This is an image of ruby 2.1 version in toolbox format
+This is an image of ruby 2 version in toolbox format
 
 ### Global gems installed
 This image has pre-installed gems
@@ -23,13 +23,13 @@ Available binary paths for export:
 ### Sample configuration
 ```
 ruby:
-  image: nfqlt/ruby21
+  image: nfqlt/ruby2
   volumes:
     - ./src:/home/project/src
     - /tmp
 
 dev:
-  image: nfqlt/php56-dev
+  image: nfqlt/php70-dev
   volumes_from:
     - ruby
   volumes:
