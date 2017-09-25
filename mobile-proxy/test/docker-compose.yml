@@ -1,5 +1,5 @@
 proxy:
-  image: docker.nfq.lt/nfqlt/proxy
+  image: docker.nfq.lt/nfqlt/mobile-proxy
   links:
     - web
 
