@@ -1,0 +1,8 @@
+server {
+        listen 80 default;
+
+        root /var/www/html/;
+        index index.nginx-debian.html;
+
+}
+
