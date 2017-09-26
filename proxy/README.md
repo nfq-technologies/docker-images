@@ -31,7 +31,6 @@ The following configuration forwards __cdn.my.project.dev__ to __media__ contain
 
 ```
 web:
-  hostname: web
   image: nfqlt/proxy
   links:
     - website
