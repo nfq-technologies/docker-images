@@ -9,8 +9,12 @@ apt-get install -y --no-install-recommends rlwrap
 
 
 # Manually download and install node deb
-wget -qO nodejs.deb https://deb.nodesource.com/node_6.x/pool/main/n/nodejs/nodejs_6.1.0-1nodesource1~jessie1_amd64.deb
+file=$(wget -qO - https://deb.nodesource.com/node_6.x/pool/main/n/nodejs/ | sed 's/href="\([^"]*\)">/\n\1\n/g' | grep -i '^nodejs_[0-9\.\-]*nodesource1.stretch1_amd64\.deb$' | tail -n1)
+wget -qO nodejs.deb https://deb.nodesource.com/node_6.x/pool/main/n/nodejs/$file
 dpkg -i nodejs.deb
+. /etc/profile.d/nodejs.sh
+rm nodejs.deb
+
 
 cp -frv /build/files/* / || true
 
@@ -21,7 +25,5 @@ chown -R www-data:www-data /var/www
 apt-get install -y --no-install-recommends socat
 
 #cleanup
-rm -r nodejs.deb
-
 source /usr/local/build_scripts/cleanup_apt.sh
 

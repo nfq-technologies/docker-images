@@ -88,7 +88,7 @@ digraph G {
     "nfqlt/node8" [fillcolor=orange label="node8"];
     "nfqlt/toolbox"->"nfqlt/node8";
     "nfqlt/nodeserver6" [fillcolor=orange label="nodeserver6"];
-    "nfqlt/debian-jessie"->"nfqlt/nodeserver6";
+    "nfqlt/debian-stretch"->"nfqlt/nodeserver6";
     "nfqlt/packager" [fillcolor=orange label="packager"];
     "nfqlt/toolbox"->"nfqlt/packager";
     "nfqlt/phantomjs19" [fillcolor=orange label="phantomjs19"];

@@ -1,4 +1,4 @@
-FROM nfqlt/debian-jessie
+FROM nfqlt/debian-stretch
 
 ENV NFQ_DOCUMENT_ROOT /var/www
 ENV NFQ_NPM_RUN serve
