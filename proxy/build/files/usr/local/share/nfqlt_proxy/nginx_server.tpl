@@ -13,7 +13,7 @@ server {
 
 		proxy_request_buffering off;
 		proxy_http_version      1.1;
-		proxy_read_timeout      900;
+		proxy_read_timeout      86400;
 
 		proxy_pass              http://{{ remoteHost }};
 	}
