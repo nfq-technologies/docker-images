@@ -2,6 +2,7 @@ FROM nfqlt/debian-stretch
 
 ENV NFQ_DOCUMENT_ROOT /var/www
 ENV NFQ_NPM_RUN serve
+ENV NFQ_BACKEND_PORT 3000
 
 EXPOSE 80
 

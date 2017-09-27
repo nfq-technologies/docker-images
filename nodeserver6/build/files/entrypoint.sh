@@ -27,7 +27,8 @@ echo "++ Executing npm"
 trap 'kill -s SIGTERM $NPM_PID; kill -s SIGTERM $SOCAT_PID; exit 0' SIGTERM
 
 # Run thin proxy
-/usr/bin/socat TCP4-LISTEN:80,fork TCP4:127.0.0.1:3000 &
+echo "++ Forwarding port 80 to $NFQ_BACKEND_PORT"
+/usr/bin/socat TCP4-LISTEN:80,fork TCP4:127.0.0.1:$NFQ_BACKEND_PORT &
 SOCAT_PID=$!
 
 # Run npm target
