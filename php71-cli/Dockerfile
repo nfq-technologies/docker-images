@@ -1,4 +1,4 @@
-FROM nfqlt/debian-jessie
+FROM nfqlt/debian-stretch
 
 CMD run-parts -v /etc/rc.d
 

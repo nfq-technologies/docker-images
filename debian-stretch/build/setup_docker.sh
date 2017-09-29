@@ -44,6 +44,7 @@ apt-get install -y --no-install-recommends \
 	locales \
 	man \
 	apt-transport-https \
+	gnupg \
 	unzip \
 	strace \
 	jq \

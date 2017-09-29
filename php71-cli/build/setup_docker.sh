@@ -3,8 +3,8 @@
 set -x
 set -e
 
-echo "deb https://packages.sury.org/php jessie main" > /etc/apt/sources.list.d/sury.list
-echo "deb-src https://packages.sury.org/php jessie main" >> /etc/apt/sources.list.d/sury.list
+echo "deb https://packages.sury.org/php stretch main" > /etc/apt/sources.list.d/sury.list
+echo "deb-src https://packages.sury.org/php stretch main" >> /etc/apt/sources.list.d/sury.list
 
 wget --quiet https://packages.sury.org/php/apt.gpg
 apt-key add apt.gpg
@@ -62,7 +62,7 @@ apt-get install -y --no-install-recommends php7.1-cli \
     php-radius \
     php-raphf \
     php-redis \
-    php-rrd \
+    php-rrd=2.0.1+1.1.3-1* \
     php-smbclient \
     php-solr \
     php-ssh2 \
