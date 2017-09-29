@@ -17,7 +17,7 @@ apt-get install -y --no-install-recommends php7.0-cli \
 	php7.0-geoip \
 	php7.0-gmp \
 	php7.0-igbinary \
-	php7.0-imagick \
+	php7.0-imagick  libmagickcore-6.q16-2-extra \
 	php7.0-imap \
 	php7.0-interbase \
 	php7.0-intl \
@@ -36,7 +36,7 @@ apt-get install -y --no-install-recommends php7.0-cli \
 	php7.0-readline \
 	php7.0-recode \
 	php7.0-redis \
-	php7.0-snmp snmp \
+	php7.0-snmp     snmp \
 	php7.0-soap \
 	php7.0-ssh2 \
 	php7.0-sqlite3 \

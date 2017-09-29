@@ -34,7 +34,7 @@ apt-get install -y --no-install-recommends php7.1-cli \
     php7.1-pspell \
     php7.1-readline \
     php7.1-recode \
-    php7.1-snmp snmp \
+    php7.1-snmp     snmp \
     php7.1-soap \
     php7.1-sqlite3 \
     php7.1-sybase \
@@ -51,7 +51,7 @@ apt-get install -y --no-install-recommends php7.1-cli \
     php-gearman \
     php-geoip \
     php-igbinary \
-    php-imagick \
+    php-imagick     libmagickcore-6.q16-3-extra \
     php-mailparse \
     php-memcache \
     php-memcached \

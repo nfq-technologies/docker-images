@@ -25,7 +25,7 @@ apt-get install -y --no-install-recommends php5-cli \
 	php5-gmp \
 	php5-gnupg \
 	php5-igbinary \
-	php5-imagick \
+	php5-imagick    libmagickcore-6.q16-2-extra \
 	php5-imap \
 	php5-interbase \
 	php5-intl \
@@ -56,8 +56,7 @@ apt-get install -y --no-install-recommends php5-cli \
 	php5-remctl \
 	php5-rrd \
 	php5-sasl \
-	snmp \
-	php5-snmp \
+	php5-snmp       snmp \
 	php5-solr \
 	php5-sqlite \
 	php5-ssh2 \
