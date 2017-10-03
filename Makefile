@@ -57,7 +57,8 @@ clean.5: $(CHILDREN5LEVEL:=.clean)
 $(addprefix test.,$(LEVELS)):
 	$(eval $@_level := $(subst .,,$(suffix $@)))
 	for dir in $(CHILDREN$($@_level)LEVEL); do \
-		$(MAKE) test -C $$dir; \
+		printf "%-20s ... " $$dir ; \
+		$(MAKE) test -C $$dir >/tmp/make-test.log 2>&1 && echo OK || (echo FAILED; cat /tmp/make-test.log ; false) ; \
 	done
 
 
