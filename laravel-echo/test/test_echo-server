@@ -1,0 +1,48 @@
+#!/bin/bash
+set -e
+
+# Script level settings
+cwd=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+image="$1"
+pid=${BASHPID}
+cname=test${pid}
+
+source "${cwd}/../../_tools/helpers/common.sh"
+
+# destroy containers and remove trash
+cleanup() {
+	set +e
+	docker kill "test${pid}" &>/dev/null
+	set -e
+}
+trap cleanup EXIT
+
+run_test() {
+	local ip="$1"
+	local match="$2"
+	local t1=$(date +%s)
+	local t2=0
+	local timeout=$3
+
+	while true; do
+		if wget --retry-connrefused --waitretry=1 -t 1 -T 5 -qO- "$ip" | grep -q "$match"; then
+			return 0
+		fi
+
+		t2=$(date +%s)
+		if [ $(($t2-$t1)) -ge $timeout ]; then
+			return 1
+		fi
+
+		sleep 1
+	done
+}
+
+docker run --rm -d --name "test${pid}" $image &>/dev/null
+box_ip=$(get_container_ip $cname)
+wait_for_connection $box_ip:80 5
+
+run_test  "http://$box_ip:80/apps/project/status?auth_key=project" '{.*subscription_count.*}' 5
+
+exit 0
+

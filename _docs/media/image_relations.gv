@@ -53,6 +53,8 @@ digraph G {
     "nfqlt/nginx110"->"nfqlt/https-dev";
     "nfqlt/java8" [fillcolor=orange label="java8"];
     "nfqlt/debian-jessie"->"nfqlt/java8";
+    "nfqlt/laravel-echo" [fillcolor=orange label="laravel-echo"];
+    "nfqlt/nodeserver6"->"nfqlt/laravel-echo";
     "nfqlt/libreoffice" [fillcolor=orange label="libreoffice"];
     "nfqlt/toolbox"->"nfqlt/libreoffice";
     "nfqlt/lib-smartclient100" [fillcolor=orange label="lib-smartclient100"];
