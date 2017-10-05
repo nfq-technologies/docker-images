@@ -12,6 +12,9 @@ init_wait_for_a_not_empty_dir
 init_wait_for_a_file
 init_wait_for_a_not_empty_file
 
+# support startup trigger
+init_use_startup_trigger
+
 
 envKey="NFQ_PROXY_MAP"
 
@@ -56,10 +59,6 @@ else
 		>>/etc/nginx/sites-available/default
 	fi
 fi
-
-
-# support startup trigger
-init_use_startup_trigger
 
 exec nginx -g "daemon off;"
 
