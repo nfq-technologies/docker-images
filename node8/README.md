@@ -10,6 +10,8 @@ This image has pre-installed npm global packages
  - grunt-cli
  - node-sass
  - bower
+ - typescript
+ - tslint
 
 ### Configuration
 Available binary paths for export:
@@ -22,6 +24,8 @@ Available binary paths for export:
 - /usr/bin/bower
 - /usr/bin/uglifycss
 - /usr/bin/uglifyjs
+- /usr/bin/tsc
+- /usr/bin/tslint
 
 ### Sample configuration
 ```
