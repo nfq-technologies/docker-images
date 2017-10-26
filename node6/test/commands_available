@@ -18,4 +18,6 @@ check_command node-sass --version
 check_command bower --version
 check_command uglifycss
 check_command uglifyjs --version
+check_command tsc --version
+check_command tslint --version
 
