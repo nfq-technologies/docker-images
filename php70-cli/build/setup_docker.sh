@@ -29,7 +29,7 @@ apt-get install -y --no-install-recommends php7.0-cli \
 	php7.0-mongodb \
 	php7.0-msgpack \
 	php7.0-mysql \
-	php7.0-odbc \
+	php7.0-odbc odbc-mdbtools \
 	php7.0-opcache \
 	php7.0-pgsql \
 	php7.0-pspell \
