@@ -49,6 +49,12 @@ apt-get install -y --no-install-recommends php7.0-cli \
 	php7.0-zip \
 
 
+
+# add missing odbc symlink
+mkdir -p /usr/lib/x86_64-linux-gnu/odbc
+ln -s /usr/lib/x86_64-linux-gnu/libodbccr.so.1 /usr/lib/x86_64-linux-gnu/odbc/libodbccr.so
+
+
 # disable all php modules
 ls -1 /etc/php/7.0/mods-available/ | sed 's/\.ini$//g' | xargs -I{} -n1 phpdismod -v ALL -s ALL {} 2>/dev/null
 
