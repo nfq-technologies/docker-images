@@ -15,6 +15,8 @@ digraph G {
     "nfqlt/php70-cli"->"nfqlt/apache24-php70";
     "nfqlt/apache-fastcgi" [fillcolor=orange label="apache-fastcgi"];
     "nfqlt/debian-wheezy"->"nfqlt/apache-fastcgi";
+    "nfqlt/db-tools" [fillcolor=orange label="db-tools"];
+    "nfqlt/toolbox"->"nfqlt/db-tools";
     "nfqlt/deb-dev" [fillcolor=orange label="deb-dev"];
     "nfqlt/php56-dev"->"nfqlt/deb-dev";
     "nfqlt/debian-jessie" [fillcolor=orange label="debian-jessie"];
@@ -91,6 +93,8 @@ digraph G {
     "nfqlt/toolbox"->"nfqlt/node8";
     "nfqlt/nodeserver6" [fillcolor=orange label="nodeserver6"];
     "nfqlt/debian-stretch"->"nfqlt/nodeserver6";
+    "nfqlt/nodeserver8" [fillcolor=orange label="nodeserver8"];
+    "nfqlt/debian-stretch"->"nfqlt/nodeserver8";
     "nfqlt/packager" [fillcolor=orange label="packager"];
     "nfqlt/toolbox"->"nfqlt/packager";
     "nfqlt/phantomjs19" [fillcolor=orange label="phantomjs19"];
