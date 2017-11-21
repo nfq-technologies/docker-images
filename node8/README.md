@@ -6,6 +6,7 @@ This is an image of Node.js LTS version  in toolbox format
 ### Global npm packages
 This image has pre-installed npm global packages
 
+ - yarn
  - gulp-cli
  - grunt-cli
  - node-sass
@@ -18,6 +19,7 @@ Available binary paths for export:
 
 - /usr/bin/node
 - /usr/bin/npm
+- /usr/bin/yarn
 - /usr/bin/gulp
 - /usr/bin/grunt
 - /usr/bin/node-sass

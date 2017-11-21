@@ -14,6 +14,9 @@ dpkg -i nodejs.deb
 . /etc/profile.d/nodejs.sh
 rm nodejs.deb
 
+# yarn
+npm install -g yarn
+
 # grunt
 npm install -g grunt-cli
 
