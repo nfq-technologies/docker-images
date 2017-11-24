@@ -10,7 +10,7 @@ server {
 
 server {
 	listen 80 default_server;
-	resolver ns.nfq.lt;
+	resolver ns-local.nfq.lt;
 
 	location / {
 		proxy_pass $scheme://$host$request_uri;
