@@ -32,6 +32,13 @@ npm install -g uglify-js
 # uglifycss
 npm install -g uglifycss
 
+# typescript
+npm install -g typescript
+
+# typescript linter
+npm install -g tslint
+
+
 # Copy runtime files
 cp -frv /build/files/* / || true
 
