@@ -1,4 +1,4 @@
-FROM nfqlt/debian-jessie
+FROM nfqlt/debian-stretch
 
 EXPOSE 4730
 

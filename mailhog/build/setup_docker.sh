@@ -8,7 +8,7 @@ apt-get update
 
 
 apt-get install -y --no-install-recommends golang
-wget -O /usr/local/bin/mailhog https://github.com/mailhog/MailHog/releases/download/v0.2.0/MailHog_linux_amd64
+wget -O /usr/local/bin/mailhog https://github.com/mailhog/MailHog/releases/download/v1.0.0/MailHog_linux_amd64
 chmod a+x /usr/local/bin/mailhog
 
 

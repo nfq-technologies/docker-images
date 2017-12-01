@@ -50,7 +50,7 @@ digraph G {
     "nfqlt/fontforge" [fillcolor=orange label="fontforge"];
     "nfqlt/toolbox"->"nfqlt/fontforge";
     "nfqlt/gearman" [fillcolor=orange label="gearman"];
-    "nfqlt/debian-jessie"->"nfqlt/gearman";
+    "nfqlt/debian-stretch"->"nfqlt/gearman";
     "nfqlt/graphic-tools" [fillcolor=orange label="graphic-tools"];
     "nfqlt/toolbox"->"nfqlt/graphic-tools";
     "nfqlt/graylog20" [fillcolor=orange label="graylog20"];
@@ -70,7 +70,7 @@ digraph G {
     "nfqlt/linker17ce" [fillcolor=orange label="linker17ce"];
     "nfqlt/docker17ce"->"nfqlt/linker17ce";
     "nfqlt/mailhog" [fillcolor=orange label="mailhog"];
-    "nfqlt/debian-jessie"->"nfqlt/mailhog";
+    "nfqlt/debian-stretch"->"nfqlt/mailhog";
     "nfqlt/memcached1421" [fillcolor=orange label="memcached1421"];
     "nfqlt/debian-jessie"->"nfqlt/memcached1421";
     "nfqlt/mobile-proxy" [fillcolor=orange label="mobile-proxy"];
@@ -104,7 +104,7 @@ digraph G {
     "nfqlt/phantomjs19" [fillcolor=orange label="phantomjs19"];
     "nfqlt/debian-jessie"->"nfqlt/phantomjs19";
     "nfqlt/phantomjs21" [fillcolor=orange label="phantomjs21"];
-    "nfqlt/debian-jessie"->"nfqlt/phantomjs21";
+    "nfqlt/debian-stretch"->"nfqlt/phantomjs21";
     "nfqlt/php53-cli" [fillcolor=orange label="php53-cli"];
     "nfqlt/ubuntu-1204"->"nfqlt/php53-cli";
     "nfqlt/php53-dev" [fillcolor=orange label="php53-dev"];
