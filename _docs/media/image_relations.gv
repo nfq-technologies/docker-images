@@ -167,6 +167,8 @@ digraph G {
     "nfqlt/debian-stretch"->"nfqlt/rabbitmq366";
     "nfqlt/redis2817" [fillcolor=orange label="redis2817"];
     "nfqlt/debian-jessie"->"nfqlt/redis2817";
+    "nfqlt/redis326" [fillcolor=orange label="redis326"];
+    "nfqlt/debian-stretch"->"nfqlt/redis326";
     "nfqlt/router" [fillcolor=orange label="router"];
     "nfqlt/debian-jessie"->"nfqlt/router";
     "nfqlt/ruby2" [fillcolor=orange label="ruby2"];
