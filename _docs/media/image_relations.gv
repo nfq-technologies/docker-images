@@ -26,7 +26,7 @@ digraph G {
     "nfqlt/debian-wheezy" [fillcolor=orange label="debian-wheezy"];
     "debian"->"nfqlt/debian-wheezy";
     "nfqlt/docker17ce" [fillcolor=orange label="docker17ce"];
-    "nfqlt/debian-jessie"->"nfqlt/docker17ce";
+    "nfqlt/debian-stretch"->"nfqlt/docker17ce";
     "nfqlt/elasticsearch17-data" [fillcolor=orange label="elasticsearch17-data"];
     "nfqlt/elasticsearch17"->"nfqlt/elasticsearch17-data";
     "nfqlt/elasticsearch17" [fillcolor=orange label="elasticsearch17"];

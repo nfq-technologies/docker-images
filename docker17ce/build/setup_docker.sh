@@ -5,12 +5,13 @@ set -e
 
 apt-get update
 
+echo -e '\n\n## Install and configure docker ... \n\n'
+
 apt-get install -y apt-transport-https ca-certificates
-echo 'deb https://apt.dockerproject.org/repo debian-jessie main' > /etc/apt/sources.list.d/docker.list
-apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+echo 'deb [arch=amd64] https://download.docker.com/linux/debian stretch stable' > /etc/apt/sources.list.d/docker.list
+curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 apt-get update
-# see link for version list: http://apt.dockerproject.org/repo/pool/main/d/docker-engine/
-apt-get install -y docker-engine=17.03.0~ce-0~debian-jessie
+apt-get install -y docker-ce=17.03.0~ce-0~debian-stretch
 
 
 cp -frv /build/files/* / || true
