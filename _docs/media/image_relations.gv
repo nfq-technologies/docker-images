@@ -38,7 +38,7 @@ digraph G {
     "nfqlt/elasticsearch51-data" [fillcolor=orange label="elasticsearch51-data"];
     "nfqlt/elasticsearch51"->"nfqlt/elasticsearch51-data";
     "nfqlt/elasticsearch51" [fillcolor=orange label="elasticsearch51"];
-    "nfqlt/debian-jessie"->"nfqlt/elasticsearch51";
+    "nfqlt/debian-stretch"->"nfqlt/elasticsearch51";
     "nfqlt/elasticsearch56-data" [fillcolor=orange label="elasticsearch56-data"];
     "nfqlt/elasticsearch56"->"nfqlt/elasticsearch56-data";
     "nfqlt/elasticsearch56" [fillcolor=orange label="elasticsearch56"];
@@ -170,7 +170,7 @@ digraph G {
     "nfqlt/redis326" [fillcolor=orange label="redis326"];
     "nfqlt/debian-stretch"->"nfqlt/redis326";
     "nfqlt/router" [fillcolor=orange label="router"];
-    "nfqlt/debian-jessie"->"nfqlt/router";
+    "nfqlt/debian-stretch"->"nfqlt/router";
     "nfqlt/ruby2" [fillcolor=orange label="ruby2"];
     "nfqlt/toolbox"->"nfqlt/ruby2";
     "nfqlt/solr36" [fillcolor=orange label="solr36"];

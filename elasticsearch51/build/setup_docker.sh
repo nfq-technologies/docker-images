@@ -4,9 +4,8 @@ set -x
 set -e
 
 # setup
-echo "deb http://ftp.debian.org/debian jessie-backports main" > /etc/apt/sources.list.d/backports.list
 apt-get update
-apt-get install -y --no-install-recommends -t jessie-backports ca-certificates-java openjdk-8-jre-headless
+apt-get install -y --no-install-recommends ca-certificates-java openjdk-8-jre-headless
 
 
 ES_PKG_NAME=elasticsearch-5.1.2
