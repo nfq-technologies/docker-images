@@ -25,8 +25,8 @@ default values is empty.
 
 ### Sample configuration
 
-The following configuration forwards __cdn.my.project.dev__ to __media__ container,
- __backend.my.project.dev__ to __backend__ container and every other subdomain
+The following configuration forwards __cdn.my.project.test__ to __media__ container,
+ __backend.my.project.test__ to __backend__ container and every other subdomain
  to __website__ cotainer.
 
 ```

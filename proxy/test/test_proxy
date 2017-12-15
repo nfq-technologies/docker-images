@@ -46,10 +46,10 @@ box_ip=$(get_container_ip $cname)
 wait_for_connection $box_ip:80
 
 run_test "example.org" $box_ip "website"
-run_test "backend.dev" $box_ip "backend"
+run_test "backend.test" $box_ip "backend"
 run_test "backend" $box_ip "website"
-run_test "cdn.dev" $box_ip "media"
-run_test "cdn.foo.bar.dev" $box_ip "media"
+run_test "cdn.test" $box_ip "media"
+run_test "cdn.foo.bar.test" $box_ip "media"
 
 cleanup
 
@@ -61,10 +61,10 @@ wait_for_connection $box_ip:80
 
 
 run_test "example.org" $box_ip ""
-run_test "backend.dev" $box_ip "backend"
+run_test "backend.test" $box_ip "backend"
 run_test "backend" $box_ip ""
-run_test "cdn.dev" $box_ip "media"
-run_test "cdn.foo.bar.dev" $box_ip "media"
+run_test "cdn.test" $box_ip "media"
+run_test "cdn.foo.bar.test" $box_ip "media"
 
 cleanup
 
@@ -76,10 +76,10 @@ wait_for_connection $box_ip:80
 
 
 run_test "example.org" $box_ip "website"
-run_test "backend.dev" $box_ip "backend"
+run_test "backend.test" $box_ip "backend"
 run_test "backend" $box_ip "website"
-run_test "cdn.dev" $box_ip "media"
-run_test "cdn.foo.bar.dev" $box_ip "media"
+run_test "cdn.test" $box_ip "media"
+run_test "cdn.foo.bar.test" $box_ip "media"
 
 cleanup
 
