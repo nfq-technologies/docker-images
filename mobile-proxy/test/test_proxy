@@ -38,7 +38,7 @@ box_ip=$(get_container_ip $cname)
 wait_for_connection $box_ip:80
 
 run_test "http://example.org/" $box_ip
-run_test "http://web.dev/" $box_ip
+run_test "http://web.test/" $box_ip
 
 exit 0
 

@@ -1,7 +1,7 @@
 ## Proxy
 
 ### Info
-Purpose of this image is to provide transparent proxy, proxying all __dev__
+Purpose of this image is to provide transparent proxy, proxying all __test__
  tld requests to __web__ image, and all others to pass thru. So that this
  image could be used as a proxy on mobile device and get you access to your
  project.
