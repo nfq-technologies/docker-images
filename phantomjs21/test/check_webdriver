@@ -53,7 +53,7 @@ run_test() {
 		"value":"'"${xpath}"'"
 	}')"
 
-	if  echo "$response" | grep -q ':wdc:' ; then
+	if  echo "$response" | grep -q 'status":0' ; then
 		return 0
 	fi
 

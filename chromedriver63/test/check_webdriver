@@ -26,11 +26,14 @@ run_test() {
 	# Init session
 	response="$(curl -XPOST -s "${ip}:4444/wd/hub/session" -d '{
 		"desiredCapabilities":{
-			"browserName":"firefox",
-			"version":"8",
 			"platform":"ANY",
-			"browserVersion":"8",
-			"browser":"firefox",
+			"browserName":"chrome",
+			"version": "",
+			"chromeOptions":{
+				"args":["no-sandbox"],
+				"extensions":[]
+			},
+			"chrome.switches":[],
 			"name":"CLI_TEST",
 			"deviceOrientation":"landscape",
 			"deviceType":"desktop",
@@ -39,7 +42,6 @@ run_test() {
 		},
 		"requiredCapabilities":[]
 	}')"
-
 	local session=$(echo $response |sed -nr 's/.*"sessionId":"([^"]*)".*/\1/p')
 
 	# Load page
