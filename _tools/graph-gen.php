@@ -1,12 +1,29 @@
 #!/usr/bin/php
 <?php
 
-require_once('libgv-php5/gv.php');
-
-
-
 define("ROOT_DIR", dirname(__DIR__));
 define("OUT_DIR", ROOT_DIR.'/_docs/media');
+
+if ( ! extension_loaded('gv') ) {
+        touch(OUT_DIR."/image_relations.gv");
+        touch(OUT_DIR."/image_relations.png");
+
+        $cmd="docker run -it --rm \
+                -v /home/project/images/nfqlt:/home/project/images/nfqlt:ro \
+                -v /home/project/images/nfqlt/_docs:/home/project/images/nfqlt/_docs \
+                nfqlt/php56-cli \
+                bash -c '\
+                    php5enmod gv ;\
+                    /home/project/images/nfqlt/_tools/graph-gen.php' ;\
+                    chown -R 1000:1000 /home/project/images/nfqlt/_docs ;\
+        ";
+        shell_exec($cmd);
+        exit(0);
+}
+
+
+require_once('libgv-php5/gv.php');
+
 
 $ir = new ImageRelations(ROOT_DIR);
 $ir->writeGv(OUT_DIR."/image_relations.gv");
