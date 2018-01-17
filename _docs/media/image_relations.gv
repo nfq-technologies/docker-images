@@ -15,6 +15,10 @@ digraph G {
     "nfqlt/php70-cli"->"nfqlt/apache24-php70";
     "nfqlt/apache-fastcgi" [fillcolor=orange label="apache-fastcgi"];
     "nfqlt/debian-wheezy"->"nfqlt/apache-fastcgi";
+    "nfqlt/certbot" [fillcolor=orange label="certbot"];
+    "nfqlt/debian-stretch"->"nfqlt/certbot";
+    "nfqlt/chromedriver63" [fillcolor=orange label="chromedriver63"];
+    "nfqlt/debian-stretch"->"nfqlt/chromedriver63";
     "nfqlt/db-tools" [fillcolor=orange label="db-tools"];
     "nfqlt/toolbox"->"nfqlt/db-tools";
     "nfqlt/deb-dev" [fillcolor=orange label="deb-dev"];
@@ -189,6 +193,8 @@ digraph G {
     "nfqlt/debian-jessie"->"nfqlt/varnish40";
     "nfqlt/varnish50" [fillcolor=orange label="varnish50"];
     "nfqlt/debian-stretch"->"nfqlt/varnish50";
+    "nfqlt/wkhtmltopdf-broken" [fillcolor=orange label="wkhtmltopdf-broken"];
+    "nfqlt/toolbox"->"nfqlt/wkhtmltopdf-broken";
     "nfqlt/wkhtmltopdf" [fillcolor=orange label="wkhtmltopdf"];
     "nfqlt/toolbox"->"nfqlt/wkhtmltopdf";
     "nfqlt/xhgui" [fillcolor=orange label="xhgui"];
