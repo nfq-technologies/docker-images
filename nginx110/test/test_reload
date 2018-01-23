@@ -15,7 +15,11 @@ function cleanup() {
 }
 trap cleanup EXIT
 
-docker run -d --name "test${pid}" -p ${web_port}:80 -p ${reload_port}:1024 -v "${cwd}/configurations/test_default:/tmp/test_default" "$1" > /dev/null
+docker run -d --name "test${pid}" \
+		-p ${web_port}:80 \
+		-p ${reload_port}:1024 \
+		-v "${cwd}/configurations/test_default:/tmp/test_default" \
+		"$1" > /dev/null
 wait_for_connection "localhost:${web_port}"
 
 function test_response () {
