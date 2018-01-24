@@ -20,3 +20,13 @@ Interval of renew checs described in cron notation.
 
 default: 15 10 * * *
 
+### NFQ_NOTIFY_HOST (optional)
+
+Notifies provided host with a port connect that cert generation/renewal was attemted
+
+default: empty
+
+### NFQ_NOTIFY_PORT (optional)
+
+default: 1024
+
