@@ -1,12 +1,20 @@
 #!/bin/bash
 set -e
 
+source /tools/functions_init.sh
+
 # for tests when container does not have a link to fastcgi
 fgrep -q fastcgi /etc/hosts || echo '127.0.0.1 fastcgi' >> /etc/hosts
 
-/usr/local/bin/prepare_nginx_configs
-
 run-parts -v /etc/rc.d
+
+# default features
+init_wait_for_a_dir
+init_wait_for_a_not_empty_dir
+init_wait_for_a_file
+init_wait_for_a_not_empty_file
+
+/usr/local/bin/prepare_nginx_configs
 
 # We'll use exec so current process id should be substituted with nginx master
 PID="$$"
