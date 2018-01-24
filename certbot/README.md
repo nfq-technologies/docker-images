@@ -24,8 +24,6 @@ default: 15 10 * * *
 
 Notifies provided host with a port connect that cert generation/renewal was attemted
 
-default: empty
-
 ### NFQ_NOTIFY_PORT (optional)
 
 default: 1024
