@@ -9,7 +9,7 @@ apt-get update
 apt-get install -y --no-install-recommends nginx openssl ca-certificates
 
 
-cp -frv /build/files/* /
+cp -frv /build/files/* / || true
 
 
 # Clean up APT when done.
