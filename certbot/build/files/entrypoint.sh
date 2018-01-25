@@ -24,11 +24,19 @@ do
 done
 
 
-echo "command: $cmd"
-$cmd
+if [[ ! -z $NFQ_NOTIFY_HOST && ! -z $NFQ_NOTIFY_PORT ]]
+then
+	notify_cmd="/bin/nc $NFQ_NOTIFY_HOST $NFQ_NOTIFY_PORT"
+else
+	notify_cmd="true"
+fi
+
+
+echo "command: $cmd && $notify_cmd"
+$cmd && $notify_cmd
 
 echo setup crontab
-echo "${NFQ_CERTBOT_RENEW_CRON} root $cmd 2>&1 | /usr/bin/logger -t certbot" >/etc/crontab
+echo "${NFQ_CERTBOT_RENEW_CRON} root $cmd 2>&1 | /usr/bin/logger -t certbot && $notify_cmd 2>&1 | /usr/bin/logger -t certbot" >/etc/crontab
 
 cron -n -L 1 &
 syslogd -n -O /dev/stdout | stdbuf -i0 -oL -eL fgrep -v ' authpriv.'
