@@ -42,5 +42,5 @@ example:
 * rabbitmq_web_stomp_examples
 * sockjs
 * webmachine
-
+* rabbitmq_delayed_message_exchange
 
