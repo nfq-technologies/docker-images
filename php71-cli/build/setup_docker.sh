@@ -10,6 +10,12 @@ wget --quiet https://packages.sury.org/php/apt.gpg
 apt-key add apt.gpg
 rm apt.gpg
 
+cat >/etc/apt/preferences.d/sury <<EOF
+Package: php-*
+Pin: origin packages.sury.org
+Pin-Priority: 600
+EOF
+
 apt-get update
 
 apt-get install -y --no-install-recommends php7.1-cli \
@@ -62,7 +68,7 @@ apt-get install -y --no-install-recommends php7.1-cli \
     php-radius \
     php-raphf \
     php-redis \
-    php-rrd=2.0.1+1.1.3-1* \
+    php-rrd \
     php-smbclient \
     php-solr \
     php-ssh2 \
