@@ -21,3 +21,11 @@ Used for dynamic site configuration loading or ssl sertificates update
 
 default value: 1024
 
+
+### NFQ_FASTCGI_HOST (optional)
+
+Host to forward php files execution to. To disable fastcgi support provide
+either value 'false' or set an empty value to this variable.
+
+default value: fastcgi
+

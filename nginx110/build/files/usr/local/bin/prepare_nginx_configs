@@ -14,3 +14,9 @@ do
 	done
 done
 
+
+if [[ "$NFQ_FASTCGI_HOST" == 'false' || -z "$NFQ_FASTCGI_HOST" ]]
+then
+	cp -f /etc/nginx/conf.d/default_wo_fastcgi /etc/nginx/sites-available/default
+fi
+
