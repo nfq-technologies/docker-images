@@ -163,6 +163,16 @@ digraph G {
     "nfqlt/php71-cli"->"nfqlt/php71-fpm";
     "nfqlt/php71-supervisor" [fillcolor=orange label="php71-supervisor"];
     "nfqlt/php71-cli"->"nfqlt/php71-supervisor";
+    "nfqlt/php72-cli" [fillcolor=orange label="php72-cli"];
+    "nfqlt/debian-stretch"->"nfqlt/php72-cli";
+    "nfqlt/php72-cron" [fillcolor=orange label="php72-cron"];
+    "nfqlt/php72-cli"->"nfqlt/php72-cron";
+    "nfqlt/php72-dev" [fillcolor=orange label="php72-dev"];
+    "nfqlt/php72-cli"->"nfqlt/php72-dev";
+    "nfqlt/php72-fpm" [fillcolor=orange label="php72-fpm"];
+    "nfqlt/php72-cli"->"nfqlt/php72-fpm";
+    "nfqlt/php72-supervisor" [fillcolor=orange label="php72-supervisor"];
+    "nfqlt/php72-cli"->"nfqlt/php72-supervisor";
     "nfqlt/proxy" [fillcolor=orange label="proxy"];
     "nfqlt/nginx110"->"nfqlt/proxy";
     "nfqlt/rabbitmq335" [fillcolor=orange label="rabbitmq335"];
