@@ -22,7 +22,7 @@ digraph G {
     "nfqlt/db-tools" [fillcolor=orange label="db-tools"];
     "nfqlt/toolbox"->"nfqlt/db-tools";
     "nfqlt/deb-dev" [fillcolor=orange label="deb-dev"];
-    "nfqlt/php56-dev"->"nfqlt/deb-dev";
+    "nfqlt/php70-dev"->"nfqlt/deb-dev";
     "nfqlt/debian-jessie" [fillcolor=orange label="debian-jessie"];
     "debian"->"nfqlt/debian-jessie";
     "nfqlt/debian-stretch" [fillcolor=orange label="debian-stretch"];
