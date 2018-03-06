@@ -85,7 +85,7 @@ phpDisableModule zip
 
 
 # install phpunit
-apt-get install -y --force-yes --no-install-recommends phpunit54
+apt-get install -y --force-yes --no-install-recommends phpunit65
 phpenmod phar
 
 
