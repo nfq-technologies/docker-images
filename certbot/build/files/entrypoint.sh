@@ -7,7 +7,7 @@ set +x
 trap 'exec true' EXIT
 
 
-cmd="/usr/bin/certbot certonly --standalone -n --agree-tos --preferred-challenges http"
+cmd="/usr/bin/certbot certonly --standalone -n --agree-tos --preferred-challenges http --expand"
 
 
 if [[ ! -z "$NFQ_CERT_EMAIL" ]]
