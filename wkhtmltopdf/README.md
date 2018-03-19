@@ -11,31 +11,36 @@ Available binary paths for export:
 
 ### Sample configuration
 ```
-wkhtmltopdf:
-  image: nfqlt/wkhtmltopdf
-  volumes_from:
-    - './src:/home/project/src'
-    - /tmp
+version: '2.1'
+services:
+  wkhtmltopdf:
+    image: nfqlt/wkhtmltopdf
+    network_mode: bridge
+    volumes:
+      - './src:/home/project/src'
+      - /tmp
 
-dev:
-  image: nfqlt/php56-dev
-  volumes_from:
-    - wkhtmltopdf
-  volumes:
-    - ./src:/home/project/src
-    - /home/project/.ssh:/home/project/.ssh
-    - /etc/ssh:/etc/ssh
-    - /etc/gitconfig:/etc/gitconfig
-    - /etc/environment:/etc/environment-vm:ro
-  environment:
-    NFQ_REMOTE_TOOL_WKHTMLTOPDF: >
-      /usr/bin/xvfb-run
-      /usr/bin/wkhtmltopdf
+  dev:
+    image: nfqlt/php56-dev
+    network_mode: bridge
+    volumes_from:
+      - services:wkhtmltopdf:rw
+    volumes:
+      - ./src:/home/project/src
+      - /home/project/.ssh:/home/project/.ssh
+      - /etc/ssh:/etc/ssh
+      - /etc/gitconfig:/etc/gitconfig
+      - /etc/environment:/etc/environment-vm:ro
+    environment:
+      NFQ_REMOTE_TOOL_WKHTMLTOPDF: >
+        /usr/bin/xvfb-run
+        /usr/bin/wkhtmltopdf
 
-linker:
-  image: nfqlt/linker17
-  volumes:
-    - /run/docker.sock:/run/docker.sock
+  linker:
+    image: nfqlt/linker17ce
+    network_mode: bridge
+    volumes:
+      - /run/docker.sock:/run/docker.sock
 ```
 
 ### Usage

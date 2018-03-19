@@ -22,25 +22,29 @@ Available binary paths for export:
 
 ### Sample configuration
 ```
-ruby:
-  image: nfqlt/ruby2
-  volumes:
-    - ./src:/home/project/src
-    - /tmp
+version: '2.1'
+services:
+  ruby:
+    image: nfqlt/ruby2
+    network_mode: bridge
+    volumes:
+      - ./src:/home/project/src
+      - /tmp
 
-dev:
-  image: nfqlt/php70-dev
-  volumes_from:
-    - ruby
-  volumes:
-    - ./src:/home/project/src
-    - /home/project/.ssh:/home/project/.ssh
-    - /etc/ssh:/etc/ssh
-    - /etc/gitconfig:/etc/gitconfig
-    - /etc/environment:/etc/environment-vm:ro
-  environment:
-    NFQ_REMOTE_TOOL_RUBY: >
-      /usr/local/bin/bundle
-      /usr/local/bin/sass
+  dev:
+    image: nfqlt/php70-dev
+    network_mode: bridge
+    volumes_from:
+      - service:ruby:rw
+    volumes:
+      - ./src:/home/project/src
+      - /home/project/.ssh:/home/project/.ssh
+      - /etc/ssh:/etc/ssh
+      - /etc/gitconfig:/etc/gitconfig
+      - /etc/environment:/etc/environment-vm:ro
+    environment:
+      NFQ_REMOTE_TOOL_RUBY: >
+        /usr/local/bin/bundle
+        /usr/local/bin/sass
 ```
 

@@ -29,26 +29,30 @@ Available binary paths for export:
 
 ### Sample configuration
 ```
-node:
-  image: nfqlt/node6
-  volumes:
-    - './src:/home/project/src'
-    - /tmp
+version: '2.1'
+services:
+  node:
+    image: nfqlt/node6
+    network_mode: bridge
+    volumes:
+      - './src:/home/project/src'
+      - /tmp
 
-dev:
-  image: nfqlt/php56-dev
-  volumes_from:
-    - node
-  volumes:
-    - './src:/home/project/src'
-    - '/home/project/.ssh:/home/project/.ssh'
-    - '/etc/ssh:/etc/ssh'
-    - '/etc/gitconfig:/etc/gitconfig'
-    - '/etc/environment:/etc/environment-vm:ro'
-  environment:
-    NFQ_REMOTE_TOOL_NODE: >
-      /usr/bin/npm
-      /usr/bin/node
-      /usr/bin/grunt
+  dev:
+    image: nfqlt/php56-dev
+    network_mode: bridge
+    volumes_from:
+      - services:node:rw
+    volumes:
+      - './src:/home/project/src'
+      - '/home/project/.ssh:/home/project/.ssh'
+      - '/etc/ssh:/etc/ssh'
+      - '/etc/gitconfig:/etc/gitconfig'
+      - '/etc/environment:/etc/environment-vm:ro'
+    environment:
+      NFQ_REMOTE_TOOL_NODE: >
+        /usr/bin/npm
+        /usr/bin/node
+        /usr/bin/grunt
 ```
 

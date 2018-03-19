@@ -23,25 +23,29 @@ Available binary paths for export:
 ### Sample configuration
 
 ```
-graphics:
-  image: nfqlt/graphic-tools
-  volumes:
-    - './src:/home/project/src'
-    - /tmp
+version: '2.1'
+services:
+  graphics:
+    image: nfqlt/graphic-tools
+    network_mode: bridge
+    volumes:
+      - './src:/home/project/src'
+      - /tmp
 
-dev:
-  image: nfqlt/php56-dev
-  volumes_from:
-    - graphics
-  volumes:
-    - './src:/home/project/src'
-    - '/home/project/.ssh:/home/project/.ssh'
-    - '/etc/ssh:/etc/ssh'
-    - '/etc/gitconfig:/etc/gitconfig'
-    - '/etc/environment:/etc/environment-vm:ro'
-  environment:
-    NFQ_REMOTE_TOOL_GRAPHICS: >
-      /usr/bin/optipng
-      /usr/bin/pngquant
+  dev:
+    image: nfqlt/php56-dev
+    network_mode: bridge
+    volumes_from:
+      - service:graphics:rw
+    volumes:
+      - './src:/home/project/src'
+      - '/home/project/.ssh:/home/project/.ssh'
+      - '/etc/ssh:/etc/ssh'
+      - '/etc/gitconfig:/etc/gitconfig'
+      - '/etc/environment:/etc/environment-vm:ro'
+    environment:
+      NFQ_REMOTE_TOOL_GRAPHICS: >
+        /usr/bin/optipng
+        /usr/bin/pngquant
 ```
 
