@@ -6,10 +6,13 @@ Simple add this container to your project with name xhgui (or link it with other
 There is only a single port 80 that needs to be exposed: recommended value is 1081
 Example:
 ```yaml
-xhgui:
-  image: nfqlt/xhgui
-  ports:
-    - "10.24.2.49:1081:80"
+version: '2.1'
+services:
+  xhgui:
+    image: nfqlt/xhgui
+    network_mode: bridge
+    ports:
+      - "10.24.2.49:1081:80"
 ```
 Additional to xhgui you'll need a php tideways extension enabled in your fpm and/or dev containers.
 

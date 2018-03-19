@@ -23,32 +23,36 @@ Available binary paths for export:
 
 ### Sample configuration
 ```
-packager:
-  image: nfqlt/packager
-  volumes:
-    - /tmp
-    - ./src:/home/project/src
+version: '2.1'
+services:
+  packager:
+    image: nfqlt/packager
+    network_mode: bridge
+    volumes:
+      - /tmp
+      - ./src:/home/project/src
 
-dev:
-  image: nfqlt/php56-dev
-  volumes_from:
-    - packager
-  volumes:
-    - ./src:/home/project/src
-    - /home/project/.ssh:/home/project/.ssh
-    - /etc/ssh:/etc/ssh
-    - /etc/gitconfig:/etc/gitconfig
-    - /etc/environment:/etc/environment-vm:ro
-  environment:
-    NFQ_REMOTE_TOOL_PACKAGER: >
-      /usr/local/bin/package-deb
 
-linker:
-  image: nfqlt/linker17
-  volumes:
-    - /run/docker.sock:/run/docker.sock
-  links:
-    - dev
-    - packager
+  dev:
+    image: nfqlt/php56-dev
+    network_mode: bridge
+    volumes_from:
+      - service:packager:rw
+    volumes:
+      - ./src:/home/project/src
+      - /home/project/.ssh:/home/project/.ssh
+      - /etc/ssh:/etc/ssh
+      - /etc/gitconfig:/etc/gitconfig
+      - /etc/environment:/etc/environment-vm:ro
+    environment:
+      NFQ_REMOTE_TOOL_PACKAGER: >
+        /usr/local/bin/package-deb
+
+
+  linker:
+    image: nfqlt/linker17ce
+    network_mode: bridge
+    volumes:
+      - /run/docker.sock:/run/docker.sock
 ```
 

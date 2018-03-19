@@ -9,11 +9,14 @@ And all merge requests opened for project with this image __will be declined__
 ### Example:
 
 ```
-https-dev:
-  image: nfqlt/https-dev
-  ports:
-    - '192.168.1.257:443:443'
-  links:
-    - web
+version: '2.1'
+services:
+  https-dev:
+    image: nfqlt/https-dev
+    network_mode: bridge
+    ports:
+      - '192.168.1.257:443:443'
+    links:
+      - web
 ```
 

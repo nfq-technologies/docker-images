@@ -12,35 +12,40 @@ Available binary paths for export:
 
 ### Sample configuration
 ```
-fontforge:
-  image: nfqlt/fontforge
-  volumes:
-    - ./src:/home/project/src
-    - /tmp
-
-node:
-  image: nfqlt/node4
-  volumes_from:
-    - fontforge
-  environment:
-    NFQ_REMOTE_TOOL_FONTFORGE: >
-      /usr/bin/ttfautohint
-      /usr/bin/fontforge
-
-dev:
-  image: nfqlt/php56-dev
-  volumes_from:
-    - fontforge
-  volumes:
-    - ./src:/home/project/src
-    - /home/project/.ssh:/home/project/.ssh
-    - /etc/ssh:/etc/ssh
-    - /etc/gitconfig:/etc/gitconfig
-    - /etc/environment:/etc/environment-vm:ro
-  environment:
-    NFQ_REMOTE_TOOL_NODE: >
-      /usr/bin/npm
-      /usr/bin/node
-      /usr/bin/grunt
+version: '2.1'
+services:
+  fontforge:
+    image: nfqlt/fontforge
+    network_mode: bridge
+    volumes:
+      - ./src:/home/project/src
+      - /tmp
+  
+  node:
+    image: nfqlt/node4
+    network_mode: bridge
+    volumes_from:
+      - service:fontforge:rw
+    environment:
+      NFQ_REMOTE_TOOL_FONTFORGE: >
+        /usr/bin/ttfautohint
+        /usr/bin/fontforge
+  
+  dev:
+    image: nfqlt/php56-dev
+    network_mode: bridge
+    volumes_from:
+      - service:fontforge:rw
+    volumes:
+      - ./src:/home/project/src
+      - /home/project/.ssh:/home/project/.ssh
+      - /etc/ssh:/etc/ssh
+      - /etc/gitconfig:/etc/gitconfig
+      - /etc/environment:/etc/environment-vm:ro
+    environment:
+      NFQ_REMOTE_TOOL_NODE: >
+        /usr/bin/npm
+        /usr/bin/node
+        /usr/bin/grunt
 ```
 

@@ -27,25 +27,29 @@ Available binary paths for export:
 
 ### Sample configuration
 ```
-dbtools:
-  image: nfqlt/db-tools
-  volumes:
-    - './src:/home/project/src'
-    - /tmp
+version: '2.1'
+services:
+  dbtools:
+    image: nfqlt/db-tools
+    network_mode: bridge
+    volumes:
+      - './src:/home/project/src'
+      - /tmp
 
-dev:
-  image: nfqlt/php70-dev
-  volumes_from:
-    - dbtools
-  volumes:
-    - './src:/home/project/src'
-    - '/home/project/.ssh:/home/project/.ssh'
-    - '/etc/ssh:/etc/ssh'
-    - '/etc/gitconfig:/etc/gitconfig'
-    - '/etc/environment:/etc/environment-vm:ro'
-  environment:
-    NFQ_REMOTE_TOOL_DBTOOLS: >
-      /usr/bin/sqlite3
-      /usr/bin/mdb-sql
+  dev:
+    image: nfqlt/php70-dev
+    network_mode: bridge
+    volumes_from:
+      - service:dbtools:rw
+    volumes:
+      - './src:/home/project/src'
+      - '/home/project/.ssh:/home/project/.ssh'
+      - '/etc/ssh:/etc/ssh'
+      - '/etc/gitconfig:/etc/gitconfig'
+      - '/etc/environment:/etc/environment-vm:ro'
+    environment:
+      NFQ_REMOTE_TOOL_DBTOOLS: >
+        /usr/bin/sqlite3
+        /usr/bin/mdb-sql
 ```
 

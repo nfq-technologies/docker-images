@@ -30,41 +30,47 @@ The following configuration forwards __cdn.my.project.test__ to __media__ contai
  to __website__ cotainer.
 
 ```
-web:
-  image: nfqlt/proxy
-  links:
-    - website
-    - backend
-    - media
-  environment:
-    NFQ_PROXY_MAP: >
-      *:website
-      backend.*:backend
-      cdn.*:media:80
+version: '2.1'
+services:
+  web:
+    image: nfqlt/proxy
+    network_mode: bridge
+    links:
+      - website
+      - backend
+      - media
+    environment:
+      NFQ_PROXY_MAP: >
+        *:website
+        backend.*:backend
+        cdn.*:media:80
 
 
-website:
-  image: nfqlt/apache24-php56
-  environment:
-    APACHE_DOCUMENTROOT: /home/project/src/web
-  volumes:
-    - ./:/home/project/src/web:ro
+  website:
+    image: nfqlt/apache24-php56
+    network_mode: bridge
+    environment:
+      APACHE_DOCUMENTROOT: /home/project/src/web
+    volumes:
+      - ./:/home/project/src/web:ro
 
 
-backend:
-  image: nfqlt/apache24-php56
-  environment:
-    APACHE_DOCUMENTROOT: /home/project/src/web
-  volumes:
-    - ./:/home/project/src/web:ro
+  backend:
+    image: nfqlt/apache24-php56
+    network_mode: bridge
+    environment:
+      APACHE_DOCUMENTROOT: /home/project/src/web
+    volumes:
+      - ./:/home/project/src/web:ro
 
 
-media:
-  image: nfqlt/apache24-php56
-  environment:
-    APACHE_DOCUMENTROOT: /home/project/src/web
-  volumes:
-    - ./:/home/project/src/web:ro
+  media:
+    image: nfqlt/apache24-php56
+    network_mode: bridge
+    environment:
+      APACHE_DOCUMENTROOT: /home/project/src/web
+    volumes:
+      - ./:/home/project/src/web:ro
 
 
 ```
