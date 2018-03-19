@@ -40,7 +40,7 @@ services:
     image: nfqlt/php70-dev
     network_mode: bridge
     volumes_from:
-      - services:dbtools:rw
+      - service:dbtools:rw
     volumes:
       - './src:/home/project/src'
       - '/home/project/.ssh:/home/project/.ssh'

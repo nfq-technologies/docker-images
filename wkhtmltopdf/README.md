@@ -24,7 +24,7 @@ services:
     image: nfqlt/php56-dev
     network_mode: bridge
     volumes_from:
-      - services:wkhtmltopdf:rw
+      - service:wkhtmltopdf:rw
     volumes:
       - ./src:/home/project/src
       - /home/project/.ssh:/home/project/.ssh

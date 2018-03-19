@@ -42,7 +42,7 @@ services:
     image: nfqlt/php56-dev
     network_mode: bridge
     volumes_from:
-      - services:node:rw
+      - service:node:rw
     volumes:
       - './src:/home/project/src'
       - '/home/project/.ssh:/home/project/.ssh'
