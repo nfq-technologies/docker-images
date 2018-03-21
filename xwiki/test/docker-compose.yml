@@ -4,7 +4,7 @@ xwiki:
     - mysql
 
 mysql:
-  image: docker.nfq.lt/library/mysql:5.5
+  image: mysql:5.5
   environment:
     MYSQL_ROOT_PASSWORD: root
 
