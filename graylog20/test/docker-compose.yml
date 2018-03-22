@@ -18,7 +18,7 @@ grayelastic:
 
 
 linker:
-  image: docker.nfq.lt/nfqlt/linker17
+  image: docker.nfq.lt/nfqlt/linker17ce
   volumes:
     - /run/docker.sock:/run/docker.sock
   links:

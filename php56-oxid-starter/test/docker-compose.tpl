@@ -4,7 +4,7 @@ srcVol:
      - /home/project/src
 
 mysql:
-  image: docker.nfq.lt/library/mysql:5.5
+  image: mysql:5.5
   volumes_from:
     - mysqlVol
 
