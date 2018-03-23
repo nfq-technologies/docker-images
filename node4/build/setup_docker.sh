@@ -30,7 +30,7 @@ npm install -g bower
 npm install -g uglify-js
 
 # uglifycss
-npm install -g uglifycss
+npm install -g uglifycss@0.0.27
 
 # typescript
 npm install -g typescript
