@@ -1,0 +1,7 @@
+
+<match **>
+  @type file
+  @id output_file
+  path {{OUTPUT_FILE}}
+</match>
+

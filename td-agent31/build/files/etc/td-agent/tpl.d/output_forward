@@ -1,0 +1,11 @@
+
+<match **>
+  @type forward
+  @id output_forward
+
+  <server>
+    host {{OUTPUT_HOST}}
+    port {{OUTPUT_PORT}}
+  </server>
+</match>
+

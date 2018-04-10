@@ -81,8 +81,12 @@ digraph G {
     "nfqlt/debian-stretch"->"nfqlt/memcached1433";
     "nfqlt/mobile-proxy" [fillcolor=orange label="mobile-proxy"];
     "nfqlt/nginx110"->"nfqlt/mobile-proxy";
+    "nfqlt/mongo24-data" [fillcolor=orange label="mongo24-data"];
+    "nfqlt/mongo24"->"nfqlt/mongo24-data";
     "nfqlt/mongo24" [fillcolor=orange label="mongo24"];
     "nfqlt/debian-jessie"->"nfqlt/mongo24";
+    "nfqlt/mongo32-data" [fillcolor=orange label="mongo32-data"];
+    "nfqlt/mongo32"->"nfqlt/mongo32-data";
     "nfqlt/mongo32" [fillcolor=orange label="mongo32"];
     "nfqlt/debian-stretch"->"nfqlt/mongo32";
     "nfqlt/mysql55-data" [fillcolor=orange label="mysql55-data"];
@@ -191,6 +195,8 @@ digraph G {
     "nfqlt/debian-jessie"->"nfqlt/solr36";
     "nfqlt/sphinxsearch" [fillcolor=orange label="sphinxsearch"];
     "nfqlt/debian-jessie"->"nfqlt/sphinxsearch";
+    "nfqlt/td-agent31" [fillcolor=orange label="td-agent31"];
+    "nfqlt/debian-stretch"->"nfqlt/td-agent31";
     "nfqlt/thrift091" [fillcolor=orange label="thrift091"];
     "nfqlt/toolbox"->"nfqlt/thrift091";
     "nfqlt/toolbox" [fillcolor=orange label="toolbox"];
