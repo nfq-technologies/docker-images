@@ -70,6 +70,9 @@ echo en_US.UTF-8 UTF-8 > /etc/locale.gen
 dpkg-reconfigure locales
 echo LC_ALL=en_US.UTF-8 > /etc/default/locale
 
+# Fix vim mouse integration
+sed -ri 's/^([ ]*set mouse=a)/"\1/' /usr/share/vim/vim80/defaults.vim
+
 cp -frv /build/files/* /
 
 
