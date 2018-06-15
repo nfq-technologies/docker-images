@@ -85,6 +85,7 @@ apt-get install -y --force-yes --no-install-recommends \
 	php56-zend-loader \
 	php56-ioncube \
 	nfq-php-tideways \
+    phyaml \
 
 
 # disable all php modules

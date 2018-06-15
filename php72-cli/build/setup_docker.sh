@@ -93,6 +93,7 @@ rm -rf /etc/php/7.1
 # install custom php modules
 apt-get install -y --force-yes --no-install-recommends \
     nfq-php-tideways \
+    phyaml \
 
 
 # install dma (dragonfly mailer simple relay)
