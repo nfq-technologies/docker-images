@@ -48,6 +48,7 @@ apt-get install -y --no-install-recommends \
 	unzip \
 	strace \
 	jq \
+	shellcheck \
 
 
 # install acl to support advanced file permissions
@@ -69,6 +70,14 @@ ln -s /usr/games/cowsay /usr/local/bin/
 echo en_US.UTF-8 UTF-8 > /etc/locale.gen
 dpkg-reconfigure locales
 echo LC_ALL=en_US.UTF-8 > /etc/default/locale
+
+
+# vim plugins
+cd /tmp
+wget -qO- https://github.com/w0rp/ale/archive/v1.7.0.tar.gz | tar xz
+mkdir -p /home/project/.vim/pack/git-plugins/start
+mv ale-1.7.0 /home/project/.vim/pack/git-plugins/start/ale
+chown -R project:project /home/project/.vim
 
 # Fix vim mouse integration
 sed -ri 's/^([ ]*set mouse=a)/"\1/' /usr/share/vim/vim80/defaults.vim

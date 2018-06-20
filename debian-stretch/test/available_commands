@@ -39,6 +39,7 @@ check_command 'sudo' -V
 check_command 'man' --version
 check_command 'unzip' --help
 check_command 'strace' -h
+check_command 'shellcheck' --version
 
 check_command 'getfacl' --version
 
