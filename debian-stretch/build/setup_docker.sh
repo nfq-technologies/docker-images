@@ -49,6 +49,8 @@ apt-get install -y --no-install-recommends \
 	strace \
 	jq \
 	shellcheck \
+	gnupg \
+	dirmngr \
 
 
 # install acl to support advanced file permissions
@@ -62,6 +64,8 @@ useradd -d /home/project -m -s /bin/bash -u 1000 -U project
 echo 'project:project' | chpasswd
 echo 'project ALL=NOPASSWD: ALL' >> /etc/sudoers
 
+# add debian-repo.nfq.lt key
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 5791B856FE7BB48D
 
 apt-get install -y --no-install-recommends cowsay
 ln -s /usr/games/cowsay /usr/local/bin/
