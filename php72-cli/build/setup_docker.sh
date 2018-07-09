@@ -91,7 +91,7 @@ rm -rf /etc/php/7.1
 
 
 # install custom php modules
-apt-get install -y --force-yes --no-install-recommends \
+apt-get install -y --no-install-recommends \
     nfq-php-tideways \
     phyaml \
 

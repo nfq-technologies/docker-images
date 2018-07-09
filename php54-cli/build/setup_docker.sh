@@ -57,7 +57,7 @@ apt-get install -y --no-install-recommends php5-cli \
 
 
 # install zend loader
-apt-get install -y --force-yes --no-install-recommends \
+apt-get install -y --no-install-recommends \
 	php54-zend-loader \
 	nfq-php-tideways \
 
@@ -70,7 +70,7 @@ mv /etc/php5/conf.d/* /etc/php5/mods-available/
 
 
 # dma (dragonfly mta)
-apt-get install -y --force-yes --no-install-recommends dma-wheezy
+apt-get install -y --no-install-recommends dma-wheezy
 echo '*: @' > /etc/aliases # force local mails to smarthost
 
 

@@ -7,7 +7,7 @@ set -e
 apt-get update
 
 # Requiraments
-apt-get install -y --no-install-recommends --allow-unauthenticated phyaml
+apt-get install -y --no-install-recommends phyaml
 
 # Copy runtime files
 cp -frv /build/files/* / | true

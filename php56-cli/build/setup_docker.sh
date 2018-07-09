@@ -81,7 +81,7 @@ apt-get install -y --no-install-recommends php5-cli \
 
 
 # install custom php modules
-apt-get install -y --force-yes --no-install-recommends \
+apt-get install -y --no-install-recommends \
 	php56-zend-loader \
 	php56-ioncube \
 	nfq-php-tideways \

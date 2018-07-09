@@ -60,7 +60,7 @@ ls -1 /etc/php/7.0/mods-available/ | sed 's/\.ini$//g' | xargs -I{} -n1 phpdismo
 
 
 # install custom php modules
-apt-get install -y --force-yes --no-install-recommends \
+apt-get install -y --no-install-recommends \
     nfq-php-tideways \
     phyaml \
 

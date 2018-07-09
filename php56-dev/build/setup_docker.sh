@@ -72,7 +72,7 @@ phpDisableModule json
 
 
 # install custom nfq packages
-apt-get install -y --force-yes --no-install-recommends \
+apt-get install -y --no-install-recommends \
 	phpunit48 \
 	phyaml \
 
