@@ -18,7 +18,8 @@ tar -xzf thrift-0.9.3.tar.gz
 cd thrift-0.9.3/build/cmake
 cmake ../../
 make
-make install
+make install 
+ln -s /usr/local/bin/thrift /usr/bin/thrift
 
 # Clean up build tools
 apt-get purge -y cmake g++ bison flex make
