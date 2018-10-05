@@ -6,10 +6,15 @@ timeout_hard=$((($timeout_ms/1000)+3))
 name=test_box_$(date +%s%N)
 cwd=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
+
 if [[ -r "${cwd}/../../_tools/helpers/common.sh" ]]; then
 	source "${cwd}/../../_tools/helpers/common.sh"
 else
-	source "${cwd}/../../../../../nfqlt/_tools/helpers/common.sh"
+	if [[ -r "${cwd}/../../../nfqlt/_tools/helpers/common.sh" ]]; then
+		source "${cwd}/../../../nfqlt/_tools/helpers/common.sh"
+	else
+		source "${cwd}/../../../../../nfqlt/_tools/helpers/common.sh"
+	fi
 fi
 
 # destroy containers and remove trash

@@ -7,10 +7,15 @@ timeout_ms=$(basename $0 | sed 's/^.*_\([0-9]*\)_ms.*$/\1/g')
 timeout_hard_ms=$(($timeout_ms+3000))
 port=$(basename $0 | sed 's/^.*_\([0-9]*\)_port.*$/\1/g')
 
+
 if [[ -r "${cwd}/../../_tools/helpers/common.sh" ]]; then
 	source "${cwd}/../../_tools/helpers/common.sh"
 else
-	source "${cwd}/../../../../../nfqlt/_tools/helpers/common.sh"
+	if [[ -r "${cwd}/../../../nfqlt/_tools/helpers/common.sh" ]]; then
+		source "${cwd}/../../../nfqlt/_tools/helpers/common.sh"
+	else
+		source "${cwd}/../../../../../nfqlt/_tools/helpers/common.sh"
+	fi
 fi
 
 # destroy containers and remove trash
