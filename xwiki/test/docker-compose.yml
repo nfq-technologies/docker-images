@@ -1,10 +1,16 @@
-xwiki:
-  image: docker.nfq.lt/nfqlt/xwiki
-  links:
-    - mysql
+version: '2.1'
+services:
+  xwiki:
+    image: docker.nfq.lt/nfqlt/xwiki
+    network_mode: bridge
+    links:
+      - mysql
 
-mysql:
-  image: mysql:5.5
-  environment:
-    MYSQL_ROOT_PASSWORD: root
+  mysql:
+    image: mysql:5.5
+    network_mode: bridge
+    environment:
+      MYSQL_ROOT_PASSWORD: root
 
+volumes: {}
+networks: {}

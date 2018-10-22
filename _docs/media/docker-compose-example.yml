@@ -1,70 +1,82 @@
-web:
-  image: docker.nfq.lt/nfqlt/apache24-fastcgi
-  ports:
-    - '10.24.8.177:80:80'
-  links:
-    - fastcgi
-  volumes:
-    - './src:/home/project/src'
-  environment:
-    APACHE_DOCUMENTROOT: /home/project/src/web
-    NFQ_PROJECT_ROOT: /home/project/src
-    NFQ_ENABLE_APACHE_MODULES: rewrite
+version: '2.1'
+services:
+  web:
+    image: docker.nfq.lt/nfqlt/apache24-fastcgi
+    network_mode: bridge
+    ports:
+      - '10.24.8.177:80:80'
+    links:
+      - fastcgi
+    volumes:
+      - './src:/home/project/src'
+    environment:
+      APACHE_DOCUMENTROOT: /home/project/src/web
+      NFQ_PROJECT_ROOT: /home/project/src
+      NFQ_ENABLE_APACHE_MODULES: rewrite
 
 
-fastcgi:
-  image: docker.nfq.lt/nfqlt/php70-fpm
-  links:
-    - mysql
-  volumes:
-    - './src:/home/project/src'
-  environment:
-    NFQ_PROJECT_ROOT: /home/project/src
-    NFQ_ENABLE_PHP_MODULES: 'mysqlnd curl json pdo pdo_mysql mcrypt ctype tokenizer simplexml intl opcache mbstring xml zip dom xmlwriter xmlreader iconv xdebug'
+  fastcgi:
+    image: docker.nfq.lt/nfqlt/php70-fpm
+    network_mode: bridge
+    links:
+      - mysql
+    volumes:
+      - './src:/home/project/src'
+    environment:
+      NFQ_PROJECT_ROOT: /home/project/src
+      NFQ_ENABLE_PHP_MODULES: 'mysqlnd curl json pdo pdo_mysql mcrypt ctype tokenizer simplexml intl opcache mbstring xml zip dom xmlwriter xmlreader iconv xdebug'
 
 
-mysql:
-  image: 'docker.nfq.lt/library/mysql:5.5'
-  ports:
-    - '10.24.8.177:3306:3306'
-  volumes_from:
-    - mysqlVol
+  mysql:
+    image: 'docker.nfq.lt/library/mysql:5.5'
+    network_mode: bridge
+    ports:
+      - '10.24.8.177:3306:3306'
+    volumes_from:
+      - 'service:mysqlVol:rw'
 
 
-mysqlVol:
-  image: docker.nfq.lt/nfqlt/mysql55-data
-  volumes:
-    - /var/lib/mysql
+  mysqlVol:
+    image: docker.nfq.lt/nfqlt/mysql55-data
+    network_mode: bridge
+    volumes:
+      - /var/lib/mysql
 
 
-dev:
-  image: docker.nfq.lt/nfqlt/php70-dev
-  ports:
-    - '10.24.8.177:22:22'
-  links:
-    - mysql
-  volumes:
-    - './src:/home/project/src'
-    - '/home/project/.ssh:/home/project/.ssh'
-    - '/etc/ssh:/etc/ssh'
-    - '/etc/gitconfig:/etc/gitconfig'
-    - '/etc/environment:/etc/environment-vm:ro'
-    - '/vagrant/bash_custom:/home/project/.bash_custom'
-  environment:
-    NFQ_ENABLE_PHP_MODULES: 'mysqlnd curl json pdo pdo_mysql mcrypt ctype tokenizer simplexml intl opcache mbstring xml zip dom xmlwriter xmlreader iconv xdebug'
-    NFQ_PROJECT_ROOT: /home/project/src
+  dev:
+    image: docker.nfq.lt/nfqlt/php70-dev
+    network_mode: bridge
+    ports:
+      - '10.24.8.177:22:22'
+    links:
+      - mysql
+    volumes:
+      - './src:/home/project/src'
+      - '/home/project/.ssh:/home/project/.ssh'
+      - '/etc/ssh:/etc/ssh'
+      - '/etc/gitconfig:/etc/gitconfig'
+      - '/etc/environment:/etc/environment-vm:ro'
+      - '/vagrant/bash_custom:/home/project/.bash_custom'
+    environment:
+      NFQ_ENABLE_PHP_MODULES: 'mysqlnd curl json pdo pdo_mysql mcrypt ctype tokenizer simplexml intl opcache mbstring xml zip dom xmlwriter xmlreader iconv xdebug'
+      NFQ_PROJECT_ROOT: /home/project/src
 
 
-mail:
-  image: docker.nfq.lt/nfqlt/mailhog
-  ports:
-    - '10.24.8.177:1080:80'
-    - '10.24.8.177:25:25'
+  mail:
+    image: docker.nfq.lt/nfqlt/mailhog
+    network_mode: bridge
+    ports:
+      - '10.24.8.177:1080:80'
+      - '10.24.8.177:25:25'
 
 
-linker:
-  image: docker.nfq.lt/nfqlt/linker17ce
-  volumes:
-    - '/run/docker.sock:/run/docker.sock'
+  linker:
+    image: docker.nfq.lt/nfqlt/linker17ce
+    network_mode: bridge
+    volumes:
+      - '/run/docker.sock:/run/docker.sock'
 
+
+volumes: {  }
+networks: {  }
 

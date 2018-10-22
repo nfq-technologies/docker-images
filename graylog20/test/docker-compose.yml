@@ -1,28 +1,36 @@
-graylog:
-  image: docker.nfq.lt/nfqlt/graylog20
-  links:
-    - graymongo
-  environment:
-    NFQ_GRAYLOG_API_HOST: docker.dev
-    NFQ_GRAYLOG_INPUTS: gelf.tcp gelf.udp
+version: '2.1'
+services:
+  graylog:
+    image: docker.nfq.lt/nfqlt/graylog20
+    network_mode: bridge
+    links:
+      - graymongo
+    environment:
+      NFQ_GRAYLOG_API_HOST: docker.dev
+      NFQ_GRAYLOG_INPUTS: gelf.tcp gelf.udp
 
 
-graymongo:
-  image: docker.nfq.lt/nfqlt/mongo24
+  graymongo:
+    image: docker.nfq.lt/nfqlt/mongo24
+    network_mode: bridge
 
 
-grayelastic:
-  image: docker.nfq.lt/nfqlt/elasticsearch22
-  environment:
-    NFQ_ENABLE_ELASTIC_MODULES: head hq bigdesk
+  grayelastic:
+    image: docker.nfq.lt/nfqlt/elasticsearch22
+    network_mode: bridge
+    environment:
+      NFQ_ENABLE_ELASTIC_MODULES: head hq bigdesk
 
 
-linker:
-  image: docker.nfq.lt/nfqlt/linker17ce
-  volumes:
-    - /run/docker.sock:/run/docker.sock
-  links:
-    - graylog
-    - grayelastic
+  linker:
+    image: docker.nfq.lt/nfqlt/linker17ce
+    network_mode: bridge
+    volumes:
+      - /run/docker.sock:/run/docker.sock
+    links:
+      - graylog
+      - grayelastic
 
 
+volumes: {}
+networks: {}
