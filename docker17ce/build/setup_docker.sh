@@ -13,6 +13,9 @@ curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 apt-get update
 apt-get install -y docker-ce=17.12.1~ce-0~debian
 
+# docker-compose from nfqlt
+apt-get install -y docker-compose
+
 
 cp -frv /build/files/* / || true
 
