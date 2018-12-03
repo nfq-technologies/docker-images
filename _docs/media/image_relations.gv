@@ -15,10 +15,16 @@ digraph G {
     "nfqlt/php70-cli"->"nfqlt/apache24-php70";
     "nfqlt/apache-fastcgi" [fillcolor=orange label="apache-fastcgi"];
     "nfqlt/debian-wheezy"->"nfqlt/apache-fastcgi";
+    "nfqlt/aws-mock" [fillcolor=orange label="aws-mock"];
+    "nfqlt/debian-stretch"->"nfqlt/aws-mock";
+    "nfqlt/aws-tools" [fillcolor=orange label="aws-tools"];
+    "nfqlt/toolbox"->"nfqlt/aws-tools";
     "nfqlt/certbot" [fillcolor=orange label="certbot"];
     "nfqlt/debian-stretch"->"nfqlt/certbot";
     "nfqlt/chromedriver63" [fillcolor=orange label="chromedriver63"];
     "nfqlt/debian-stretch"->"nfqlt/chromedriver63";
+    "nfqlt/chromium69" [fillcolor=orange label="chromium69"];
+    "nfqlt/toolbox"->"nfqlt/chromium69";
     "nfqlt/db-tools" [fillcolor=orange label="db-tools"];
     "nfqlt/toolbox"->"nfqlt/db-tools";
     "nfqlt/deb-dev" [fillcolor=orange label="deb-dev"];
@@ -47,6 +53,10 @@ digraph G {
     "nfqlt/elasticsearch56"->"nfqlt/elasticsearch56-data";
     "nfqlt/elasticsearch56" [fillcolor=orange label="elasticsearch56"];
     "nfqlt/debian-stretch"->"nfqlt/elasticsearch56";
+    "nfqlt/elasticsearch62-data" [fillcolor=orange label="elasticsearch62-data"];
+    "nfqlt/elasticsearch62"->"nfqlt/elasticsearch62-data";
+    "nfqlt/elasticsearch62" [fillcolor=orange label="elasticsearch62"];
+    "nfqlt/debian-stretch"->"nfqlt/elasticsearch62";
     "nfqlt/elasticsearch-tools" [fillcolor=orange label="elasticsearch-tools"];
     "nfqlt/nginx110"->"nfqlt/elasticsearch-tools";
     "nfqlt/ffmpeg" [fillcolor=orange label="ffmpeg"];
@@ -63,6 +73,8 @@ digraph G {
     "nfqlt/nginx110"->"nfqlt/https-dev";
     "nfqlt/java8" [fillcolor=orange label="java8"];
     "nfqlt/debian-stretch"->"nfqlt/java8";
+    "nfqlt/java8-jdk" [fillcolor=orange label="java8-jdk"];
+    "nfqlt/toolbox"->"nfqlt/java8-jdk";
     "nfqlt/laravel-echo" [fillcolor=orange label="laravel-echo"];
     "nfqlt/nodeserver6"->"nfqlt/laravel-echo";
     "nfqlt/libreoffice" [fillcolor=orange label="libreoffice"];
@@ -71,6 +83,10 @@ digraph G {
     "busybox"->"nfqlt/lib-smartclient100";
     "nfqlt/lib-smartclient111" [fillcolor=orange label="lib-smartclient111"];
     "busybox"->"nfqlt/lib-smartclient111";
+    "nfqlt/lib-smartclient120" [fillcolor=orange label="lib-smartclient120"];
+    "busybox"->"nfqlt/lib-smartclient120";
+    "nfqlt/lib-smartclient121d" [fillcolor=orange label="lib-smartclient121d"];
+    "busybox"->"nfqlt/lib-smartclient121d";
     "nfqlt/linker17ce" [fillcolor=orange label="linker17ce"];
     "nfqlt/docker17ce"->"nfqlt/linker17ce";
     "nfqlt/mailhog" [fillcolor=orange label="mailhog"];
@@ -101,6 +117,8 @@ digraph G {
     "nfqlt/debian-wheezy"->"nfqlt/nginx12";
     "nfqlt/nginx16" [fillcolor=orange label="nginx16"];
     "nfqlt/debian-jessie"->"nfqlt/nginx16";
+    "nfqlt/node10" [fillcolor=orange label="node10"];
+    "nfqlt/toolbox"->"nfqlt/node10";
     "nfqlt/node4" [fillcolor=orange label="node4"];
     "nfqlt/toolbox"->"nfqlt/node4";
     "nfqlt/node6" [fillcolor=orange label="node6"];
@@ -177,6 +195,8 @@ digraph G {
     "nfqlt/php72-cli"->"nfqlt/php72-fpm";
     "nfqlt/php72-supervisor" [fillcolor=orange label="php72-supervisor"];
     "nfqlt/php72-cli"->"nfqlt/php72-supervisor";
+    "nfqlt/phyaml" [fillcolor=orange label="phyaml"];
+    "nfqlt/toolbox"->"nfqlt/phyaml";
     "nfqlt/proxy" [fillcolor=orange label="proxy"];
     "nfqlt/nginx110"->"nfqlt/proxy";
     "nfqlt/rabbitmq335" [fillcolor=orange label="rabbitmq335"];
@@ -197,8 +217,12 @@ digraph G {
     "nfqlt/debian-jessie"->"nfqlt/sphinxsearch";
     "nfqlt/td-agent31" [fillcolor=orange label="td-agent31"];
     "nfqlt/debian-stretch"->"nfqlt/td-agent31";
+    "nfqlt/thrift0110" [fillcolor=orange label="thrift0110"];
+    "nfqlt/toolbox"->"nfqlt/thrift0110";
     "nfqlt/thrift091" [fillcolor=orange label="thrift091"];
     "nfqlt/toolbox"->"nfqlt/thrift091";
+    "nfqlt/thrift093" [fillcolor=orange label="thrift093"];
+    "nfqlt/toolbox"->"nfqlt/thrift093";
     "nfqlt/toolbox" [fillcolor=orange label="toolbox"];
     "nfqlt/debian-stretch"->"nfqlt/toolbox";
     "nfqlt/ubuntu-1204" [fillcolor=orange label="ubuntu-1204"];
