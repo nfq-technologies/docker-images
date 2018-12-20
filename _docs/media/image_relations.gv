@@ -19,6 +19,10 @@ digraph G {
     "nfqlt/debian-stretch"->"nfqlt/aws-mock";
     "nfqlt/aws-tools" [fillcolor=orange label="aws-tools"];
     "nfqlt/toolbox"->"nfqlt/aws-tools";
+    "nfqlt/birt45" [fillcolor=orange label="birt45"];
+    "nfqlt/debian-stretch"->"nfqlt/birt45";
+    "nfqlt/birt48" [fillcolor=orange label="birt48"];
+    "nfqlt/debian-stretch"->"nfqlt/birt48";
     "nfqlt/certbot" [fillcolor=orange label="certbot"];
     "nfqlt/debian-stretch"->"nfqlt/certbot";
     "nfqlt/chromedriver63" [fillcolor=orange label="chromedriver63"];
@@ -131,6 +135,8 @@ digraph G {
     "nfqlt/debian-stretch"->"nfqlt/nodeserver8";
     "nfqlt/packager" [fillcolor=orange label="packager"];
     "nfqlt/toolbox"->"nfqlt/packager";
+    "nfqlt/pdftk" [fillcolor=orange label="pdftk"];
+    "nfqlt/toolbox"->"nfqlt/pdftk";
     "nfqlt/phantomjs19" [fillcolor=orange label="phantomjs19"];
     "nfqlt/debian-jessie"->"nfqlt/phantomjs19";
     "nfqlt/phantomjs21" [fillcolor=orange label="phantomjs21"];
