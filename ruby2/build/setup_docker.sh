@@ -6,7 +6,7 @@ set -e
 apt-get update
 
 # build env
-apt-get install -y --no-install-recommends ruby ruby-dev build-essential
+apt-get install -y --no-install-recommends ruby ruby-dev build-essential zlib1g-dev
 
 
 # gems
