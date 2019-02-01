@@ -1,4 +1,4 @@
-## Wkhtmltopdf toolbox
+## Ghostscript toolbox
 
 ### Info
 This is an image of ghostscript Debian source in toolbox format
