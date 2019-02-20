@@ -57,7 +57,8 @@ apt-get install -y --no-install-recommends mariadb-client
 phpEnableModule json
 phpEnableModule phar
 phpEnableModule zip
-curl -sSL 'https://getcomposer.org/download/1.2.1/composer.phar' > /usr/local/bin/composer.phar
+phpEnableModule iconv
+curl -sSL 'https://getcomposer.org/download/1.8.4/composer.phar' > /usr/local/bin/composer.phar
 chmod a+x /usr/local/bin/composer.phar
 ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
 composer self-update
