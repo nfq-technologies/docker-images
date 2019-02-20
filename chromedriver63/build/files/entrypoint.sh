@@ -13,5 +13,5 @@ init_wait_for_a_file
 init_wait_for_a_not_empty_file
 
 
-xvfb-run chromedriver --verbose --url-base="wd/hub" --whitelisted-ips="" --port=4444
+xvfb-run /usr/lib/chromium/chromedriver --verbose --url-base="wd/hub" --whitelisted-ips="" --port=4444
 

@@ -6,7 +6,7 @@ cwd=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 yml="${cwd}/docker-compose.yml"
 image="$1"
 pid=${BASHPID}
-hostname=$(head -n1 $yml | cut -d: -f1)
+hostname=$(cat $yml | phyaml -k services | head -n 1 )
 cname=test${pid}_${hostname}_1
 
 source "${cwd}/../../_tools/helpers/common.sh"
@@ -55,7 +55,7 @@ cleanup
 
 # ===== unknown hosts gets 404
 
-cat $yml | phyaml web.environment.NFQ_PROXY_MAP='backend.*:backend cdn.*:media' | docker-compose -p "test${pid}" -f - up -d &>/dev/null
+cat $yml | phyaml services.web.environment.NFQ_PROXY_MAP='backend.*:backend cdn.*:media' | docker-compose -p "test${pid}" -f - up -d &>/dev/null
 box_ip=$(get_container_ip $cname)
 wait_for_connection $box_ip:80
 
@@ -70,7 +70,7 @@ cleanup
 
 # ===== default defined last
 
-cat $yml | phyaml web.environment.NFQ_PROXY_MAP='backend.*:backend cdn.*:media *:website' | docker-compose -p "test${pid}" -f - up -d &>/dev/null
+cat $yml | phyaml services.web.environment.NFQ_PROXY_MAP='backend.*:backend cdn.*:media *:website' | docker-compose -p "test${pid}" -f - up -d &>/dev/null
 box_ip=$(get_container_ip $cname)
 wait_for_connection $box_ip:80
 
