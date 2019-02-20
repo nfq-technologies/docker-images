@@ -6,7 +6,7 @@ cwd=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 yml="${cwd}/docker-compose.yml"
 image="$1"
 pid=${BASHPID}
-hostname=$(head -n1 $yml | cut -d: -f1)
+hostname=$(cat $yml | phyaml -k services | head -n 1 )
 cname=test${pid}_${hostname}_1
 
 timeout_ms=$(basename $0 | sed 's/[^0-9]//g')
