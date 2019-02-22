@@ -5,7 +5,7 @@ set -e
 
 # Install chromium
 apt-get update
-apt-get install -y --no-install-recommends chromium
+apt-get install -y --no-install-recommends chromium=70.0.3538.110-1~deb9u1
 
 # Copy runtime files
 cp -frv /build/files/* / || true
