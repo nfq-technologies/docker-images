@@ -17,8 +17,8 @@ cd /var/www
 export NFQ_ENABLE_PHP_MODULES='mongodb mcrypt json iconv mbstring tokenizer dom ctype'
 /etc/rc.d/200-enable-php7-modules
 composer install --no-dev --prefer-dist
+composer remove --dev phpunit/phpunit
 composer require alcaeus/mongo-php-adapter --update-no-dev --prefer-dist --prefer-stable
-
 
 
 # Copy runtime files
