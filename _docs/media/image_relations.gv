@@ -69,14 +69,14 @@ digraph G {
     "nfqlt/toolbox"->"nfqlt/fontforge";
     "nfqlt/gearman" [fillcolor=orange label="gearman"];
     "nfqlt/debian-stretch"->"nfqlt/gearman";
+    "nfqlt/ghostscript" [fillcolor=orange label="ghostscript"];
+    "nfqlt/toolbox"->"nfqlt/ghostscript";
     "nfqlt/graphic-tools" [fillcolor=orange label="graphic-tools"];
     "nfqlt/toolbox"->"nfqlt/graphic-tools";
     "nfqlt/graylog20" [fillcolor=orange label="graylog20"];
     "nfqlt/debian-jessie"->"nfqlt/graylog20";
     "nfqlt/https-dev" [fillcolor=orange label="https-dev"];
     "nfqlt/nginx110"->"nfqlt/https-dev";
-    "nfqlt/java8" [fillcolor=orange label="java8"];
-    "nfqlt/debian-stretch"->"nfqlt/java8";
     "nfqlt/java8-jdk" [fillcolor=orange label="java8-jdk"];
     "nfqlt/toolbox"->"nfqlt/java8-jdk";
     "nfqlt/laravel-echo" [fillcolor=orange label="laravel-echo"];
