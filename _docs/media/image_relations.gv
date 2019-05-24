@@ -33,6 +33,8 @@ digraph G {
     "nfqlt/toolbox"->"nfqlt/db-tools";
     "nfqlt/deb-dev" [fillcolor=orange label="deb-dev"];
     "nfqlt/php70-dev"->"nfqlt/deb-dev";
+    "nfqlt/debian-buster" [fillcolor=orange label="debian-buster"];
+    "debian"->"nfqlt/debian-buster";
     "nfqlt/debian-jessie" [fillcolor=orange label="debian-jessie"];
     "debian"->"nfqlt/debian-jessie";
     "nfqlt/debian-stretch" [fillcolor=orange label="debian-stretch"];
@@ -41,6 +43,8 @@ digraph G {
     "debian"->"nfqlt/debian-wheezy";
     "nfqlt/docker17ce" [fillcolor=orange label="docker17ce"];
     "nfqlt/debian-stretch"->"nfqlt/docker17ce";
+    "nfqlt/docker18ce" [fillcolor=orange label="docker18ce"];
+    "nfqlt/debian-stretch"->"nfqlt/docker18ce";
     "nfqlt/elasticsearch17-data" [fillcolor=orange label="elasticsearch17-data"];
     "nfqlt/elasticsearch17"->"nfqlt/elasticsearch17-data";
     "nfqlt/elasticsearch17" [fillcolor=orange label="elasticsearch17"];
@@ -93,6 +97,8 @@ digraph G {
     "busybox"->"nfqlt/lib-smartclient121d";
     "nfqlt/linker17ce" [fillcolor=orange label="linker17ce"];
     "nfqlt/docker17ce"->"nfqlt/linker17ce";
+    "nfqlt/linker18ce" [fillcolor=orange label="linker18ce"];
+    "nfqlt/docker18ce"->"nfqlt/linker18ce";
     "nfqlt/mailhog" [fillcolor=orange label="mailhog"];
     "nfqlt/debian-stretch"->"nfqlt/mailhog";
     "nfqlt/memcached1421" [fillcolor=orange label="memcached1421"];
