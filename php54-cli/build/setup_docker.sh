@@ -3,9 +3,6 @@
 set -x
 set -e
 
-# Add backports repo
-echo "deb http://deb.debian.org/debian wheezy-backports main" >> /etc/apt/sources.list
-
 apt-get update
 
 apt-get install -y --no-install-recommends php5-cli \

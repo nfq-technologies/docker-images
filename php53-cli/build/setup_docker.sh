@@ -47,7 +47,7 @@ apt-get install -y --no-install-recommends php5-cli \
 	php5-uuid \
 	php5-xdebug \
 	php5-xmlrpc \
-	php5-xsl
+	php5-xsl \
 
 
 # disable all php modules

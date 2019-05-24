@@ -2,7 +2,6 @@
 set -x
 set -e
 
-echo "deb http://ftp.lt.debian.org/debian/ wheezy main non-free contrib" > /etc/apt/sources.list.d/nonfree.list
 apt-get update
 apt-get install -y --no-install-recommends apache2-mpm-worker ca-certificates libapache2-mod-fastcgi
 
@@ -21,5 +20,4 @@ cp -frv /build/files/* /
 # Clean up APT when done.
 source /usr/local/build_scripts/cleanup_apt.sh
 rm -rf /tmp/*
-
 

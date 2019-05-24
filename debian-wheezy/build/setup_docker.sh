@@ -4,6 +4,12 @@ set -x
 set -e
 
 echo force-unsafe-io > /etc/dpkg/dpkg.cfg.d/02apt-speedup
+echo "Acquire::Check-Valid-Until false;" > /etc/apt/apt.conf.d/10-nocheckvalid
+
+# Cry me a ariver
+echo "deb http://archive.debian.org/debian wheezy main non-free contrib" > /etc/apt/sources.list
+echo "deb http://archive.debian.org/debian-security wheezy/updates main non-free contrib" >> /etc/apt/sources.list
+echo "deb http://archive.debian.org/debian wheezy-backports main non-free contrib" >> /etc/apt/sources.list
 
 apt-get update
 apt-get upgrade -y

@@ -6,7 +6,6 @@ set -e
 VERSION='8.4.1'
 
 # Setup apt
-echo "deb http://ftp.debian.org/debian jessie-backports main" > /etc/apt/sources.list.d/backports.list
 apt-get update
 
 # Java 8 + javamysql
