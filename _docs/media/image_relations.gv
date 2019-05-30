@@ -27,6 +27,8 @@ digraph G {
     "nfqlt/debian-stretch"->"nfqlt/certbot";
     "nfqlt/chromedriver63" [fillcolor=orange label="chromedriver63"];
     "nfqlt/debian-stretch"->"nfqlt/chromedriver63";
+    "nfqlt/chromedriver73" [fillcolor=orange label="chromedriver73"];
+    "nfqlt/debian-stretch"->"nfqlt/chromedriver73";
     "nfqlt/chromium69" [fillcolor=orange label="chromium69"];
     "nfqlt/toolbox"->"nfqlt/chromium69";
     "nfqlt/db-tools" [fillcolor=orange label="db-tools"];
@@ -65,6 +67,10 @@ digraph G {
     "nfqlt/elasticsearch62"->"nfqlt/elasticsearch62-data";
     "nfqlt/elasticsearch62" [fillcolor=orange label="elasticsearch62"];
     "nfqlt/debian-stretch"->"nfqlt/elasticsearch62";
+    "nfqlt/elasticsearch68-data" [fillcolor=orange label="elasticsearch68-data"];
+    "nfqlt/elasticsearch68"->"nfqlt/elasticsearch68-data";
+    "nfqlt/elasticsearch68" [fillcolor=orange label="elasticsearch68"];
+    "nfqlt/debian-stretch"->"nfqlt/elasticsearch68";
     "nfqlt/elasticsearch-tools" [fillcolor=orange label="elasticsearch-tools"];
     "nfqlt/nginx110"->"nfqlt/elasticsearch-tools";
     "nfqlt/ffmpeg" [fillcolor=orange label="ffmpeg"];
@@ -207,6 +213,8 @@ digraph G {
     "nfqlt/php72-cli"->"nfqlt/php72-fpm";
     "nfqlt/php72-supervisor" [fillcolor=orange label="php72-supervisor"];
     "nfqlt/php72-cli"->"nfqlt/php72-supervisor";
+    "nfqlt/php73-cli" [fillcolor=orange label="php73-cli"];
+    "nfqlt/debian-buster"->"nfqlt/php73-cli";
     "nfqlt/phyaml" [fillcolor=orange label="phyaml"];
     "nfqlt/toolbox"->"nfqlt/phyaml";
     "nfqlt/proxy" [fillcolor=orange label="proxy"];
