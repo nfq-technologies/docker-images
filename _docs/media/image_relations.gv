@@ -215,6 +215,8 @@ digraph G {
     "nfqlt/php72-cli"->"nfqlt/php72-supervisor";
     "nfqlt/php73-cli" [fillcolor=orange label="php73-cli"];
     "nfqlt/debian-buster"->"nfqlt/php73-cli";
+    "nfqlt/php73-dev" [fillcolor=orange label="php73-dev"];
+    "nfqlt/php73-cli"->"nfqlt/php73-dev";
     "nfqlt/phyaml" [fillcolor=orange label="phyaml"];
     "nfqlt/toolbox"->"nfqlt/phyaml";
     "nfqlt/proxy" [fillcolor=orange label="proxy"];
