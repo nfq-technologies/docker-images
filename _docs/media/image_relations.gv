@@ -219,6 +219,8 @@ digraph G {
     "nfqlt/php73-cli"->"nfqlt/php73-cron";
     "nfqlt/php73-dev" [fillcolor=orange label="php73-dev"];
     "nfqlt/php73-cli"->"nfqlt/php73-dev";
+    "nfqlt/php73-fpm" [fillcolor=orange label="php73-fpm"];
+    "nfqlt/php73-cli"->"nfqlt/php73-fpm";
     "nfqlt/php73-supervisor" [fillcolor=orange label="php73-supervisor"];
     "nfqlt/php73-cli"->"nfqlt/php73-supervisor";
     "nfqlt/phyaml" [fillcolor=orange label="phyaml"];
