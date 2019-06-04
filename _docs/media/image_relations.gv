@@ -81,6 +81,8 @@ digraph G {
     "nfqlt/debian-stretch"->"nfqlt/gearman";
     "nfqlt/ghostscript" [fillcolor=orange label="ghostscript"];
     "nfqlt/toolbox"->"nfqlt/ghostscript";
+    "nfqlt/gitsync" [fillcolor=orange label="gitsync"];
+    "nfqlt/debian-buster"->"nfqlt/gitsync";
     "nfqlt/graphic-tools" [fillcolor=orange label="graphic-tools"];
     "nfqlt/toolbox"->"nfqlt/graphic-tools";
     "nfqlt/graylog20" [fillcolor=orange label="graylog20"];
