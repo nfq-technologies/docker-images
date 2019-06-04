@@ -26,9 +26,20 @@ fi
 function simple_sync() {
 	local SRC="$1"
 	local DST="$2"
-	rm -fr /dev/shm/gitsync
-	mkdir -p /dev/shm/gitsync
-	cd /dev/shm/gitsync
+
+	local SSUM="$(git ls-remote "$SRC" | fgrep -v 'refs/pull/' | md5sum -)"
+	local DSUM="$(git ls-remote "$DST" | fgrep -v 'refs/pull/' | md5sum -)"
+	if [ "$SSUM" == "$DSUM" ]
+	then
+		echo "~~ Repos are the same, nothing to do for now."
+		return 0
+	fi
+
+	echo "++ Doing the actual sync"
+
+	rm -fr /tmp/gitsync
+	mkdir -p /tmp/gitsync
+	cd /tmp/gitsync
 	git clone --bare "$SRC" .
 	git remote add dest "$DST"
 	git fetch origin --tags
