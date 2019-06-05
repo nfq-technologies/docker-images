@@ -27,8 +27,19 @@ function simple_sync() {
 	local SRC="$1"
 	local DST="$2"
 
-	local SSUM="$(git ls-remote "$SRC" | fgrep -v 'refs/pull/' | md5sum -)"
-	local DSUM="$(git ls-remote "$DST" | fgrep -v 'refs/pull/' | md5sum -)"
+	local SSUM="$(git ls-remote "$SRC" \
+	| fgrep -v 'refs/pull/' \
+	| fgrep -v 'refs/remotes/' \
+	| fgrep -v 'refs/notes/' \
+	| grep -v '\sHEAD$' \
+	| md5sum -)"
+	local DSUM="$(git ls-remote "$DST" \
+	| fgrep -v 'refs/pull/' \
+	| fgrep -v 'refs/remotes/' \
+	| fgrep -v 'refs/notes/' \
+	| grep -v '\sHEAD$' \
+	| md5sum -)"
+
 	if [ "$SSUM" == "$DSUM" ]
 	then
 		echo "~~ Repos are the same, nothing to do for now."
@@ -40,10 +51,10 @@ function simple_sync() {
 	rm -fr /tmp/gitsync
 	mkdir -p /tmp/gitsync
 	cd /tmp/gitsync
-	git clone --bare "$SRC" .
-	git remote add dest "$DST"
-	git fetch origin --tags
-	git push dest --mirror
+
+	git clone --mirror "$SRC" .
+	git push --all --prune "$DST"
+	git push --tags --prune "$DST"
 }
 
 
