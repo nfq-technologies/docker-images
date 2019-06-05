@@ -53,8 +53,8 @@ function simple_sync() {
 	cd /tmp/gitsync
 
 	git clone --mirror "$SRC" .
-	git push --all --prune "$DST"
-	git push --tags --prune "$DST"
+	git push --all --prune --force "$DST"
+	git push --tags --prune --force "$DST"
 }
 
 
