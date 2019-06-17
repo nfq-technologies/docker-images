@@ -253,6 +253,8 @@ digraph G {
     "nfqlt/toolbox"->"nfqlt/thrift091";
     "nfqlt/thrift093" [fillcolor=orange label="thrift093"];
     "nfqlt/toolbox"->"nfqlt/thrift093";
+    "nfqlt/toolbox-buster" [fillcolor=orange label="toolbox-buster"];
+    "nfqlt/debian-buster"->"nfqlt/toolbox-buster";
     "nfqlt/toolbox" [fillcolor=orange label="toolbox"];
     "nfqlt/debian-stretch"->"nfqlt/toolbox";
     "nfqlt/ubuntu-1204" [fillcolor=orange label="ubuntu-1204"];
@@ -263,6 +265,8 @@ digraph G {
     "nfqlt/debian-jessie"->"nfqlt/varnish40";
     "nfqlt/varnish50" [fillcolor=orange label="varnish50"];
     "nfqlt/debian-stretch"->"nfqlt/varnish50";
+    "nfqlt/wkhtmltopdf125" [fillcolor=orange label="wkhtmltopdf125"];
+    "nfqlt/toolbox-buster"->"nfqlt/wkhtmltopdf125";
     "nfqlt/wkhtmltopdf-broken" [fillcolor=orange label="wkhtmltopdf-broken"];
     "nfqlt/toolbox"->"nfqlt/wkhtmltopdf-broken";
     "nfqlt/wkhtmltopdf" [fillcolor=orange label="wkhtmltopdf"];
