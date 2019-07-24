@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 function get_project_name {
 	docker inspect --format '{{ index .Config.Labels "com.docker.compose.project" }}' "$1"
 }
@@ -19,6 +18,9 @@ function generate_container_hosts {
 	project=$(jq '.[0].Config.Labels."com.docker.compose.project"?' $file | tr -d '"')
 	service=$(jq '.[0].Config.Labels."com.docker.compose.service"?' $file | tr -d '"')
 	number=$(jq '.[0].Config.Labels."com.docker.compose.container-number"?' $file | tr -d '"')
+	if [ -z "$ip_address" ]; then
+		ip_address=$(jq -r ".[0].NetworkSettings.Networks.${project}_default.IPAddress?" "$file")
+	fi
 	echo "$ip_address	${project}_${service}_${number} ${service}_${number} ${service} $short_id"
 }
 
@@ -46,10 +48,16 @@ function get_hosts {
 function get_custom_links {
 	child=$1
 	project=$(echo $child | cut -d_ -f1)
-    json_file=/tmp/${child}.json
+	json_file=/tmp/${child}.json
 	hosts_file=$2
 
-	for link in $(jq '.[0].HostConfig.Links' $json_file \
+	if [ "$(jq -r '.[0].HostConfig.Links' "$json_file")" == "null" ]; then
+		links_location=".[0].NetworkSettings.Networks.${project}_default.Links"
+	else
+		links_location=".[0].HostConfig.Links"
+	fi
+
+	for link in $(jq "$links_location" "$json_file" \
 				| tr -d ',"/ ' \
 				| fgrep : \
 				| sed "s/$child//" \
