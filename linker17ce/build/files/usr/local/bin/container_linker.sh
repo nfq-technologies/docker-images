@@ -19,7 +19,7 @@ function generate_container_hosts {
 	service=$(jq '.[0].Config.Labels."com.docker.compose.service"?' $file | tr -d '"')
 	number=$(jq '.[0].Config.Labels."com.docker.compose.container-number"?' $file | tr -d '"')
 	if [ -z "$ip_address" ]; then
-		ip_address=$(jq -r ".[0].NetworkSettings.Networks.${project}_default.IPAddress?" "$file")
+		ip_address=$(jq -r ".[0].NetworkSettings.Networks.\"${project}_default\".IPAddress?" "$file")
 	fi
 	echo "$ip_address	${project}_${service}_${number} ${service}_${number} ${service} $short_id"
 }
@@ -52,7 +52,7 @@ function get_custom_links {
 	hosts_file=$2
 
 	if [ "$(jq -r '.[0].HostConfig.Links' "$json_file")" == "null" ]; then
-		links_location=".[0].NetworkSettings.Networks.${project}_default.Links"
+		links_location=".[0].NetworkSettings.Networks.\"${project}_default\".Links"
 	else
 		links_location=".[0].HostConfig.Links"
 	fi
@@ -136,6 +136,4 @@ do
 		sleep $idle_sleep
 	fi
 done
-
-
 
