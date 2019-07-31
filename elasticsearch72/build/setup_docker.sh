@@ -7,10 +7,10 @@ set -e
 apt-get update
 apt-get install -y --no-install-recommends ca-certificates-java openjdk-8-jre-headless
 
+ES_PKG_NAME=elasticsearch-7.2.1
 
-ES_PKG_NAME=elasticsearch-6.8.0
 cd /tmp/
-wget -nv -t5 -O es.tar.gz https://artifacts.elastic.co/downloads/elasticsearch/$ES_PKG_NAME.tar.gz
+wget -nv -t5 -O es.tar.gz https://artifacts.elastic.co/downloads/elasticsearch/$ES_PKG_NAME-linux-x86_64.tar.gz
 tar xzf es.tar.gz
 rm -f es.tar.gz
 mv /tmp/$ES_PKG_NAME /elasticsearch
