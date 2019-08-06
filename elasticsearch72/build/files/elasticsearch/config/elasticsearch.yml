@@ -1,8 +1,6 @@
 network :
   host : 0.0.0.0
 
-network.host: 0.0.0.0
-
 path:
   data: /var/elasticsearch/data
 
@@ -12,3 +10,4 @@ http:
     allow-origin: "*"
 
 discovery.type: single-node
+
