@@ -1,4 +1,4 @@
-## elasticsearch 6.8
+## elasticsearch 7.2
 
 ### Sample configuration
 
@@ -6,7 +6,7 @@
 version: '2.1'
 services:
   elasticsearch:
-    image: nfqlt/elasticsearch68
+    image: nfqlt/elasticsearch72
     network_mode: bridge
     ports:
       - "10.24.0.0:9200:9200"
@@ -17,7 +17,7 @@ services:
 
 
   elasticsearchVol:
-    image: nfqlt/elasticsearch68-data
+    image: nfqlt/elasticsearch72-data
     network_mode: bridge
     volumes:
       - /var/elasticsearch/data
