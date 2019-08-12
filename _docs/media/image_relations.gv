@@ -55,10 +55,6 @@ digraph G {
     "nfqlt/elasticsearch22"->"nfqlt/elasticsearch22-data";
     "nfqlt/elasticsearch22" [fillcolor=orange label="elasticsearch22"];
     "nfqlt/debian-jessie"->"nfqlt/elasticsearch22";
-    "nfqlt/elasticsearch51-data" [fillcolor=orange label="elasticsearch51-data"];
-    "nfqlt/elasticsearch51"->"nfqlt/elasticsearch51-data";
-    "nfqlt/elasticsearch51" [fillcolor=orange label="elasticsearch51"];
-    "nfqlt/debian-stretch"->"nfqlt/elasticsearch51";
     "nfqlt/elasticsearch56-data" [fillcolor=orange label="elasticsearch56-data"];
     "nfqlt/elasticsearch56"->"nfqlt/elasticsearch56-data";
     "nfqlt/elasticsearch56" [fillcolor=orange label="elasticsearch56"];
@@ -71,6 +67,10 @@ digraph G {
     "nfqlt/elasticsearch68"->"nfqlt/elasticsearch68-data";
     "nfqlt/elasticsearch68" [fillcolor=orange label="elasticsearch68"];
     "nfqlt/debian-stretch"->"nfqlt/elasticsearch68";
+    "nfqlt/elasticsearch72-data" [fillcolor=orange label="elasticsearch72-data"];
+    "nfqlt/elasticsearch72"->"nfqlt/elasticsearch72-data";
+    "nfqlt/elasticsearch72" [fillcolor=orange label="elasticsearch72"];
+    "nfqlt/debian-stretch"->"nfqlt/elasticsearch72";
     "nfqlt/elasticsearch-tools" [fillcolor=orange label="elasticsearch-tools"];
     "nfqlt/nginx110"->"nfqlt/elasticsearch-tools";
     "nfqlt/ffmpeg" [fillcolor=orange label="ffmpeg"];
@@ -129,6 +129,8 @@ digraph G {
     "mysql"->"nfqlt/mysql56-data";
     "nfqlt/mysql57-data" [fillcolor=orange label="mysql57-data"];
     "mysql"->"nfqlt/mysql57-data";
+    "nfqlt/mysql80-data" [fillcolor=orange label="mysql80-data"];
+    "mysql"->"nfqlt/mysql80-data";
     "nfqlt/nginx110" [fillcolor=orange label="nginx110"];
     "nfqlt/debian-stretch"->"nfqlt/nginx110";
     "nfqlt/nginx12" [fillcolor=orange label="nginx12"];
