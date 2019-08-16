@@ -1,8 +1,7 @@
-version: '2.1'
+version: '2.4'
 services:
   web:
-    image: docker.nfq.lt/nfqlt/apache24-fastcgi
-    network_mode: bridge
+    image: nfqlt/apache24-fastcgi
     ports:
       - '10.24.8.177:80:80'
     links:
@@ -16,8 +15,7 @@ services:
 
 
   fastcgi:
-    image: docker.nfq.lt/nfqlt/php70-fpm
-    network_mode: bridge
+    image: nfqlt/php73-fpm
     links:
       - mysql
     volumes:
@@ -28,8 +26,7 @@ services:
 
 
   mysql:
-    image: 'docker.nfq.lt/library/mysql:5.5'
-    network_mode: bridge
+    image: 'mysql:5.5'
     ports:
       - '10.24.8.177:3306:3306'
     volumes_from:
@@ -37,15 +34,13 @@ services:
 
 
   mysqlVol:
-    image: docker.nfq.lt/nfqlt/mysql55-data
-    network_mode: bridge
+    image: nfqlt/mysql55-data
     volumes:
       - /var/lib/mysql
 
 
   dev:
-    image: docker.nfq.lt/nfqlt/php70-dev
-    network_mode: bridge
+    image: nfqlt/php73-dev
     ports:
       - '10.24.8.177:22:22'
     links:
@@ -63,20 +58,23 @@ services:
 
 
   mail:
-    image: docker.nfq.lt/nfqlt/mailhog
-    network_mode: bridge
+    image: nfqlt/mailhog
     ports:
       - '10.24.8.177:1080:80'
       - '10.24.8.177:25:25'
 
 
   linker:
-    image: docker.nfq.lt/nfqlt/linker17ce
-    network_mode: bridge
+    image: nfqlt/linker18ce
     volumes:
       - '/run/docker.sock:/run/docker.sock'
 
 
 volumes: {  }
-networks: {  }
+networks:
+  default:
+    ipam:
+      config:
+        -
+          subnet: 10.24.8.177/28
 
