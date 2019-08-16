@@ -14,11 +14,10 @@ This image is build on __nginx110__ image and forwards port __80__
 
 ### Sample configuration
 ```
-version: '2.1'
+version: '2.4'
 services:
   proxy:
     image: nfqlt/mobile-proxy
-    network_mode: bridge
     ports:
       - "10.24.3.1:8080:80"
     links:

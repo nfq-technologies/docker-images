@@ -18,18 +18,16 @@ You can create volumes for data persistence
 
 ### Sample configuration
 ```
-version: '2.1'
+version: '2.4'
 services:
   mysql:
     image: mysql:5.5
-    network_mode: bridge
     environment:
       MYSQL_ROOT_PASSWORD: root
 
 
   xwiki:
     image: nfqlt/xwiki
-    network_mode: bridge
     links:
       - mysql
     ports:

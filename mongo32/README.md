@@ -3,11 +3,10 @@
 ### Sample configuration
 
 ```
-version: '2.1'
+version: '2.4'
 services:
   mongo:
     image: nfqlt/mongo32
-    network_mode: bridge
     ports:
       - "10.24.0.0:27017:27017"
     volumes_from:
@@ -16,7 +15,6 @@ services:
 
   mongoVol:
     image: nfqlt/mongo32-data
-    network_mode: bridge
     volumes:
       - /var/lib/mongodb
 

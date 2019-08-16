@@ -6,11 +6,10 @@ Simple add this container to your project with name xhgui (or link it with other
 There is only a single port 80 that needs to be exposed: recommended value is 1081
 Example:
 ```yaml
-version: '2.1'
+version: '2.4'
 services:
   xhgui:
     image: nfqlt/xhgui
-    network_mode: bridge
     ports:
       - "10.24.2.49:1081:80"
 ```

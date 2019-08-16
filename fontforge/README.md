@@ -12,18 +12,16 @@ Available binary paths for export:
 
 ### Sample configuration
 ```
-version: '2.1'
+version: '2.4'
 services:
   fontforge:
     image: nfqlt/fontforge
-    network_mode: bridge
     volumes:
       - ./src:/home/project/src
       - /tmp
   
   node:
-    image: nfqlt/node4
-    network_mode: bridge
+    image: nfqlt/node10
     volumes_from:
       - service:fontforge:rw
     environment:
@@ -32,8 +30,7 @@ services:
         /usr/bin/fontforge
   
   dev:
-    image: nfqlt/php56-dev
-    network_mode: bridge
+    image: nfqlt/php73-dev
     volumes_from:
       - service:fontforge:rw
     volumes:

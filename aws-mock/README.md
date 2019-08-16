@@ -20,11 +20,10 @@ Refer to https://github.com/spulec/moto
 #### Example docker compose
 
 ```
-version: '2.1'
+version: '2.4'
 services:
   aws:
     image: nfqlt/aws-mock
-    network_mode: bridge
     environment:
       NFQ_AWS_SERVICES: >
         ec2:4001

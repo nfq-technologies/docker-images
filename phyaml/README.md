@@ -6,19 +6,17 @@ This image is used to perform yaml files manipulation using phyaml tool.
 
 ### Sample configuration
 ```
-version: '2.1'
+version: '2.4'
 services:
   phyaml:
     image: nfqlt/phyaml
-    network_mode: bridge
     volumes:
       - /tmp
       - ./src:/home/project/src
 
 
   dev:
-    image: nfqlt/php70-dev
-    network_mode: bridge
+    image: nfqlt/php73-dev
     volumes_from:
       - service:phyaml:rw
     volumes:
@@ -33,8 +31,7 @@ services:
 
 
   linker:
-    image: nfqlt/linker17ce
-    network_mode: bridge
+    image: nfqlt/linker18ce
     volumes:
       - /run/docker.sock:/run/docker.sock
 ```

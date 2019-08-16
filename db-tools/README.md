@@ -27,18 +27,16 @@ Available binary paths for export:
 
 ### Sample configuration
 ```
-version: '2.1'
+version: '2.4'
 services:
   dbtools:
     image: nfqlt/db-tools
-    network_mode: bridge
     volumes:
       - './src:/home/project/src'
       - /tmp
 
   dev:
-    image: nfqlt/php70-dev
-    network_mode: bridge
+    image: nfqlt/php73-dev
     volumes_from:
       - service:dbtools:rw
     volumes:

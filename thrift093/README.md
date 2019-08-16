@@ -12,18 +12,16 @@ Available binary paths for export:
 
 ### Sample configuration
 ```
-version: '2.1'
+version: '2.4'
 services:
   thrift:
     image: nfqlt/thrift093
-    network_mode: bridge
     volumes_from:
       - ./src:/home/project/src
       - /tmp
 
   dev:
-    image: nfqlt/php70-dev
-    network_mode: bridge
+    image: nfqlt/php73-dev
     volumes_from:
       - service:thrift:rw
     volumes:

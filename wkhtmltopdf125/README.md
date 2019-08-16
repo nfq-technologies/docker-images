@@ -11,18 +11,16 @@ Available binary paths for export:
 
 ### Sample configuration
 ```
-version: '2.1'
+version: '2.4'
 services:
   wkhtmltopdf:
     image: nfqlt/wkhtmltopdf125
-    network_mode: bridge
     volumes:
       - './src:/home/project/src'
       - /tmp
 
   dev:
     image: nfqlt/php73-dev
-    network_mode: bridge
     volumes_from:
       - service:wkhtmltopdf:rw
     volumes:
@@ -38,7 +36,6 @@ services:
 
   linker:
     image: nfqlt/linker18ce
-    network_mode: bridge
     volumes:
       - /run/docker.sock:/run/docker.sock
 ```

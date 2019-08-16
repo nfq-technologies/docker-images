@@ -5,20 +5,18 @@
 
 ### Sample configuration
 ```
-version: '2.1'
+version: '2.4'
 services:
 
   chromium:
     image: nfqlt/chromium69
-    network_mode: bridge
     volumes:
       - './src:/home/project/src'
       - /tmp
 
 
   dev:
-    image: nfqlt/php71-dev
-    network_mode: bridge
+    image: nfqlt/php73-dev
     volumes_from:
       - service:chromium:rw
     volumes:

@@ -30,11 +30,10 @@ The following configuration forwards __cdn.my.project.test__ to __media__ contai
  to __website__ cotainer.
 
 ```
-version: '2.1'
+version: '2.4'
 services:
   web:
     image: nfqlt/proxy
-    network_mode: bridge
     links:
       - website
       - backend
@@ -48,7 +47,6 @@ services:
 
   website:
     image: nfqlt/apache24-php56
-    network_mode: bridge
     environment:
       APACHE_DOCUMENTROOT: /home/project/src/web
     volumes:
@@ -57,7 +55,6 @@ services:
 
   backend:
     image: nfqlt/apache24-php56
-    network_mode: bridge
     environment:
       APACHE_DOCUMENTROOT: /home/project/src/web
     volumes:
@@ -66,7 +63,6 @@ services:
 
   media:
     image: nfqlt/apache24-php56
-    network_mode: bridge
     environment:
       APACHE_DOCUMENTROOT: /home/project/src/web
     volumes:

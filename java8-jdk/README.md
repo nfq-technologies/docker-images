@@ -11,18 +11,16 @@ Available binary paths for export:
 
 ### Sample configuration
 ```
-version: '2.1'
+version: '2.4'
 services:
   java:
     image: nfqlt/java8-jdk
-    network_mode: bridge
     volumes:
       - './src:/home/project/src'
       - /tmp
 
   dev:
-    image: nfqlt/php71-dev
-    network_mode: bridge
+    image: nfqlt/php73-dev
     volumes_from:
       - service:java:rw
     volumes:
