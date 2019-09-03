@@ -1,0 +1,14 @@
+{
+        "name": "node-server-6",
+        "version": "v0.0.1",
+        "description": "Node server test suite",
+        "main": "",
+        "dependencies": {},
+        "devDependencies": {},
+        "scripts": {
+                "serve": "node server.js"
+        },
+        "author": "NFQ DevOps",
+        "license": "MIT"
+}
+
