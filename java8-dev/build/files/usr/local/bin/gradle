@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cache="$NFQ_PROJECT_ROOT/.cache"
+echo "## NFQ Gradle wrapper, setting cache folder to: ${cache} ##"
+
+exec /opt/gradle/bin/gradle -g "$cache" "$@"
+
