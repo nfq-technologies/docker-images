@@ -117,6 +117,8 @@ digraph G {
     "nfqlt/debian-jessie"->"nfqlt/memcached1421";
     "nfqlt/memcached1433" [fillcolor=orange label="memcached1433"];
     "nfqlt/debian-stretch"->"nfqlt/memcached1433";
+    "nfqlt/memcached156" [fillcolor=orange label="memcached156"];
+    "nfqlt/debian-buster"->"nfqlt/memcached156";
     "nfqlt/mobile-proxy" [fillcolor=orange label="mobile-proxy"];
     "nfqlt/nginx110"->"nfqlt/mobile-proxy";
     "nfqlt/mongo24-data" [fillcolor=orange label="mongo24-data"];
