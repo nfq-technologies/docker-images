@@ -243,6 +243,8 @@ digraph G {
     "nfqlt/debian-jessie"->"nfqlt/rabbitmq335";
     "nfqlt/rabbitmq366" [fillcolor=orange label="rabbitmq366"];
     "nfqlt/debian-stretch"->"nfqlt/rabbitmq366";
+    "nfqlt/rabbitmq378" [fillcolor=orange label="rabbitmq378"];
+    "nfqlt/debian-buster"->"nfqlt/rabbitmq378";
     "nfqlt/redis2817" [fillcolor=orange label="redis2817"];
     "nfqlt/debian-jessie"->"nfqlt/redis2817";
     "nfqlt/redis326" [fillcolor=orange label="redis326"];
