@@ -275,6 +275,8 @@ digraph G {
     "nfqlt/debian-jessie"->"nfqlt/varnish40";
     "nfqlt/varnish50" [fillcolor=orange label="varnish50"];
     "nfqlt/debian-stretch"->"nfqlt/varnish50";
+    "nfqlt/varnish61" [fillcolor=orange label="varnish61"];
+    "nfqlt/debian-buster"->"nfqlt/varnish61";
     "nfqlt/wkhtmltopdf125-broken" [fillcolor=orange label="wkhtmltopdf125-broken"];
     "nfqlt/toolbox-buster"->"nfqlt/wkhtmltopdf125-broken";
     "nfqlt/wkhtmltopdf125" [fillcolor=orange label="wkhtmltopdf125"];
