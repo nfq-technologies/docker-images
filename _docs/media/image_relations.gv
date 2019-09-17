@@ -139,6 +139,8 @@ digraph G {
     "mysql"->"nfqlt/mysql80-data";
     "nfqlt/nginx110" [fillcolor=orange label="nginx110"];
     "nfqlt/debian-stretch"->"nfqlt/nginx110";
+    "nfqlt/nginx114" [fillcolor=orange label="nginx114"];
+    "nfqlt/debian-buster"->"nfqlt/nginx114";
     "nfqlt/nginx12" [fillcolor=orange label="nginx12"];
     "nfqlt/debian-wheezy"->"nfqlt/nginx12";
     "nfqlt/nginx16" [fillcolor=orange label="nginx16"];
