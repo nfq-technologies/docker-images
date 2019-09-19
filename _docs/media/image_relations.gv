@@ -74,7 +74,7 @@ digraph G {
     "nfqlt/elasticsearch72" [fillcolor=orange label="elasticsearch72"];
     "nfqlt/debian-stretch"->"nfqlt/elasticsearch72";
     "nfqlt/elasticsearch-tools" [fillcolor=orange label="elasticsearch-tools"];
-    "nfqlt/nginx110"->"nfqlt/elasticsearch-tools";
+    "nfqlt/nginx114"->"nfqlt/elasticsearch-tools";
     "nfqlt/ffmpeg" [fillcolor=orange label="ffmpeg"];
     "nfqlt/toolbox-buster"->"nfqlt/ffmpeg";
     "nfqlt/fontforge" [fillcolor=orange label="fontforge"];
@@ -120,7 +120,7 @@ digraph G {
     "nfqlt/memcached156" [fillcolor=orange label="memcached156"];
     "nfqlt/debian-buster"->"nfqlt/memcached156";
     "nfqlt/mobile-proxy" [fillcolor=orange label="mobile-proxy"];
-    "nfqlt/nginx110"->"nfqlt/mobile-proxy";
+    "nfqlt/nginx114"->"nfqlt/mobile-proxy";
     "nfqlt/mongo24-data" [fillcolor=orange label="mongo24-data"];
     "nfqlt/mongo24"->"nfqlt/mongo24-data";
     "nfqlt/mongo24" [fillcolor=orange label="mongo24"];
@@ -240,7 +240,7 @@ digraph G {
     "nfqlt/phyaml" [fillcolor=orange label="phyaml"];
     "nfqlt/toolbox-buster"->"nfqlt/phyaml";
     "nfqlt/proxy" [fillcolor=orange label="proxy"];
-    "nfqlt/nginx110"->"nfqlt/proxy";
+    "nfqlt/nginx114"->"nfqlt/proxy";
     "nfqlt/rabbitmq335" [fillcolor=orange label="rabbitmq335"];
     "nfqlt/debian-jessie"->"nfqlt/rabbitmq335";
     "nfqlt/rabbitmq366" [fillcolor=orange label="rabbitmq366"];
