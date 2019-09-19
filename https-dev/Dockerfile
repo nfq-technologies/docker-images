@@ -1,4 +1,4 @@
-FROM nfqlt/nginx110
+FROM nfqlt/nginx114
 
 EXPOSE 443
 

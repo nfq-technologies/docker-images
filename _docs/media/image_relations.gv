@@ -90,7 +90,7 @@ digraph G {
     "nfqlt/graylog20" [fillcolor=orange label="graylog20"];
     "nfqlt/debian-jessie"->"nfqlt/graylog20";
     "nfqlt/https-dev" [fillcolor=orange label="https-dev"];
-    "nfqlt/nginx110"->"nfqlt/https-dev";
+    "nfqlt/nginx114"->"nfqlt/https-dev";
     "nfqlt/java8-dev" [fillcolor=orange label="java8-dev"];
     "nfqlt/debian-stretch"->"nfqlt/java8-dev";
     "nfqlt/java8-jdk" [fillcolor=orange label="java8-jdk"];
