@@ -1,7 +1,7 @@
 server {
 	listen 443 ssl;
 
-	ssl_certificate 	/etc/nginx/cert.crt;
+	ssl_certificate		/etc/nginx/cert.crt;
 	ssl_certificate_key	/etc/nginx/cert.key;
 	
 	location / {

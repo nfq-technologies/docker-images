@@ -2,9 +2,9 @@
 set -e
 
 # for tests when container does not have a link to fastcgi
-if ! fgrep -q fastcgi /etc/hosts && ! host fastcgi; then
-	echo "No fastcgi host found, injecting localhost"
-	echo "127.0.0.1 fastcgi" >> /etc/hosts
+if ! fgrep -q web /etc/hosts && ! host web; then
+	echo "No web host found, injecting localhost"
+	echo "127.0.0.1 web" >> /etc/hosts
 fi
 
 CONFIGS="$(find /etc/nginx/ -type f)"
