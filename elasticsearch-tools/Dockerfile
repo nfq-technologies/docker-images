@@ -1,4 +1,4 @@
-FROM nfqlt/nginx110
+FROM nfqlt/nginx114
 
 
 ENV NFQ_DOCUMENT_ROOT /var/www
