@@ -13,7 +13,7 @@ update_control_field()
 	line="$field: $value"
 	control_file="$SOURCE/DEBIAN/control"
 
-	echo $line
+	echo "$line"
 
 	if fgrep -q "$field:" $control_file
 	then
@@ -32,15 +32,15 @@ update_installed_size()
 {
 	size_kb=$(du -sk $SOURCE | sed 's/^\([0-9]*\)[^0-9].*$/\1/')
 
-	update_control_field "Installed-Size" $size_kb
+	update_control_field "Installed-Size" "$size_kb"
 }
 
 add_md5sums()
 {
 	current_path=$(pwd)
-	cd $SOURCE
-	md5sum $(find ./ -type f | grep -v '^\.\/DEBIAN\/') > DEBIAN/md5sums
-	cd $current_path
+	cd "$SOURCE"
+	find ./ -type f -not -path "./DEBIAN/*" -exec md5sum "{}" + > DEBIAN/md5sums
+	cd "$current_path"
 }
 
 # Executtion start
@@ -92,8 +92,8 @@ add_md5sums
 
 # build deb packge and test it with lintian
 sudo chown -R root:root "$SOURCE"
-dpkg-deb --build "$SOURCE" $OUTPUT_PATH/$DEB_NAME
-lintian --display-info --pedantic $OUTPUT_PATH/$DEB_NAME || true
+dpkg-deb --build "$SOURCE" "$OUTPUT_PATH/$DEB_NAME"
+lintian --display-info --pedantic "$OUTPUT_PATH/$DEB_NAME" || true
 
 # cleanup
 sudo rm -rf "$SOURCE"
