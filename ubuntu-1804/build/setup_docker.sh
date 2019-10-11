@@ -30,7 +30,7 @@ apt-get install -y --no-install-recommends \
 # install various helper tools
 apt-get install -y --no-install-recommends \
 	vim \
-        nano \
+	nano \
 	nethogs \
 	pv \
 	git \
@@ -67,7 +67,7 @@ locale-gen "en_US.UTF-8"
 dpkg-reconfigure locales
 echo LC_ALL=en_US.UTF-8 > /etc/default/locale
 
-cp -frv /build/files/* /
+cp -frv /build/files/* / ||
 
 
 source /usr/local/build_scripts/cleanup_apt.sh
