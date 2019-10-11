@@ -67,7 +67,7 @@ locale-gen "en_US.UTF-8"
 dpkg-reconfigure locales
 echo LC_ALL=en_US.UTF-8 > /etc/default/locale
 
-cp -frv /build/files/* / ||
+cp -frv /build/files/* / || true
 
 
 source /usr/local/build_scripts/cleanup_apt.sh
