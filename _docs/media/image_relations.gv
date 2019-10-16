@@ -273,8 +273,12 @@ digraph G {
     "nfqlt/debian-buster"->"nfqlt/toolbox-buster";
     "nfqlt/toolbox" [fillcolor=orange label="toolbox"];
     "nfqlt/debian-stretch"->"nfqlt/toolbox";
+    "nfqlt/toolbox-ubuntu1804" [fillcolor=orange label="toolbox-ubuntu1804"];
+    "nfqlt/ubuntu-1804"->"nfqlt/toolbox-ubuntu1804";
     "nfqlt/ubuntu-1204" [fillcolor=orange label="ubuntu-1204"];
     "ubuntu"->"nfqlt/ubuntu-1204";
+    "nfqlt/ubuntu-1804" [fillcolor=orange label="ubuntu-1804"];
+    "ubuntu"->"nfqlt/ubuntu-1804";
     "nfqlt/varnish30" [fillcolor=orange label="varnish30"];
     "nfqlt/debian-wheezy"->"nfqlt/varnish30";
     "nfqlt/varnish40" [fillcolor=orange label="varnish40"];
