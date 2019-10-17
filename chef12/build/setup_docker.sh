@@ -5,7 +5,7 @@ set -e
 
 #apt-get update
 
-# Manulay downloading ChefDK 4.4.27 and install
+# Manulay downloading and install
 file="https://packages.chef.io/files/stable/chefdk/1.2.22/ubuntu/16.04/chefdk_1.2.22-1_amd64.deb"
 
 wget --no-check-certificate -O chefdk.deb $file

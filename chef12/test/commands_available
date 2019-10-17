@@ -11,3 +11,8 @@ function check_command {
 
 
 check_command chef --version
+check_command chef-solo --version
+check_command chef-apply --version
+check_command chef-client --version
+check_command chef-shell --version
+
