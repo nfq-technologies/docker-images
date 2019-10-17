@@ -1,0 +1,111 @@
+# base-image-Makefile
+
+IMAGE_BASE_NAME = $(shell basename $(shell pwd))
+IMAGE_TYPE = $(shell basename $(shell dirname $(shell pwd)))
+IMAGE_REGISTRY = $(shell ../_tools/makefiles/get_default_registry.sh)
+IMAGE_FULL_NAME = $(IMAGE_REGISTRY)$(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
+CHILDREN = $(shell ../_tools/relational_sorting.php)
+
+
+COMMANDS = all build test push clean branch-all branch-build run run-bash
+SILENT_COMMANDS = help status calc-start calc-stop get-image-name
+
+-include ../../tools/makefiles/base-image-custom.Makefile
+
+.PHONY: $(COMMANDS) $(SILENT_COMMANDS)
+.SILENT: $(SILENT_COMMANDS)
+.NOTPARALLEL:
+
+
+help:
+	echo
+	echo "Image name: $(IMAGE_FULL_NAME)"
+	echo "Available commands: $(COMMANDS) $(SILENT_COMMANDS)"
+	echo
+
+
+branch-all:
+	make all
+	for dir in $(CHILDREN); do \
+		$(MAKE) all -C ../$$dir; \
+	done
+
+
+branch-build:
+	make build
+	for dir in $(CHILDREN); do \
+		$(MAKE) build -C ../$$dir; \
+	done
+
+
+all:
+	make build && make test && make push
+
+
+build:
+	@echo
+	@echo "# Building image..."
+	@echo
+	sed 's~FROM nfqlt~FROM ${IMAGE_REGISTRY}nfqlt~' Dockerfile > .Dockerfile
+	docker build -f .Dockerfile -t $(IMAGE_FULL_NAME) ./
+	rm .Dockerfile
+	make status
+
+
+test:
+	@echo
+	@echo "# Testing image..."
+	@echo
+	if [ -d test ];	then\
+		run-parts -v -a $(IMAGE_FULL_NAME) test; \
+	fi
+	@echo
+	@echo "Tests passed. ($(shell run-parts --test test | wc -l))"
+	@echo
+
+
+push:
+	@echo
+	@echo "# Pushing image to registry..."
+	@echo
+	docker push $(IMAGE_FULL_NAME)
+
+
+clean:
+	@echo
+	@echo "# Removing local containers and images..."
+	@echo
+	docker stop $(shell docker ps -a | grep ' $(IMAGE_FULL_NAME):' | cut -d' ' -f1) 2>/dev/null || true
+	docker stop $(shell docker ps -a | grep ' $(IMAGE_FULL_NAME) ' | cut -d' ' -f1) 2>/dev/null || true
+	docker rm -f $(shell docker ps -a | grep ' $(IMAGE_FULL_NAME):' | cut -d' ' -f1) 2>/dev/null || true
+	docker rm -f $(shell docker ps -a | grep ' $(IMAGE_FULL_NAME) ' | cut -d' ' -f1) 2>/dev/null || true
+	bash -c "docker images |\
+		 grep '^$(IMAGE_FULL_NAME) ' |\
+		 tr -s ' ' ':' |\
+		 cut -d: -f2 |\
+		 xargs -n1 -IT docker rmi $(IMAGE_FULL_NAME):T 2>/dev/null || true"
+	make status
+
+
+status:
+	echo
+	echo "# Showing image status..."
+	echo
+	docker images | grep -i "$(IMAGE_FULL_NAME) " || true
+	echo
+
+run:
+	docker run -it --rm $(IMAGE_FULL_NAME)
+
+run-bash:
+	docker run -it --rm $(IMAGE_FULL_NAME) env TERM=xterm bash -l
+
+calc-start:
+	../_tools/start-stop-time-calc.php --start
+
+calc-stop:
+	../_tools/start-stop-time-calc.php --stop
+
+get-image-name:
+	echo $(IMAGE_FULL_NAME)
+
