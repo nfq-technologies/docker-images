@@ -18,6 +18,11 @@ for x in "$@"; do
     params="$params '$x'"
 done
 
+use_sudo=""
+if [[ $EUID -eq 0 ]]; then
+	use_sudo="sudo"
+fi
+
 wd="$(pwd)"
-ssh -t -o StrictHostKeyChecking=no -q project@$host  "cd $wd; '$remote_path' $params"
+ssh -t -o StrictHostKeyChecking=no -q project@$host  "cd $wd; $use_sudo '$remote_path' $params"
 
