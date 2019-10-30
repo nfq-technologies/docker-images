@@ -1,4 +1,4 @@
-FROM nfqlt/nodeserver6
+FROM nfqlt/nodeserver10
 
 ENV NFQ_DOCUMENT_ROOT /var/www
 ENV NFQ_NPM_RUN start
