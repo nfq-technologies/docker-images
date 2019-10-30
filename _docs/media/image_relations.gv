@@ -97,8 +97,6 @@ digraph G {
     "nfqlt/debian-stretch"->"nfqlt/java8-dev";
     "nfqlt/java8-jdk" [fillcolor=orange label="java8-jdk"];
     "nfqlt/toolbox"->"nfqlt/java8-jdk";
-    "nfqlt/laravel-echo" [fillcolor=orange label="laravel-echo"];
-    "nfqlt/nodeserver10"->"nfqlt/laravel-echo";
     "nfqlt/libreoffice" [fillcolor=orange label="libreoffice"];
     "nfqlt/toolbox-buster"->"nfqlt/libreoffice";
     "nfqlt/lib-smartclient100" [fillcolor=orange label="lib-smartclient100"];
