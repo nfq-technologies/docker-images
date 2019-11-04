@@ -12,6 +12,7 @@ function check_command {
 check_command php --version
 check_command git --version
 check_command 'git flow' version
+check_command 'git lfs' version
 
 check_command ssh -V
 check_command mysql --version
