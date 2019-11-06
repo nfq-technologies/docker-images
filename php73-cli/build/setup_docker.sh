@@ -72,7 +72,6 @@ apt-get install -y --no-install-recommends php7.3-cli \
 	php-solr \
 	php-ssh2 \
 	php-stomp \
-	php-tideways \
 	php-uploadprogress \
 	php-uuid \
 	php-wikidiff2 \
@@ -84,6 +83,7 @@ apt-get install -y --no-install-recommends php7.3-cli \
 
 #	php-gmagick \ provides more stable api but conflicts with imagick
 #	php-yac \ conflicts with php-apcu
+#	php-tideways \ conflicts with nfq-php-tideways
 
 #	php-guestfs \ depends on kernel module management stuff ~50mb
 #	php-facedetect \ depends on libopencv and friends ~150mb
@@ -109,7 +109,7 @@ mv /etc/php/7.3/cli/php.ini{,_orig}
 # install custom php modules
 apt-get install -y --no-install-recommends \
     phyaml \
-#    nfq-php-tideways \ skipping for now as there is no compiled php7.3 modules
+    nfq-php-tideways
 
 
 # install dma (dragonfly mailer simple relay)
