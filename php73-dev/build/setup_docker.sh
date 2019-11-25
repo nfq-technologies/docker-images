@@ -28,7 +28,7 @@ echo "
 "
 apt-get install -y --no-install-recommends openssh-client git git-flow
 
-wget https://packagecloud.io/github/git-lfs/packages/debian/jessie/git-lfs_1.4.4_amd64.deb/download -O /tmp/git-lfs.deb
+wget https://packagecloud.io/github/git-lfs/packages/debian/buster/git-lfs_2.9.0_amd64.deb/download -O /tmp/git-lfs.deb
 dpkg -i /tmp/git-lfs.deb
 rm -r /tmp/git-lfs.deb
 git lfs install --system --skip-smudge
