@@ -1,4 +1,4 @@
-FROM nfqlt/debian-stretch
+FROM nfqlt/debian-buster
 
 ENV NFQ_DOCUMENT_ROOT /var/www
 ENV NFQ_NPM_RUN serve
