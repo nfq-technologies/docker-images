@@ -112,7 +112,7 @@ digraph G {
     "nfqlt/linker18ce" [fillcolor=orange label="linker18ce"];
     "nfqlt/docker18ce"->"nfqlt/linker18ce";
     "nfqlt/mailhog" [fillcolor=orange label="mailhog"];
-    "nfqlt/debian-stretch"->"nfqlt/mailhog";
+    "nfqlt/debian-buster"->"nfqlt/mailhog";
     "nfqlt/memcached1421" [fillcolor=orange label="memcached1421"];
     "nfqlt/debian-jessie"->"nfqlt/memcached1421";
     "nfqlt/memcached1433" [fillcolor=orange label="memcached1433"];
@@ -154,11 +154,11 @@ digraph G {
     "nfqlt/node8" [fillcolor=orange label="node8"];
     "nfqlt/toolbox-buster"->"nfqlt/node8";
     "nfqlt/nodeserver10" [fillcolor=orange label="nodeserver10"];
-    "nfqlt/debian-stretch"->"nfqlt/nodeserver10";
+    "nfqlt/debian-buster"->"nfqlt/nodeserver10";
     "nfqlt/nodeserver6" [fillcolor=orange label="nodeserver6"];
-    "nfqlt/debian-stretch"->"nfqlt/nodeserver6";
+    "nfqlt/debian-buster"->"nfqlt/nodeserver6";
     "nfqlt/nodeserver8" [fillcolor=orange label="nodeserver8"];
-    "nfqlt/debian-stretch"->"nfqlt/nodeserver8";
+    "nfqlt/debian-buster"->"nfqlt/nodeserver8";
     "nfqlt/packager" [fillcolor=orange label="packager"];
     "nfqlt/toolbox-buster"->"nfqlt/packager";
     "nfqlt/pdftk" [fillcolor=orange label="pdftk"];
@@ -237,6 +237,8 @@ digraph G {
     "nfqlt/php73-cli"->"nfqlt/php73-fpm";
     "nfqlt/php73-supervisor" [fillcolor=orange label="php73-supervisor"];
     "nfqlt/php73-cli"->"nfqlt/php73-supervisor";
+    "nfqlt/phpmyadmin" [fillcolor=orange label="phpmyadmin"];
+    "nfqlt/php70-cli"->"nfqlt/phpmyadmin";
     "nfqlt/phyaml" [fillcolor=orange label="phyaml"];
     "nfqlt/toolbox-buster"->"nfqlt/phyaml";
     "nfqlt/proxy" [fillcolor=orange label="proxy"];
@@ -254,7 +256,7 @@ digraph G {
     "nfqlt/redis503" [fillcolor=orange label="redis503"];
     "nfqlt/debian-buster"->"nfqlt/redis503";
     "nfqlt/router" [fillcolor=orange label="router"];
-    "nfqlt/debian-stretch"->"nfqlt/router";
+    "nfqlt/debian-buster"->"nfqlt/router";
     "nfqlt/ruby2" [fillcolor=orange label="ruby2"];
     "nfqlt/toolbox-buster"->"nfqlt/ruby2";
     "nfqlt/solr36" [fillcolor=orange label="solr36"];
