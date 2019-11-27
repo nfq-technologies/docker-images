@@ -50,7 +50,7 @@ digraph G {
     "nfqlt/docker17ce" [fillcolor=orange label="docker17ce"];
     "nfqlt/debian-stretch"->"nfqlt/docker17ce";
     "nfqlt/docker18ce" [fillcolor=orange label="docker18ce"];
-    "nfqlt/debian-stretch"->"nfqlt/docker18ce";
+    "nfqlt/debian-buster"->"nfqlt/docker18ce";
     "nfqlt/elasticsearch17-data" [fillcolor=orange label="elasticsearch17-data"];
     "nfqlt/elasticsearch17"->"nfqlt/elasticsearch17-data";
     "nfqlt/elasticsearch17" [fillcolor=orange label="elasticsearch17"];
