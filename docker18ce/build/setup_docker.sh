@@ -8,10 +8,10 @@ apt-get update
 echo -e '\n\n## Install and configure docker ... \n\n'
 
 apt-get install -y apt-transport-https ca-certificates
-echo 'deb [arch=amd64] https://download.docker.com/linux/debian stretch stable' > /etc/apt/sources.list.d/docker.list
+echo 'deb [arch=amd64] https://download.docker.com/linux/debian buster stable' > /etc/apt/sources.list.d/docker.list
 curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
 apt-get update
-apt-get install -y docker-ce-cli=5:18.09.6~3-0~debian-stretch
+apt-get install -y docker-ce-cli=5:18.09.9~3-0~debian-buster
 
 # docker-compose from nfqlt
 apt-get install -y docker-compose
