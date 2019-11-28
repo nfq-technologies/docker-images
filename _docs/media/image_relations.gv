@@ -26,7 +26,7 @@ digraph G {
     "nfqlt/birt48" [fillcolor=orange label="birt48"];
     "nfqlt/debian-stretch"->"nfqlt/birt48";
     "nfqlt/certbot" [fillcolor=orange label="certbot"];
-    "nfqlt/debian-stretch"->"nfqlt/certbot";
+    "nfqlt/debian-buster"->"nfqlt/certbot";
     "nfqlt/chef12" [fillcolor=orange label="chef12"];
     "nfqlt/toolbox-ubuntu1804"->"nfqlt/chef12";
     "nfqlt/chromedriver63" [fillcolor=orange label="chromedriver63"];
