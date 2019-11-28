@@ -23,7 +23,7 @@ services:
 
 
   linker:
-    image: docker.nfq.lt/nfqlt/linker17ce
+    image: docker.nfq.lt/nfqlt/linker18ce
     network_mode: bridge
     volumes:
       - /run/docker.sock:/run/docker.sock
