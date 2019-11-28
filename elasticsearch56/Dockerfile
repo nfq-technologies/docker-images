@@ -1,4 +1,4 @@
-FROM nfqlt/debian-stretch
+FROM nfqlt/debian-buster
 
 
 VOLUME ["/var/elasticsearch/data"]

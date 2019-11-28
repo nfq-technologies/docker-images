@@ -5,7 +5,7 @@ set -e
 
 # setup
 apt-get update
-apt-get install -y --no-install-recommends ca-certificates-java openjdk-8-jre-headless
+apt-get install -y --no-install-recommends ca-certificates-java
 
 
 ES_PKG_NAME=elasticsearch-6.2.4
