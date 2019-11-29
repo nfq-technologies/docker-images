@@ -95,6 +95,11 @@ apt-get install -y --no-install-recommends php7.3-cli \
 #mkdir -p /usr/lib/x86_64-linux-gnu/odbc
 #ln -s /usr/lib/x86_64-linux-gnu/libodbccr.so.1 /usr/lib/x86_64-linux-gnu/odbc/libodbccr.so
 
+#TODO: Fallback to debian package, when xdebug is updated from RC2: https://bugs.xdebug.org/bug_view_page.php?bug_id=00001642
+cd /tmp
+wget -O xdebug.deb https://packages.sury.org/php/pool/main/x/xdebug/php-xdebug_2.8.0%2B2.5.5-1%2B0~20191118.14%2Bdebian10~1.gbp6fa14c_amd64.deb
+dpkg -i xdebug.deb
+rm -f xdebug.deb
 
 # disable all php modules
 ls -1 /etc/php/7.3/mods-available/ | sed 's/\.ini$//g' | xargs -I{} -n1 phpdismod -v ALL -s ALL {} 2>/dev/null
