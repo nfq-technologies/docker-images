@@ -92,7 +92,7 @@ add_md5sums
 
 # build deb packge and test it with lintian
 sudo chown -R root:root "$SOURCE"
-dpkg-deb --build "$SOURCE" "$OUTPUT_PATH/$DEB_NAME"
+dpkg-deb -Z gzip --build "$SOURCE" "$OUTPUT_PATH/$DEB_NAME"
 lintian --display-info --pedantic "$OUTPUT_PATH/$DEB_NAME" || true
 
 # cleanup
