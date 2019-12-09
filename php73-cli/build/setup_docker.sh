@@ -97,7 +97,7 @@ apt-get install -y --no-install-recommends php7.3-cli \
 
 #TODO: Fallback to debian package, when xdebug is updated from RC2: https://bugs.xdebug.org/bug_view_page.php?bug_id=00001642
 cd /tmp
-wget -O xdebug.deb https://packages.sury.org/php/pool/main/x/xdebug/php-xdebug_2.8.0%2B2.5.5-1%2B0~20191118.14%2Bdebian10~1.gbp6fa14c_amd64.deb
+wget -O xdebug.deb https://packages.sury.org/php/pool/main/x/xdebug/php-xdebug_2.8.1%2B2.5.5-1%2B0~20191204.15%2Bdebian10~1.gbp54da9e_amd64.deb
 dpkg -i xdebug.deb
 rm -f xdebug.deb
 
