@@ -5,7 +5,9 @@ set -e
 
 apt-get update
 
-apt-get install -y --no-install-recommends php7.3-cli \
+apt-get install -y --no-install-recommends \
+	php7.3-cli \
+	php-phpdbg \
 	libow-php7 \
 	php7.3-bcmath \
 	php7.3-bz2 \
@@ -97,15 +99,17 @@ apt-get install -y --no-install-recommends php7.3-cli \
 
 #TODO: Fallback to debian package, when xdebug is updated from RC2: https://bugs.xdebug.org/bug_view_page.php?bug_id=00001642
 cd /tmp
-wget -O xdebug.deb https://packages.sury.org/php/pool/main/x/xdebug/php-xdebug_2.8.1%2B2.5.5-1%2B0~20191204.15%2Bdebian10~1.gbp54da9e_amd64.deb
-dpkg -i xdebug.deb
-rm -f xdebug.deb
+XDEBUG_DEB="php-xdebug_2.9.1+2.9.0+2.5.5-1+0~20200121.18+debian10~1.gbpacae98_amd64.deb"
+
+rsync "rsync://rsync.sury.org/repositories/php/pool/main/x/xdebug/$XDEBUG_DEB" .
+dpkg -i "$XDEBUG_DEB"
+rm -f "$XDEBUG_DEB"
 
 # disable all php modules
 ls -1 /etc/php/7.3/mods-available/ | sed 's/\.ini$//g' | xargs -I{} -n1 phpdismod -v ALL -s ALL {} 2>/dev/null
 
 # cleanup older versions
-rm -rf /etc/php/7.{0,1,2}
+rm -rf /etc/php/7.{0,1,2,4}
 
 # backup original php.ini
 mv /etc/php/7.3/cli/php.ini{,_orig}
@@ -126,7 +130,6 @@ echo '*: @' > /etc/aliases # force local mails to smarthost
 
 
 cp -frv /build/files/* / || true
-
 
 # Clean up APT when done.
 source /usr/local/build_scripts/cleanup_apt.sh
