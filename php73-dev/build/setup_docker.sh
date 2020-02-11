@@ -68,7 +68,12 @@ phpEnableModule phar
 phpEnableModule zip
 phpEnableModule iconv
 phpEnableModule mbstring
-apt-get install -y --no-install-recommends composer
+
+curl -sSL 'https://getcomposer.org/download/1.8.4/composer.phar' > /usr/local/bin/composer.phar
+chmod a+x /usr/local/bin/composer.phar
+ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
+composer self-update
+
 
 # installl hiroku/prestissimo
 phpEnableModule curl
