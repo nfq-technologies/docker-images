@@ -35,6 +35,8 @@ digraph G {
     "nfqlt/debian-stretch"->"nfqlt/chromedriver73";
     "nfqlt/chromium69" [fillcolor=orange label="chromium69"];
     "nfqlt/toolbox"->"nfqlt/chromium69";
+    "nfqlt/cypress4" [fillcolor=orange label="cypress4"];
+    "nfqlt/node12"->"nfqlt/cypress4";
     "nfqlt/db-tools" [fillcolor=orange label="db-tools"];
     "nfqlt/toolbox-buster"->"nfqlt/db-tools";
     "nfqlt/deb-dev" [fillcolor=orange label="deb-dev"];
@@ -143,6 +145,8 @@ digraph G {
     "nfqlt/debian-jessie"->"nfqlt/nginx16";
     "nfqlt/node10" [fillcolor=orange label="node10"];
     "nfqlt/toolbox-buster"->"nfqlt/node10";
+    "nfqlt/node12" [fillcolor=orange label="node12"];
+    "nfqlt/toolbox-buster"->"nfqlt/node12";
     "nfqlt/node4" [fillcolor=orange label="node4"];
     "nfqlt/toolbox-buster"->"nfqlt/node4";
     "nfqlt/node6" [fillcolor=orange label="node6"];
@@ -255,6 +259,8 @@ digraph G {
     "nfqlt/debian-buster"->"nfqlt/router";
     "nfqlt/ruby2" [fillcolor=orange label="ruby2"];
     "nfqlt/toolbox-buster"->"nfqlt/ruby2";
+    "nfqlt/sentry-cli" [fillcolor=orange label="sentry-cli"];
+    "nfqlt/toolbox-buster"->"nfqlt/sentry-cli";
     "nfqlt/solr36" [fillcolor=orange label="solr36"];
     "nfqlt/debian-jessie"->"nfqlt/solr36";
     "nfqlt/sonar-scanner-cli4" [fillcolor=orange label="sonar-scanner-cli4"];
