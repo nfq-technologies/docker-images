@@ -18,7 +18,9 @@ EOF
 
 apt-get update
 
-apt-get install -y --no-install-recommends php7.2-cli \
+apt-get install -y --no-install-recommends \
+	php7.2-cli \
+	php7.2-phpdbg \
     php7.2-bcmath \
     php7.2-bz2 \
     php7.2-curl \
@@ -85,9 +87,7 @@ apt-get install -y --no-install-recommends php7.2-cli \
 
 # disable all php modules
 ls -1 /etc/php/7.2/mods-available/ | sed 's/\.ini$//g' | xargs -I{} -n1 phpdismod -v ALL -s ALL {} 2>/dev/null
-rm -fr /etc/php/5.6
-rm -fr /etc/php/7.0
-rm -rf /etc/php/7.1
+rm -rf /etc/php/{5.6,7.0,7.1,7.3,7.4}
 
 
 # install custom php modules
