@@ -5,7 +5,9 @@ set -e
 
 apt-get update
 
-apt-get install -y --no-install-recommends php7.0-cli \
+apt-get install -y --no-install-recommends \
+	php7.0-cli \
+	php7.0-phpdbg \
 	php7.0-apcu \
 	php-apcu-bc \
 	php7.0-bcmath \
@@ -57,7 +59,7 @@ ln -s /usr/lib/x86_64-linux-gnu/libodbccr.so.1 /usr/lib/x86_64-linux-gnu/odbc/li
 
 # disable all php modules
 ls -1 /etc/php/7.0/mods-available/ | sed 's/\.ini$//g' | xargs -I{} -n1 phpdismod -v ALL -s ALL {} 2>/dev/null
-
+rm -rf /etc/php/{5.6,7.1,7.2,7.3,7.4}
 
 # install custom php modules
 apt-get install -y --no-install-recommends \

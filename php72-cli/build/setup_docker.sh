@@ -87,6 +87,7 @@ apt-get install -y --no-install-recommends \
 
 # disable all php modules
 ls -1 /etc/php/7.2/mods-available/ | sed 's/\.ini$//g' | xargs -I{} -n1 phpdismod -v ALL -s ALL {} 2>/dev/null
+
 rm -rf /etc/php/{5.6,7.0,7.1,7.3,7.4}
 
 

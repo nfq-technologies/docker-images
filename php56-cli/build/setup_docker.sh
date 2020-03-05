@@ -5,7 +5,9 @@ set -e
 
 apt-get update
 
-apt-get install -y --no-install-recommends php5-cli \
+apt-get install -y --no-install-recommends \
+	php5-cli \
+	php5-phpdbg \
 	libgv-php5 \
 	libow-php5 \
 	libpuzzle-php \
