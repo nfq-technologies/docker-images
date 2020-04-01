@@ -1,0 +1,55 @@
+#!/bin/bash
+
+OLD_DISPLAY="$DISPLAY"
+
+function are_we_there_yet() {
+	export DISPLAY
+	sudo -u project timeout 0.5 xeyes
+	if [ $? -eq 124 ]
+	then
+		echo Success
+		OLD_DISPLAY="$DISPLAY"
+	else
+		#echo FAIL
+		DISPLAY="$OLD_DISPLAY"
+	fi
+	export DISPLAY
+}
+
+
+# for network_mode host
+DISPLAY=$(echo "$DISPLAY" | sed 's/^[^:]*\(.*\)/127.0.0.1\1/')
+echo -n "~~ Checking $DISPLAY ... "; are_we_there_yet
+
+# for network_mode bridge
+DISPLAY=$(echo "$DISPLAY" | sed 's/^[^:]*\(.*\)/172.17.0.1\1/')
+echo -n "~~ Checking $DISPLAY ... "; are_we_there_yet
+
+# for mounted /tmp/.X11/
+DISPLAY=$(echo "$DISPLAY" | sed 's/^[^:]*\(.*\)/unix\1/')
+echo -n "~~ Checking $DISPLAY ... "; are_we_there_yet
+
+echo "++ Selected DISPLAY=$DISPLAY"
+echo
+
+
+if [ "x${NFQ_PROJECT_ROOT}" != "x" ]
+then
+	cd "${NFQ_PROJECT_ROOT}" || exit
+fi
+
+sudo -HEu project code \
+	--disable-gpu \
+	--disable-extension vscode.php-language-features \
+	--folder-uri "file://${NFQ_PROJECT_ROOT}" \
+
+
+if [[ -t 1 ]]
+then
+	echo 'STDOUT is attached to TTY'
+
+	sudo -HEu project bash
+
+	exit 1
+fi
+

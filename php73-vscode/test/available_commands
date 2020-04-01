@@ -1,0 +1,22 @@
+#!/bin/bash
+set -e
+
+CMD="docker run -it --rm $1"
+EXIT_CODE=0
+
+function check_command {
+	echo -n "Checking command $1 ... "
+	{ $CMD sudo -HEu project bash -l -c "$1 $2" >/dev/null 2>&1 && echo "OK"; } \
+	|| { echo "MISSING" && EXIT_CODE='-1'; }
+}
+
+check_command 'sudo' -V
+check_command 'vim' --version
+check_command 'git' --version
+
+
+check_command code --help
+
+
+exit $EXIT_CODE
+

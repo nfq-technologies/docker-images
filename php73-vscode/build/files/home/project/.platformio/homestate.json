@@ -1,0 +1,10 @@
+{
+	"storage": {
+		"homeDir": "/home/project",
+		"coreCaller": "vscode",
+		"showOnStartup": {
+			"vscode": false
+		}
+	}
+}
+
