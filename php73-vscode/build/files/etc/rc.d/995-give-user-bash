@@ -44,6 +44,10 @@ sudo -HEu project code \
 	--folder-uri "file://${NFQ_PROJECT_ROOT}" \
 
 
+
+# This check stops initialization process at a bash terminal, if there's a
+# TTY session, Otherwise SSH process inside the container would be
+# initialized by subsequent rc.d script
 if [[ -t 1 ]]
 then
 	echo 'STDOUT is attached to TTY'
