@@ -6,6 +6,7 @@ This is an image tools collections for graphic image processing
 ### Configuration
 Available binary paths for export:
 
+- /usr/bin/cwebp
 - /usr/bin/optipng
 - /usr/bin/pngquant
 - /usr/bin/pngcrush

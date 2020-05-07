@@ -16,6 +16,7 @@ function check_executable {
 }
 
 
+check_command cwebp -h
 check_command optipng --version
 check_command pngquant --version
 check_command pngcrush -version
@@ -23,6 +24,7 @@ check_command jpegoptim --version
 check_command exifautotran --version
 check_command jpegexiforient --version
 
+check_executable cwebp
 check_executable cjpeg
 check_executable djpeg
 check_executable jpegtran

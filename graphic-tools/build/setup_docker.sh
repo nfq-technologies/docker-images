@@ -5,7 +5,7 @@ set -e
 
 # Install fontforge
 apt-get update
-apt-get install -y --no-install-recommends optipng pngquant pngcrush jpegoptim libjpeg-progs
+apt-get install -y --no-install-recommends optipng pngquant pngcrush jpegoptim libjpeg-progs webp
 
 
 # Copy runtime files
