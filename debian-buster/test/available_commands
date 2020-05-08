@@ -15,6 +15,7 @@ check_command 'bzip2' -h
 check_command 'dig' -h
 check_command 'less' --version
 check_command 'nc' -h
+check_command 'socat' -h
 check_command 'patch' --help
 #check_command 'telnet' '?'
 check_command 'time' --version

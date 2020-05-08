@@ -51,6 +51,7 @@ apt-get install -y --no-install-recommends \
 	shellcheck \
 	gnupg \
 	dirmngr \
+	socat \
 
 
 # install acl to support advanced file permissions

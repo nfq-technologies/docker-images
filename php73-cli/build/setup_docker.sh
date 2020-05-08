@@ -99,7 +99,7 @@ apt-get install -y --no-install-recommends \
 
 #TODO: Fallback to debian package, when xdebug is updated from RC2: https://bugs.xdebug.org/bug_view_page.php?bug_id=00001642
 cd /tmp
-XDEBUG_DEB="php-xdebug_2.9.1+2.9.0+2.5.5-1+0~20200121.18+debian10~1.gbpacae98_amd64.deb"
+XDEBUG_DEB="php-xdebug_2.9.3+2.8.1+2.5.5-1+0~20200321.20+debian10~1.gbp344b59_amd64.deb"
 
 rsync "rsync://rsync.sury.org/repositories/php/pool/main/x/xdebug/$XDEBUG_DEB" .
 dpkg -i "$XDEBUG_DEB"
