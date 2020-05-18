@@ -1,4 +1,4 @@
-FROM nfqlt/debian-stretch
+FROM nfqlt/debian-buster
 
 ENV NFQ_AWS_SERVICES "ec2:4001"
 
