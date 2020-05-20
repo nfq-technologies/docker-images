@@ -6,7 +6,8 @@ set -e
 echo force-unsafe-io > /etc/dpkg/dpkg.cfg.d/02apt-speedup
 echo "Acquire::Check-Valid-Until false;" > /etc/apt/apt.conf.d/10-nocheckvalid
 
-echo "deb http://archive.debian.org/debian jessie main non-free contrib" > /etc/apt/sources.list
+echo > /etc/apt/sources.list
+echo "deb http://deb.debian.org/debian/ jessie main contrib non-free" >> /etc/apt/sources.list
 echo "deb http://security.debian.org/ jessie/updates main contrib non-free" >> /etc/apt/sources.list
 echo "deb http://archive.debian.org/debian jessie-backports main non-free contrib" >> /etc/apt/sources.list
 
