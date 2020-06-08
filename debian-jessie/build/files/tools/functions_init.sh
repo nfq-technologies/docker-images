@@ -6,7 +6,13 @@ error() {
 }
 
 init_use_startup_trigger() {
-	local ST=$(echo "${NFQ_USE_STARTUP_TRIGGER}" | tr '[:upper:]' '[:lower:]')
+	if [ "x$1" != "x" ]
+	then
+		local ST="$1"
+	else
+		local ST=$(echo "${NFQ_USE_STARTUP_TRIGGER}" | tr '[:upper:]' '[:lower:]')
+	fi
+
 	if [ "x${ST}" = "xtrue" ]
 	then
 		echo "++ Waiting for startup trigger on port 2048 ..."
@@ -139,5 +145,29 @@ init_wait_for_connection_nc() {
 
 		sleep 0.05
 	done
+}
+
+init_wait_for_command() {
+	if [ -z "$1" ]; then
+		error "Usage $0 command [port]"
+		return 1
+	fi
+
+	COMMAND="$1"
+
+	if [ ! -z "$2" ]; then
+		PORT="$2"
+	else
+		PORT="2048"
+	fi
+
+	MSG=""
+
+	echo "++ Waiting for command  $COMMAND on port $PORT"
+	while [[ $MSG != "$COMMAND" ]]; do
+		MSG="$(nc -l -p "$PORT")"
+	done
+
+	echo "++ Command received, exiting!"
 }
 
