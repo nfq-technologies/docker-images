@@ -1,9 +1,10 @@
 #!/bin/bash
-set -x
 set -e
 
 run-parts -v /etc/rc.d
 
+# Refresh environment
+source /etc/environment
 
 SRC="${NFQ_SOURCE_REPO}"
 DST="${NFQ_TARGET_REPO}"
@@ -35,11 +36,13 @@ function simple_sync() {
 
 	if [ ! -z "$SRC_KEY" ]; then
 		echo "$SRC_KEY" > /tmp/src_key
+		chmod 0600 /tmp/src_key
 		SRC_GIT_SSH="ssh -i /tmp/src_key"
 	fi
 
 	if [ ! -z "$DST_KEY" ]; then
 		echo "$DST_KEY" > /tmp/dst_key
+		chmod 0600 /tmp/dst_key
 		DST_GIT_SSH="ssh -i /tmp/dst_key"
 	fi
 

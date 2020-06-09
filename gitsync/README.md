@@ -19,3 +19,13 @@ Repository URL to clone changes from
 
 Repository URL to push changes to
 
+
+### NFQ_SECRET_SOURCE_KEY (optional)
+
+SSH private key prodived as string. Used in all git source repo operations
+
+
+### NFQ_SECRET_DESTINATION_KEY (optional)
+
+SSH private key prodived as string. Used in all git destination repo operations
+
