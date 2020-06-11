@@ -2,7 +2,7 @@
 set -e
 
 source /tools/functions_init.sh
-TRIGGERS="$(echo " $NFQ_STARTUP_TRIGGERS" | sed 's/ \([^ :]*\): /\n\1=/g' | grep .)"
+TRIGGERS="$(echo " $NFQ_STARTUP_TRIGGERS" | sed 's/ \([^ :]*\): /\n\1=/g' | grep ..)"
 
 
 echo "$TRIGGERS" | while read -r PART; do
