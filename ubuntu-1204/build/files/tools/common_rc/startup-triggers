@@ -2,10 +2,15 @@
 set -e
 
 source /tools/functions_init.sh
-TRIGGERS="$(echo " $NFQ_STARTUP_TRIGGERS" | sed 's/ \([^ :]*\): /\n\1=/g' | grep .. || true )"
+
+if [ -z "$NFQ_STARTUP_TRIGGERS" ]; then
+	exit 0
+fi
 
 
-echo -n "$TRIGGERS" | while read -r PART; do
+TRIGGERS="$(echo " $NFQ_STARTUP_TRIGGERS" | sed 's/ \([^ :]*\): /\n\1=/g' | grep .)"
+
+echo "$TRIGGERS" | while read -r PART; do
 	TRIGGER="$(echo "$PART" | cut -d'=' -f1)"
 	VALUE="$(echo "$PART" | cut -d'=' -f2)"
 
