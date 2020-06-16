@@ -47,7 +47,7 @@ build:
 	@echo "# Building image..."
 	@echo
 	sed 's~FROM nfqlt~FROM ${IMAGE_REGISTRY}nfqlt~' Dockerfile > .Dockerfile
-	docker build -f .Dockerfile -t $(IMAGE_FULL_NAME) ./
+	docker build --no-cache -f .Dockerfile -t $(IMAGE_FULL_NAME) ./
 	rm .Dockerfile
 	make status
 
