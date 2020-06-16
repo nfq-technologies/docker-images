@@ -18,7 +18,7 @@ digraph G {
     "nfqlt/apache-fastcgi" [fillcolor=orange label="apache-fastcgi"];
     "nfqlt/debian-wheezy"->"nfqlt/apache-fastcgi";
     "nfqlt/aws-mock" [fillcolor=orange label="aws-mock"];
-    "nfqlt/debian-stretch"->"nfqlt/aws-mock";
+    "nfqlt/debian-buster"->"nfqlt/aws-mock";
     "nfqlt/aws-tools" [fillcolor=orange label="aws-tools"];
     "nfqlt/toolbox-buster"->"nfqlt/aws-tools";
     "nfqlt/birt45" [fillcolor=orange label="birt45"];
@@ -321,6 +321,4 @@ digraph G {
     "nfqlt/toolbox"->"nfqlt/wkhtmltopdf";
     "nfqlt/xhgui" [fillcolor=orange label="xhgui"];
     "nfqlt/php70-dev"->"nfqlt/xhgui";
-    "nfqlt/xwiki" [fillcolor=orange label="xwiki"];
-    "nfqlt/debian-jessie"->"nfqlt/xwiki";
 }
