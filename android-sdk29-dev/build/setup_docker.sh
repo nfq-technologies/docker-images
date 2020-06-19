@@ -5,6 +5,8 @@ source "/tools/common_rc/functions.sh"
 
 GRADLE_VERSION=6.5
 ANDROID_SDK_TOOLS="4333796"
+ANDROID_COMPILE_SDK="29"
+ANDROID_BUILD_TOOLS="29.0.2"
 
 apt-get update
 
@@ -49,32 +51,48 @@ echo 'enable bash_custom inside dev container'
 echo 'if [ -f ~/.bash_custom ]; then . ~/.bash_custom ; fi' >> /home/project/.bashrc
 
 
-# install mysql-client
-apt-get install -y --no-install-recommends mariadb-client
-
 # Java 8
 apt-get install -y --no-install-recommends ca-certificates-java openjdk-8-jdk-headless
 
 # Install Gradle
-cd tmp
-wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip"
+#cd tmp
+#wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip"
 
-unzip gradle.zip
-mv "gradle-${GRADLE_VERSION}" /opt/gradle/
-rm gradle.zip
-cd -
+#unzip gradle.zip
+#mv "gradle-${GRADLE_VERSION}" /opt/gradle/
+#rm gradle.zip
+#cd -
 
 # Install Android sdkmanager
 mkdir /opt/android-sdk-linux
+# Because SDK cannot do this itself....
+mkdir /home/project/.android/
+mkdir /home/project/.android/cache
+touch /home/project/.android/repositories.cfg
+
 cd /opt/android-sdk-linux
 wget --no-verbose --output-document=sdktools.zip https://dl.google.com/android/repository/sdk-tools-linux-${ANDROID_SDK_TOOLS}.zip
 unzip sdktools.zip
 rm sdktools.zip
+cd -
+
+chown -R project:project /opt/android-sdk-linux
+chmod +x /opt/android-sdk-linux/tools/bin/sdkmanager
+echo "ANDROID_SDK_ROOT=/opt/android-sdk-linux" >> /etc/environment
+sudo ln -sf /opt/android-sdk-linux/tools/bin/sdkmanager /usr/local/bin/sdkmanager
 
 cp -frv /build/files/* / || true
 
 # Repair user home
 chown -R project:project /home/project
+
+
+# Last step - set up SDK
+yes | sudo -u project sdkmanager --update
+yes | sudo -u project sdkmanager --licenses
+yes | sudo -u project sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}" "platform-tools" "build-tools;${ANDROID_BUILD_TOOLS}" "extras;google;m2repository" "extras;android;m2repository"
+
+
 
 # Clean up APT when done.
 source /usr/local/build_scripts/cleanup_apt.sh
