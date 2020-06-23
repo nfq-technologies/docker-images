@@ -54,14 +54,6 @@ echo 'if [ -f ~/.bash_custom ]; then . ~/.bash_custom ; fi' >> /home/project/.ba
 # Java 8
 apt-get install -y --no-install-recommends ca-certificates-java openjdk-8-jdk-headless
 
-# Install Gradle
-#cd tmp
-#wget --no-verbose --output-document=gradle.zip "https://services.gradle.org/distributions/gradle-${GRADLE_VERSION}-bin.zip"
-
-#unzip gradle.zip
-#mv "gradle-${GRADLE_VERSION}" /opt/gradle/
-#rm gradle.zip
-#cd -
 
 # Install Android sdkmanager
 mkdir /opt/android-sdk-linux
@@ -78,7 +70,7 @@ cd -
 
 chown -R project:project /opt/android-sdk-linux
 chmod +x /opt/android-sdk-linux/tools/bin/sdkmanager
-echo "ANDROID_SDK_ROOT=/opt/android-sdk-linux" >> /etc/environment
+echo "ANDROID_SDK_ROOT=/opt/android-sdk-linux" >> /etc/profile.d/android_sdk.sh
 sudo ln -sf /opt/android-sdk-linux/tools/bin/sdkmanager /usr/local/bin/sdkmanager
 
 cp -frv /build/files/* / || true
@@ -93,7 +85,5 @@ yes | sudo -u project sdkmanager --licenses
 yes | sudo -u project sdkmanager "platforms;android-${ANDROID_COMPILE_SDK}" "platform-tools" "build-tools;${ANDROID_BUILD_TOOLS}" "extras;google;m2repository" "extras;android;m2repository"
 
 
-
 # Clean up APT when done.
 source /usr/local/build_scripts/cleanup_apt.sh
-

@@ -11,11 +11,10 @@ function check_command {
 
 check_command java -version
 check_command javac -version
-check_command gradle --version
+check_command sdkmanager --version
 
 check_command git --version
 check_command 'git flow' version
 
 check_command ssh -V
-check_command mysql --version
 
