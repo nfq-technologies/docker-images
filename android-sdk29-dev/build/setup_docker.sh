@@ -70,8 +70,8 @@ cd -
 
 chown -R project:project /opt/android-sdk-linux
 chmod +x /opt/android-sdk-linux/tools/bin/sdkmanager
-echo "ANDROID_SDK_ROOT=/opt/android-sdk-linux" >> /etc/profile.d/android_sdk.sh
 sudo ln -sf /opt/android-sdk-linux/tools/bin/sdkmanager /usr/local/bin/sdkmanager
+echo "export ANDROID_SDK_ROOT=/opt/android-sdk-linux" >> /etc/profile.d/android-env-variable.sh
 
 cp -frv /build/files/* / || true
 
