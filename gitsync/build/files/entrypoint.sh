@@ -31,8 +31,8 @@ function simple_sync() {
 	local DST="$2"
 	local SRC_KEY="$3"
 	local DST_KEY="$4"
-	local SRC_GIT_SSH="ssh"
-	local DST_GIT_SSH="ssh"
+	local SRC_GIT_SSH="ssh -o 'StrictHostKeyChecking=no'"
+	local DST_GIT_SSH="ssh -o 'StrictHostKeyChecking=no'"
 
 	if [ ! -z "$SRC_KEY" ]; then
 		echo "$SRC_KEY" > /tmp/src_key
