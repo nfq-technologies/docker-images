@@ -28,6 +28,7 @@ Available binary paths for export:
 - /usr/bin/uglifyjs
 - /usr/bin/tsc
 - /usr/bin/tslint
+- /usr/bin/npx
 
 ### Sample configuration
 ```
