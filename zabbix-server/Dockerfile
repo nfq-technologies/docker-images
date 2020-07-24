@@ -5,7 +5,7 @@ ENV NFQ_DB_USER     project
 ENV NFQ_DB_PASSWORD project
 ENV NFQ_DB_NAME     project
 
-EXPOSE 8080
+EXPOSE 10051
 CMD exec /entrypoint.sh
 
 ADD build /build

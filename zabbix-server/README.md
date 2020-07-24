@@ -1,17 +1,17 @@
-## Eclipse BIRT runtime v4.8.x
+## Zabbix server 5.0 with php frontend
 
 ### Info
-Purpose of this image is to provide Eclipse BIRT viewer weblet,
-served thru Apache Tomcat v8
+This is an image of zabbix server with mysql support and php frontend.
 
+### Frontend
+PHP frontend is located under /user/share/zabbix
 
-### Sample configuration
-```
-version: '2.4'
-services:
-  birt:
-    image: nfqlt/birt48
-    ports:
-      - "10.24.3.1:8080:8080"
-```
+### DB Configuration
+DB configuration is managed via env vars both for server and php frontned
+
+NFQ_DB_HOST     mysql
+NFQ_DB_NAME     project
+NFQ_DB_USER     project
+NFQ_DB_PASSWORD project
+
 
