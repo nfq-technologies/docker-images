@@ -23,8 +23,8 @@ fi
 # Check if mysql initial data is present
 echo "# Checking if zabbix db is populated ..."
 if ! mysql -e "desc $NFQ_DB_NAME.users" -h"$NFQ_DB_HOST" -u"$NFQ_DB_USER" -p"$NFQ_DB_PASSWORD" &> /dev/null; then
-		echo "## Populating db ..."
-		zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -h"$NFQ_DB_HOST" -u"$NFQ_DB_USER" -p"$NFQ_DB_PASSWORD" "$NFQ_DB_NAME"
+	echo "## Populating db ..."
+	zcat /usr/share/doc/zabbix-server-mysql*/create.sql.gz | mysql -h"$NFQ_DB_HOST" -u"$NFQ_DB_USER" -p"$NFQ_DB_PASSWORD" "$NFQ_DB_NAME"
 else
 	echo "## Zabbix db already populated, skipping"
 fi
