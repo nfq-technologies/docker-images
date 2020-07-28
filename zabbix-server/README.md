@@ -24,7 +24,7 @@ NFQ_DB_PASSWORD project
 version: '2.4'
 services:
   mysql:
-    image: 'mysql:5.7'
+    image: 'mysql:5.6'
     ports:
       - '10.24.3.1:3306:3306'
     volumes_from:
@@ -32,7 +32,7 @@ services:
 
 
   mysqlVol:
-    image: nfqlt/mysql57-data
+    image: nfqlt/mysql56-data
     volumes:
       - /var/lib/mysql
 
