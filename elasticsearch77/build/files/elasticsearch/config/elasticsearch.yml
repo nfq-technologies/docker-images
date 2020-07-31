@@ -1,0 +1,13 @@
+network :
+  host : 0.0.0.0
+
+path:
+  data: /var/elasticsearch/data
+
+http:
+  cors:
+    enabled: true
+    allow-origin: "*"
+
+discovery.type: single-node
+
