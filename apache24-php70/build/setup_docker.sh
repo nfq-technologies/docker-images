@@ -15,6 +15,7 @@ ls -1 /etc/apache2/mods-enabled/ | cut -d. -f 1 | sort | uniq | xargs -n1 -I{} a
 # enable few modules to make image somewhat usable in default configuration
 a2enmod mpm_prefork php7.0 access_compat
 
+echo > /etc/apache2/sites-enabled/000-default.conf
 
 rm -rf /var/www/*
 mkdir -p /var/lock/apache2 /var/run/apache2 /var/log/apache2 /var/www

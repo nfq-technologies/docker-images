@@ -8,6 +8,7 @@ apt-get update
 
 apt-get install -y --no-install-recommends libapache2-mod-php5
 
+echo > /etc/apache2/sites-enabled/000-default.conf
 
 rm -rf /var/www/*
 mkdir -p /var/lock/apache2 /var/run/apache2 /var/log/apache2 /var/www

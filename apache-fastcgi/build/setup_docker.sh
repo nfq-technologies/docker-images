@@ -7,6 +7,8 @@ apt-get install -y --no-install-recommends apache2-mpm-worker ca-certificates li
 
 a2enmod expires rewrite headers actions fastcgi alias
 
+echo > /etc/apache2/sites-enabled/000-default.conf
+
 rm -rf /var/www/*
 mkdir -p /var/lock/apache2 /var/run/apache2 /var/log/apache2 /var/www
 chown -R www-data:www-data /var/lock/apache2 /var/run/apache2 /var/log/apache2 /var/www

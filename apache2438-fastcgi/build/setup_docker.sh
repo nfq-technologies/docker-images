@@ -22,6 +22,7 @@ ls -1 /etc/apache2/mods-enabled/ | cut -d. -f 1 | sort | uniq | xargs -n1 -I{} a
 ls -1 /etc/apache2/mods-available/ | cut -d. -f1 | sort -u
 a2enmod mpm_event actions proxy proxy_fcgi
 
+echo > /etc/apache2/sites-enabled/000-default.conf
 
 rm -rf /var/www/*
 mkdir -p /var/lock/apache2 /var/run/apache2 /var/log/apache2 /var/www
