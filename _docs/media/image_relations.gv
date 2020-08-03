@@ -31,6 +31,8 @@ digraph G {
     "nfqlt/toolbox-ubuntu1804"->"nfqlt/chef12";
     "nfqlt/chromedriver73" [fillcolor=orange label="chromedriver73"];
     "nfqlt/debian-stretch"->"nfqlt/chromedriver73";
+    "nfqlt/chromedriver83" [fillcolor=orange label="chromedriver83"];
+    "nfqlt/debian-buster"->"nfqlt/chromedriver83";
     "nfqlt/chromium" [fillcolor=orange label="chromium"];
     "nfqlt/toolbox-buster"->"nfqlt/chromium";
     "nfqlt/cypress4" [fillcolor=orange label="cypress4"];
