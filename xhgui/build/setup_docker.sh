@@ -10,11 +10,11 @@ apt-get install -y --no-install-recommends mongodb-server
 # Prepare php code
 mkdir  -p /var/www
 cd /tmp
-wget https://github.com/perftools/xhgui/archive/0.8.1.tar.gz -O xhgui.tar.gz
-tar -xzvf xhgui.tar.gz --strip-components=1 -C /var/www/. xhgui-0.8.1
+wget https://github.com/perftools/xhgui/archive/0.11.0.tar.gz -O xhgui.tar.gz
+tar -xzvf xhgui.tar.gz --strip-components=1 -C /var/www/. xhgui-0.11.0
 
 cd /var/www
-export NFQ_ENABLE_PHP_MODULES='mongodb mcrypt json iconv mbstring tokenizer dom ctype'
+export NFQ_ENABLE_PHP_MODULES='mongodb mcrypt json iconv mbstring tokenizer dom ctype xml'
 /etc/rc.d/200-enable-php7-modules
 composer install --no-dev --prefer-dist
 composer remove --dev phpunit/phpunit
