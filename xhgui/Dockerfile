@@ -1,4 +1,4 @@
-FROM nfqlt/php70-dev
+FROM nfqlt/php72-dev
 
 EXPOSE 80
 CMD exec /entrypoint.sh
