@@ -10,13 +10,12 @@ apt-get install -y --no-install-recommends rlwrap python
 # Manually download and install node deb
 file="$(wget -qO - https://deb.nodesource.com/node_8.x/pool/main/n/nodejs/ \
         | sed 's/href="\([^"]*\)">/\n\1\n/g' \
-        | grep -i '^nodejs_[0-9\.\-]*nodesource.~buster._amd64\.deb$' \
+        | grep -i '^nodejs_[0-9\.\-]*nodesource._amd64\.deb$' \
         | sort --version-sort \
         | tail -n1)"
 
 wget -qO nodejs.deb https://deb.nodesource.com/node_8.x/pool/main/n/nodejs/$file
 dpkg -i nodejs.deb
-. /etc/profile.d/nodejs.sh
 rm nodejs.deb
 
 # yarn
