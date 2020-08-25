@@ -63,6 +63,9 @@ mv "gradle-${GRADLE_VERSION}" /opt/gradle/
 rm gradle.zip
 cd -
 
+# Install ant
+apt-get install -y --no-install-recommends ant
+
 
 cp -frv /build/files/* / || true
 
