@@ -179,6 +179,8 @@ digraph G {
     "nfqlt/debian-stretch"->"nfqlt/phantomjs21";
     "nfqlt/php53-cli" [fillcolor=orange label="php53-cli"];
     "nfqlt/ubuntu-1204"->"nfqlt/php53-cli";
+    "nfqlt/php53-cron" [fillcolor=orange label="php53-cron"];
+    "nfqlt/php53-cli"->"nfqlt/php53-cron";
     "nfqlt/php53-dev" [fillcolor=orange label="php53-dev"];
     "nfqlt/php53-cli"->"nfqlt/php53-dev";
     "nfqlt/php53-fcgi" [fillcolor=orange label="php53-fcgi"];
@@ -324,5 +326,5 @@ digraph G {
     "nfqlt/wkhtmltopdf" [fillcolor=orange label="wkhtmltopdf"];
     "nfqlt/toolbox"->"nfqlt/wkhtmltopdf";
     "nfqlt/xhgui" [fillcolor=orange label="xhgui"];
-    "nfqlt/php70-dev"->"nfqlt/xhgui";
+    "nfqlt/php72-dev"->"nfqlt/xhgui";
 }
