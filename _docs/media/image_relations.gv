@@ -37,6 +37,8 @@ digraph G {
     "nfqlt/toolbox-buster"->"nfqlt/chromium";
     "nfqlt/cypress4" [fillcolor=orange label="cypress4"];
     "nfqlt/node12"->"nfqlt/cypress4";
+    "nfqlt/cypress5" [fillcolor=orange label="cypress5"];
+    "nfqlt/node12"->"nfqlt/cypress5";
     "nfqlt/db-tools" [fillcolor=orange label="db-tools"];
     "nfqlt/toolbox-buster"->"nfqlt/db-tools";
     "nfqlt/deb-dev" [fillcolor=orange label="deb-dev"];
