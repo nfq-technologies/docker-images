@@ -77,7 +77,6 @@ apt-get install -y --no-install-recommends \
 	php-uploadprogress \
 	php-uuid \
 	php-wikidiff2 \
-	php-xdebug \
 	php-yaml \
 	php-zeroc-ice \
 	php-zmq \
