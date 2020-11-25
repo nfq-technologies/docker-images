@@ -13,7 +13,7 @@ apt-get install -y --no-install-recommends tomcat8
 
 # Birt manual war
 mkdir -p /tmp/birt
-wget http://mirrors.uniri.hr/eclipse//birt/downloads/drops/R-R1-4.8.0-201806261756/birt-runtime-4.8.0-20180626.zip -O /tmp/birt/birt.zip
+wget https://ftp.halifax.rwth-aachen.de/eclipse/birt/downloads/drops/R-R1-4.8.0-201806261756/birt-runtime-4.8.0-20180626.zip -O /tmp/birt/birt.zip
 cd /tmp/birt
 unzip birt.zip
 mv birt.war /var/lib/tomcat8/webapps
