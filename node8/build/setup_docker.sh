@@ -25,7 +25,7 @@ npm install -g yarn
 npm install -g grunt-cli
 
 # sass
-npm install -g node-sass --unsafe
+npm install -g node-sass@4 --unsafe
 
 # gulp
 npm install -g gulp-cli

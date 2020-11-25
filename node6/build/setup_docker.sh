@@ -23,7 +23,7 @@ rm nodejs.deb
 npm install -g grunt-cli
 
 # sass
-npm install -g node-sass
+npm install -g node-sass@4
 
 # gulp
 npm install -g gulp-cli
