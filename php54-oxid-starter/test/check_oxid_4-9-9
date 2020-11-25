@@ -2,7 +2,7 @@
 set -e
 
 # Configurable options
-timeout=40
+timeout=80
 tpl="docker-compose.tpl"
 
 
