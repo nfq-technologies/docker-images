@@ -8,7 +8,7 @@ CHILDREN = $(shell ../_tools/relational_sorting.php)
 
 
 COMMANDS = all build test push clean branch-all branch-build run run-bash
-SILENT_COMMANDS = help status calc-start calc-stop get-image-name
+SILENT_COMMANDS = help status calc-start calc-stop get-image-name branch-status branch-status-full branch-inheritance-status branch-inheritance-status-full
 
 -include ../../tools/makefiles/base-image-custom.Makefile
 
@@ -37,6 +37,41 @@ branch-build:
 		$(MAKE) build -C ../$$dir; \
 	done
 
+branch-status:
+	if [ -z "$(CHILDREN)" ]; then \
+            echo "There is no children under this image"; \
+        else \
+            for dir in $(CHILDREN); do \
+                $(MAKE) -s registry-status -C ../$$dir; \
+            done; \
+    fi;
+
+branch-status-full:
+	if [ -z "$(CHILDREN)" ]; then \
+            echo "There is no children under this image"; \
+        else \
+            for dir in $(CHILDREN); do \
+                $(MAKE) -s registry-status-full -C ../$$dir; \
+            done; \
+    fi;
+
+branch-inheritance-status:
+	if [ -z "$(CHILDREN)" ]; then \
+			echo "There is no children under this image"; \
+		else \
+        	for dir in $(CHILDREN) $(DATA_CHILDREN); do \
+                $(MAKE) -s inheritance-status -C ../$$dir; \
+        done; \
+	fi;
+
+branch-inheritance-status-full:
+	if [ -z "$(CHILDREN)" ]; then \
+            echo "There is no children under this image"; \
+        else \
+            for dir in $(CHILDREN) $(DATA_CHILDREN); do \
+                $(MAKE) -s inheritance-status-full -C ../$$dir; \
+        done; \
+    fi;
 
 all:
 	make build && make test && make push
@@ -108,5 +143,3 @@ calc-stop:
 
 get-image-name:
 	echo $(IMAGE_FULL_NAME)
-
-
