@@ -37,6 +37,7 @@ branch-build:
 		$(MAKE) build -C ../$$dir; \
 	done
 
+
 branch-status:
 	if [ -z "$(CHILDREN)" ]; then \
             echo "There is no children under this image"; \
@@ -44,7 +45,8 @@ branch-status:
             for dir in $(CHILDREN); do \
                 $(MAKE) -s registry-status -C ../$$dir; \
             done; \
-    fi;
+	fi;
+
 
 branch-status-full:
 	if [ -z "$(CHILDREN)" ]; then \
@@ -53,16 +55,18 @@ branch-status-full:
             for dir in $(CHILDREN); do \
                 $(MAKE) -s registry-status-full -C ../$$dir; \
             done; \
-    fi;
+    	fi;
+
 
 branch-inheritance-status:
 	if [ -z "$(CHILDREN)" ]; then \
-			echo "There is no children under this image"; \
-		else \
-        	for dir in $(CHILDREN) $(DATA_CHILDREN); do \
+            echo "There is no children under this image"; \
+        else \
+            for dir in $(CHILDREN) $(DATA_CHILDREN); do \
                 $(MAKE) -s inheritance-status -C ../$$dir; \
-        done; \
-	fi;
+            done; \
+    fi;
+
 
 branch-inheritance-status-full:
 	if [ -z "$(CHILDREN)" ]; then \
@@ -70,8 +74,9 @@ branch-inheritance-status-full:
         else \
             for dir in $(CHILDREN) $(DATA_CHILDREN); do \
                 $(MAKE) -s inheritance-status-full -C ../$$dir; \
-        done; \
-    fi;
+            done; \
+        fi;
+
 
 all:
 	make build && make test && make push
