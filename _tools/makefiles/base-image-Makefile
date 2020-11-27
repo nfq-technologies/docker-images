@@ -65,7 +65,7 @@ branch-inheritance-status:
             for dir in $(CHILDREN) $(DATA_CHILDREN); do \
                 $(MAKE) -s inheritance-status -C ../$$dir; \
             done; \
-    fi;
+    	fi;
 
 
 branch-inheritance-status-full:
@@ -75,7 +75,7 @@ branch-inheritance-status-full:
             for dir in $(CHILDREN) $(DATA_CHILDREN); do \
                 $(MAKE) -s inheritance-status-full -C ../$$dir; \
             done; \
-        fi;
+    	fi;
 
 
 all:
