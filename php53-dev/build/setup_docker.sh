@@ -54,20 +54,10 @@ apt-get install -y --no-install-recommends mysql-client
 
 
 # install composer
-curl -sSL 'https://getcomposer.org/download/1.10.16/composer.phar' > /usr/local/bin/composer.phar
+curl -sSL 'https://getcomposer.org/composer-2.phar' > /usr/local/bin/composer.phar
 chmod a+x /usr/local/bin/composer.phar
 ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
-composer self-update --1
-
-
-# installl hiroku/prestissimo
-phpEnableModule curl
-sudo -Hu project composer --no-interaction global require "hirak/prestissimo:^0.3"
-
-
-# disable enabled modules
-phpDisableModule curl
-
+composer self-update --2
 
 # install phpunit
 apt-get install -y --force-yes --no-install-recommends phpunit48
