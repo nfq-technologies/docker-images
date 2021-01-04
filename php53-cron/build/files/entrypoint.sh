@@ -50,7 +50,7 @@ crond_dir
 
 
 
-cron -n -L 1 &
+cron -L 1 &
 syslogd -n -O /dev/stdout | stdbuf -i0 -oL -eL fgrep -v ' authpriv.'
 
 
