@@ -195,8 +195,6 @@ digraph G {
     "nfqlt/php54-cli"->"nfqlt/php54-dev";
     "nfqlt/php54-fpm" [fillcolor=orange label="php54-fpm"];
     "nfqlt/php54-cli"->"nfqlt/php54-fpm";
-    "nfqlt/php54-oxid-starter" [fillcolor=orange label="php54-oxid-starter"];
-    "nfqlt/php54-dev"->"nfqlt/php54-oxid-starter";
     "nfqlt/php54-supervisor" [fillcolor=orange label="php54-supervisor"];
     "nfqlt/php54-cli"->"nfqlt/php54-supervisor";
     "nfqlt/php56-cli" [fillcolor=orange label="php56-cli"];
@@ -207,8 +205,6 @@ digraph G {
     "nfqlt/php56-cli"->"nfqlt/php56-dev";
     "nfqlt/php56-fpm" [fillcolor=orange label="php56-fpm"];
     "nfqlt/php56-cli"->"nfqlt/php56-fpm";
-    "nfqlt/php56-oxid-starter" [fillcolor=orange label="php56-oxid-starter"];
-    "nfqlt/php56-dev"->"nfqlt/php56-oxid-starter";
     "nfqlt/php56-supervisor" [fillcolor=orange label="php56-supervisor"];
     "nfqlt/php56-cli"->"nfqlt/php56-supervisor";
     "nfqlt/php70-cli" [fillcolor=orange label="php70-cli"];
