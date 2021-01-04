@@ -8,7 +8,7 @@ apt-get update
 # Manulay downloading and install
 file="$(wget -qO - https://releases.hashicorp.com/terraform/ \
 	| sed 's/href="\/terraform\/\([^"]*\)\/">/\n\1\n/g' \
-	| grep -i '^0\.13\.[0-9]\+$' \
+	| grep -i '^0\.14\.[0-9]\+$' \
 	| sort --version-sort \
 	| tail -n1)"
 

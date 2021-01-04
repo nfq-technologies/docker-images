@@ -1,7 +1,7 @@
 ## Terraform toolbox
 
 ### Info
-This is an image of terraform 0.13
+This is an image of terraform 0.14
 
 For help with Terraform visit project [homepage](https://www.terraform.io/docs/index.html) for documentation and guides.
 
@@ -27,9 +27,8 @@ do
 	echo Waiting for terraform link ...
 done
 
-terraform configure set aws_access_key_id "${NFQ_AWS_ACCESS_KEY_ID}"
-terraform configure set aws_secret_access_key "${NFQ_AWS_SECRET_ACCESS_KEY}"
-terraform configure set region "${NFQ_AWS_DEFAULT_REGION}"
+aws configure set aws_access_key_id "${NFQ_SECRET_AWS_ACCESS_KEY_ID}"
+aws configure set aws_secret_access_key "${NFQ_SECRET_AWS_SECRET_ACCESS_KEY}"
 ```
 
 ### Sample configuration for runing as tool
@@ -56,15 +55,23 @@ services:
       NFQ_INIT_SCRIPT: tools/docker/develop_init.sh
       NFQ_SECRET_AWS_ACCESS_KEY_ID: '${NFQ_SECRET_AWS_ACCESS_KEY_ID}'
       NFQ_SECRET_AWS_SECRET_ACCESS_KEY: '${NFQ_SECRET_AWS_SECRET_ACCESS_KEY}'
-      NFQ_AWS_DEFAULT_REGION: '${NFQ_AWS_DEFAULT_REGION}'
       NFQ_REMOTE_TOOL_TERRAFORM: >
         /usr/local/bin/terraform
+      NFQ_REMOTE_TOOL_AWS: >
+        /usr/local/bin/aws
 
 
   terraform:
-    image: nfqlt/terraform013
+    image: nfqlt/terraform014
+    volumes_from:
+      - 'service:aws:rw'
     volumes:
       - './src:/home/project/src'
+
+
+  aws:
+    image: nfqlt/aws-tools
+    volumes:
       - /home/project/.aws
       - /tmp
 
@@ -84,3 +91,7 @@ networks:
           subnet: 10.24.1.241/28
 
 ```
+
+Start the container by running:
+
+```export NFQ_SECRET_AWS_ACCESS_KEY_ID=KEY; export NFQ_SECRET_AWS_SECRET_ACCESS_KEY=SECRET; docker-compose up```
