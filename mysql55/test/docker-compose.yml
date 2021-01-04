@@ -1,7 +1,7 @@
 version: '2.1'
 services:
   mysql:
-    image: docker.nfq.lt/nfqlt/mysql80
+    image: docker.nfq.lt/nfqlt/mysql55
     network_mode: bridge
     environment:
             MYSQL_ROOT_PASSWORD: root
