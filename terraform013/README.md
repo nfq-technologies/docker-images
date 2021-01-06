@@ -1,7 +1,7 @@
 ## Terraform toolbox
 
 ### Info
-This is an image of terraform 0.14
+This is an image of terraform 0.13
 
 For help with Terraform visit project [homepage](https://www.terraform.io/docs/index.html) for documentation and guides.
 
