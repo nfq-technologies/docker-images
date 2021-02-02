@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex
 
 tpl=$(realpath $0).tpl
 cwd=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
@@ -12,35 +12,34 @@ source "${cwd}/../../_tools/helpers/common.sh"
 
 # destroy containers and remove trash
 cleanup() {
-     docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" stop &>/dev/null
-     docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" rm -fv &>/dev/null
+	docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" stop &>/dev/null
+	docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" rm -fv &>/dev/null
 
-     rm -f "${cwd}/docker-compose-${pid}.yml"
+	rm -f "${cwd}/docker-compose-${pid}.yml"
 }
 
 trap cleanup EXIT
 
 # helper method to run actuall tests
 testQuery() {
-    user="$1"
-    password="$2"
-    query="$3"
+	user="$1"
+	password="$2"
+	query="$3"
 
-    echo -n "Testing query: '$query' .... "
+	echo -n "Testing query: '$query' .... "
 
-    if ! PGPASSWORD=project psql -h 127.0.0.1 -U ${user} -c "${query}" >/dev/null; then
+	if ! PGPASSWORD=project psql -h 127.0.0.1 -U ${user} -c "${query}" >/dev/null; then
 		echo "ERROR"
-        exit 1
-    fi
-
+	exit 1
+	fi
 	echo "OK"
 }
 
 # start psql server container with data volume from the tested image
 cat $tpl | sed \
--e "s#__psql_PORT__#${pid}#" \
--e "s#__psql_IMAGE__#${psqlImage}#" \
--e "s#__psql_DATA_IMAGE__#${psqlDataImage}#" \
+-e "s#__PSQL_PORT__#${pid}#" \
+-e "s#__PSQL_IMAGE__#${psqlImage}#" \
+-e "s#__PSQL_DATA_IMAGE___#${psqlDataImage}#" \
 > "${cwd}/docker-compose-${pid}.yml"
 
 docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" up -d &>/dev/null

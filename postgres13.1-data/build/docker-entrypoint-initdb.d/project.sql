@@ -1,0 +1,4 @@
+CREATE DATABASE project;
+CREATE USER project WITH PASSWORD 'project' CREATEDB;
+GRANT * ON DATABASE project TO project;
+

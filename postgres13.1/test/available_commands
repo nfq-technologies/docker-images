@@ -12,6 +12,7 @@ function check_command {
 
 
 check_command 'postgres' --version
+check_command 'psql -U postgres -c "\l"'
 
 
 exit $EXIT_CODE

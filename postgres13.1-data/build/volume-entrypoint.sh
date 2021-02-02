@@ -1,16 +1,12 @@
 #!/bin/bash
 set -e
 
-/docker-entrypoint.sh psql &
+/docker-entrypoint.sh postgres &
 psqlPid=$!
 
-while ! psql -U postgres -c "\l" &> /dev/null; do
+while ! psql -U postgres -c "\c project"; do
 	sleep 1
 done
-
-psql -U postgres -c "CREATE DATABASE project;"
-psql -U postgres -c "CREATE USER 'project' WITH PASSWORD 'project' CREATEDB;"
-psql -U postgres -c "GRANT CONNECT ON DATABASE project TO project;"
 
 kill $psqlPid
 wait
