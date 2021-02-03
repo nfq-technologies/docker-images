@@ -1,5 +1,5 @@
 #!/bin/bash
-set -ex
+set -e
 
 tpl=$(realpath $0).tpl
 cwd=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
@@ -7,7 +7,6 @@ imageDir=$(dirname $cwd)
 psqlImage=$(cat ${imageDir}/Dockerfile | grep FROM | sed 's/FROM //')
 psqlDataImage="$1"
 pid=${BASHPID}
-
 source "${cwd}/../../_tools/helpers/common.sh"
 
 # destroy containers and remove trash
@@ -27,8 +26,7 @@ testQuery() {
 	query="$3"
 
 	echo -n "Testing query: '$query' .... "
-
-	if ! PGPASSWORD=project psql -h 127.0.0.1 -U ${user} -c "${query}" >/dev/null; then
+	if ! PGPASSWORD="$password" psql -h localhost -p "${pid}" -U "${user}" -c "${query}" >/dev/null; then
 		echo "ERROR"
 	exit 1
 	fi
@@ -39,12 +37,14 @@ testQuery() {
 cat $tpl | sed \
 -e "s#__PSQL_PORT__#${pid}#" \
 -e "s#__PSQL_IMAGE__#${psqlImage}#" \
--e "s#__PSQL_DATA_IMAGE___#${psqlDataImage}#" \
+-e "s#__PSQL_DATA_IMAGE__#${psqlDataImage}#" \
 > "${cwd}/docker-compose-${pid}.yml"
 
 docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" up -d &>/dev/null
 
-wait_for_connection "localhost:${pid}"
+
+wait_for_psql_connection "localhost:${pid}"
+
 
 # actual tests
 testQuery project project "\c project"
