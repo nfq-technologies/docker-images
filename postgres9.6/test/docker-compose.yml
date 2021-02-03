@@ -1,0 +1,11 @@
+version: '2.1'
+services:
+  psql:
+    image: docker.nfq.lt/nfqlt/postgres13.1
+    network_mode: bridge
+    environment:
+      POSTGRES_PASSWORD: root
+
+
+volumes: {  }
+networks: {  }
