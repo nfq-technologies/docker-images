@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Non empty trap
 trap "kill -15 $PID" SIGTERM

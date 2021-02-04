@@ -10,7 +10,7 @@ wait_for_connection() {
 		return 1
 	fi
 
-    local t1=$(date +%s)
+	local t1=$(date +%s)
 	local t2=0
 	local host="$1"
 	local timeout="${2:-10}"
@@ -35,7 +35,7 @@ wait_for_psql_connection() {
 		return 1
 	fi
 
-    local t1=$(date +%s)
+	local t1=$(date +%s)
 	local t2=0
 	local host="$(echo $1 | cut -d: -f1)"
 	local port="$(echo $1 | cut -d: -f2)"
