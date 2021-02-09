@@ -8,7 +8,7 @@ docker build -t tmp_build_image_$TARGET_IMAGE ./
 docker run --name tmp_build_$TARGET_IMAGE -v "$(pwd):/volume" tmp_build_image_$TARGET_IMAGE
 
 # create temp dockerfile
-echo -e 'FROM docker.nfq.lt/nfqlt/postgres13.1\nADD backup.tar /\nADD build/entrypoint.sh /entrypoint.sh\n' > psql-data-Dockerfile
+echo -e 'FROM docker.nfq.lt/nfqlt/postgres12\nADD backup.tar /\nADD build/entrypoint.sh /entrypoint.sh\n' > psql-data-Dockerfile
 echo -e 'CMD exec /entrypoint.sh\n' >> psql-data-Dockerfile
 
 
