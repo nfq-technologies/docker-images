@@ -27,7 +27,7 @@ testQuery() {
 
 	if ! docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" exec psql psql -h localhost -U "${user}" -c "${query}"; then
 		echo "ERROR"
-	exit 1
+		exit 1
 	fi
 	echo "OK"
 }
