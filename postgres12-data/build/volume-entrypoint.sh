@@ -1,10 +1,6 @@
 #!/bin/bash
 set -e
 
-#export POSTGRES_PASSWORD=project
-#export POSTGRES_UESR=project
-#export POSTGRES_DB=project
-
 /docker-entrypoint.sh postgres &
 psqlPid=$!
 

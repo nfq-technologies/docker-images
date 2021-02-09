@@ -25,8 +25,7 @@ testQuery() {
 	password="$2"
 	query="$3"
 
-	echo -n "Testing query: '$query' .... "
-	if ! PGPASSWORD="$password" psql -h localhost -p "${pid}" -U "${user}" -c "${query}" >/dev/null; then
+	if ! docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" exec psql psql -h localhost -U "${user}" -c "${query}"; then
 		echo "ERROR"
 	exit 1
 	fi
