@@ -10,6 +10,7 @@ done
 
 psql -h localhost -U postgres -c "CREATE USER project WITH PASSWORD 'project' CREATEDB;"
 psql -h localhost -U postgres -c "GRANT ALL ON DATABASE project TO project;"
+psql -h localhost -U postgres -c "ALTER DATABASE project OWNER to project;"
 
 kill $psqlPid
 wait
