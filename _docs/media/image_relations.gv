@@ -271,6 +271,10 @@ digraph G {
     "nfqlt/php70-cli"->"nfqlt/phpmyadmin";
     "nfqlt/phyaml" [fillcolor=orange label="phyaml"];
     "nfqlt/toolbox-buster"->"nfqlt/phyaml";
+    "nfqlt/postgres12-data" [fillcolor=orange label="postgres12-data"];
+    "postgres"->"nfqlt/postgres12-data";
+    "nfqlt/postgres12" [fillcolor=orange label="postgres12"];
+    "postgres"->"nfqlt/postgres12";
     "nfqlt/proxy" [fillcolor=orange label="proxy"];
     "nfqlt/nginx114"->"nfqlt/proxy";
     "nfqlt/rabbitmq335" [fillcolor=orange label="rabbitmq335"];

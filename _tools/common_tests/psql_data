@@ -1,0 +1,53 @@
+#!/bin/bash
+set -e
+
+tpl=$(realpath $0).tpl
+cwd=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+imageDir=$(dirname $cwd)
+psqlImage=$(cat ${imageDir}/Dockerfile | grep FROM | sed 's/FROM //')
+psqlDataImage="$1"
+pid=${BASHPID}
+source "${cwd}/../../_tools/helpers/common.sh"
+
+# destroy containers and remove trash
+cleanup() {
+	docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" stop &>/dev/null
+	docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" rm -fv &>/dev/null
+
+	rm -f "${cwd}/docker-compose-${pid}.yml"
+}
+
+trap cleanup EXIT
+
+# helper method to run actuall tests
+testQuery() {
+	user="$1"
+	password="$2"
+	query="$3"
+
+	if ! docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" exec psql psql -h localhost -U "${user}" -c "${query}"; then
+		echo "ERROR"
+		exit 1
+	fi
+	echo "OK"
+}
+
+# start psql server container with data volume from the tested image
+cat $tpl | sed \
+-e "s#__PSQL_PORT__#${pid}#" \
+-e "s#__PSQL_IMAGE__#${psqlImage}#" \
+-e "s#__PSQL_DATA_IMAGE__#${psqlDataImage}#" \
+> "${cwd}/docker-compose-${pid}.yml"
+
+docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" up -d &>/dev/null
+
+
+wait_for_psql_connection "localhost:${pid}"
+
+
+# actual tests
+testQuery project project "\c project"
+testQuery project project "\l"
+testQuery project project "create database project_test;"
+testQuery project project "\c project_test"
+
