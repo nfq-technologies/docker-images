@@ -12,6 +12,9 @@ apt-get install --no-install-recommends -y mdbtools
 # Install sqlite3
 apt-get install --no-install-recommends -y sqlite3
 
+# Install psql client
+apt-get install --no-install-recommends -y postgresql-client
+
 # Copy runtime files
 cp -frv /build/files/* / || true
 
