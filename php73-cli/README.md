@@ -45,6 +45,7 @@ example:
 * gettext
 * gmp
 * gnupg
+* gv
 * horde_lz4
 * http
 * ice

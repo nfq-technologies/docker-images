@@ -8,6 +8,7 @@ apt-get update
 apt-get install -y --no-install-recommends \
 	php7.3-cli \
 	php-phpdbg \
+	libgv-php7 \
 	libow-php7 \
 	php7.3-bcmath \
 	php7.3-bz2 \
