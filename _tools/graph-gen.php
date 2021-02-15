@@ -10,19 +10,20 @@ if ( ! extension_loaded('gv') ) {
 
         $cmd="docker run -it --rm \
                 -v /home/project/images/nfqlt:/home/project/images/nfqlt:ro \
-                -v /home/project/images/nfqlt/_docs:/home/project/images/nfqlt/_docs \
-                nfqlt/php56-cli \
+                -v /home/project/images/nfqlt/_docs:/home/project/images/nfqlt/_docs:rw \
+                nfqlt/php73-cli \
                 bash -c '\
-                    php5enmod gv ;\
+                    phpenmod gv ;\
                     /home/project/images/nfqlt/_tools/graph-gen.php' ;\
                     chown -R 1000:1000 /home/project/images/nfqlt/_docs ;\
         ";
-        shell_exec($cmd);
+        exec($cmd, $output);
+        //print_r($output);
         exit(0);
 }
 
 
-require_once('libgv-php5/gv.php');
+require_once('/usr/lib/x86_64-linux-gnu/graphviz/php/gv.php');
 
 
 $ir = new ImageRelations(ROOT_DIR);
