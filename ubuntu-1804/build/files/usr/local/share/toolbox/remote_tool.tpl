@@ -24,5 +24,5 @@ if [[ $EUID -eq 0 ]]; then
 fi
 
 wd="$(pwd)"
-ssh -t -o StrictHostKeyChecking=no -o SendEnv=* -q project@$host  "cd $wd; $use_sudo '$remote_path' $params"
+ssh -t -o StrictHostKeyChecking=no -o "SendEnv=*" -q project@$host  "cd $wd; $use_sudo '$remote_path' $params"
 
