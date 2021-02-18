@@ -21,3 +21,4 @@ PrintMotd no
 PrintLastLog yes
 TCPKeepAlive yes
 Subsystem sftp /usr/lib/openssh/sftp-server
+AcceptEnv *
