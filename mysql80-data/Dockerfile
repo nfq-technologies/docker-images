@@ -1,4 +1,4 @@
-FROM mysql:8.0
+FROM nfqlt/mysql80
 
 ENV MYSQL_ROOT_PASSWORD=root
 

@@ -1,4 +1,4 @@
-FROM mysql:5.6
+FROM nfqlt/mysql56
 
 ENV MYSQL_ROOT_PASSWORD=root
 
