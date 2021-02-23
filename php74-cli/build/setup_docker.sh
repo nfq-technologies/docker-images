@@ -11,7 +11,7 @@ apt-key add apt.gpg
 rm apt.gpg
   
 cat >/etc/apt/preferences.d/sury <<EOF
-  Package: php-*
+  Package: php7.4-*
   Pin: origin packages.sury.org
   Pin-Priority: 600
 EOF
@@ -30,6 +30,7 @@ apt-get install -y --no-install-recommends \
 	php7.4-enchant \
 	php7.4-gd \
 	php7.4-gmp \
+	php7.4-imagick libmagickcore-6.q16-6-extra \
 	php7.4-imap \
 	php7.4-interbase \
 	php7.4-intl \
@@ -50,47 +51,47 @@ apt-get install -y --no-install-recommends \
 	php7.4-xml \
 	php7.4-xmlrpc \
 	php7.4-xsl \
+	php7.4-xdebug \
 	php7.4-zip \
-	php-amqp \
-	php-apcu \
-	php-apcu-bc \
-	php-ast \
-	php-ds \
-	php-gearman \
-	php-geoip \
-	php-igbinary \
-	php-imagick libmagickcore-6.q16-6-extra \
-	php-lua \
-	php-mailparse \
-	php-memcache \
-	php-memcached \
-	php-mongodb \
-	php-msgpack \
-	php-oauth \
-	php-pcov \
-	php-propro \
-	php-psr \
-	php-radius \
-	php-raphf \
-	php-redis \
-	php-rrd \
-	php-smbclient \
-	php-solr \
-	php-ssh2 \
-	php-stomp \
-	php-uopz \
-	php-uploadprogress \
-	php-uuid \
-	php-yaml \
-	php-zmq \
-	php-xdebug \
+	php7.4-amqp \
+	php7.4-apcu \
+	php7.4-apcu-bc \
+	php7.4-ast \
+	php7.4-ds \
+	php7.4-gearman \
+	php7.4-geoip \
+	php7.4-igbinary \
+	php7.4-lua \
+	php7.4-mailparse \
+	php7.4-memcache \
+	php7.4-memcached \
+	php7.4-mongodb \
+	php7.4-msgpack \
+	php7.4-oauth \
+	php7.4-pcov \
+	php7.4-propro \
+	php7.4-psr \
+	php7.4-radius \
+	php7.4-raphf \
+	php7.4-redis \
+	php7.4-rrd \
+	php7.4-smbclient \
+	php7.4-solr \
+	php7.4-ssh2 \
+	php7.4-stomp \
+	php7.4-uopz \
+	php7.4-uploadprogress \
+	php7.4-uuid \
+	php7.4-yaml \
+	php7.4-zmq \
+	php7.4-xdebug \
 
 
 
-#	php-gmagick \ provides more stable api but conflicts with imagick
-#	php-yac \ conflicts with php-apcu
-#	php-tideways \ conflicts with nfq-php-tideways
-# 	php-sodium \ Only for 7.0 and 7.1 From 7.2 should be built in
+#	php7.4-gmagick \ provides more stable api but conflicts with imagick
+#	php7.4-yac \ conflicts with php7.4-apcu
+#	php7.4-tideways \ conflicts with nfq-php7.4-tideways
+# 	php7.4-sodium \ Only for 7.0 and 7.1 From 7.2 should be built in
 
 # disable all php modules
 ls -1 /etc/php/7.4/mods-available/ | sed 's/\.ini$//g' | xargs -I{} -n1 phpdismod -v ALL -s ALL {} 2>/dev/null

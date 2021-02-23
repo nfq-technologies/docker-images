@@ -51,35 +51,35 @@ apt-get install -y --no-install-recommends \
     php7.1-xmlrpc \
     php7.1-xsl \
     php7.1-zip \
-    php-amqp \
-    php-apcu \
-    php-apcu-bc \
-    php-ast \
-    php-ds \
-    php-gearman \
-    php-geoip \
-    php-igbinary \
-    php-imagick     libmagickcore-6.q16-3-extra \
-    php-mailparse \
-    php-memcache \
-    php-memcached \
-    php-mongodb \
-    php-msgpack \
-    php-oauth \
-    php-propro \
-    php-radius \
-    php-raphf \
-    php-redis \
-    php-rrd \
-    php-smbclient \
-    php-solr \
-    php-ssh2 \
-    php-stomp \
-    php-uploadprogress \
-    php-uuid \
-    php-yaml \
-    php-zmq \
-    php-xdebug \
+    php7.1-amqp \
+    php7.1-apcu \
+    php7.1-apcu-bc \
+    php7.1-ast \
+    php7.1-ds \
+    php7.1-gearman \
+    php7.1-geoip \
+    php7.1-igbinary \
+    php7.1-imagick     libmagickcore-6.q16-3-extra \
+    php7.1-mailparse \
+    php7.1-memcache \
+    php7.1-memcached \
+    php7.1-mongodb \
+    php7.1-msgpack \
+    php7.1-oauth \
+    php7.1-propro \
+    php7.1-radius \
+    php7.1-raphf \
+    php7.1-redis \
+    php7.1-rrd \
+    php7.1-smbclient \
+    php7.1-solr \
+    php7.1-ssh2 \
+    php7.1-stomp \
+    php7.1-uploadprogress \
+    php7.1-uuid \
+    php7.1-yaml \
+    php7.1-zmq \
+    php7.1-xdebug \
 
 
 # php7.1-embed - broke deb dependencies in 2017-03-06
