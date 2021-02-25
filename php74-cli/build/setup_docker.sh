@@ -105,8 +105,8 @@ mv /etc/php/7.4/cli/php.ini{,_orig}
 
 # install custom php modules
 apt-get install -y --no-install-recommends \
-    phyaml \
-    nfq-php-tideways
+	phyaml \
+	nfq-php-tideways
 
 
 # install dma (dragonfly mailer simple relay)
