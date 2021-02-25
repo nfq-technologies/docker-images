@@ -1,4 +1,4 @@
-FROM postgres:12
+FROM nfqlt/postgres12
 
 ENV POSTGRES_PASSWORD=project POSTGRES_DB=project
 
