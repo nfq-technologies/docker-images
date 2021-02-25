@@ -12,10 +12,9 @@ apt-get install -y --no-install-recommends python3-pip python3-wheel python3-set
 # Install installer dependencies
 python3 -m pip install -U pip
 
-# install moto and flask
+# Install moto and flask
 pip install moto
-pip install flask
-
+pip install flask-cors docker
 
 cp -frv /build/files/* / || true
 
