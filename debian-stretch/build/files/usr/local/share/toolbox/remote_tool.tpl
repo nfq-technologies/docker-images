@@ -15,6 +15,7 @@ if [[ ! -f "/dev/shm/${host}-alive" ]]; then
 fi
 
 for x in "$@"; do
+    x="$(echo "$x" | sed "s/'/'\\\\''/g")"
     params="$params '$x'"
 done
 
