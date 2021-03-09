@@ -165,6 +165,8 @@ digraph G {
     "nfqlt/toolbox-buster"->"nfqlt/node10";
     "nfqlt/node12" [fillcolor=orange label="node12"];
     "nfqlt/toolbox-buster"->"nfqlt/node12";
+    "nfqlt/node14" [fillcolor=orange label="node14"];
+    "nfqlt/toolbox-buster"->"nfqlt/node14";
     "nfqlt/node4" [fillcolor=orange label="node4"];
     "nfqlt/toolbox-buster"->"nfqlt/node4";
     "nfqlt/node6" [fillcolor=orange label="node6"];
@@ -175,6 +177,8 @@ digraph G {
     "nfqlt/debian-buster"->"nfqlt/nodeserver10";
     "nfqlt/nodeserver12" [fillcolor=orange label="nodeserver12"];
     "nfqlt/debian-buster"->"nfqlt/nodeserver12";
+    "nfqlt/nodeserver14" [fillcolor=orange label="nodeserver14"];
+    "nfqlt/debian-buster"->"nfqlt/nodeserver14";
     "nfqlt/nodeserver6" [fillcolor=orange label="nodeserver6"];
     "nfqlt/debian-buster"->"nfqlt/nodeserver6";
     "nfqlt/nodeserver8" [fillcolor=orange label="nodeserver8"];
