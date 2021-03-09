@@ -20,4 +20,5 @@ check_command uglifycss
 check_command uglifyjs --version
 check_command tsc --version
 check_command tslint --version
+check_command ts-node --version
 

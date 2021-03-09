@@ -45,6 +45,9 @@ npm install -g typescript
 # typescript linter
 npm install -g tslint
 
+# typescript executor
+npm install -g ts-node
+
 # Copy runtime files
 cp -frv /build/files/* / || true
 
