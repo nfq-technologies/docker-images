@@ -8,7 +8,7 @@ docker build -t tmp_build_image_$TARGET_IMAGE ./
 docker run --name tmp_build_$TARGET_IMAGE -v "$(pwd):/volume" tmp_build_image_$TARGET_IMAGE
 
 # create temp dockerfile
-echo -e 'FROM docker.nfq.lt/nfqlt/influxdb1.8\nADD backup.tar /\nADD build/entrypoint.sh /entrypoint.sh\n' > influxdb-data-Dockerfile
+echo -e 'FROM docker.nfq.lt/nfqlt/influxdb18\nADD backup.tar /\nADD build/entrypoint.sh /entrypoint.sh\n' > influxdb-data-Dockerfile
 echo -e 'CMD exec /entrypoint.sh\n' >> influxdb-data-Dockerfile
 
 

@@ -1,7 +1,7 @@
 version: '2.1'
 services:
   mysql:
-    image: docker.nfq.lt/nfqlt/influxdb1.8
+    image: docker.nfq.lt/nfqlt/influxdb18
     network_mode: bridge
 volumes: {}
 networks: {}
