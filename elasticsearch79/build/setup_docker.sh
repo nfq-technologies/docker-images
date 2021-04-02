@@ -7,7 +7,7 @@ set -e
 apt-get update
 apt-get install -y --no-install-recommends ca-certificates-java
 
-ES_PKG_NAME=elasticsearch-7.9.1
+ES_PKG_NAME=elasticsearch-7.9.3
 
 cd /tmp/
 wget -nv -t5 -O es.tar.gz https://artifacts.elastic.co/downloads/elasticsearch/$ES_PKG_NAME-linux-x86_64.tar.gz
