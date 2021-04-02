@@ -85,6 +85,10 @@ digraph G {
     "nfqlt/elasticsearch77"->"nfqlt/elasticsearch77-data";
     "nfqlt/elasticsearch77" [fillcolor=orange label="elasticsearch77"];
     "nfqlt/debian-buster"->"nfqlt/elasticsearch77";
+    "nfqlt/elasticsearch79-data" [fillcolor=orange label="elasticsearch79-data"];
+    "nfqlt/elasticsearch79"->"nfqlt/elasticsearch79-data";
+    "nfqlt/elasticsearch79" [fillcolor=orange label="elasticsearch79"];
+    "nfqlt/debian-buster"->"nfqlt/elasticsearch79";
     "nfqlt/elasticsearch-tools" [fillcolor=orange label="elasticsearch-tools"];
     "nfqlt/nginx114"->"nfqlt/elasticsearch-tools";
     "nfqlt/ffmpeg" [fillcolor=orange label="ffmpeg"];
