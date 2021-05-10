@@ -55,7 +55,7 @@ apt-get install -y --no-install-recommends mysql-client
 
 # install composer
 phpEnableModule json
-curl -sSL 'https://getcomposer.org/download/1.10.16/composer.phar' > /usr/local/bin/composer.phar
+curl -sSL 'https://getcomposer.org/download/1.10.22/composer.phar' > /usr/local/bin/composer.phar
 chmod a+x /usr/local/bin/composer.phar
 ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
 composer self-update --1
