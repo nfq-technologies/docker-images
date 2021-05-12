@@ -37,7 +37,7 @@ if [ -n "$TOKEN" ]; then
 	fi
 
 	echo "++ Adding github token to composer"
-	composer --no-interaction -q config -g github-oauth.github.com "$TOKEN" || true
+	sudo -u project composer --no-interaction -q config -g github-oauth.github.com "$TOKEN" || true
 
 	if [[ $JSON_ENABLED -eq 0 ]]; then
 		phpDisableModule json
