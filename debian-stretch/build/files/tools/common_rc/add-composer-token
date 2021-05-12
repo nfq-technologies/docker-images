@@ -6,7 +6,12 @@ if [ -f /etc/environment-vm ]; then
 	source /etc/environment-vm
 fi
 
-if [ -f /etc/environment-projects && ! -z $NFQ_GITHUB_TOKEN ]; then
+if [ -f /etc/environment-projects && -z $NFQ_GITHUB_TOKEN ]; then
+	echo "++ Adding /etc/environment-projects"
 	source /etc/environment-projects
+fi
+
+if [ -n $NFQ_GITHUB_TOKEN ]; then
+	echo "++ Adding composer github token to /home/project/.composer/auth.json"
 	sudo -u project composer --no-interaction -q config -g github-oauth.github.com "$NFQ_GITHUB_TOKEN"
 fi
