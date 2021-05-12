@@ -8,4 +8,5 @@ fi
 
 if [ -f /etc/environment-projects && ! -z $NFQ_GITHUB_TOKEN ]; then
 	source /etc/environment-projects
+	sudo -u project composer --no-interaction -q config -g github-oauth.github.com "$NFQ_GITHUB_TOKEN"
 fi
