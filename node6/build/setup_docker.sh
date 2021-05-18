@@ -20,7 +20,7 @@ dpkg -i nodejs.deb
 rm nodejs.deb
 
 # grunt
-npm install -g grunt-cli
+npm install -g grunt-cli@1.3.2
 
 # sass
 npm install -g node-sass@4
