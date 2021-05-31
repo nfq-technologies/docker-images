@@ -10,7 +10,7 @@ apt-get install -y --no-install-recommends openjdk-11-jre-headless
 # Manually download and install
 file="$(wget -qO - https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/ \
 	| sed 's/href="\([^"]*\)">/\n\1\n/g' \
-	| grep -i '^sonar.scanner.cli[-][0-9\.\-]*-linux\.zip$' \
+	| grep -i '^sonar.scanner.cli[-]4[.][0-9\.\-]*-linux\.zip$' \
 	| sort --version-sort \
 	| tail -n1)"
 
