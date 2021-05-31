@@ -32,6 +32,7 @@ apt-get install -y --no-install-recommends \
 	whois \
 	procps \
 	net-tools \
+	zip \
 
 
 # install various helper tools
