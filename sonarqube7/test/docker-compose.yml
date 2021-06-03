@@ -1,0 +1,37 @@
+version: '2.1'
+services:
+  sonar:
+    image: docker.nfq.lt/nfqlt/sonarqube7
+    network_mode: bridge
+    ports:
+      - '10.24.0.2:9000:9000'
+    links:
+      - postgres
+
+
+  postgres:
+    image: nfqlt/postgres12
+    network_mode: bridge
+    ports:
+      - '5432:5432'
+    volumes_from:
+      - 'service:postgresVol:rw'
+
+
+  postgresVol:
+    image: nfqlt/postgres12-data
+    network_mode: bridge
+    volumes:
+      - /var/lib/postgres/data/pgdata
+
+
+  linker:
+    image: docker.nfq.lt/nfqlt/linker18ce
+    network_mode: bridge
+    volumes:
+      - '/run/docker.sock:/run/docker.sock'
+
+
+volumes: {  }
+networks: {  }
+
