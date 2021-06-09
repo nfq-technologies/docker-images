@@ -1,4 +1,0 @@
-Package: *
-Pin: release o=. testing
-Pin-Priority: -100
-

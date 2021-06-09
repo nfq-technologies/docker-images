@@ -195,16 +195,6 @@ digraph G {
     "nfqlt/debian-jessie"->"nfqlt/phantomjs19";
     "nfqlt/phantomjs21" [fillcolor=orange label="phantomjs21"];
     "nfqlt/debian-stretch"->"nfqlt/phantomjs21";
-    "nfqlt/php53-cli" [fillcolor=orange label="php53-cli"];
-    "nfqlt/ubuntu-1204"->"nfqlt/php53-cli";
-    "nfqlt/php53-cron" [fillcolor=orange label="php53-cron"];
-    "nfqlt/php53-cli"->"nfqlt/php53-cron";
-    "nfqlt/php53-dev" [fillcolor=orange label="php53-dev"];
-    "nfqlt/php53-cli"->"nfqlt/php53-dev";
-    "nfqlt/php53-fcgi" [fillcolor=orange label="php53-fcgi"];
-    "nfqlt/php53-cli"->"nfqlt/php53-fcgi";
-    "nfqlt/php53-supervisor" [fillcolor=orange label="php53-supervisor"];
-    "nfqlt/php53-cli"->"nfqlt/php53-supervisor";
     "nfqlt/php54-cli" [fillcolor=orange label="php54-cli"];
     "nfqlt/debian-wheezy"->"nfqlt/php54-cli";
     "nfqlt/php54-dev" [fillcolor=orange label="php54-dev"];
@@ -329,8 +319,6 @@ digraph G {
     "nfqlt/debian-stretch"->"nfqlt/toolbox";
     "nfqlt/toolbox-ubuntu1804" [fillcolor=orange label="toolbox-ubuntu1804"];
     "nfqlt/ubuntu-1804"->"nfqlt/toolbox-ubuntu1804";
-    "nfqlt/ubuntu-1204" [fillcolor=orange label="ubuntu-1204"];
-    "ubuntu"->"nfqlt/ubuntu-1204";
     "nfqlt/ubuntu-1804" [fillcolor=orange label="ubuntu-1804"];
     "ubuntu"->"nfqlt/ubuntu-1804";
     "nfqlt/varnish30" [fillcolor=orange label="varnish30"];
