@@ -19,7 +19,7 @@ phpEnableModule()
 	if type phpenmod &> /dev/null; then
 		phpenmod -v ALL -s ALL "$1"
 	else
-		if php -v | grep -q "PHP 5.3."; then
+		if php -v | grep -q "PHP 5."; then
 			php5enmod "$1"
 		else
 			php5enmod -s ALL "$1"
@@ -32,7 +32,7 @@ phpDisableModule()
 	if type phpdismod &> /dev/null; then
 		phpdismod -v ALL -s ALL "$1"
 	else
-		if php -v | grep -q "PHP 5.3."; then
+		if php -v | grep -q "PHP 5."; then
 			php5dismod "$1"
 		else
 			php5dismod -s ALL "$1"

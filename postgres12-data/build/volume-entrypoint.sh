@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-/docker-entrypoint.sh postgres &
+docker-entrypoint.sh postgres &
 psqlPid=$!
 
 while ! PGPASSWORD=postgres psql -h localhost -U postgres -c "\c project"; do
