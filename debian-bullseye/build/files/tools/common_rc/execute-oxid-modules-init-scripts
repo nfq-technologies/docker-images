@@ -1,0 +1,27 @@
+#!/bin/bash
+set -e
+
+DEVELOP_SCRIPT=tools/docker/develop_init.sh
+
+if [[ ! -z ${NFQ_PROJECT_ROOT} ]]; then
+		OXID_ROOT="$(dirname ${NFQ_PROJECT_ROOT})"
+
+		cd "${OXID_ROOT}/modules"
+		installed="$(composer show -i -P)"
+
+		echo "+ Running init files for modules"
+		for module in ${NFQ_REQUIRE_MODULES}; do
+				path="$(echo "$installed" | fgrep "$(echo "$module" | cut -d":" -f1)" | tr -s " " | cut -d" " -f2)"
+				init_file="${path}/${DEVELOP_SCRIPT}"
+
+				if [ -x "$init_file" ]; then
+						echo "++ Running: $init_file"
+						sudo -HEu project "$init_file"
+				else
+						echo "-- Init file doesn't exist or is not executable: $init_file"
+				fi
+		done
+else
+		echo "- NFQ_PROJECT_ROOT not provided, unable to find oxid modules init files"
+fi
+
