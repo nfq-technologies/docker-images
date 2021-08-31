@@ -43,6 +43,8 @@ digraph G {
     "nfqlt/toolbox-buster"->"nfqlt/db-tools";
     "nfqlt/deb-dev" [fillcolor=orange label="deb-dev"];
     "nfqlt/php70-dev"->"nfqlt/deb-dev";
+    "nfqlt/debian-bullseye" [fillcolor=orange label="debian-bullseye"];
+    "debian"->"nfqlt/debian-bullseye";
     "nfqlt/debian-buster" [fillcolor=orange label="debian-buster"];
     "debian"->"nfqlt/debian-buster";
     "nfqlt/debian-jessie" [fillcolor=orange label="debian-jessie"];
@@ -119,6 +121,8 @@ digraph G {
     "busybox"->"nfqlt/lib-smartclient111";
     "nfqlt/lib-smartclient120" [fillcolor=orange label="lib-smartclient120"];
     "busybox"->"nfqlt/lib-smartclient120";
+    "nfqlt/lib-smartclient121" [fillcolor=orange label="lib-smartclient121"];
+    "busybox"->"nfqlt/lib-smartclient121";
     "nfqlt/linker18ce" [fillcolor=orange label="linker18ce"];
     "nfqlt/docker18ce"->"nfqlt/linker18ce";
     "nfqlt/mailhog" [fillcolor=orange label="mailhog"];
@@ -263,6 +267,16 @@ digraph G {
     "nfqlt/php74-cli"->"nfqlt/php74-fpm";
     "nfqlt/php74-supervisor" [fillcolor=orange label="php74-supervisor"];
     "nfqlt/php74-cli"->"nfqlt/php74-supervisor";
+    "nfqlt/php80-cli" [fillcolor=orange label="php80-cli"];
+    "nfqlt/debian-bullseye"->"nfqlt/php80-cli";
+    "nfqlt/php80-cron" [fillcolor=orange label="php80-cron"];
+    "nfqlt/php80-cli"->"nfqlt/php80-cron";
+    "nfqlt/php80-dev" [fillcolor=orange label="php80-dev"];
+    "nfqlt/php80-cli"->"nfqlt/php80-dev";
+    "nfqlt/php80-fpm" [fillcolor=orange label="php80-fpm"];
+    "nfqlt/php80-cli"->"nfqlt/php80-fpm";
+    "nfqlt/php80-supervisor" [fillcolor=orange label="php80-supervisor"];
+    "nfqlt/php80-cli"->"nfqlt/php80-supervisor";
     "nfqlt/phpmyadmin" [fillcolor=orange label="phpmyadmin"];
     "nfqlt/php70-cli"->"nfqlt/phpmyadmin";
     "nfqlt/phyaml" [fillcolor=orange label="phyaml"];

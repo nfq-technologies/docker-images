@@ -4,6 +4,12 @@
 This repo contains all the build files for a highly integrated images for
 web development used and developed at NFQ Technologies.
 
+## WARNING
+
+These images are meant for development and CI environment only. Not a single
+image was considered for production use while making build and configuration
+choices. Production use was neither intended nor suggested.
+
 ## How to use?
 
 ### Get virtual machine

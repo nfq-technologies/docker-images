@@ -7,7 +7,7 @@ IMAGE_FULL_NAME = $(IMAGE_REGISTRY)$(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
 CHILDREN = $(shell ../_tools/relational_sorting.php)
 IMAGE_PUBLISH_NAME=$(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
 
-COMMANDS = help all build test push
+COMMANDS = help all build test push pull
 SILENT_COMMANDS = status registry-status registry-status-full calc-start calc-stop get-image-name inheritance-status inheritance-status-full
 
 .PHONY: $(COMMANDS) $(SILENT_COMMANDS)
@@ -51,6 +51,14 @@ push:
 	docker push $(IMAGE_FULL_NAME)
 
 
+pull:
+	@echo
+	@echo "# Pulling image from registry..."
+	@echo
+	docker pull $(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
+	docker tag $(IMAGE_TYPE)/$(IMAGE_BASE_NAME) $(IMAGE_FULL_NAME)
+
+
 publish:
 	@echo
 	@echo "# Publishing image to docker hub..."
@@ -74,6 +82,11 @@ clean:
 		tr -s ' ' ':' |\
 		cut -d: -f2 |\
 		xargs -n1 -IT docker rmi $(IMAGE_FULL_NAME):T 2>/dev/null || true"
+	bash -c "docker images |\
+		grep '^$(IMAGE_TYPE)/$(IMAGE_BASE_NAME) ' |\
+		tr -s ' ' ':' |\
+		cut -d: -f2 |\
+		xargs -n1 -IT docker rmi $(IMAGE_TYPE)/$(IMAGE_BASE_NAME):T 2>/dev/null || true"
 	make status
 
 
