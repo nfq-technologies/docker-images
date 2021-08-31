@@ -54,7 +54,6 @@ apt-get install -y --no-install-recommends mysql-client
 
 
 # install composer
-phpEnableModule json
 curl -sSL 'https://getcomposer.org/download/1.10.22/composer.phar' > /usr/local/bin/composer.phar
 chmod a+x /usr/local/bin/composer.phar
 ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
@@ -68,7 +67,6 @@ sudo -u project composer --no-interaction global require "hirak/prestissimo:^0.3
 
 # disable enabled modules
 phpDisableModule curl
-phpDisableModule json
 
 
 # install custom nfq packages
