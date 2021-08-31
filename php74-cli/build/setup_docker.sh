@@ -3,8 +3,8 @@
 set -x
 set -e
 
-echo "deb https://packages.sury.org/php buster main" > /etc/apt/sources.list.d/sury.list
-echo "deb-src https://packages.sury.org/php buster main" >> /etc/apt/sources.list.d/sury.list
+echo "deb https://packages.sury.org/php bullseye main" > /etc/apt/sources.list.d/sury.list
+echo "deb-src https://packages.sury.org/php bullseye main" >> /etc/apt/sources.list.d/sury.list
 
 wget --quiet https://packages.sury.org/php/apt.gpg
 apt-key add apt.gpg
