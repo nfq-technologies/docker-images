@@ -1,0 +1,27 @@
+#!/bin/sh -e
+
+if [ "x${NFQ_PROJECT_ROOT}" != "x" ]
+then 
+	cd ${NFQ_PROJECT_ROOT}
+fi
+
+if [ "x${NFQ_INIT_SCRIPT}" != "x" ]
+then
+	if [ ! -f ${NFQ_INIT_SCRIPT} ]
+	then
+		echo "~~ Can't find init script: ${NFQ_INIT_SCRIPT}. Nothing to execute."
+		exit 0
+	fi
+	if [ ! -x ${NFQ_INIT_SCRIPT} ]
+	then
+		echo "~~ Init script not executable. Nothing to execute."
+		exit 0
+	fi
+	echo "++ Executing init script: ${NFQ_INIT_SCRIPT}"
+	sudo -HEu project ${NFQ_INIT_SCRIPT}
+else
+	echo "-- Init script not requested via NFQ_INIT_SCRIPT env var. Nothing to execute."
+fi
+
+exit 0
+
