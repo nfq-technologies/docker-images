@@ -3,18 +3,18 @@
 set -x
 set -e
 
-echo "deb https://packages.sury.org/php bullseye main" > /etc/apt/sources.list.d/sury.list
-echo "deb-src https://packages.sury.org/php bullseye main" >> /etc/apt/sources.list.d/sury.list
+# echo "deb https://packages.sury.org/php bullseye main" > /etc/apt/sources.list.d/sury.list
+# echo "deb-src https://packages.sury.org/php bullseye main" >> /etc/apt/sources.list.d/sury.list
 
-wget --quiet https://packages.sury.org/php/apt.gpg
-apt-key add apt.gpg
-rm apt.gpg
+# wget --quiet https://packages.sury.org/php/apt.gpg
+# apt-key add apt.gpg
+# rm apt.gpg
   
-cat >/etc/apt/preferences.d/sury <<EOF
-  Package: php7.4-*
-  Pin: origin packages.sury.org
-  Pin-Priority: 600
-EOF
+# cat >/etc/apt/preferences.d/sury <<EOF
+#   Package: php7.4-*
+#   Pin: origin packages.sury.org
+#   Pin-Priority: 600
+# EOF
 
 
 apt-get update
@@ -75,7 +75,6 @@ apt-get install -y --no-install-recommends \
 	php7.4-raphf \
 	php7.4-redis \
 	php7.4-rrd \
-	php7.4-smbclient \
 	php7.4-solr \
 	php7.4-ssh2 \
 	php7.4-stomp \
