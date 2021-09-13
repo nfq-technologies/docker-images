@@ -3,20 +3,6 @@
 set -x
 set -e
 
-echo "deb https://packages.sury.org/php buster main" > /etc/apt/sources.list.d/sury.list
-echo "deb-src https://packages.sury.org/php buster main" >> /etc/apt/sources.list.d/sury.list
-
-wget --quiet https://packages.sury.org/php/apt.gpg
-apt-key add apt.gpg
-rm apt.gpg
-  
-cat >/etc/apt/preferences.d/sury <<EOF
-  Package: php7.4-*
-  Pin: origin packages.sury.org
-  Pin-Priority: 600
-EOF
-
-
 apt-get update
 
 apt-get install -y --no-install-recommends \
@@ -75,7 +61,6 @@ apt-get install -y --no-install-recommends \
 	php7.4-raphf \
 	php7.4-redis \
 	php7.4-rrd \
-	php7.4-smbclient \
 	php7.4-solr \
 	php7.4-ssh2 \
 	php7.4-stomp \
@@ -85,8 +70,6 @@ apt-get install -y --no-install-recommends \
 	php7.4-yaml \
 	php7.4-zmq \
 	php7.4-xdebug \
-
-
 
 #	php7.4-gmagick \ provides more stable api but conflicts with imagick
 #	php7.4-yac \ conflicts with php7.4-apcu
