@@ -13,7 +13,8 @@ if [ "x${NFQ_PROJECT_ROOT}" != "x" ]
 then
 	if [[ ! -d ${NFQ_PROJECT_ROOT} || $(ls -alh ${NFQ_PROJECT_ROOT} | wc -l) -eq 3 ]]
 	then
-	    echo "++ Cloning project from ${NFQ_PROJECT_GIT_REPO}:${NFQ_PROJECT_GIT_BRANCH} to ${NFQ_PROJECT_ROOT}"
+		NFQ_PROJECT_GIT_BRANCH=${NFQ_PROJECT_GIT_BRANCH:-.}
+		echo "++ Cloning project from ${NFQ_PROJECT_GIT_REPO}:${NFQ_PROJECT_GIT_BRANCH} to ${NFQ_PROJECT_ROOT}"
 		mkdir -p ${NFQ_PROJECT_ROOT}
 		chown project:project ${NFQ_PROJECT_ROOT}
 
