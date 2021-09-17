@@ -258,7 +258,7 @@ digraph G {
     "nfqlt/php73-vscode" [fillcolor=orange label="php73-vscode"];
     "nfqlt/php73-dev"->"nfqlt/php73-vscode";
     "nfqlt/php74-cli" [fillcolor=orange label="php74-cli"];
-    "nfqlt/debian-buster"->"nfqlt/php74-cli";
+    "nfqlt/debian-bullseye"->"nfqlt/php74-cli";
     "nfqlt/php74-cron" [fillcolor=orange label="php74-cron"];
     "nfqlt/php74-cli"->"nfqlt/php74-cron";
     "nfqlt/php74-dev" [fillcolor=orange label="php74-dev"];
