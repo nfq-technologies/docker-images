@@ -1,0 +1,59 @@
+#!/bin/bash
+
+IMAGE=$1
+CMD="docker run -it -e NFQ_ENABLE_PHP_MODULES $IMAGE run-parts /etc/rc.d"
+
+
+# test enabling some modules
+export NFQ_ENABLE_PHP_MODULES='pdo pdo_mysql xdebug'
+$CMD | grep -i 'Enabling.*php.*modules.*pdo pdo_mysql xdebug' &> /dev/null \
+|| (echo "Container did not reported enabling selected php modules" && exit -1)
+
+
+# test enabling all modules
+export NFQ_ENABLE_PHP_MODULES='amqp apcu ast bcmath bz2 calendar ctype curl dba dom ds enchant exif ffi fileinfo ftp gd gearman gettext gmp iconv igbinary imagick imap intl ldap mailparse mbstring memcached memcache mongodb msgpack mysqli mysqlnd oauth odbc opcache pcov pdo_dblib pdo_firebird pdo pdo_mysql pdo_odbc pdo_pgsql pdo_sqlite pgsql phar posix pspell psr raphf readline redis rrd shmop simplexml smbclient snmp soap sockets solr sqlite3 ssh2 sysvmsg sysvsem sysvshm tideways tidy tokenizer uuid xdebug xml xmlreader xmlrpc xmlwriter xsl yaml zip zmq'
+$CMD | grep -i 'Enabling.*php.*modules.*apcu_bc apcu bcmath bz2 calendar ctype curl dba dom enchant exif fileinfo ftp gd geoip gettext gmp iconv igbinary imagick imap interbase intl json ldap mbstring mcrypt memcached mongodb msgpack mysqli mysqlnd odbc opcache pdo_dblib pdo_firebird pdo pdo_mysql pdo_odbc pdo_pgsql pdo_sqlite pgsql phar posix pspell readline recode redis shmop simplexml snmp soap sockets sqlite3 ssh2 sysvmsg sysvsem sysvshm tidy tokenizer wddx xdebug xml xmlreader xmlrpc xmlwriter xsl zip' &> /dev/null \
+|| (echo "Container did not reported enabling selected php modules" && exit -1)
+
+
+
+# test every module load status
+
+test_modules_load() {
+	local cmd="docker run -it -e NFQ_ENABLE_PHP_MODULES $IMAGE"
+	local modules=$@
+
+	## perform test
+	for mod in $modules
+	do
+		printf "%-15s ... " "$mod"
+
+		export NFQ_ENABLE_PHP_MODULES=$modules
+		$cmd bash -c "run-parts /etc/rc.d >/dev/null && php -m 2>/dev/null | grep -i ^$mod\$ &> /dev/null" \
+		&& printf "%-10s" "OK" || (printf "%-10s" "FAIL" && FAILED=1)
+
+		export NFQ_ENABLE_PHP_MODULES=''
+		$cmd bash -c "run-parts /etc/rc.d >/dev/null && php -m 2>/dev/null | grep -i ^$mod\$ &> /dev/null" \
+		&& printf "%-10s" "DEFAULT"
+
+		echo
+	done
+
+	## handle failure
+	if [ $FAILED ]
+	then
+		exit 1
+	fi
+}
+
+## parse modules from readme (modules depends on eatch other, cant use one by one testing)
+#MODULES="$(grep '^* [^ ]*$' README.md | cut -d' ' -f2 | xargs -n1 echo -n '')"
+
+test_modules_load apcu
+test_modules_load gd
+test_modules_load json
+test_modules_load mysqlnd mysqli # mysqli depends on mysqlnd
+test_modules_load mysqlnd pdo pdo_mysql # pdo_mysql depends on mysqlnd
+test_modules_load xdebug
+test_modules_load zip
+
