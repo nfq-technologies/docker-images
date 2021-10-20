@@ -173,6 +173,8 @@ digraph G {
     "nfqlt/toolbox-buster"->"nfqlt/node12";
     "nfqlt/node14" [fillcolor=orange label="node14"];
     "nfqlt/toolbox-buster"->"nfqlt/node14";
+    "nfqlt/node16" [fillcolor=orange label="node16"];
+    "nfqlt/toolbox-bullseye"->"nfqlt/node16";
     "nfqlt/node4" [fillcolor=orange label="node4"];
     "nfqlt/toolbox-buster"->"nfqlt/node4";
     "nfqlt/node6" [fillcolor=orange label="node6"];
