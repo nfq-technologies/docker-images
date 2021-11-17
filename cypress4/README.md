@@ -35,7 +35,12 @@ services:
       - '/etc/gitconfig:/etc/gitconfig'
       - '/etc/environment:/etc/environment-vm:ro'
     environment:
-      NFQ_REMOTE_TOOL_NODE: >
+      NFQ_REMOTE_TOOL_CYPRESS: >
         /usr/local/bin/cypress
+
+  linker:
+    image: nfqlt/linker18ce
+    volumes:
+      - '/run/docker.sock:/run/docker.sock'
 ```
 
