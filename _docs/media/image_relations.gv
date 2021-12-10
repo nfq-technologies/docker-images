@@ -77,6 +77,10 @@ digraph G {
     "nfqlt/elasticsearch68"->"nfqlt/elasticsearch68-data";
     "nfqlt/elasticsearch68" [fillcolor=orange label="elasticsearch68"];
     "nfqlt/debian-buster"->"nfqlt/elasticsearch68";
+    "nfqlt/elasticsearch710-data" [fillcolor=orange label="elasticsearch710-data"];
+    "nfqlt/elasticsearch710"->"nfqlt/elasticsearch710-data";
+    "nfqlt/elasticsearch710" [fillcolor=orange label="elasticsearch710"];
+    "nfqlt/debian-buster"->"nfqlt/elasticsearch710";
     "nfqlt/elasticsearch72-data" [fillcolor=orange label="elasticsearch72-data"];
     "nfqlt/elasticsearch72"->"nfqlt/elasticsearch72-data";
     "nfqlt/elasticsearch72" [fillcolor=orange label="elasticsearch72"];
