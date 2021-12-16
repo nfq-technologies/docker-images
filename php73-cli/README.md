@@ -34,19 +34,16 @@ example:
 * dom
 * ds
 * enchant
-* excimer
 * exif
 * fileinfo
 * ftp
 * gd
 * gearman
 * geoip
-* geos
 * gettext
 * gmp
 * gnupg
 * gv
-* horde_lz4
 * http
 * ice
 * iconv
@@ -58,7 +55,6 @@ example:
 * json
 * ldap
 * lua
-* luasandbox
 * mailparse
 * mapi
 * mbstring
@@ -80,7 +76,6 @@ example:
 * pdo_sqlite
 * pgsql
 * phar
-* php-remctl
 * pinba
 * posix
 * propro
@@ -112,7 +107,6 @@ example:
 * uploadprogress
 * uuid
 * wddx
-* wikidiff2
 * xdebug
 * xml
 * xmlreader

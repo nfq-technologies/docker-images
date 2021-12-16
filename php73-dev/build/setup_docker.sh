@@ -69,7 +69,7 @@ phpEnableModule zip
 phpEnableModule iconv
 phpEnableModule mbstring
 
-curl -sSL 'https://getcomposer.org/download/1.10.22/composer.phar' > /usr/local/bin/composer.phar
+curl -sSL 'https://getcomposer.org/download/1.10.24/composer.phar' > /usr/local/bin/composer.phar
 chmod a+x /usr/local/bin/composer.phar
 ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
 composer self-update --1
@@ -81,15 +81,15 @@ sudo -u project composer --no-interaction global require "hirak/prestissimo:^0.3
 
 # disable enabled modules
 phpDisableModule json
-phpDisableModule phar
 phpDisableModule zip
 phpDisableModule iconv
 phpDisableModule mbstring
 phpDisableModule curl
 
 
-# install phpunit
-apt-get install -y --no-install-recommends phpunit
+# install phpunit8 (latest supporting by php7.2)
+apt install -y --no-install-recommends phpunit
+#wget -O /usr/bin/phpunit https://phar.phpunit.de/phpunit-8.phar
 phpEnableModule phar
 
 
