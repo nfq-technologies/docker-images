@@ -87,11 +87,11 @@ phpDisableModule mbstring
 phpDisableModule curl
 
 
-# install phpunit8 (latest supporting by php7.2)
-apt install -y --no-install-recommends phpunit
-#wget -O /usr/bin/phpunit https://phar.phpunit.de/phpunit-8.phar
+# install phpunit
 phpEnableModule phar
-
+curl -sSL 'https://phar.phpunit.de/phpunit-6.5.9.phar' > /usr/local/bin/phpunit.phar
+chmod a+x /usr/local/bin/phpunit.phar
+ln -s /usr/local/bin/phpunit.phar /usr/local/bin/phpunit
 
 cp -frv /build/files/* /
 
