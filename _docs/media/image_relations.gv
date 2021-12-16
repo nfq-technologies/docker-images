@@ -285,6 +285,16 @@ digraph G {
     "nfqlt/php80-cli"->"nfqlt/php80-fpm";
     "nfqlt/php80-supervisor" [fillcolor=orange label="php80-supervisor"];
     "nfqlt/php80-cli"->"nfqlt/php80-supervisor";
+    "nfqlt/php81-cli" [fillcolor=orange label="php81-cli"];
+    "nfqlt/debian-bullseye"->"nfqlt/php81-cli";
+    "nfqlt/php81-cron" [fillcolor=orange label="php81-cron"];
+    "nfqlt/php81-cli"->"nfqlt/php81-cron";
+    "nfqlt/php81-dev" [fillcolor=orange label="php81-dev"];
+    "nfqlt/php81-cli"->"nfqlt/php81-dev";
+    "nfqlt/php81-fpm" [fillcolor=orange label="php81-fpm"];
+    "nfqlt/php81-cli"->"nfqlt/php81-fpm";
+    "nfqlt/php81-supervisor" [fillcolor=orange label="php81-supervisor"];
+    "nfqlt/php81-cli"->"nfqlt/php81-supervisor";
     "nfqlt/phpmyadmin" [fillcolor=orange label="phpmyadmin"];
     "nfqlt/php70-cli"->"nfqlt/phpmyadmin";
     "nfqlt/phyaml" [fillcolor=orange label="phyaml"];
