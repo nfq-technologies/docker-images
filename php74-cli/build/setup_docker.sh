@@ -70,6 +70,7 @@ apt-get install -y --no-install-recommends \
 	php7.4-yaml \
 	php7.4-zmq \
 	php7.4-xdebug \
+	libgv-php7 \
 
 #	php7.4-gmagick \ provides more stable api but conflicts with imagick
 #	php7.4-yac \ conflicts with php7.4-apcu

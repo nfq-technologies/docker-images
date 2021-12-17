@@ -43,7 +43,6 @@ example:
 * gettext
 * gmp
 * gnupg
-* gv
 * http
 * ice
 * iconv
