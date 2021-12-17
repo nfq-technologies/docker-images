@@ -88,15 +88,6 @@ apt-get install -y --no-install-recommends \
 	php7.3-zmq \
 
 
-#	php-excimer \
-#	php-geos \
-#	php-horde-lz4 \
-#	php-luasandbox \
-#	php-remctl \
-#	php-wikidiff2 \
-#	php-zeroc-ice \
-#	libow-php7 \
-
 #	php7.3-mapi \
 
 #	php-gmagick \ provides more stable api but conflicts with imagick

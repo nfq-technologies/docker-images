@@ -26,13 +26,7 @@ echo 'root:root' | chpasswd
 echo "
 ### Install git with flow and lfs plugins ...
 "
-apt-get install -y --no-install-recommends openssh-client git git-flow
-
-wget https://packagecloud.io/github/git-lfs/packages/debian/buster/git-lfs_2.9.0_amd64.deb/download -O /tmp/git-lfs.deb
-dpkg -i /tmp/git-lfs.deb
-rm -r /tmp/git-lfs.deb
-git lfs install --system --skip-smudge
-
+apt-get install -y --no-install-recommends openssh-client git git-flow git-lfs
 
 
 echo 'Setup nice PS1 to use with git...' \
