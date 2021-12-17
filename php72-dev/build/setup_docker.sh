@@ -26,13 +26,7 @@ echo 'root:root' | chpasswd
 echo "
 ### Install git with flow and lfs plugins ...
 "
-apt-get install -y --no-install-recommends openssh-client git git-flow
-
-wget https://packagecloud.io/github/git-lfs/packages/debian/jessie/git-lfs_1.4.4_amd64.deb/download -O /tmp/git-lfs.deb
-dpkg -i /tmp/git-lfs.deb
-rm -r /tmp/git-lfs.deb
-git lfs install --system --skip-smudge
-
+apt-get install -y --no-install-recommends openssh-client git git-flow git-lfs
 
 
 echo 'Setup nice PS1 to use with git...' \
@@ -59,7 +53,7 @@ echo 'if [ -f ~/.bash_custom ]; then . ~/.bash_custom ; fi' >> /home/project/.ba
 
 
 # install mysql-client
-apt-get install -y --no-install-recommends mysql-client
+apt-get install -y --no-install-recommends mariadb-client
 
 
 # install composer
@@ -67,7 +61,7 @@ phpEnableModule json
 phpEnableModule phar
 phpEnableModule zip
 phpEnableModule iconv
-curl -sSL 'https://getcomposer.org/download/1.10.22/composer.phar' > /usr/local/bin/composer.phar
+curl -sSL 'https://getcomposer.org/download/1.10.24/composer.phar' > /usr/local/bin/composer.phar
 chmod a+x /usr/local/bin/composer.phar
 ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
 composer self-update --1
@@ -86,8 +80,10 @@ phpDisableModule zip
 
 
 # install phpunit
-apt-get install -y --no-install-recommends phpunit65
-phpenmod phar
+phpEnableModule phar
+curl -sSL 'https://phar.phpunit.de/phpunit-6.5.9.phar' > /usr/local/bin/phpunit.phar
+chmod a+x /usr/local/bin/phpunit.phar
+ln -s /usr/local/bin/phpunit.phar /usr/local/bin/phpunit
 
 
 cp -frv /build/files/* /

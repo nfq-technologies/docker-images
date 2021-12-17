@@ -26,13 +26,7 @@ echo 'root:root' | chpasswd
 echo "
 ### Install git with flow and lfs plugins ...
 "
-apt-get install -y --no-install-recommends openssh-client git git-flow
-
-wget https://packagecloud.io/github/git-lfs/packages/debian/buster/git-lfs_2.9.0_amd64.deb/download -O /tmp/git-lfs.deb
-dpkg -i /tmp/git-lfs.deb
-rm -r /tmp/git-lfs.deb
-git lfs install --system --skip-smudge
-
+apt-get install -y --no-install-recommends openssh-client git git-flow git-lfs
 
 
 echo 'Setup nice PS1 to use with git...' \
@@ -69,7 +63,7 @@ phpEnableModule zip
 phpEnableModule iconv
 phpEnableModule mbstring
 
-curl -sSL 'https://getcomposer.org/download/1.10.22/composer.phar' > /usr/local/bin/composer.phar
+curl -sSL 'https://getcomposer.org/download/1.10.24/composer.phar' > /usr/local/bin/composer.phar
 chmod a+x /usr/local/bin/composer.phar
 ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
 composer self-update --1
@@ -81,7 +75,6 @@ sudo -u project composer --no-interaction global require "hirak/prestissimo:^0.3
 
 # disable enabled modules
 phpDisableModule json
-phpDisableModule phar
 phpDisableModule zip
 phpDisableModule iconv
 phpDisableModule mbstring
@@ -89,9 +82,10 @@ phpDisableModule curl
 
 
 # install phpunit
-apt-get install -y --no-install-recommends phpunit
 phpEnableModule phar
-
+curl -sSL 'https://phar.phpunit.de/phpunit-6.5.9.phar' > /usr/local/bin/phpunit.phar
+chmod a+x /usr/local/bin/phpunit.phar
+ln -s /usr/local/bin/phpunit.phar /usr/local/bin/phpunit
 
 cp -frv /build/files/* /
 

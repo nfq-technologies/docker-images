@@ -3,13 +3,25 @@
 set -x
 set -e
 
+
+echo "deb https://packages.sury.org/php bullseye main" > /etc/apt/sources.list.d/sury.list
+echo "deb-src https://packages.sury.org/php bullseye main" >> /etc/apt/sources.list.d/sury.list
+
+wget --quiet https://packages.sury.org/php/apt.gpg
+apt-key add apt.gpg
+rm apt.gpg
+
+cat >/etc/apt/preferences.d/sury <<EOF
+Package: php-*
+Pin: origin packages.sury.org
+Pin-Priority: 600
+EOF
+
 apt-get update
 
 apt-get install -y --no-install-recommends \
 	php7.3-cli \
-	php-phpdbg \
-	libgv-php7 \
-	libow-php7 \
+	php7.3-phpdbg \
 	php7.3-bcmath \
 	php7.3-bz2 \
 	php7.3-common \
@@ -39,49 +51,43 @@ apt-get install -y --no-install-recommends \
 	php7.3-xml \
 	php7.3-xmlrpc \
 	php7.3-zip \
-	php-amqp \
-	php-apcu \
-	php-apcu-bc \
-	php-ast \
-	php-ds \
-	php-excimer \
-	php-gearman \
-	php-geoip \
-	php-geos \
-	php-gnupg \
-	php-horde-lz4 \
-	php-http \
-	php-igbinary \
-	php-imagick       libmagickcore-6.q16-6-extra \
-	php-lua \
-	php-luasandbox \
-	php-mailparse \
-	php-mapi \
-	php-memcache \
-	php-memcached \
-	php-mongodb \
-	php-msgpack \
-	php-oauth \
-	php-pinba \
-	php-propro \
-	php-ps \
-	php-radius \
-	php-raphf \
-	php-redis \
-	php-remctl \
-	php-rrd \
-	php-sass \
-	php-smbclient \
-	php-solr \
-	php-ssh2 \
-	php-stomp \
-	php-uploadprogress \
-	php-uuid \
-	php-wikidiff2 \
-	php-yaml \
-	php-zeroc-ice \
-	php-zmq \
+	php7.3-amqp \
+	php7.3-apcu \
+	php7.3-apcu-bc \
+	php7.3-ast \
+	php7.3-ds \
+	php7.3-gearman \
+	php7.3-geoip \
+	php7.3-gnupg \
+	php7.3-http \
+	php7.3-igbinary \
+	php7.3-imagick       libmagickcore-6.q16-6-extra \
+	php7.3-lua \
+	php7.3-mailparse \
+	php7.3-memcache \
+	php7.3-memcached \
+	php7.3-mongodb \
+	php7.3-msgpack \
+	php7.3-oauth \
+	php7.3-pinba \
+	php7.3-propro \
+	php7.3-ps \
+	php7.3-radius \
+	php7.3-raphf \
+	php7.3-redis \
+	php7.3-rrd \
+	php7.3-sass \
+	php7.3-smbclient \
+	php7.3-solr \
+	php7.3-ssh2 \
+	php7.3-stomp \
+	php7.3-uploadprogress \
+	php7.3-uuid \
+	php7.3-yaml \
+	php7.3-zmq \
 
+
+#	php7.3-mapi \
 
 #	php-gmagick \ provides more stable api but conflicts with imagick
 #	php-yac \ conflicts with php-apcu
@@ -99,7 +105,7 @@ apt-get install -y --no-install-recommends \
 
 #TODO: Fallback to debian package, when xdebug is updated from RC2: https://bugs.xdebug.org/bug_view_page.php?bug_id=00001642
 cd /tmp
-XDEBUG_DEB="php7.3-xdebug_*debian10*_amd64.deb"
+XDEBUG_DEB="php7.3-xdebug_*debian11*_amd64.deb"
 
 rsync "rsync://rsync.sury.org/repositories/php/pool/main/x/xdebug/$XDEBUG_DEB" .
 dpkg -i $XDEBUG_DEB

@@ -28,9 +28,6 @@ echo "
 "
 apt-get install -y --no-install-recommends openssh-client git git-flow git-lfs
 
-git lfs install --system --skip-smudge
-
-
 
 echo 'Setup nice PS1 to use with git...' \
 && wget -q "https://gist.githubusercontent.com/dariuskt/0e0b714a4cf6387d7178/raw/83065e2fead22bb1c2ddf809be05548411eabea7/git_bash_prompt.sh" -O /home/project/.git_bash_prompt.sh \
@@ -66,7 +63,7 @@ phpEnableModule zip
 phpEnableModule iconv
 phpEnableModule mbstring
 
-curl -sSL 'https://getcomposer.org/download/1.10.22/composer.phar' > /usr/local/bin/composer.phar
+curl -sSL 'https://getcomposer.org/download/1.10.24/composer.phar' > /usr/local/bin/composer.phar
 chmod a+x /usr/local/bin/composer.phar
 ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
 composer self-update --1

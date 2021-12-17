@@ -39,7 +39,7 @@ export REQUEST_URI=/
 
 if basename $0 | fgrep -q debug
 then
-    PHP_PARAMS="-d xdebug.remote_autostart=1"
+    PHP_PARAMS="-d xdebug.mode=debug -d xdebug.start_with_request=yes"
 fi
 if basename $0 | fgrep -q profile
 then
