@@ -11,10 +11,6 @@ digraph G {
     "nfqlt/debian-buster"->"nfqlt/apache2438-fastcgi";
     "nfqlt/apache24-fastcgi" [fillcolor=orange label="apache24-fastcgi"];
     "nfqlt/debian-jessie"->"nfqlt/apache24-fastcgi";
-    "nfqlt/apache24-php56" [fillcolor=orange label="apache24-php56"];
-    "nfqlt/php56-cli"->"nfqlt/apache24-php56";
-    "nfqlt/apache24-php70" [fillcolor=orange label="apache24-php70"];
-    "nfqlt/php70-cli"->"nfqlt/apache24-php70";
     "nfqlt/apache-fastcgi" [fillcolor=orange label="apache-fastcgi"];
     "nfqlt/debian-wheezy"->"nfqlt/apache-fastcgi";
     "nfqlt/aws-mock" [fillcolor=orange label="aws-mock"];
@@ -23,12 +19,8 @@ digraph G {
     "nfqlt/toolbox-buster"->"nfqlt/aws-tools";
     "nfqlt/birt45" [fillcolor=orange label="birt45"];
     "nfqlt/debian-stretch"->"nfqlt/birt45";
-    "nfqlt/birt48" [fillcolor=orange label="birt48"];
-    "nfqlt/debian-stretch"->"nfqlt/birt48";
     "nfqlt/certbot" [fillcolor=orange label="certbot"];
     "nfqlt/debian-buster"->"nfqlt/certbot";
-    "nfqlt/chef12" [fillcolor=orange label="chef12"];
-    "nfqlt/toolbox-ubuntu1804"->"nfqlt/chef12";
     "nfqlt/chromedriver73" [fillcolor=orange label="chromedriver73"];
     "nfqlt/debian-stretch"->"nfqlt/chromedriver73";
     "nfqlt/chromedriver83" [fillcolor=orange label="chromedriver83"];
@@ -115,12 +107,6 @@ digraph G {
     "nfqlt/debian-jessie"->"nfqlt/graylog20";
     "nfqlt/https-dev" [fillcolor=orange label="https-dev"];
     "nfqlt/nginx114"->"nfqlt/https-dev";
-    "nfqlt/java8-dev" [fillcolor=orange label="java8-dev"];
-    "nfqlt/debian-stretch"->"nfqlt/java8-dev";
-    "nfqlt/java8-jdk" [fillcolor=orange label="java8-jdk"];
-    "nfqlt/toolbox"->"nfqlt/java8-jdk";
-    "nfqlt/libreoffice" [fillcolor=orange label="libreoffice"];
-    "nfqlt/toolbox-buster"->"nfqlt/libreoffice";
     "nfqlt/lib-smartclient100" [fillcolor=orange label="lib-smartclient100"];
     "busybox"->"nfqlt/lib-smartclient100";
     "nfqlt/lib-smartclient111" [fillcolor=orange label="lib-smartclient111"];
@@ -169,8 +155,6 @@ digraph G {
     "nfqlt/debian-stretch"->"nfqlt/nginx110";
     "nfqlt/nginx114" [fillcolor=orange label="nginx114"];
     "nfqlt/debian-buster"->"nfqlt/nginx114";
-    "nfqlt/nginx12" [fillcolor=orange label="nginx12"];
-    "nfqlt/debian-wheezy"->"nfqlt/nginx12";
     "nfqlt/nginx16" [fillcolor=orange label="nginx16"];
     "nfqlt/debian-jessie"->"nfqlt/nginx16";
     "nfqlt/node10" [fillcolor=orange label="node10"];
@@ -193,8 +177,6 @@ digraph G {
     "nfqlt/debian-buster"->"nfqlt/nodeserver12";
     "nfqlt/nodeserver14" [fillcolor=orange label="nodeserver14"];
     "nfqlt/debian-buster"->"nfqlt/nodeserver14";
-    "nfqlt/nodeserver6" [fillcolor=orange label="nodeserver6"];
-    "nfqlt/debian-buster"->"nfqlt/nodeserver6";
     "nfqlt/nodeserver8" [fillcolor=orange label="nodeserver8"];
     "nfqlt/debian-buster"->"nfqlt/nodeserver8";
     "nfqlt/packager" [fillcolor=orange label="packager"];
@@ -209,10 +191,6 @@ digraph G {
     "nfqlt/debian-wheezy"->"nfqlt/php54-cli";
     "nfqlt/php54-dev" [fillcolor=orange label="php54-dev"];
     "nfqlt/php54-cli"->"nfqlt/php54-dev";
-    "nfqlt/php54-fpm" [fillcolor=orange label="php54-fpm"];
-    "nfqlt/php54-cli"->"nfqlt/php54-fpm";
-    "nfqlt/php54-supervisor" [fillcolor=orange label="php54-supervisor"];
-    "nfqlt/php54-cli"->"nfqlt/php54-supervisor";
     "nfqlt/php56-cli" [fillcolor=orange label="php56-cli"];
     "nfqlt/debian-jessie"->"nfqlt/php56-cli";
     "nfqlt/php56-cron" [fillcolor=orange label="php56-cron"];
@@ -325,8 +303,6 @@ digraph G {
     "nfqlt/debian-buster"->"nfqlt/router";
     "nfqlt/ruby2" [fillcolor=orange label="ruby2"];
     "nfqlt/toolbox-buster"->"nfqlt/ruby2";
-    "nfqlt/sentry-cli" [fillcolor=orange label="sentry-cli"];
-    "nfqlt/toolbox-buster"->"nfqlt/sentry-cli";
     "nfqlt/solr36" [fillcolor=orange label="solr36"];
     "nfqlt/debian-jessie"->"nfqlt/solr36";
     "nfqlt/sonarqube7" [fillcolor=orange label="sonarqube7"];
@@ -335,12 +311,6 @@ digraph G {
     "nfqlt/toolbox-buster"->"nfqlt/sonar-scanner-cli4";
     "nfqlt/sphinxsearch" [fillcolor=orange label="sphinxsearch"];
     "nfqlt/debian-jessie"->"nfqlt/sphinxsearch";
-    "nfqlt/td-agent31" [fillcolor=orange label="td-agent31"];
-    "nfqlt/debian-stretch"->"nfqlt/td-agent31";
-    "nfqlt/terraform013" [fillcolor=orange label="terraform013"];
-    "nfqlt/toolbox-buster"->"nfqlt/terraform013";
-    "nfqlt/terraform014" [fillcolor=orange label="terraform014"];
-    "nfqlt/toolbox-buster"->"nfqlt/terraform014";
     "nfqlt/thrift0110" [fillcolor=orange label="thrift0110"];
     "nfqlt/toolbox-buster"->"nfqlt/thrift0110";
     "nfqlt/thrift091" [fillcolor=orange label="thrift091"];
@@ -357,10 +327,6 @@ digraph G {
     "nfqlt/ubuntu-1804"->"nfqlt/toolbox-ubuntu1804";
     "nfqlt/ubuntu-1804" [fillcolor=orange label="ubuntu-1804"];
     "ubuntu"->"nfqlt/ubuntu-1804";
-    "nfqlt/varnish30" [fillcolor=orange label="varnish30"];
-    "nfqlt/debian-wheezy"->"nfqlt/varnish30";
-    "nfqlt/varnish40" [fillcolor=orange label="varnish40"];
-    "nfqlt/debian-jessie"->"nfqlt/varnish40";
     "nfqlt/varnish50" [fillcolor=orange label="varnish50"];
     "nfqlt/debian-stretch"->"nfqlt/varnish50";
     "nfqlt/varnish61" [fillcolor=orange label="varnish61"];
