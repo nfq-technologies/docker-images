@@ -22,9 +22,7 @@ apt-get install -y --no-install-recommends \
 	x11-apps \
 	xvfb \
 	xauth \
-	python-pip \
-	python-wheel \
-	python-setuptools \
+	python3-pip \
 	make \
 
 
@@ -38,7 +36,7 @@ sudo -HEu project code --force --install-extension ikappas.composer
 
 
 
-sudo -HEu project xvfb-run code --verbose 2>&1 | tee /tmp/vscode &
+sudo -HEu project xvfb-run code --no-sandbox --verbose 2>&1 | tee /tmp/vscode &
 
 timeout=60
 while [ $timeout -gt 0 ]

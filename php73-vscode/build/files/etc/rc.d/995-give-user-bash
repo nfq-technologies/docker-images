@@ -39,6 +39,7 @@ then
 fi
 
 sudo -HEu project code \
+	--no-sandbox \
 	--disable-gpu \
 	--disable-extension vscode.php-language-features \
 	--folder-uri "file://${NFQ_PROJECT_ROOT}" \
