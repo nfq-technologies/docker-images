@@ -1,4 +1,8 @@
 {
-	"extensions.ignoreRecommendations": true
+	"extensions.ignoreRecommendations": true,
+	"security.workspace.trust.enabled": false,
+	"security.workspace.trust.untrustedFiles": "open",
+	"security.workspace.trust.startupPrompt": "never",
+	"php.debug.ideKey": "PHPSTORM"
 }
 
