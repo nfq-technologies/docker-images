@@ -22,7 +22,7 @@ DISPLAY=$(echo "$DISPLAY" | sed 's/^[^:]*\(.*\)/127.0.0.1\1/')
 echo -n "~~ Checking $DISPLAY ... "; are_we_there_yet
 
 # for network_mode bridge
-DISPLAY=$(echo "$DISPLAY" | sed 's/^[^:]*\(.*\)/172.17.0.1\1/')
+DISPLAY=$(echo "$DISPLAY" | sed 's/^[^:]*\(.*\)/198.18.0.1\1/')
 echo -n "~~ Checking $DISPLAY ... "; are_we_there_yet
 
 # for mounted /tmp/.X11/
