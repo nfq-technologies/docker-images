@@ -41,6 +41,7 @@ example:
 * gearman
 * gettext
 * gmp
+* http
 * iconv
 * igbinary
 * imagick
