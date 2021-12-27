@@ -30,6 +30,7 @@ apt-get install -y --no-install-recommends \
 	php8.0-enchant \
 	php8.0-gd \
 	php8.0-gmp \
+	php8.0-http \
 	php8.0-imagick libmagickcore-6.q16-6-extra \
 	php8.0-imap \
 	php8.0-interbase \
