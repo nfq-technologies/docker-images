@@ -11,7 +11,7 @@ apt-get update
 
 # vscode
 
-wget -qO /tmp/vscode.deb 'https://go.microsoft.com/fwlink/?LinkID=760868'
+wget -qO /tmp/vscode.deb 'https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64'
 dpkg -i /tmp/vscode.deb || true
 apt-get install -y --no-install-recommends --fix-broken
 
