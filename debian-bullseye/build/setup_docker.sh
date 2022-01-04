@@ -53,6 +53,7 @@ apt-get install -y --no-install-recommends \
 	gnupg \
 	dirmngr \
 	socat \
+	iproute2 \
 
 
 # install acl to support advanced file permissions

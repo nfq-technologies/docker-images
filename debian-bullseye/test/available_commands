@@ -26,6 +26,7 @@ check_command 'wget' --version
 check_command 'whiptail' --version
 check_command 'ps' --version
 #check_command 'netstat' --version
+check_command 'ss' --version
 
 check_command 'vim' --version
 check_command 'nethogs' -V
