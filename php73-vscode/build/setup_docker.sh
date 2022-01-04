@@ -11,7 +11,7 @@ apt-get update
 
 # vscode
 
-wget -O /tmp/vscode.deb 'https://go.microsoft.com/fwlink/?LinkID=760868'
+wget -qO /tmp/vscode.deb 'https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64'
 dpkg -i /tmp/vscode.deb || true
 apt-get install -y --no-install-recommends --fix-broken
 
@@ -22,9 +22,7 @@ apt-get install -y --no-install-recommends \
 	x11-apps \
 	xvfb \
 	xauth \
-	python-pip \
-	python-wheel \
-	python-setuptools \
+	python3-pip \
 	make \
 
 
@@ -35,10 +33,11 @@ sudo -HEu project code --force --install-extension bmewburn.vscode-intelephense-
 sudo -HEu project code --force --install-extension k--kato.intellij-idea-keybindings
 sudo -HEu project code --force --install-extension nadim-vscode.symfony-code-snippets
 sudo -HEu project code --force --install-extension ikappas.composer
+sudo -HEu project code --force --install-extension felixfbecker.php-debug
 
 
 
-sudo -HEu project xvfb-run code --verbose 2>&1 | tee /tmp/vscode &
+sudo -HEu project xvfb-run code --no-sandbox --verbose 2>&1 | tee /tmp/vscode &
 
 timeout=60
 while [ $timeout -gt 0 ]
@@ -51,6 +50,7 @@ do
 		((timeout--))
 	fi
 done
+sleep 1
 killall code || true
 
 
