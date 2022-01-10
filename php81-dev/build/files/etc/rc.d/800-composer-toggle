@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+if [ "x${COMPOSER_VERSION}" != "x2" ]
+then 
+	ln -s /usr/local/bin/composer_v1.phar /usr/local/bin/composer
+fi
+
