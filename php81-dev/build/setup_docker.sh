@@ -72,7 +72,6 @@ chmod a+x /usr/local/bin/composer*.phar
 ln -sf /usr/local/bin/composer_v1.phar /usr/local/bin/composer
 
 # installl hiroku/prestissimo
-composer self-update --1
 sudo -u project composer --no-interaction global require "hirak/prestissimo:^0.3"
 
 
