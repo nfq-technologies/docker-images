@@ -18,4 +18,6 @@ check_command ssh -V
 check_command mysql --version
 
 check_command composer --version
+check_command /usr/local/bin/composer_v1.phar --version
+check_command "phpenmod mbstring iconv; /usr/local/bin/composer_v2.phar --version"
 

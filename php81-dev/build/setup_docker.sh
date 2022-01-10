@@ -66,7 +66,7 @@ phpEnableModule iconv
 phpEnableModule mbstring
 phpEnableModule curl
 
-curl -sSL 'https://getcomposer.org/download/1.10.24/composer.phar' > /usr/local/bin/composer_v1.phar
+curl -sSL 'https://getcomposer.org/download/latest-1.x/composer.phar' > /usr/local/bin/composer_v1.phar
 curl -sSL 'https://getcomposer.org/download/latest-2.2.x/composer.phar' > /usr/local/bin/composer_v2.phar
 chmod a+x /usr/local/bin/composer*.phar
 ln -sf /usr/local/bin/composer_v1.phar /usr/local/bin/composer
@@ -75,13 +75,11 @@ ln -sf /usr/local/bin/composer_v1.phar /usr/local/bin/composer
 composer self-update --1
 sudo -u project composer --no-interaction global require "hirak/prestissimo:^0.3"
 
-# Composer v2 setup, leave old as legacy
-ln -sf /usr/local/bin/composer_v2.phar /usr/local/bin/composer
-composer self-update --2
-
 
 # disable enabled modules
 phpDisableModule zip
+phpDisableModule iconv
+phpDisableModule mbstring
 
 
 cp -frv /build/files/* / || true

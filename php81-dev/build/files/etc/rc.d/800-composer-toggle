@@ -1,7 +1,12 @@
 #!/bin/sh -e
 
-if [ "x${COMPOSER_VERSION}" != "x2" ]
-then 
+case "$COMPOSER_VERSION" in
+"1")
+	# enable modules for v1
 	ln -s /usr/local/bin/composer_v1.phar /usr/local/bin/composer
-fi
-
+	phpdismod iconv mbstring
+	;;
+"2")
+	ln -s /usr/local/bin/composer_v2.phar /usr/local/bin/composer
+	;;
+esac
