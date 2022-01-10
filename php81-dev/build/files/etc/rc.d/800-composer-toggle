@@ -3,10 +3,11 @@
 case "$COMPOSER_VERSION" in
 "1")
 	# enable modules for v1
-	ln -s /usr/local/bin/composer_v1.phar /usr/local/bin/composer
 	phpdismod iconv mbstring
+	ln -s /usr/local/bin/composer_v1.phar /usr/local/bin/composer
 	;;
 "2")
+	phpenmod iconv mbstring
 	ln -s /usr/local/bin/composer_v2.phar /usr/local/bin/composer
 	;;
 esac

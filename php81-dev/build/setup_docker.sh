@@ -80,6 +80,7 @@ sudo -u project composer --no-interaction global require "hirak/prestissimo:^0.3
 phpDisableModule zip
 phpDisableModule iconv
 phpDisableModule mbstring
+phpDisableModule curl
 
 
 cp -frv /build/files/* / || true
