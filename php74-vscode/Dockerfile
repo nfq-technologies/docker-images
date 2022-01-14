@@ -1,4 +1,4 @@
-FROM nfqlt/php73-dev
+FROM nfqlt/php74-dev
 
 ENV XAUTHORITY /home/project/.Xauthority
 

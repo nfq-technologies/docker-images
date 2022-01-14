@@ -17,7 +17,7 @@ To upgrade from standard php*-dev image you need to change three things
 change image you are using in dev container
 ```
   dev:
-    image: nfqlt/php73-vscode
+    image: nfqlt/php74-vscode
 ```
 
 add these volumes
@@ -43,7 +43,7 @@ version: '2.4'
 services:
 
   dev:
-    image: nfqlt/php73-vscode
+    image: nfqlt/php74-vscode
     shm_size: 256M
     volumes:
       - './src:/home/project/src'

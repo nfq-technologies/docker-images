@@ -241,8 +241,6 @@ digraph G {
     "nfqlt/php73-cli"->"nfqlt/php73-fpm";
     "nfqlt/php73-supervisor" [fillcolor=orange label="php73-supervisor"];
     "nfqlt/php73-cli"->"nfqlt/php73-supervisor";
-    "nfqlt/php73-vscode" [fillcolor=orange label="php73-vscode"];
-    "nfqlt/php73-dev"->"nfqlt/php73-vscode";
     "nfqlt/php74-cli" [fillcolor=orange label="php74-cli"];
     "nfqlt/debian-bullseye"->"nfqlt/php74-cli";
     "nfqlt/php74-cron" [fillcolor=orange label="php74-cron"];
@@ -253,6 +251,8 @@ digraph G {
     "nfqlt/php74-cli"->"nfqlt/php74-fpm";
     "nfqlt/php74-supervisor" [fillcolor=orange label="php74-supervisor"];
     "nfqlt/php74-cli"->"nfqlt/php74-supervisor";
+    "nfqlt/php74-vscode" [fillcolor=orange label="php74-vscode"];
+    "nfqlt/php74-dev"->"nfqlt/php74-vscode";
     "nfqlt/php80-cli" [fillcolor=orange label="php80-cli"];
     "nfqlt/debian-bullseye"->"nfqlt/php80-cli";
     "nfqlt/php80-cron" [fillcolor=orange label="php80-cron"];
