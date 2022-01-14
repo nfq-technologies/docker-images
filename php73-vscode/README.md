@@ -44,6 +44,7 @@ services:
 
   dev:
     image: nfqlt/php73-vscode
+    shm_size: 256M
     volumes:
       - './src:/home/project/src'
       - '/home/project/.ssh:/home/project/.ssh'
