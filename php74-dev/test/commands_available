@@ -19,4 +19,4 @@ check_command mysql --version
 
 check_command phpunit --version
 check_command composer --version
-
+check_command "phpenmod mbstring iconv; /usr/local/bin/composer_v2.phar --version"
