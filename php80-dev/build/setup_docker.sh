@@ -73,8 +73,15 @@ chmod a+x /usr/local/bin/composer*.phar
 ln -sf /usr/local/bin/composer_v1.phar /usr/local/bin/composer
 
 
-# installl hiroku/prestissimo
+# install hiroku/prestissimo
 sudo -u project composer --no-interaction global require "hirak/prestissimo:^0.3"
+
+# Add allow plugin to disable prompt for composer v2
+ln -sf /usr/local/bin/composer_v2.phar /usr/local/bin/composer
+
+sudo -u project composer config -g allow-plugins.hirak/prestissimo true
+ln -sf /usr/local/bin/composer_v1.phar /usr/local/bin/composer
+
 
 # disable enabled modules
 phpDisableModule json
