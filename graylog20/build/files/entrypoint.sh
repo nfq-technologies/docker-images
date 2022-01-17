@@ -17,5 +17,6 @@ then
 	sed -ri.orig 's~^rest_transport_uri.*$~rest_transport_uri = http://'$NFQ_GRAYLOG_API_HOST':12900/~' /etc/graylog/server/server.conf
 fi
 
+export GRAYLOG_SERVER_JAVA_OPTS="-Dlog4j2.formatMsgNoLookups=true"
 exec /usr/share/graylog-server/bin/graylog-server
 
