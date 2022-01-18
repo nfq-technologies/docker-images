@@ -305,8 +305,6 @@ digraph G {
     "nfqlt/toolbox-buster"->"nfqlt/ruby2";
     "nfqlt/solr36" [fillcolor=orange label="solr36"];
     "nfqlt/debian-jessie"->"nfqlt/solr36";
-    "nfqlt/sonarqube7" [fillcolor=orange label="sonarqube7"];
-    "nfqlt/debian-buster"->"nfqlt/sonarqube7";
     "nfqlt/sonar-scanner-cli4" [fillcolor=orange label="sonar-scanner-cli4"];
     "nfqlt/toolbox-buster"->"nfqlt/sonar-scanner-cli4";
     "nfqlt/sphinxsearch" [fillcolor=orange label="sphinxsearch"];
