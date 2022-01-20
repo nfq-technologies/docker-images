@@ -3,8 +3,9 @@
 set -e
 set -x
 
-run-parts -v /etc/rc.d
+/entrypoint-cli.sh
 
+run-parts -v /etc/rc.d
 
 # setup logging to stderror
 LOG=/dev/shm/fpm-log

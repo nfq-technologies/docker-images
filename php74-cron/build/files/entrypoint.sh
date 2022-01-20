@@ -6,6 +6,9 @@ source /tools/functions_init.sh
 # abandon all children, init proccess will take care of them on exit
 trap 'exec true' EXIT
 
+
+/entrypoint-cli.sh
+
 run-parts -v /etc/rc.d
 
 

@@ -3,6 +3,8 @@
 set -e
 set -x
 
+/entrypoint-cli.sh
+
 run-parts -v /etc/rc.d
 
 
