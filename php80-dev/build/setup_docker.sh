@@ -60,7 +60,6 @@ apt-get install -y --no-install-recommends mariadb-client
 
 
 # install composer
-phpEnableModule json
 phpEnableModule phar
 phpEnableModule zip
 phpEnableModule iconv
@@ -84,16 +83,12 @@ ln -sf /usr/local/bin/composer_v1.phar /usr/local/bin/composer
 
 
 # disable enabled modules
-phpDisableModule json
 phpDisableModule phar
 phpDisableModule zip
 phpDisableModule iconv
 phpDisableModule mbstring
 phpDisableModule curl
 
-
-# install phpunit
-apt-get install -y --no-install-recommends phpunit
 phpEnableModule phar
 
 

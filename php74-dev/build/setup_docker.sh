@@ -89,9 +89,6 @@ phpDisableModule iconv
 phpDisableModule mbstring
 phpDisableModule curl
 
-
-# install phpunit
-apt-get install -y --no-install-recommends phpunit
 phpEnableModule phar
 
 
