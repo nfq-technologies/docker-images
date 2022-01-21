@@ -83,13 +83,10 @@ ln -sf /usr/local/bin/composer_v1.phar /usr/local/bin/composer
 
 
 # disable enabled modules
-phpDisableModule phar
 phpDisableModule zip
 phpDisableModule iconv
 phpDisableModule mbstring
 phpDisableModule curl
-
-phpEnableModule phar
 
 
 cp -frv /build/files/* / || true
