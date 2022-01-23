@@ -47,6 +47,8 @@ digraph G {
     "debian"->"nfqlt/debian-stretch";
     "nfqlt/debian-wheezy" [fillcolor=orange label="debian-wheezy"];
     "debian"->"nfqlt/debian-wheezy";
+    "nfqlt/dev-bullseye" [fillcolor=orange label="dev-bullseye"];
+    "nfqlt/debian-bullseye"->"nfqlt/dev-bullseye";
     "nfqlt/docker18ce" [fillcolor=orange label="docker18ce"];
     "nfqlt/debian-buster"->"nfqlt/docker18ce";
     "nfqlt/elasticsearch17-data" [fillcolor=orange label="elasticsearch17-data"];
