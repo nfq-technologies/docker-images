@@ -21,6 +21,18 @@ then
 		cd ${NFQ_PROJECT_ROOT}
 		sudo -u project git clone ${NFQ_PROJECT_GIT_REPO} .
 		init-git-flow "${NFQ_PROJECT_GIT_BRANCH}"
+
+		# convert push url to ssh for github repos (as github killed pushing via https using user/pass)
+		if grep -Eq 'http.?://github.com/' .git/config ; then
+			echo "++ converting github url to use ssh instead of https for push"
+			ssh_url="$(git remote -v 2>&1 \
+				   | grep '^origin.*(push)$' \
+				   | awk '{print $2}' \
+				   | sed 's~^https*://github.com/~git@github.com:~' \
+			)"
+			git remote set-url --push origin "$ssh_url"
+		fi
+
 	else
 		echo "-- NFQ_PROJECT_ROOT is not empty. No need to clone."
 	fi
