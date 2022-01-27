@@ -33,7 +33,7 @@ sudo -HEu project code --force --install-extension bmewburn.vscode-intelephense-
 sudo -HEu project code --force --install-extension k--kato.intellij-idea-keybindings
 sudo -HEu project code --force --install-extension nadim-vscode.symfony-code-snippets
 sudo -HEu project code --force --install-extension ikappas.composer
-sudo -HEu project code --force --install-extension felixfbecker.php-debug
+sudo -HEu project code --force --install-extension xdebug.php-debug
 
 
 
