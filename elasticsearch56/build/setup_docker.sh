@@ -8,7 +8,7 @@ apt-get update
 apt-get install -y --no-install-recommends ca-certificates-java
 
 
-ES_PKG_NAME=elasticsearch-5.6.3
+ES_PKG_NAME=elasticsearch-5.6.16
 cd /tmp/
 wget -nv -t5 -O es.tar.gz https://artifacts.elastic.co/downloads/elasticsearch/$ES_PKG_NAME.tar.gz
 tar xzf es.tar.gz
