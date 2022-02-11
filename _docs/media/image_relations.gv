@@ -34,7 +34,7 @@ digraph G {
     "nfqlt/cypress9" [fillcolor=orange label="cypress9"];
     "nfqlt/node16"->"nfqlt/cypress9";
     "nfqlt/db-tools" [fillcolor=orange label="db-tools"];
-    "nfqlt/toolbox-buster"->"nfqlt/db-tools";
+    "nfqlt/toolbox-bullseye"->"nfqlt/db-tools";
     "nfqlt/deb-dev" [fillcolor=orange label="deb-dev"];
     "nfqlt/php70-dev"->"nfqlt/deb-dev";
     "nfqlt/debian-bullseye" [fillcolor=orange label="debian-bullseye"];
@@ -151,6 +151,8 @@ digraph G {
     "nfqlt/debian-stretch"->"nfqlt/nginx110";
     "nfqlt/nginx114" [fillcolor=orange label="nginx114"];
     "nfqlt/debian-buster"->"nfqlt/nginx114";
+    "nfqlt/nginx118" [fillcolor=orange label="nginx118"];
+    "nfqlt/debian-bullseye"->"nfqlt/nginx118";
     "nfqlt/nginx16" [fillcolor=orange label="nginx16"];
     "nfqlt/debian-jessie"->"nfqlt/nginx16";
     "nfqlt/node10" [fillcolor=orange label="node10"];
