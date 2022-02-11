@@ -34,7 +34,7 @@ digraph G {
     "nfqlt/cypress9" [fillcolor=orange label="cypress9"];
     "nfqlt/node16"->"nfqlt/cypress9";
     "nfqlt/db-tools" [fillcolor=orange label="db-tools"];
-    "nfqlt/toolbox-buster"->"nfqlt/db-tools";
+    "nfqlt/toolbox-bullseye"->"nfqlt/db-tools";
     "nfqlt/deb-dev" [fillcolor=orange label="deb-dev"];
     "nfqlt/php70-dev"->"nfqlt/deb-dev";
     "nfqlt/debian-bullseye" [fillcolor=orange label="debian-bullseye"];
