@@ -15,6 +15,9 @@ apt-get install --no-install-recommends -y sqlite3
 # Install psql client
 apt-get install --no-install-recommends -y postgresql-client
 
+# Install mysql-client
+apt-get install --no-install-recommends -y mariadb-client
+
 # Copy runtime files
 cp -frv /build/files/* / || true
 

@@ -8,6 +8,7 @@ This image has pre-installed debian packages for db's management
 
  - sqlite3
  - mdbtools (MS Access)
+ - mysql-client (mariadb-client)
 
 ### Configuration
 Available binary paths for export:
@@ -24,6 +25,7 @@ Available binary paths for export:
 - /usr/bin/mdb-sql
 - /usr/bin/mdb-tables
 - /usr/bin/mdb-ver
+- /usr/bin/mysql
 
 ### Sample configuration
 ```
@@ -49,5 +51,6 @@ services:
       NFQ_REMOTE_TOOL_DBTOOLS: >
         /usr/bin/sqlite3
         /usr/bin/mdb-sql
+        /usr/bin/mysql
 ```
 

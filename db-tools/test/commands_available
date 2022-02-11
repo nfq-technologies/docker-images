@@ -18,4 +18,4 @@ function check_executable {
 check_command sqlite3 --version
 check_command psql --version
 check_executable mdb-sql
-
+check_command mysql --version
