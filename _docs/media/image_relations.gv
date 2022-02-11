@@ -47,6 +47,8 @@ digraph G {
     "debian"->"nfqlt/debian-stretch";
     "nfqlt/debian-wheezy" [fillcolor=orange label="debian-wheezy"];
     "debian"->"nfqlt/debian-wheezy";
+    "nfqlt/dev" [fillcolor=orange label="dev"];
+    "nfqlt/debian-bullseye"->"nfqlt/dev";
     "nfqlt/docker18ce" [fillcolor=orange label="docker18ce"];
     "nfqlt/debian-buster"->"nfqlt/docker18ce";
     "nfqlt/elasticsearch17-data" [fillcolor=orange label="elasticsearch17-data"];
@@ -151,6 +153,8 @@ digraph G {
     "nfqlt/debian-stretch"->"nfqlt/nginx110";
     "nfqlt/nginx114" [fillcolor=orange label="nginx114"];
     "nfqlt/debian-buster"->"nfqlt/nginx114";
+    "nfqlt/nginx118" [fillcolor=orange label="nginx118"];
+    "nfqlt/debian-bullseye"->"nfqlt/nginx118";
     "nfqlt/nginx16" [fillcolor=orange label="nginx16"];
     "nfqlt/debian-jessie"->"nfqlt/nginx16";
     "nfqlt/node10" [fillcolor=orange label="node10"];
