@@ -43,6 +43,7 @@ example:
 * geoip
 * gettext
 * gmp
+* gv
 * iconv
 * igbinary
 * imagick
