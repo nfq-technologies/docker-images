@@ -11,7 +11,7 @@ if ( ! extension_loaded('gv') ) {
         $cmd="docker run -it --rm \
                 -v /home/project/images/nfqlt:/home/project/images/nfqlt:ro \
                 -v /home/project/images/nfqlt/_docs:/home/project/images/nfqlt/_docs:rw \
-                nfqlt/php73-cli \
+                nfqlt/php74-cli \
                 bash -c '\
                     phpenmod gv ;\
                     /home/project/images/nfqlt/_tools/graph-gen.php' ;\
