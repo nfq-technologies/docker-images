@@ -9,6 +9,8 @@ digraph G {
     "nfqlt/php54-cli"->"nfqlt/apache22-php54";
     "nfqlt/apache2438-fastcgi" [fillcolor=orange label="apache2438-fastcgi"];
     "nfqlt/debian-buster"->"nfqlt/apache2438-fastcgi";
+    "nfqlt/apache2452-fastcgi" [fillcolor=orange label="apache2452-fastcgi"];
+    "nfqlt/debian-bullseye"->"nfqlt/apache2452-fastcgi";
     "nfqlt/apache24-fastcgi" [fillcolor=orange label="apache24-fastcgi"];
     "nfqlt/debian-jessie"->"nfqlt/apache24-fastcgi";
     "nfqlt/apache-fastcgi" [fillcolor=orange label="apache-fastcgi"];
