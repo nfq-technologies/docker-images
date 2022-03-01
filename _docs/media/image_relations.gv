@@ -137,6 +137,10 @@ digraph G {
     "nfqlt/mongo32"->"nfqlt/mongo32-data";
     "nfqlt/mongo32" [fillcolor=orange label="mongo32"];
     "nfqlt/debian-stretch"->"nfqlt/mongo32";
+    "nfqlt/mongo50-data" [fillcolor=orange label="mongo50-data"];
+    "nfqlt/mongo50"->"nfqlt/mongo50-data";
+    "nfqlt/mongo50" [fillcolor=orange label="mongo50"];
+    "nfqlt/debian-bullseye"->"nfqlt/mongo50";
     "nfqlt/mysql55-data" [fillcolor=orange label="mysql55-data"];
     "nfqlt/mysql55"->"nfqlt/mysql55-data";
     "nfqlt/mysql55" [fillcolor=orange label="mysql55"];
