@@ -7,7 +7,6 @@ set -e
 apt-get update
 apt-get install -y --no-install-recommends rlwrap
 
-
 # Manually download and install node deb
 file="$(wget -qO - https://deb.nodesource.com/node_8.x/pool/main/n/nodejs/ \
         | sed 's/href="\([^"]*\)">/\n\1\n/g' \
@@ -24,6 +23,9 @@ rm nodejs.deb
 
 # install nodemon
 npm install -g nodemon
+
+# install yarn
+npm install -g yarn
 
 # Copy build files
 cp -frv /build/files/* / || true
