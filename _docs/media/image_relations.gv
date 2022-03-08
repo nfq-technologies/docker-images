@@ -166,11 +166,11 @@ digraph G {
     "nfqlt/nginx16" [fillcolor=orange label="nginx16"];
     "nfqlt/debian-jessie"->"nfqlt/nginx16";
     "nfqlt/node10" [fillcolor=orange label="node10"];
-    "nfqlt/toolbox-buster"->"nfqlt/node10";
+    "nfqlt/toolbox-bullseye"->"nfqlt/node10";
     "nfqlt/node12" [fillcolor=orange label="node12"];
-    "nfqlt/toolbox-buster"->"nfqlt/node12";
+    "nfqlt/toolbox-bullseye"->"nfqlt/node12";
     "nfqlt/node14" [fillcolor=orange label="node14"];
-    "nfqlt/toolbox-buster"->"nfqlt/node14";
+    "nfqlt/toolbox-bullseye"->"nfqlt/node14";
     "nfqlt/node16" [fillcolor=orange label="node16"];
     "nfqlt/toolbox-bullseye"->"nfqlt/node16";
     "nfqlt/node4" [fillcolor=orange label="node4"];
