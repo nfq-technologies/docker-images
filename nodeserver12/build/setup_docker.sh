@@ -3,17 +3,12 @@
 set -x
 set -e
 
-# Install nodejs dependencies
-apt-get update
-apt-get install -y --no-install-recommends rlwrap python-minimal
-
-
 # Manually download and install node deb
 file="$(wget -qO - https://deb.nodesource.com/node_12.x/pool/main/n/nodejs/ \
-        | sed 's/href="\([^"]*\)">/\n\1\n/g' \
-        | grep -i '^nodejs_[0-9\.\-]*nodesource._amd64\.deb$' \
-        | sort --version-sort \
-        | tail -n1)"
+	| sed 's/href="\([^"]*\)">/\n\1\n/g' \
+	| grep -i '^nodejs_[0-9\.\-]*deb-1nodesource._amd64\.deb$' \
+	| sort --version-sort \
+	| tail -n1)"
 
 wget -qO nodejs.deb https://deb.nodesource.com/node_12.x/pool/main/n/nodejs/$file
 dpkg -i nodejs.deb
@@ -21,6 +16,9 @@ rm nodejs.deb
 
 # install nodemon
 npm install -g nodemon
+
+# install yarn
+npm install -g yarn
 
 # Copy build files
 cp -frv /build/files/* / || true

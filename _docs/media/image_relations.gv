@@ -180,11 +180,11 @@ digraph G {
     "nfqlt/node8" [fillcolor=orange label="node8"];
     "nfqlt/toolbox-buster"->"nfqlt/node8";
     "nfqlt/nodeserver10" [fillcolor=orange label="nodeserver10"];
-    "nfqlt/debian-buster"->"nfqlt/nodeserver10";
+    "nfqlt/debian-bullseye"->"nfqlt/nodeserver10";
     "nfqlt/nodeserver12" [fillcolor=orange label="nodeserver12"];
-    "nfqlt/debian-buster"->"nfqlt/nodeserver12";
+    "nfqlt/debian-bullseye"->"nfqlt/nodeserver12";
     "nfqlt/nodeserver14" [fillcolor=orange label="nodeserver14"];
-    "nfqlt/debian-buster"->"nfqlt/nodeserver14";
+    "nfqlt/debian-bullseye"->"nfqlt/nodeserver14";
     "nfqlt/nodeserver8" [fillcolor=orange label="nodeserver8"];
     "nfqlt/debian-buster"->"nfqlt/nodeserver8";
     "nfqlt/packager" [fillcolor=orange label="packager"];
