@@ -1,4 +1,4 @@
-FROM nfqlt/debian-buster
+FROM nfqlt/debian-bullseye
 
 ENV NFQ_DOCUMENT_ROOT /var/www
 ENV NFQ_NPM_RUN serve
