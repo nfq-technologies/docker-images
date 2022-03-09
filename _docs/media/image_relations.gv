@@ -185,6 +185,8 @@ digraph G {
     "nfqlt/debian-bullseye"->"nfqlt/nodeserver12";
     "nfqlt/nodeserver14" [fillcolor=orange label="nodeserver14"];
     "nfqlt/debian-bullseye"->"nfqlt/nodeserver14";
+    "nfqlt/nodeserver16" [fillcolor=orange label="nodeserver16"];
+    "nfqlt/debian-bullseye"->"nfqlt/nodeserver16";
     "nfqlt/nodeserver8" [fillcolor=orange label="nodeserver8"];
     "nfqlt/debian-buster"->"nfqlt/nodeserver8";
     "nfqlt/packager" [fillcolor=orange label="packager"];
