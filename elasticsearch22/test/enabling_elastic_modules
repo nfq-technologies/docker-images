@@ -21,6 +21,6 @@ $CMD | grep -i 'Enabling plugin.*analysis-icu' &> /dev/null \
 # test enabling kopf module
 export NFQ_ENABLE_ELASTIC_MODULES='kopf'
 $CMD | grep -i 'Enabling plugin.*kopf' &> /dev/null \
-|| (echo "Container did not reported enabling analysis-icu elastic module" && exit -1)
+|| (echo "Container did not reported enabling kopf elastic module" && exit -1)
 
 
