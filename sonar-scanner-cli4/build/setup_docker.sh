@@ -8,13 +8,9 @@ apt-get update
 apt-get install -y --no-install-recommends openjdk-11-jre-headless
 
 # Manually download and install
-file="$(wget -qO - https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/ \
-	| sed 's/href="\([^"]*\)">/\n\1\n/g' \
-	| grep -i '^sonar.scanner.cli[-]4[.][0-9\.\-]*-linux\.zip$' \
-	| sort --version-sort \
-	| tail -n1)"
-
-wget -qO sonar.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/$file
+# To find the latest version, open in your browser:
+# https://binaries.sonarsource.com/?prefix=Distribution/sonar-scanner-cli/
+wget -qO sonar.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.7.0.2747.zip
 
 unzip sonar.zip -d /usr/local/lib
 ln -s /usr/local/lib/sonar-scanner-*/bin/sonar-scanner /usr/local/bin/sonar-scanner
