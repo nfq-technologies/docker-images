@@ -9,6 +9,7 @@ This image has pre-installed debian packages for db's management
  - sqlite3
  - mdbtools (MS Access)
  - mysql-client (mariadb-client)
+ - mongosh (mongodb shell)
 
 ### Configuration
 Available binary paths for export:
@@ -26,6 +27,7 @@ Available binary paths for export:
 - /usr/bin/mdb-tables
 - /usr/bin/mdb-ver
 - /usr/bin/mysql
+- /usr/bin/mongosh
 
 ### Sample configuration
 ```
@@ -52,5 +54,6 @@ services:
         /usr/bin/sqlite3
         /usr/bin/mdb-sql
         /usr/bin/mysql
+        /usr/bin/mongosh
 ```
 
