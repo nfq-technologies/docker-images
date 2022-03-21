@@ -6,7 +6,7 @@ set -e
 trap 'kill -s SIGTERM $PHP_PID; kill -s SIGTERM $MONGO_PID; exit 0' SIGTERM
 
 # Start mongo
-/usr/bin/mongod --smallfiles --quota --quotaFiles 1 --nojournal --config /etc/mongodb.conf &
+/usr/bin/mongod --nojournal --config /etc/mongod.conf &
 MONGO_PID=$!
 
 # Wait for mongo port available
