@@ -352,5 +352,5 @@ digraph G {
     "nfqlt/wkhtmltopdf" [fillcolor=orange label="wkhtmltopdf"];
     "nfqlt/toolbox"->"nfqlt/wkhtmltopdf";
     "nfqlt/xhgui" [fillcolor=orange label="xhgui"];
-    "nfqlt/php72-dev"->"nfqlt/xhgui";
+    "nfqlt/php81-dev"->"nfqlt/xhgui";
 }
