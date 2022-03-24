@@ -1,0 +1,55 @@
+#!/bin/bash
+set -e
+
+timeout_ms=$(basename $0 | sed 's/[^0-9]//g')
+timeout_hard=$((($timeout_ms/1000)+3))
+name=test_box_$(date +%s%N)
+cwd=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+
+if [[ -r "${cwd}/../../_tools/helpers/common.sh" ]]; then
+	source "${cwd}/../../_tools/helpers/common.sh"
+else
+	if [[ -r "${cwd}/../../../nfqlt/_tools/helpers/common.sh" ]]; then
+		source "${cwd}/../../../nfqlt/_tools/helpers/common.sh"
+	else
+		source "${cwd}/../../../../../nfqlt/_tools/helpers/common.sh"
+	fi
+fi
+
+# destroy containers and remove trash
+cleanup() {
+	set +e
+	docker stop -t $timeout_hard $name >/dev/null
+	docker rm -v $name >/dev/null
+	set -e
+}
+trap cleanup EXIT
+
+
+## get startup time from starting test if possible
+start_wait_ms=$(echo $(dirname $0)/starting_in_* | sed 's/^.*_\([0-9]*\)_ms.*$/\1/g')
+if echo "$start_wait_ms" | grep -q ^[0-9]*$
+then
+	start_wait_s=$(( (($start_wait_ms-1)/1000)+1 ))
+else
+	start_wait_s=1
+fi
+
+docker run -d --name $name $1 >/dev/null
+sleep $start_wait_s
+
+t1=$(date +%s%N)
+docker stop -t $timeout_hard $name >/dev/null
+t2=$(date +%s%N)
+
+stop_time_ms=$((($t2-$t1)/1000/1000))
+if [ $stop_time_ms -gt $timeout_ms ]
+then
+	echo "ERROR: container stoped in $stop_time_ms, timeout was $timeout_ms ms (result: $stop_time_ms ms; hard timeout $timeout_hard s, start wait $start_wait_s s)."
+	exit 1
+fi
+
+echo "INFO: container stopped in $stop_time_ms ms."
+
+exit 0
