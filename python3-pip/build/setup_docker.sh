@@ -5,6 +5,7 @@ set -e
 
 #install python3-pip
 apt-get update
+apt-get install -y python3
 apt-get install -y python3-pip
 
 
