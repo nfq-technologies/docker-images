@@ -1,7 +1,7 @@
-## python3-pipx
+## python3 module
 
 ### Description
-A simple docker image containing python3-pip package
+A simple docker image containing python3 and python3-pip package
 
 ### Internals
-It only installs python3-pip package it doesn't do anything else
+It only installs python3 and python3-pip package 
