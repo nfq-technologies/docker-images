@@ -30,7 +30,7 @@ apt-get install -y --no-install-recommends openssh-client git git-flow git-lfs
 
 
 echo 'Setup nice PS1 to use with git...' \
-&& wget -q "https://gist.githubusercontent.com/dariuskt/0e0b714a4cf6387d7178/raw/83065e2fead22bb1c2ddf809be05548411eabea7/git_bash_prompt.sh" -O /home/project/.git_bash_prompt.sh \
+&& wget -q "https://gist.githubusercontent.com/devopsnfq/75045ae9f3f3ad49b50a61315e22d144/raw/27dbc5aecdedd7843508b205129cf7a1329a17a6/git_bash_prompt.sh" -O /home/project/.git_bash_prompt.sh \
 && echo '. ~/.git_bash_prompt.sh' >> /home/project/.bashrc \
 && chown project:project /home/project/.git_bash_prompt.sh \
 && echo -e '\n\nDONE\n'

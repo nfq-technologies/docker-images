@@ -11,11 +11,11 @@ apt-get install -y --no-install-recommends cmake g++ bison flex make
 
 # Downloat thrift source
 cd /tmp
-wget https://www.apache.org/dist/thrift/0.9.3/thrift-0.9.3.tar.gz
-tar -xzf thrift-0.9.3.tar.gz
+wget https://github.com/apache/thrift/archive/refs/tags/0.9.3.1.tar.gz
+tar -xzf 0.9.3.1.tar.gz
 
 # Build thrift compiler
-cd thrift-0.9.3/build/cmake
+cd thrift-0.9.3.1/build/cmake
 cmake ../../
 make
 make install 
