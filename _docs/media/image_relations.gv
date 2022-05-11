@@ -53,10 +53,6 @@ digraph G {
     "nfqlt/debian-bullseye"->"nfqlt/dev";
     "nfqlt/docker18ce" [fillcolor=orange label="docker18ce"];
     "nfqlt/debian-buster"->"nfqlt/docker18ce";
-    "nfqlt/elasticsearch17-data" [fillcolor=orange label="elasticsearch17-data"];
-    "nfqlt/elasticsearch17"->"nfqlt/elasticsearch17-data";
-    "nfqlt/elasticsearch17" [fillcolor=orange label="elasticsearch17"];
-    "nfqlt/debian-jessie"->"nfqlt/elasticsearch17";
     "nfqlt/elasticsearch22-data" [fillcolor=orange label="elasticsearch22-data"];
     "nfqlt/elasticsearch22"->"nfqlt/elasticsearch22-data";
     "nfqlt/elasticsearch22" [fillcolor=orange label="elasticsearch22"];
@@ -173,6 +169,8 @@ digraph G {
     "nfqlt/toolbox-bullseye"->"nfqlt/node14";
     "nfqlt/node16" [fillcolor=orange label="node16"];
     "nfqlt/toolbox-bullseye"->"nfqlt/node16";
+    "nfqlt/node18" [fillcolor=orange label="node18"];
+    "nfqlt/toolbox-bullseye"->"nfqlt/node18";
     "nfqlt/node4" [fillcolor=orange label="node4"];
     "nfqlt/toolbox-buster"->"nfqlt/node4";
     "nfqlt/node6" [fillcolor=orange label="node6"];
@@ -187,6 +185,8 @@ digraph G {
     "nfqlt/debian-bullseye"->"nfqlt/nodeserver14";
     "nfqlt/nodeserver16" [fillcolor=orange label="nodeserver16"];
     "nfqlt/debian-bullseye"->"nfqlt/nodeserver16";
+    "nfqlt/nodeserver18" [fillcolor=orange label="nodeserver18"];
+    "nfqlt/debian-bullseye"->"nfqlt/nodeserver18";
     "nfqlt/nodeserver8" [fillcolor=orange label="nodeserver8"];
     "nfqlt/debian-buster"->"nfqlt/nodeserver8";
     "nfqlt/packager" [fillcolor=orange label="packager"];
@@ -331,10 +331,6 @@ digraph G {
     "nfqlt/debian-buster"->"nfqlt/toolbox-buster";
     "nfqlt/toolbox" [fillcolor=orange label="toolbox"];
     "nfqlt/debian-stretch"->"nfqlt/toolbox";
-    "nfqlt/toolbox-ubuntu1804" [fillcolor=orange label="toolbox-ubuntu1804"];
-    "nfqlt/ubuntu-1804"->"nfqlt/toolbox-ubuntu1804";
-    "nfqlt/ubuntu-1804" [fillcolor=orange label="ubuntu-1804"];
-    "ubuntu"->"nfqlt/ubuntu-1804";
     "nfqlt/varnish50" [fillcolor=orange label="varnish50"];
     "nfqlt/debian-stretch"->"nfqlt/varnish50";
     "nfqlt/varnish61" [fillcolor=orange label="varnish61"];
