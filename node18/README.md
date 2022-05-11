@@ -1,7 +1,7 @@
 ## Node.js toolbox
 
 ### Info
-This is an image of Node.js 16.x version  in toolbox format
+This is an image of Node.js 18.x version  in toolbox format
 
 ### Global npm packages
 This image has pre-installed npm global packages
@@ -9,7 +9,7 @@ This image has pre-installed npm global packages
  - yarn
  - gulp-cli
  - grunt-cli
- - node-sass
+ - sass
  - bower
  - typescript
  - tslint
@@ -22,7 +22,7 @@ Available binary paths for export:
 - /usr/bin/yarn
 - /usr/bin/gulp
 - /usr/bin/grunt
-- /usr/bin/node-sass
+- /usr/bin/sass
 - /usr/bin/bower
 - /usr/bin/uglifycss
 - /usr/bin/uglifyjs
@@ -35,13 +35,13 @@ Available binary paths for export:
 version: '2.4'
 services:
   node:
-    image: nfqlt/node16
+    image: nfqlt/node18
     volumes:
       - './src:/home/project/src'
       - /tmp
 
   dev:
-    image: nfqlt/php73-dev
+    image: nfqlt/dev
     volumes_from:
       - service:node:rw
     volumes:
