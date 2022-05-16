@@ -14,7 +14,7 @@ fi
 source /tools/common_rc/functions.sh
 
 
-if [ -n "$PACKAGIST_TOKEN" && -n "$PACKAGIST_USER" ]; then
+if [ -n "$PACKAGIST_TOKEN" ]; then
 	JSON_ENABLED=0
 
 	if ! php -m | grep -q json; then
@@ -24,7 +24,7 @@ if [ -n "$PACKAGIST_TOKEN" && -n "$PACKAGIST_USER" ]; then
 	fi
 
 	echo "++ Adding packagist token to composer"
-	sudo -HEu project composer config --global --auth http-basic.repo.packagist.com "$PACKAGIST_USER" "$PACKAGIST_TOKEN" || true
+	sudo -HEu project composer config --global --auth http-basic.repo.packagist.com token "$PACKAGIST_TOKEN" || true
 
 	if [[ $JSON_ENABLED -eq 0 ]]; then
 		phpDisableModule json
