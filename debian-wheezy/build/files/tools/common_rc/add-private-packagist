@@ -1,0 +1,32 @@
+#!/bin/bash
+set -e
+
+source /etc/environment
+if [ -f /etc/environment-vm ]; then
+	echo "~~ Loading /etc/environment-vm"
+	source /etc/environment-vm
+fi
+if [ -f /etc/environment-projects ]; then
+	echo "~~ Loading /etc/environment-projects"
+	source /etc/environment-projects
+fi
+
+source /tools/common_rc/functions.sh
+
+
+if [ -n "$PACKAGIST_TOKEN" && -n "$PACKAGIST_USER" ]; then
+	JSON_ENABLED=0
+
+	if ! php -m | grep -q json; then
+		phpEnableModule json
+	else
+		JSON_ENABLED=1
+	fi
+
+	echo "++ Adding packagist token to composer"
+	sudo -HEu project composer config --global --auth http-basic.repo.packagist.com "$PACKAGIST_USER" "$PACKAGIST_TOKEN" || true
+
+	if [[ $JSON_ENABLED -eq 0 ]]; then
+		phpDisableModule json
+	fi
+fi
