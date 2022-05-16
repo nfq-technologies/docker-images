@@ -14,10 +14,10 @@ fi
 source /tools/common_rc/functions.sh
 
 
-if [ -n "$GITLAB_COM_TOKEN" && -n "$GITLAB_COM_USER" ]; then
+if [ -n "$GITLAB_COM_TOKEN" ] && [ -n "$GITLAB_COM_USER" ]; then
 	JSON_ENABLED=0
 
-	if ! php -m | grep -q json; then
+	if ! php -m | grep -q '$json^'; then
 		phpEnableModule json
 	else
 		JSON_ENABLED=1
@@ -26,7 +26,7 @@ if [ -n "$GITLAB_COM_TOKEN" && -n "$GITLAB_COM_USER" ]; then
 	echo "++ Adding gitlab.com token to composer"
 	sudo -HEu project composer config --global http-basic.gitlab.com "$GITLAB_COM_USER" "$GITLAB_COM_TOKEN" || true
 
-	if [[ $JSON_ENABLED -eq 0 ]]; then
+	if [[ "$JSON_ENABLED" -eq 0 ]]; then
 		phpDisableModule json
 	fi
 fi

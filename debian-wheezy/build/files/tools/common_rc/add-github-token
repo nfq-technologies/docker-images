@@ -30,7 +30,7 @@ fi
 if [ -n "$TOKEN" ]; then
 	JSON_ENABLED=0
 
-	if ! php -m | grep -q json; then
+	if ! php -m | grep -q '$json^'; then
 		phpEnableModule json
 	else
 		JSON_ENABLED=1
@@ -39,7 +39,7 @@ if [ -n "$TOKEN" ]; then
 	echo "++ Adding github token to composer"
 	sudo -HEu project composer --no-interaction -q config -g github-oauth.github.com "$TOKEN" || true
 
-	if [[ $JSON_ENABLED -eq 0 ]]; then
+	if [[ "$JSON_ENABLED" -eq 0 ]]; then
 		phpDisableModule json
 	fi
 fi
