@@ -2,31 +2,43 @@
 set -e
 
 source /etc/environment
-if [ -f /etc/environment-vm ]; then
+
+# User preference first
+if [ -z "$GITLAB_COM_TOKEN" ] && [ -f /etc/environment-vm ]; then
 	echo "~~ Loading /etc/environment-vm"
 	source /etc/environment-vm
 fi
-if [ -f /etc/environment-projects ]; then
+
+# Project preference
+if [ -z "$GITLAB_COM_TOKEN" ] && [ -f /etc/environment-projects ]; then
 	echo "~~ Loading /etc/environment-projects"
 	source /etc/environment-projects
 fi
 
+# Environment preference
+if [ -z "$GITLAB_COM_TOKEN" ]; then
+        # Still no variable? Quit.
+	exit 0
+fi
+
+
 source /tools/common_rc/functions.sh
 
+JSON_ENABLED=0
+if ! php -m | grep -q '$json^'; then
+	phpEnableModule json
+else
+	JSON_ENABLED=1
+fi
 
-if [ -n "$GITLAB_COM_TOKEN" ] && [ -n "$GITLAB_COM_USER" ]; then
-	JSON_ENABLED=0
 
-	if ! php -m | grep -q '$json^'; then
-		phpEnableModule json
-	else
-		JSON_ENABLED=1
-	fi
+echo "++ Adding gitlab.com token to composer"
+sudo -HEu project composer config --global gitlab-token.gitlab.com "$GITLAB_COM_TOKEN" || true
 
-	echo "++ Adding gitlab.com token to composer"
-	sudo -HEu project composer config --global http-basic.gitlab.com "$GITLAB_COM_USER" "$GITLAB_COM_TOKEN" || true
+# Adding token for root user as well
+composer config --global gitlab-token.gitlab.com "$GITLAB_COM_TOKEN" || true
 
-	if [[ "$JSON_ENABLED" -eq 0 ]]; then
-		phpDisableModule json
-	fi
+# Disabling in case it was not needed in the first place
+if [[ "$JSON_ENABLED" -eq 0 ]]; then
+	phpDisableModule json
 fi
