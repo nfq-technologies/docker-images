@@ -18,14 +18,14 @@ fi
 # Environment preference
 if [ -z "$PACKAGIST_TOKEN" ]; then
 	# Still no variable? Quit.
-        exit 0
+	exit 0
 fi
 
 
 source /tools/common_rc/functions.sh
 
 JSON_ENABLED=0
-if ! php -m | grep -q "$json^"; then
+if ! php -m | grep -q '^json$'; then
         phpEnableModule json
 else
         JSON_ENABLED=1
