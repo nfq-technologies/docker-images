@@ -16,11 +16,11 @@ digraph G {
     "nfqlt/apache-fastcgi" [fillcolor=orange label="apache-fastcgi"];
     "nfqlt/debian-wheezy"->"nfqlt/apache-fastcgi";
     "nfqlt/aws-docker-tools" [fillcolor=orange label="aws-docker-tools"];
-    "nfqlt/toolbox-buster"->"nfqlt/aws-docker-tools";
+    "nfqlt/aws-tools"->"nfqlt/aws-docker-tools";
     "nfqlt/aws-mock" [fillcolor=orange label="aws-mock"];
     "nfqlt/debian-buster"->"nfqlt/aws-mock";
     "nfqlt/aws-tools" [fillcolor=orange label="aws-tools"];
-    "nfqlt/toolbox-buster"->"nfqlt/aws-tools";
+    "nfqlt/toolbox-bullseye"->"nfqlt/aws-tools";
     "nfqlt/birt45" [fillcolor=orange label="birt45"];
     "nfqlt/debian-stretch"->"nfqlt/birt45";
     "nfqlt/certbot" [fillcolor=orange label="certbot"];
