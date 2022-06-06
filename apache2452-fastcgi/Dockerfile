@@ -3,6 +3,7 @@ FROM nfqlt/debian-bullseye
 ENV APACHE_DOCUMENTROOT /var/www
 ENV APACHE_RUN_DIR /var/run/apache2
 ENV NFQ_FCGI_IDLE_TIMEOUT 30
+ENV SITES_ENABLED_ROOT sites-enabled
 
 EXPOSE 80
 CMD exec /entrypoint.sh
