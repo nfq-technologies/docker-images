@@ -1,13 +1,14 @@
-## AWS-Tools toolbox
+## AWS-Docker-Tools toolbox
 
 ### Info
 
-This is an image of various AWS cli tools in toolbox format
+This is an image of various AWS cli tools and docker in toolbox format
 
 ### Installed packages
 
 - awscli
 - awsebcli
+- docker
 
 ### Configuration
 
@@ -16,6 +17,7 @@ Available binary paths for export:
 - /usr/local/bin/aws
 - /usr/local/bin/eb
 - /usr/local/bin/ebp
+- /usr/bin/docker
 
 ### Sample configuration
 
@@ -23,10 +25,11 @@ Available binary paths for export:
 version: '2.4'
 services:
   awstools:
-    image: nfqlt/aws-tools
+    image: nfqlt/aws-docker-tools
     volumes:
       - './src:/home/project/src'
       - /tmp
+      - /var/run/docker.sock:/var/run/docker.sock
 
   dev:
     image: nfqlt/php73-dev
