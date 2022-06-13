@@ -20,7 +20,7 @@ ls -1 /etc/apache2/mods-enabled/ | cut -d. -f 1 | sort | uniq | xargs -n1 -I{} a
 
 # enable few modules to make image somewhat usable in default configuration
 ls -1 /etc/apache2/mods-available/ | cut -d. -f1 | sort -u
-a2enmod mpm_event actions proxy proxy_fcgi
+a2enmod mpm_event actions proxy proxy_fcgi rewrite
 
 echo > /etc/apache2/sites-enabled/000-default.conf
 
