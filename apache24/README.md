@@ -1,3 +1,6 @@
+## About apache24
+
+This image contains the latest apache release of version 2.4 and will contain latest bugfix versions
 
 
 ## supported env vars
@@ -12,6 +15,14 @@ Sets apache document root to specified path. You don't need to change that for
 projects following standard structure.
 
 default value: /home/project/src/www/web
+
+
+### SITES_ENABLED_ROOT (optional)
+
+Location where sites-enabled configuration is stored, full path
+
+default value: sites-enabled
+Note: translates to /etc/apache2/sites-enabled
 
 
 ### APACHE_RUN_DIR (optional)
