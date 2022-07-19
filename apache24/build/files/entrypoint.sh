@@ -11,5 +11,5 @@ if [ ! -d "/builds/" ] && ! fgrep -q fastcgi /etc/hosts && ! host fastcgi; then
 	echo "127.0.0.1 fastcgi" >> /etc/hosts
 fi
 
-exec apache2 -DFOREGROUND
+exec apache2 -T -DFOREGROUND
 
