@@ -8,7 +8,6 @@ wget https://packagecloud.io/rabbitmq/rabbitmq-server/packages/debian/bullseye/r
 
 apt -y install erlang-base erlang-crypto erlang-eldap erlang-inets erlang-mnesia erlang-os-mon erlang-parsetools erlang-public-key erlang-runtime-tools erlang-ssl erlang-syntax-tools erlang-tools erlang-xmerl ./download.deb
 
-#apt -y install ./download.deb
 rm ./download.deb
 
 cp -frv /build/files/* / || true
