@@ -33,7 +33,7 @@ then
 	then
 		echo
 		echo -e "\e[1m http://$domain/ \e[0m"
-		echo " ssh project@dev.$domain "
+		echo " ssh project@dev.$domain.test "
 		echo
 		echo
 	fi
