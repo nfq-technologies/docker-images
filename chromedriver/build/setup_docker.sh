@@ -9,7 +9,7 @@ apt-get install -y --no-install-recommends \
 	xvfb \
 	xauth \
 	chromium \
-	chromium-driver \
+	chromium-driver
 
 
 cp -frv /build/files/* / || true
