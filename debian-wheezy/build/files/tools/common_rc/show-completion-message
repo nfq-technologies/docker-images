@@ -25,14 +25,14 @@ then
 	cd /home/project/src
 	domain=$(
 		git remote -v 2>/dev/null \
-		| head -n1 \
-		| grep ':[a-z0-9-]*/[a-z0-9-]*\.git' \
-		| sed 's#.*:\([a-z0-9-]*\)/\([a-z0-9-]*\)\.git.*$#\2.\1.test#' \
+		| grep 'origin\s.*\.git' \
+		| head -n 1 | cut -d":" -f2 \
+		| sed 's#.*\/\([a-zA-Z0-9_-]*\)\/\([a-zA-Z0-9_-]*\)\.git .*#\2.\1#'
 	)
 	if [ -n "$domain" ]
 	then
 		echo
-		echo -e "\e[1m http://web.$domain/ \e[0m"
+		echo -e "\e[1m http://$domain/ \e[0m"
 		echo " ssh project@dev.$domain "
 		echo
 		echo
