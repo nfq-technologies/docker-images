@@ -34,6 +34,7 @@ apt-get install -y --no-install-recommends \
 	vim \
 	nethogs \
 	pv \
+	gettext \
 	git \
 	rsync \
 	iotop \
