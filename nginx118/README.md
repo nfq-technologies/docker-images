@@ -14,6 +14,13 @@ Sets nginx document root to specified path.
 default value: /var/www
 
 
+### SITES_ENABLED_ROOT (optional)
+
+Sets nginx sites-enabled to specified path.
+
+default value: /etc/nginx/sites-enabled/*
+
+
 ### NFQ_RELOAD_PORT (optional)
 
 Port number that will reload configuration files after connection.
