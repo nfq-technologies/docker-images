@@ -27,13 +27,13 @@ then
 		git remote -v 2>/dev/null \
 		| grep 'origin\s.*\.git' \
 		| head -n 1 | cut -d":" -f2 \
-		| sed 's#.*\/\([a-zA-Z0-9_-]*\)\/\([a-zA-Z0-9_-]*\)\.git .*#\2.\1#'
+		| sed -nr 's#.*(^|/)([a-zA-Z0-9_-]*)/([a-zA-Z0-9_-]*)\.git.*#\3.\2.test#p'
 	)
 	if [ -n "$domain" ]
 	then
 		echo
 		echo -e "\e[1m http://$domain/ \e[0m"
-		echo " ssh project@dev.$domain.test "
+		echo " ssh project@dev.$domain "
 		echo
 		echo
 	fi
