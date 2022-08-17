@@ -27,7 +27,7 @@ then
 		git remote -v 2>/dev/null \
 		| grep 'origin\s.*\.git' \
 		| head -n 1 | cut -d":" -f2 \
-		| sed 's#.*\/\([a-zA-Z0-9_-]*\)\/\([a-zA-Z0-9_-]*\)\.git .*#\2.\1#'
+		| sed -nr 's#.*(^|/)([a-zA-Z0-9_-]*)/([a-zA-Z0-9_-]*)\.git.*#\3.\2#p'
 	)
 	if [ -n "$domain" ]
 	then
