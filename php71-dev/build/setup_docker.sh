@@ -59,7 +59,7 @@ echo 'if [ -f ~/.bash_custom ]; then . ~/.bash_custom ; fi' >> /home/project/.ba
 
 
 # install mysql-client
-apt-get install -y --no-install-recommends mysql-client
+apt-get install -y --no-install-recommends mariadb-client
 
 
 # install composer
