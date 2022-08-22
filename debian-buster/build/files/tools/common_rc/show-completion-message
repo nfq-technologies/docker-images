@@ -1,5 +1,20 @@
 #!/bin/bash -e
 
+function show_completion_url() {
+}
+
+# If DEV_URL is declared, then show that URL
+# Show project url based by git path
+if [ -z "$DEV_URL" ] && [ -d "$NFQ_PROJECT_ROOT" ] && [ -z "$NFQ_PROJECT_ROOT" ]; then
+	DEV_URL="$(
+		cd "$NFQ_PROJECT_ROOT" && \
+		git remote -v 2>/dev/null \
+		| grep 'origin\s.*\.git' \
+		| head -n 1 | cut -d":" -f2 \
+		| sed -nr 's#.*(^|/)([a-zA-Z0-9_-]*)/([a-zA-Z0-9_-]*)\.git.*#\3.\2.test#p'
+	)"
+fi
+
 cat - <<'EOF'
 
    .______   .______        ______          __   _______   ______ .___________.
@@ -20,22 +35,21 @@ cat - <<'EOF'
 Now you can connect via http or ssh.
 EOF
 
-if [ -d /home/project/src ]
-then
-	cd /home/project/src
-	domain=$(
-		git remote -v 2>/dev/null \
-		| grep 'origin\s.*\.git' \
-		| head -n 1 | cut -d":" -f2 \
-		| sed -nr 's#.*(^|/)([a-zA-Z0-9_-]*)/([a-zA-Z0-9_-]*)\.git.*#\3.\2.test#p'
-	)
-	if [ -n "$domain" ]
-	then
-		echo
-		echo -e "\e[1m http://$domain/ \e[0m"
-		echo " ssh project@dev.$domain "
-		echo
-		echo
+# Retrieve container IP address
+DEV_IP="$(ip r | grep '^default ' | awk '{print $3}')"
+
+# Check if DEV_URL responds to appropriate IP address
+if ! ping -qc 1 "$DEV_URL" 2>&1 | grep -q "($DEV_IP)"; then
+	# Show error message if DEV_URL is set but not resolvable,
+	# otherwise it is intended behavior, so no error
+	if [ -n "$DEV_URL" ]; then
+		echo "Development URL $DEV_URL is not resolvable, using fallback IP address:"
 	fi
+	DEV_URL="$DEV_IP"
 fi
 
+echo
+echo -e "\e[1m http://$DEV_URL/ \e[0m"
+echo " ssh project@$DEV_URL"
+echo
+echo
