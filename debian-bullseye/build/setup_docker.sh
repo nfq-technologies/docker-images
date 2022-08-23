@@ -13,20 +13,21 @@ apt-get upgrade -y
 apt-get install -y --no-install-recommends \
 	bash-completion \
 	bzip2 dnsutils \
+	curl \
+	iputils-ping \
 	less \
 	netcat-traditional \
+	net-tools \
 	patch \
+	procps \
 	telnet \
 	time \
 	traceroute \
 	w3m \
-	curl \
 	wget \
 	whiptail \
 	whois \
-	procps \
-	net-tools \
-	zip \
+	zip
 
 
 # install various helper tools
