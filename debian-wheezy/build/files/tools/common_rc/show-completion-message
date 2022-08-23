@@ -1,11 +1,8 @@
 #!/bin/bash -e
 
-function show_completion_url() {
-}
-
 # If DEV_URL is declared, then show that URL
 # Show project url based by git path
-if [ -z "$DEV_URL" ] && [ -d "$NFQ_PROJECT_ROOT" ] && [ -z "$NFQ_PROJECT_ROOT" ]; then
+if [ -z "$DEV_URL" ] && [ -d "$NFQ_PROJECT_ROOT" ]; then
 	DEV_URL="$(
 		cd "$NFQ_PROJECT_ROOT" && \
 		git remote -v 2>/dev/null \
