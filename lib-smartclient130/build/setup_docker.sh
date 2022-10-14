@@ -3,9 +3,9 @@
 set -x
 set -e
 
-URL="https://www.smartclient.com/builds/SmartClient/13.0d/LGPL"
+URL="https://www.smartclient.com/builds/SmartClient/13.0p/LGPL"
 DATE=$(wget -O - $URL | grep 'LGPL/20..\-..\-.."' | sed 's/^.*href="[^"]*\(20..\-..\-..\)".*$/\1/'| head -n1)
-URL="$URL/$DATE/SmartClient_SNAPSHOT_v130d_${DATE}_LGPL.zip"
+URL="$URL/$DATE/SmartClient_v130p_${DATE}_LGPL.zip"
 
 
 DDIR=/home/project/lib/smartclient
