@@ -1,0 +1,20 @@
+#!/bin/bash
+set -e
+
+CMD="docker run -it --rm $1"
+
+function check_path {
+	echo -n "Checking path $1 exists ... "
+	($CMD stat $1 >/dev/null 2>&1 && echo "OK") \
+	|| (echo "MISSING" && exit -1)
+}
+function check_path_size {
+	check_path $1
+	echo -n "Checking path $1 $2 ${3}MB ... "
+	($CMD sh -c "test \$(du -sm $1 2>/dev/null | cut -f1) $2 $3"  >/dev/null 2>&1 && echo "OK") \
+	|| (echo "FAIL" && exit -1)
+}
+
+
+check_path_size /home/project/lib/smartclient -gt 120
+

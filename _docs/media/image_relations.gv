@@ -31,6 +31,8 @@ digraph G {
     "nfqlt/debian-stretch"->"nfqlt/chromedriver73";
     "nfqlt/chromedriver83" [fillcolor=orange label="chromedriver83"];
     "nfqlt/debian-buster"->"nfqlt/chromedriver83";
+    "nfqlt/chromedriver" [fillcolor=orange label="chromedriver"];
+    "nfqlt/debian-buster"->"nfqlt/chromedriver";
     "nfqlt/chromium" [fillcolor=orange label="chromium"];
     "nfqlt/toolbox-buster"->"nfqlt/chromium";
     "nfqlt/cypress4" [fillcolor=orange label="cypress4"];
@@ -115,6 +117,8 @@ digraph G {
     "busybox"->"nfqlt/lib-smartclient120";
     "nfqlt/lib-smartclient121" [fillcolor=orange label="lib-smartclient121"];
     "busybox"->"nfqlt/lib-smartclient121";
+    "nfqlt/lib-smartclient130" [fillcolor=orange label="lib-smartclient130"];
+    "busybox"->"nfqlt/lib-smartclient130";
     "nfqlt/linker18ce" [fillcolor=orange label="linker18ce"];
     "nfqlt/docker18ce"->"nfqlt/linker18ce";
     "nfqlt/mailhog" [fillcolor=orange label="mailhog"];
@@ -226,7 +230,7 @@ digraph G {
     "nfqlt/php70-supervisor" [fillcolor=orange label="php70-supervisor"];
     "nfqlt/php70-cli"->"nfqlt/php70-supervisor";
     "nfqlt/php71-cli" [fillcolor=orange label="php71-cli"];
-    "nfqlt/debian-stretch"->"nfqlt/php71-cli";
+    "nfqlt/debian-bullseye"->"nfqlt/php71-cli";
     "nfqlt/php71-cron" [fillcolor=orange label="php71-cron"];
     "nfqlt/php71-cli"->"nfqlt/php71-cron";
     "nfqlt/php71-dev" [fillcolor=orange label="php71-dev"];
@@ -297,6 +301,8 @@ digraph G {
     "postgres"->"nfqlt/postgres12";
     "nfqlt/proxy" [fillcolor=orange label="proxy"];
     "nfqlt/nginx114"->"nfqlt/proxy";
+    "nfqlt/rabbitmq310" [fillcolor=orange label="rabbitmq310"];
+    "nfqlt/debian-bullseye"->"nfqlt/rabbitmq310";
     "nfqlt/rabbitmq335" [fillcolor=orange label="rabbitmq335"];
     "nfqlt/debian-jessie"->"nfqlt/rabbitmq335";
     "nfqlt/rabbitmq366" [fillcolor=orange label="rabbitmq366"];
@@ -305,6 +311,8 @@ digraph G {
     "nfqlt/debian-buster"->"nfqlt/rabbitmq378";
     "nfqlt/rabbitmq389" [fillcolor=orange label="rabbitmq389"];
     "nfqlt/debian-bullseye"->"nfqlt/rabbitmq389";
+    "nfqlt/rabbitmq38" [fillcolor=orange label="rabbitmq38"];
+    "nfqlt/debian-bullseye"->"nfqlt/rabbitmq38";
     "nfqlt/redis2817" [fillcolor=orange label="redis2817"];
     "nfqlt/debian-jessie"->"nfqlt/redis2817";
     "nfqlt/redis326" [fillcolor=orange label="redis326"];
