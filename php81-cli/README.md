@@ -64,6 +64,7 @@ example:
 * pdo_mysql
 * pdo_odbc
 * pdo_pgsql
+* pdo_snowflake
 * pdo_sqlite
 * pgsql
 * phar

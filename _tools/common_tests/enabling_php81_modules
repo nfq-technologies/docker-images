@@ -55,4 +55,5 @@ test_modules_load mysqlnd mysqli # mysqli depends on mysqlnd
 test_modules_load mysqlnd pdo pdo_mysql # pdo_mysql depends on mysqlnd
 test_modules_load xdebug
 test_modules_load zip
+test_modules_load pdo pdo_snowflake
 
