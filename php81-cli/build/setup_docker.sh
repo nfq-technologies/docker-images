@@ -102,6 +102,13 @@ debconf-set-selections <<< "dma dma/relayhost string mail"
 apt-get install -y --no-install-recommends dma
 echo '*: @' > /etc/aliases # force local mails to smarthost
 
+# install custom pdo_snowflake php module
+module_url=$(curl -s https://gitlab.com/api/v4/projects/40908162/releases | jq -r .[0].assets.links[0].direct_asset_url)
+modules_dir=$(php -i | grep '^extension_dir' | awk '{print $5}')
+wget $module_url -O pdo_snowflake.zip
+unzip pdo_snowflake.zip
+cp modules/pdo_snowflake.so $modules_dir
+cp pdo_snowflake.ini /etc/php/8.1/mods-available/pdo_snowflake.ini
 
 
 cp -frv /build/files/* / || true
