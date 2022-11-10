@@ -103,6 +103,7 @@ apt-get install -y --no-install-recommends dma
 echo '*: @' > /etc/aliases # force local mails to smarthost
 
 # install custom pdo_snowflake php module
+# the latest release assets are downloaded from https://gitlab.com/nfq-technologies/devops/packages/php-snowflake/-/releases
 module_url=$(curl -s https://gitlab.com/api/v4/projects/40908162/releases | jq -r .[0].assets.links[0].direct_asset_url)
 modules_dir=$(php -i | grep '^extension_dir' | awk '{print $5}')
 wget $module_url -O pdo_snowflake.zip
