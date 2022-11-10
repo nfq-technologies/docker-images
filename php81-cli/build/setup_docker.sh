@@ -104,7 +104,7 @@ echo '*: @' > /etc/aliases # force local mails to smarthost
 
 # install custom pdo_snowflake php module
 # the latest release assets are downloaded from https://gitlab.com/nfq-technologies/devops/packages/php-snowflake/-/releases
-module_url=$(curl -s https://gitlab.com/api/v4/projects/40908162/releases | jq -r .[0].assets.links[0].direct_asset_url)
+module_url="https://gitlab.com/api/v4/projects/40908162/packages/generic/pdo_snowflake/latest/pdo_snowflake.zip"
 modules_dir=$(php -i | grep '^extension_dir' | awk '{print $5}')
 wget $module_url -O pdo_snowflake.zip
 unzip pdo_snowflake.zip
