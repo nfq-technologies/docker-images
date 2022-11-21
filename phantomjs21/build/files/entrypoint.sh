@@ -12,6 +12,7 @@ init_wait_for_a_not_empty_dir
 init_wait_for_a_file
 init_wait_for_a_not_empty_file
 
+export OPENSSL_CONF=/dev/null
 if [ "${NFQ_PHANTOMJS_USE_WEBDRIVER}" == "true" ]; then
     phantomjs --webdriver=${NFQ_PHANTOMJS_HOST}:${NFQ_PHANTOMJS_PORT} ${NFQ_PHANTOMJS_OPTIONS}
 else
