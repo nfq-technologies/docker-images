@@ -8,7 +8,7 @@ if [ -z "$DEV_URL" ] && [ -d "$NFQ_PROJECT_ROOT" ]; then
 		git remote -v 2>/dev/null \
 		| grep 'origin\s.*\.' \
 		| head -n 1 | cut -d: -f2 \
-		| awk -F"/" '{slashes=$0; gsub("[^/]", "", slashes); project=substr($NF, 0, index($NF, ".git")); if(length(slashes)>1){ subgroups=$(NF-2)"."$(NF-1)}else{subgroups=$(NF-1)}; print project subgroups ".test" }'
+		| awk -F"/" '{slashes=$0; gsub("[^/]", "", slashes); project=substr($NF, 0, index($NF, ".git")); if(length(slashes)>1){ subgroups=$(NF-1)"."$(NF-2)}else{subgroups=$(NF-1)}; print project subgroups ".test" }'
 	)"
 fi
 
