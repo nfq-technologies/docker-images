@@ -1,4 +1,4 @@
-FROM nfqlt/debian-jessie
+FROM nfqlt/debian-bullseye
 
 EXPOSE 4444
 

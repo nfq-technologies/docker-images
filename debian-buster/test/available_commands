@@ -18,6 +18,7 @@ check_command 'nc' -h
 check_command 'socat' -h
 check_command 'patch' --help
 #check_command 'telnet' '?'
+check_command 'ping' -V
 check_command 'time' --version
 check_command 'traceroute' --version
 check_command 'w3m' -h

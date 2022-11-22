@@ -45,6 +45,7 @@ apt-get install -y --no-install-recommends \
 	sudo \
 	locales \
 	man \
+	moreutils \
 	apt-transport-https \
 	gnupg \
 	unzip \
