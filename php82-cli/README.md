@@ -100,5 +100,5 @@ example:
 * zip
 * zmq
 
-#### Note: tideways module is not supported on php 8.1
+#### Note: tideways module is not supported on php 8.2
 
