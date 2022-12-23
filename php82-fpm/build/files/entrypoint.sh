@@ -16,5 +16,5 @@ set +x
 while true; do cat $LOG >&2; done &
 set -x
 
-exec php-fpm8.1 -F --fpm-config /etc/php/8.1/fpm/php-fpm.conf -d log_errors=1 -d error_log=$LOG
+exec php-fpm8.2 -F --fpm-config /etc/php/8.2/fpm/php-fpm.conf -d log_errors=1 -d error_log=$LOG
 
