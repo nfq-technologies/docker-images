@@ -5,20 +5,21 @@ IMAGE_TYPE = $(shell basename $(shell dirname $(shell pwd)))
 IMAGE_REGISTRY = $(shell ../_tools/makefiles/get_default_registry.sh)
 IMAGE_FULL_NAME = $(IMAGE_REGISTRY)$(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
 CHILDREN = $(shell ../_tools/relational_sorting.php)
+ARM64_CONTEXT = "arm"
 
-
-COMMANDS = all build test push pull clean branch-all branch-build run run-bash
+COMMANDS = all build build-all build-arm64 build-amd64 test push pull clean branch-all branch-build run run-bash publish publish-amd64 publish-arm64
 SILENT_COMMANDS = help status calc-start calc-stop get-image-name
 
 -include ../../tools/makefiles/base-image-custom.Makefile
 
 .PHONY: $(COMMANDS) $(SILENT_COMMANDS)
 .SILENT: $(SILENT_COMMANDS)
-.NOTPARALLEL:
+#.NOTPARALLEL:
 
 
 help:
 	echo
+	echo "Core image name: $(IMAGE_TYPE)/$(IMAGE_BASE_NAME)"
 	echo "Image name: $(IMAGE_FULL_NAME)"
 	echo "Available commands: $(COMMANDS) $(SILENT_COMMANDS)"
 	echo
@@ -40,24 +41,73 @@ branch-build:
 
 all:
 	make build && make test && make push
+#	make build && make test && make push
+
+all-arm64:
+	make build-arm64 && make test-arm64 && make push-arm64
+
+all-amd64:
+	make build-amd64 && make test-amd64 && make push-amd64
 
 
 build:
+	$(MAKE) -j2 build-arm64 build-amd64 # Parallel build amd/arm images
+	docker manifest rm $(IMAGE_FULL_NAME):latest
+	docker manifest create $(IMAGE_FULL_NAME):latest $(IMAGE_FULL_NAME):amd64 $(IMAGE_FULL_NAME):arm64
+	docker manifest push $(IMAGE_FULL_NAME):latest
+	make status
+
+
+build-amd64:
 	@echo
-	@echo "# Building image..."
+	@echo "# Building amd64 image..."
 	@echo
 	sed 's~FROM nfqlt~FROM ${IMAGE_REGISTRY}nfqlt~' Dockerfile > .Dockerfile
-	docker build --no-cache -f .Dockerfile -t $(IMAGE_FULL_NAME) ./
+	docker build --no-cache -f .Dockerfile -t $(IMAGE_FULL_NAME):amd64 ./
+	docker push $(IMAGE_FULL_NAME):amd64
 	rm .Dockerfile
+	make status
+
+build-arm64:
+	@echo
+	@echo "# Building arm64 image..."
+	@echo
+	sed 's~FROM nfqlt~FROM ${IMAGE_REGISTRY}nfqlt~' Dockerfile > .Dockerfile_arm
+	DOCKER_CONTEXT=$(ARM64_CONTEXT) docker build --no-cache -f .Dockerfile_arm -t $(IMAGE_FULL_NAME):arm64 ./
+	DOCKER_CONTEXT=$(ARM64_CONTEXT) docker push $(IMAGE_FULL_NAME):arm64
+	rm -f .Dockerfile_arm
+	make status
+
+
+manifest:
+	@echo
+	@echo "# Building manifest..."
+	@echo
+	docker manifest create $(IMAGE_FULL_NAME) --amend $(IMAGE_FULL_NAME):amd64 --amend $(IMAGE_FULL_NAME):arm64
 	make status
 
 
 test:
+	$(MAKE) -j2 test-amd64 test-arm64
+
+
+test-amd64:
 	@echo
 	@echo "# Testing image..."
 	@echo
 	if [ -d test ];	then\
-		run-parts -v -a $(IMAGE_FULL_NAME) test; \
+		run-parts -v -a $(IMAGE_FULL_NAME):amd64 test; \
+	fi
+	@echo
+	@echo "Tests passed. ($(shell run-parts --test test | wc -l))"
+	@echo
+
+test-arm64:
+	@echo
+	@echo "# Testing image..."
+	@echo
+	if [ -d test ];	then\
+		DOCKER_CONTEXT=$(ARM64_CONTEXT) run-parts -v -a $(IMAGE_FULL_NAME):arm64 test; \
 	fi
 	@echo
 	@echo "Tests passed. ($(shell run-parts --test test | wc -l))"
@@ -65,11 +115,19 @@ test:
 
 
 push:
+	make -j2 push-amd64 push-arm64
+
+push-amd64:
 	@echo
-	@echo "# Pushing image to registry..."
+	@echo "# Pushing amd64 image to registry..."
 	@echo
 	docker push $(IMAGE_FULL_NAME)
 
+push-arm64:
+	@echo
+	@echo "# Pushing arm image to registry..."
+	@echo
+	DOCKER_CONTEXT=$(ARM64_CONTEXT) docker push $(IMAGE_FULL_NAME)
 
 pull:
 	@echo
@@ -122,4 +180,26 @@ calc-stop:
 get-image-name:
 	echo $(IMAGE_FULL_NAME)
 
+
+publish:
+	@echo
+	@echo "# Publishing image to docker hub..."
+	@echo
+	$(MAKE) -j2 publish-amd64 publish-arm64
+	docker manifest rm $(IMAGE_PUBLISH_NAME):latest
+	docker manifest create $(IMAGE_PUBLISH_NAME):latest $(IMAGE_PUBLISH_NAME):amd64 $(IMAGE_PUBLISH_NAME):arm64
+	docker manifest push $(IMAGE_PUBLISH_NAME):latest
+
+
+publish-amd64:
+	docker pull ${IMAGE_FULL_NAME}
+	docker tag ${IMAGE_FULL_NAME} ${IMAGE_PUBLISH_NAME}
+	docker push ${IMAGE_PUBLISH_NAME}
+	docker rmi ${IMAGE_PUBLISH_NAME}
+
+publish-arm64:
+	DOCKER_CONTEXT=$(ARM64_CONTEXT) docker pull ${IMAGE_FULL_NAME}
+	DOCKER_CONTEXT=$(ARM64_CONTEXT) docker tag ${IMAGE_FULL_NAME} ${IMAGE_PUBLISH_NAME}
+	DOCKER_CONTEXT=$(ARM64_CONTEXT) docker push ${IMAGE_PUBLISH_NAME}
+	DOCKER_CONTEXT=$(ARM64_CONTEXT) docker rmi ${IMAGE_PUBLISH_NAME}
 
