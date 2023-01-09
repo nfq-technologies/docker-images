@@ -5,7 +5,9 @@ IMAGE_TYPE = $(shell basename $(shell dirname $(shell pwd)))
 IMAGE_REGISTRY = $(shell ../_tools/makefiles/get_default_registry.sh)
 IMAGE_FULL_NAME = $(IMAGE_REGISTRY)$(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
 CHILDREN = $(shell ../_tools/relational_sorting.php)
-ARM64_CONTEXT = "arm"
+#ARM64_CONTEXT = $(test uname -m)
+ARM64_CONTEXT = $(shell [ "`uname -m`" = "x86_64" ] && echo "arm" || echo "default" )
+AMD64_CONTEXT = "amd64"
 
 COMMANDS = all build build-all build-arm64 build-amd64 test push pull clean branch-all branch-build run run-bash publish publish-amd64 publish-arm64
 SILENT_COMMANDS = help status calc-start calc-stop get-image-name
@@ -40,7 +42,7 @@ branch-build:
 
 
 all:
-	make build && make test && make push
+	make build && make test && make push && make manifest
 #	make build && make test && make push
 
 all-arm64:
@@ -52,9 +54,6 @@ all-amd64:
 
 build:
 	$(MAKE) -j2 build-arm64 build-amd64 # Parallel build amd/arm images
-	docker manifest rm $(IMAGE_FULL_NAME):latest
-	docker manifest create $(IMAGE_FULL_NAME):latest $(IMAGE_FULL_NAME):amd64 $(IMAGE_FULL_NAME):arm64
-	docker manifest push $(IMAGE_FULL_NAME):latest
 	make status
 
 
@@ -64,17 +63,16 @@ build-amd64:
 	@echo
 	sed 's~FROM nfqlt~FROM ${IMAGE_REGISTRY}nfqlt~' Dockerfile > .Dockerfile
 	docker build --no-cache -f .Dockerfile -t $(IMAGE_FULL_NAME):amd64 ./
-	docker push $(IMAGE_FULL_NAME):amd64
 	rm .Dockerfile
 	make status
 
 build-arm64:
 	@echo
 	@echo "# Building arm64 image..."
+	@echo "# Building context $(ARM64_CONTEXT)..."
 	@echo
 	sed 's~FROM nfqlt~FROM ${IMAGE_REGISTRY}nfqlt~' Dockerfile > .Dockerfile_arm
 	DOCKER_CONTEXT=$(ARM64_CONTEXT) docker build --no-cache -f .Dockerfile_arm -t $(IMAGE_FULL_NAME):arm64 ./
-	DOCKER_CONTEXT=$(ARM64_CONTEXT) docker push $(IMAGE_FULL_NAME):arm64
 	rm -f .Dockerfile_arm
 	make status
 
@@ -113,7 +111,6 @@ test-arm64:
 	@echo "Tests passed. ($(shell run-parts --test test | wc -l))"
 	@echo
 
-
 push:
 	make -j2 push-amd64 push-arm64
 
@@ -128,6 +125,11 @@ push-arm64:
 	@echo "# Pushing arm image to registry..."
 	@echo
 	DOCKER_CONTEXT=$(ARM64_CONTEXT) docker push $(IMAGE_FULL_NAME)
+
+manifest:
+	docker manifest rm $(IMAGE_FULL_NAME):latest
+	docker manifest create $(IMAGE_FULL_NAME):latest $(IMAGE_FULL_NAME):amd64 $(IMAGE_FULL_NAME):arm64
+	docker manifest push $(IMAGE_FULL_NAME):latest
 
 pull:
 	@echo
