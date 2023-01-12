@@ -5,8 +5,6 @@ digraph G {
     node [style=filled shape=box fontname=sans fillcolor=white];
     rankdir="LR";
 	
-    "nfqlt/apache22-php54" [fillcolor=orange label="apache22-php54"];
-    "nfqlt/php54-cli"->"nfqlt/apache22-php54";
     "nfqlt/apache2438-fastcgi" [fillcolor=orange label="apache2438-fastcgi"];
     "nfqlt/debian-buster"->"nfqlt/apache2438-fastcgi";
     "nfqlt/apache2452-fastcgi" [fillcolor=orange label="apache2452-fastcgi"];
@@ -15,8 +13,6 @@ digraph G {
     "nfqlt/debian-bullseye"->"nfqlt/apache24";
     "nfqlt/apache24-fastcgi" [fillcolor=orange label="apache24-fastcgi"];
     "nfqlt/debian-jessie"->"nfqlt/apache24-fastcgi";
-    "nfqlt/apache-fastcgi" [fillcolor=orange label="apache-fastcgi"];
-    "nfqlt/debian-wheezy"->"nfqlt/apache-fastcgi";
     "nfqlt/aws-docker-tools" [fillcolor=orange label="aws-docker-tools"];
     "nfqlt/aws-tools"->"nfqlt/aws-docker-tools";
     "nfqlt/aws-mock" [fillcolor=orange label="aws-mock"];
@@ -39,6 +35,8 @@ digraph G {
     "nfqlt/node12"->"nfqlt/cypress4";
     "nfqlt/cypress5" [fillcolor=orange label="cypress5"];
     "nfqlt/node12"->"nfqlt/cypress5";
+    "nfqlt/cypress7" [fillcolor=orange label="cypress7"];
+    "nfqlt/node16"->"nfqlt/cypress7";
     "nfqlt/cypress9" [fillcolor=orange label="cypress9"];
     "nfqlt/node16"->"nfqlt/cypress9";
     "nfqlt/db-tools" [fillcolor=orange label="db-tools"];
@@ -53,8 +51,6 @@ digraph G {
     "debian"->"nfqlt/debian-jessie";
     "nfqlt/debian-stretch" [fillcolor=orange label="debian-stretch"];
     "debian"->"nfqlt/debian-stretch";
-    "nfqlt/debian-wheezy" [fillcolor=orange label="debian-wheezy"];
-    "debian"->"nfqlt/debian-wheezy";
     "nfqlt/dev" [fillcolor=orange label="dev"];
     "nfqlt/debian-bullseye"->"nfqlt/dev";
     "nfqlt/docker18ce" [fillcolor=orange label="docker18ce"];
@@ -179,6 +175,8 @@ digraph G {
     "nfqlt/toolbox-bullseye"->"nfqlt/node16";
     "nfqlt/node18" [fillcolor=orange label="node18"];
     "nfqlt/toolbox-bullseye"->"nfqlt/node18";
+    "nfqlt/node19" [fillcolor=orange label="node19"];
+    "nfqlt/toolbox-bullseye"->"nfqlt/node19";
     "nfqlt/node4" [fillcolor=orange label="node4"];
     "nfqlt/toolbox-buster"->"nfqlt/node4";
     "nfqlt/node6" [fillcolor=orange label="node6"];
@@ -195,6 +193,8 @@ digraph G {
     "nfqlt/debian-bullseye"->"nfqlt/nodeserver16";
     "nfqlt/nodeserver18" [fillcolor=orange label="nodeserver18"];
     "nfqlt/debian-bullseye"->"nfqlt/nodeserver18";
+    "nfqlt/nodeserver19" [fillcolor=orange label="nodeserver19"];
+    "nfqlt/debian-bullseye"->"nfqlt/nodeserver19";
     "nfqlt/nodeserver8" [fillcolor=orange label="nodeserver8"];
     "nfqlt/debian-buster"->"nfqlt/nodeserver8";
     "nfqlt/packager" [fillcolor=orange label="packager"];
@@ -202,13 +202,9 @@ digraph G {
     "nfqlt/pdftk" [fillcolor=orange label="pdftk"];
     "nfqlt/toolbox-buster"->"nfqlt/pdftk";
     "nfqlt/phantomjs19" [fillcolor=orange label="phantomjs19"];
-    "nfqlt/debian-jessie"->"nfqlt/phantomjs19";
+    "nfqlt/debian-bullseye"->"nfqlt/phantomjs19";
     "nfqlt/phantomjs21" [fillcolor=orange label="phantomjs21"];
-    "nfqlt/debian-stretch"->"nfqlt/phantomjs21";
-    "nfqlt/php54-cli" [fillcolor=orange label="php54-cli"];
-    "nfqlt/debian-wheezy"->"nfqlt/php54-cli";
-    "nfqlt/php54-dev" [fillcolor=orange label="php54-dev"];
-    "nfqlt/php54-cli"->"nfqlt/php54-dev";
+    "nfqlt/debian-bullseye"->"nfqlt/phantomjs21";
     "nfqlt/php56-cli" [fillcolor=orange label="php56-cli"];
     "nfqlt/debian-jessie"->"nfqlt/php56-cli";
     "nfqlt/php56-cron" [fillcolor=orange label="php56-cron"];
@@ -291,6 +287,16 @@ digraph G {
     "nfqlt/php81-cli"->"nfqlt/php81-fpm";
     "nfqlt/php81-supervisor" [fillcolor=orange label="php81-supervisor"];
     "nfqlt/php81-cli"->"nfqlt/php81-supervisor";
+    "nfqlt/php82-cli" [fillcolor=orange label="php82-cli"];
+    "nfqlt/debian-bullseye"->"nfqlt/php82-cli";
+    "nfqlt/php82-cron" [fillcolor=orange label="php82-cron"];
+    "nfqlt/php81-cli"->"nfqlt/php82-cron";
+    "nfqlt/php82-dev" [fillcolor=orange label="php82-dev"];
+    "nfqlt/php82-cli"->"nfqlt/php82-dev";
+    "nfqlt/php82-fpm" [fillcolor=orange label="php82-fpm"];
+    "nfqlt/php82-cli"->"nfqlt/php82-fpm";
+    "nfqlt/php82-supervisor" [fillcolor=orange label="php82-supervisor"];
+    "nfqlt/php81-cli"->"nfqlt/php82-supervisor";
     "nfqlt/phpmyadmin" [fillcolor=orange label="phpmyadmin"];
     "nfqlt/php70-cli"->"nfqlt/phpmyadmin";
     "nfqlt/phyaml" [fillcolor=orange label="phyaml"];
