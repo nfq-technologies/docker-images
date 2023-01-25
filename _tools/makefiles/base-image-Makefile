@@ -74,7 +74,8 @@ build-arm64:
 	@echo "# Building context $(ARM64_CONTEXT)..."
 	@echo
 	sed 's~FROM nfqlt~FROM ${IMAGE_REGISTRY}nfqlt~' Dockerfile > .Dockerfile_arm
-	DOCKER_CONTEXT=$(ARM64_CONTEXT) docker build --no-cache -f .Dockerfile_arm -t $(IMAGE_FULL_NAME):arm64 ./
+	export DOCKER_CONTEXT=$(ARM64_CONTEXT)
+	docker build --no-cache -f .Dockerfile_arm -t $(IMAGE_FULL_NAME):arm64 ./
 	rm -f .Dockerfile_arm
 	make status
 

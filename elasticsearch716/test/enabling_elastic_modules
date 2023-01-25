@@ -1,0 +1,12 @@
+#!/bin/bash
+
+CMD="docker run -it -e NFQ_ENABLE_ELASTIC_MODULES $1 run-parts /etc/rc.d"
+
+
+# test enabling analysis-icu module
+export NFQ_ENABLE_ELASTIC_MODULES='analysis-icu'
+$CMD | grep -i 'Enabling plugin.*analysis-icu' &> /dev/null \
+|| (echo "Container did not reported enabling analysis-icu elastic module" && exit -1)
+
+
+

@@ -1,4 +1,4 @@
-FROM nfqlt/debian-bullseye
+FROM docker.nfq.lt/nfqlt/debian-bullseye
 
 
 EXPOSE  5672
