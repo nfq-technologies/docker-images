@@ -1,4 +1,4 @@
-FROM nfqlt/debian-stretch
+FROM nfqlt/debian-bullseye
 
 EXPOSE 22
 CMD exec /entrypoint.sh
