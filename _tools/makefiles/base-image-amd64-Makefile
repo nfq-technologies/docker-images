@@ -1,4 +1,4 @@
-# base-image-Makefile
+# base-image-amd64-Makefile
 
 IMAGE_BASE_NAME = $(shell basename $(shell pwd))
 IMAGE_TYPE = $(shell basename $(shell dirname $(shell pwd)))
