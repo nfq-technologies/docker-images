@@ -86,7 +86,7 @@ test-amd64:
 	$(MAKE) CONTEXT=$(AMD64_CONTEXT) ARCH=amd64 test-arch
 
 test-arm64:
-	$(MAKE) CONTEXT=$(AMD64_CONTEXT) ARCH=amd64 test-arch
+	$(MAKE) CONTEXT=$(ARM64_CONTEXT) ARCH=arm64 test-arch
 
 test-arch:
 	@echo
