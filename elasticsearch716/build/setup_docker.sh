@@ -8,10 +8,9 @@ apt-get update
 apt-get install -y --no-install-recommends ca-certificates-java
 
 ES_PKG_NAME=elasticsearch-7.16.3
-arch="$([ "`uname -m`" = "aarch64" ] && echo "aarch64" || echo "x86_64")"
 
 cd /tmp/
-wget -nv -t5 -O es.tar.gz https://artifacts.elastic.co/downloads/elasticsearch/$ES_PKG_NAME-linux-$arch.tar.gz
+wget -nv -t5 -O es.tar.gz https://artifacts.elastic.co/downloads/elasticsearch/$ES_PKG_NAME-linux-$(uname -m).tar.gz
 tar xzf es.tar.gz
 rm -f es.tar.gz
 mv /tmp/$ES_PKG_NAME /elasticsearch
