@@ -3,10 +3,12 @@
 set -x
 set -e
 
+arch="$([ "`uname -m`" = "aarch64" ] && echo "arm64" || echo "amd64")"
+
 # Manually download and install node deb
 file="$(wget -qO - https://deb.nodesource.com/node_16.x/pool/main/n/nodejs/ \
 	| sed 's/href="\([^"]*\)">/\n\1\n/g' \
-	| grep -i '^nodejs_[0-9\.\-]*deb-1nodesource._amd64\.deb$' \
+	| grep -i '^nodejs_[0-9\.\-]*deb-1nodesource._'$arch'\.deb$' \
 	| sort --version-sort \
 	| tail -n1)"
 
@@ -21,7 +23,7 @@ npm install -g yarn
 npm install -g grunt-cli
 
 # sass
-npm install -g node-sass --unsafe
+#npm install -g node-sass --unsafe
 
 # gulp
 npm install -g gulp-cli

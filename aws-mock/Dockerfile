@@ -1,4 +1,4 @@
-FROM nfqlt/debian-buster
+FROM nfqlt/debian-bullseye
 
 ENV NFQ_AWS_SERVICES "ec2:4001"
 

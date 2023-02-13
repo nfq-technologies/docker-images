@@ -1,4 +1,4 @@
-FROM nfqlt/debian-buster
+FROM nfqlt/debian-bullseye
 
 
 CMD /entrypoint.sh

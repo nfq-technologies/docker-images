@@ -1,0 +1,26 @@
+#!/bin/bash
+set -e
+
+ES_PLUGIN="/elasticsearch/bin/elasticsearch-plugin"
+
+available_plugins=$($ES_PLUGIN list | sed -r 's/[ -]*//')
+
+while read -r plugin; do
+        if [ "$plugin" == "No plugin detected" ]; then
+                continue
+        fi
+        if [ -z "$(echo " $NFQ_ENABLE_ELASTIC_MODULES " | fgrep " $plugin ")" ]; then
+				true
+                #$ES_PLUGIN remove "$plugin" >/dev/null &
+        else
+                echo "++ Enabling plugin: '$plugin'"
+        fi
+done <<< "$available_plugins"
+
+
+for plugin in $NFQ_ENABLE_ELASTIC_MODULES; do
+        if [ -z "$(echo "$available_plugins" | fgrep "$plugin")" ]; then
+                echo "-- WARNING: plugin '$plugin' is not available"
+        fi
+done
+
