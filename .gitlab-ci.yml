@@ -1,1 +1,1 @@
-include: ./_tools/gitlab/*/*
+include: _tools/gitlab/*/*
