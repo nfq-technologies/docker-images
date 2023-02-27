@@ -1,7 +1,0 @@
-
-php80-fpm:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd php80-fpm && make all'
-  needs: ["nfqlt/php80-cli"]
-  when: manual

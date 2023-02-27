@@ -1,7 +1,0 @@
-
-php81-supervisor:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd php81-supervisor && make all'
-  needs: ["nfqlt/php81-cli"]
-  when: manual

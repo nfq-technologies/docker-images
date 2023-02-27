@@ -1,7 +1,0 @@
-
-php71-dev:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd php71-dev && make all'
-  needs: ["nfqlt/php71-cli"]
-  when: manual

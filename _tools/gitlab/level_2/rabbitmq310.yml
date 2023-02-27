@@ -1,7 +1,0 @@
-
-rabbitmq310:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd rabbitmq310 && make all'
-  needs: ["nfqlt/debian-bullseye"]
-  when: manual

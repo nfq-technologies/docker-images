@@ -1,7 +1,0 @@
-
-node10:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd node10 && make all'
-  needs: ["nfqlt/toolbox-bullseye"]
-  when: manual

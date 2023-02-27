@@ -1,7 +1,0 @@
-
-apache24:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd apache24 && make all'
-  needs: ["nfqlt/debian-bullseye"]
-  when: manual

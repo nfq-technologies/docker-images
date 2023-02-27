@@ -1,7 +1,0 @@
-
-gitsync:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd gitsync && make all'
-  needs: ["nfqlt/debian-buster"]
-  when: manual

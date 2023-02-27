@@ -1,7 +1,0 @@
-
-docker18ce:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd docker18ce && make all'
-  needs: ["nfqlt/debian-bullseye"]
-  when: manual

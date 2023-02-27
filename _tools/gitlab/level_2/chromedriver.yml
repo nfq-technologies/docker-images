@@ -1,7 +1,0 @@
-
-chromedriver:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd chromedriver && make all'
-  needs: ["nfqlt/debian-bullseye"]
-  when: manual

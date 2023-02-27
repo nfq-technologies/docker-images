@@ -1,7 +1,0 @@
-
-mysql57-data:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd mysql57-data && make all'
-  needs: ["nfqlt/mysql57"]
-  when: manual

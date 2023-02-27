@@ -1,7 +1,0 @@
-
-node6:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd node6 && make all'
-  needs: ["nfqlt/toolbox-buster"]
-  when: manual

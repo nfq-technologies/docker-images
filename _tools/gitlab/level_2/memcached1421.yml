@@ -1,7 +1,0 @@
-
-memcached1421:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd memcached1421 && make all'
-  needs: ["nfqlt/debian-jessie"]
-  when: manual

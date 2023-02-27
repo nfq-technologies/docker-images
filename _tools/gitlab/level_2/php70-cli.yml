@@ -1,7 +1,0 @@
-
-php70-cli:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd php70-cli && make all'
-  needs: ["nfqlt/debian-stretch"]
-  when: manual

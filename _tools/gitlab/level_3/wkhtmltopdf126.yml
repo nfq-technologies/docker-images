@@ -1,7 +1,0 @@
-
-wkhtmltopdf126:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd wkhtmltopdf126 && make all'
-  needs: ["nfqlt/toolbox-bullseye"]
-  when: manual

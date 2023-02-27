@@ -1,7 +1,0 @@
-
-elasticsearch56-data:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd elasticsearch56-data && make all'
-  needs: ["nfqlt/elasticsearch56"]
-  when: manual

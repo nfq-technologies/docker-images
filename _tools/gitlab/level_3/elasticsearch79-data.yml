@@ -1,7 +1,0 @@
-
-elasticsearch79-data:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd elasticsearch79-data && make all'
-  needs: ["nfqlt/elasticsearch79"]
-  when: manual

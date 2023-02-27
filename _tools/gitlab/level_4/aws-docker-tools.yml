@@ -1,7 +1,0 @@
-
-aws-docker-tools:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd aws-docker-tools && make all'
-  needs: ["nfqlt/aws-tools"]
-  when: manual

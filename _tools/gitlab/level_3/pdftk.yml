@@ -1,7 +1,0 @@
-
-pdftk:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd pdftk && make all'
-  needs: ["nfqlt/toolbox-buster"]
-  when: manual

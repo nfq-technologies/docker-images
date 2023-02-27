@@ -1,7 +1,0 @@
-
-birt45:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd birt45 && make all'
-  needs: ["nfqlt/debian-stretch"]
-  when: manual

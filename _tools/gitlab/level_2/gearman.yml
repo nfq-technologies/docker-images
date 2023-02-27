@@ -1,7 +1,0 @@
-
-gearman:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd gearman && make all'
-  needs: ["nfqlt/debian-stretch"]
-  when: manual

@@ -1,7 +1,0 @@
-
-rabbitmq335:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd rabbitmq335 && make all'
-  needs: ["nfqlt/debian-jessie"]
-  when: manual

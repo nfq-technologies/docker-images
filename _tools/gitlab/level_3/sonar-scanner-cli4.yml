@@ -1,7 +1,0 @@
-
-sonar-scanner-cli4:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd sonar-scanner-cli4 && make all'
-  needs: ["nfqlt/toolbox-buster"]
-  when: manual

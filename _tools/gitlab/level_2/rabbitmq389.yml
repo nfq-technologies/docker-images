@@ -1,7 +1,0 @@
-
-rabbitmq389:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd rabbitmq389 && make all'
-  needs: ["nfqlt/debian-bullseye"]
-  when: manual

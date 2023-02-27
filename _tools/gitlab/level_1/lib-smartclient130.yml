@@ -1,7 +1,0 @@
-
-lib-smartclient130:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd lib-smartclient130 && make all'
-  needs: [""]
-  when: manual

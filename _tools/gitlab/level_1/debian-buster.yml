@@ -1,7 +1,0 @@
-
-debian-buster:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd debian-buster && make all'
-  needs: [""]
-  when: manual

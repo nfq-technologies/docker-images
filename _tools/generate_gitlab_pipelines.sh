@@ -29,14 +29,14 @@ $image:
 
 for level in $levels; do
 	echo "Generating level $level"
+	destination_file="./_tools/gitlab/$level/config.yml"
+	rm -f "./_tools/gitlab/$level/config.yml"
 	for docker_image in ${!level}; do
 		echo "Generating gitlab-ci.yml for image $docker_image"
-		destination_file="./_tools/gitlab/$level/$docker_image.yml"
-		echo "$destination_file"
 		parent=""
 		if [ "$level" != "level_1" ]; then
 			parent="$(/bin/grep ^FROM ./$docker_image/Dockerfile | /usr/bin/cut -d' ' -f2)"
 		fi
-		echo "$(ci_yml "$docker_image" "$parent")" > $destination_file
+		echo "$(ci_yml "$docker_image" "$parent")" >> $destination_file
 	done
 done

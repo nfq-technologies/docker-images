@@ -1,7 +1,0 @@
-
-php73-supervisor:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd php73-supervisor && make all'
-  needs: ["nfqlt/php73-cli"]
-  when: manual

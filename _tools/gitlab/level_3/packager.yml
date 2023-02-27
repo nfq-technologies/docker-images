@@ -1,7 +1,0 @@
-
-packager:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd packager && make all'
-  needs: ["nfqlt/toolbox-buster"]
-  when: manual

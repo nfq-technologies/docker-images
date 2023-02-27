@@ -1,7 +1,0 @@
-
-elasticsearch22-data:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd elasticsearch22-data && make all'
-  needs: ["nfqlt/elasticsearch22"]
-  when: manual

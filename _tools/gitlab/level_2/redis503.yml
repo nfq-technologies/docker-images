@@ -1,7 +1,0 @@
-
-redis503:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd redis503 && make all'
-  needs: ["nfqlt/debian-buster"]
-  when: manual

@@ -1,7 +1,0 @@
-
-chromedriver83:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd chromedriver83 && make all'
-  needs: ["nfqlt/debian-buster"]
-  when: manual

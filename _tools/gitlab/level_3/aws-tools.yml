@@ -1,7 +1,0 @@
-
-aws-tools:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd aws-tools && make all'
-  needs: ["nfqlt/toolbox-bullseye"]
-  when: manual

@@ -1,7 +1,0 @@
-
-elasticsearch56:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd elasticsearch56 && make all'
-  needs: ["nfqlt/debian-buster"]
-  when: manual

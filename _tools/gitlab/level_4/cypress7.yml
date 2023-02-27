@@ -1,7 +1,0 @@
-
-cypress7:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd cypress7 && make all'
-  needs: ["nfqlt/node16"]
-  when: manual

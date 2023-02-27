@@ -1,7 +1,0 @@
-
-thrift091:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd thrift091 && make all'
-  needs: ["nfqlt/toolbox"]
-  when: manual

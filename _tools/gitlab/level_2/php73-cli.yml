@@ -1,7 +1,0 @@
-
-php73-cli:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd php73-cli && make all'
-  needs: ["nfqlt/debian-bullseye"]
-  when: manual

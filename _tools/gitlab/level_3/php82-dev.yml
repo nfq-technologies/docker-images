@@ -1,7 +1,0 @@
-
-php82-dev:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd php82-dev && make all'
-  needs: ["nfqlt/php82-cli"]
-  when: manual

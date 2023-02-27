@@ -1,7 +1,0 @@
-
-mongo24:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd mongo24 && make all'
-  needs: ["nfqlt/debian-jessie"]
-  when: manual

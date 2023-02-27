@@ -1,7 +1,0 @@
-
-wkhtmltopdf:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd wkhtmltopdf && make all'
-  needs: ["nfqlt/toolbox"]
-  when: manual

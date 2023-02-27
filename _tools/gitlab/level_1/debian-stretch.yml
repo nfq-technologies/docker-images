@@ -1,7 +1,0 @@
-
-debian-stretch:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd debian-stretch && make all'
-  needs: [""]
-  when: manual

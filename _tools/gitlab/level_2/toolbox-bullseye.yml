@@ -1,7 +1,0 @@
-
-toolbox-bullseye:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd toolbox-bullseye && make all'
-  needs: ["nfqlt/debian-bullseye"]
-  when: manual

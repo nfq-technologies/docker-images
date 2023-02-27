@@ -1,7 +1,0 @@
-
-wkhtmltopdf125:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd wkhtmltopdf125 && make all'
-  needs: ["nfqlt/toolbox-buster"]
-  when: manual

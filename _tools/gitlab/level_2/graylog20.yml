@@ -1,7 +1,0 @@
-
-graylog20:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd graylog20 && make all'
-  needs: ["nfqlt/debian-jessie"]
-  when: manual

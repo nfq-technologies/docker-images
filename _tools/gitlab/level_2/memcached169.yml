@@ -1,7 +1,0 @@
-
-memcached169:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd memcached169 && make all'
-  needs: ["nfqlt/debian-bullseye"]
-  when: manual

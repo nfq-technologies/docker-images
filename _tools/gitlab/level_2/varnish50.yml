@@ -1,7 +1,0 @@
-
-varnish50:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd varnish50 && make all'
-  needs: ["nfqlt/debian-stretch"]
-  when: manual

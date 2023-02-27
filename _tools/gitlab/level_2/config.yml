@@ -1,0 +1,539 @@
+
+mysql57-data:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd mysql57-data && make all'
+  needs: ["nfqlt/mysql57"]
+  when: manual
+
+postgres12-data:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd postgres12-data && make all'
+  needs: ["nfqlt/postgres12"]
+  when: manual
+
+mysql56-data:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd mysql56-data && make all'
+  needs: ["nfqlt/mysql56"]
+  when: manual
+
+solr36:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd solr36 && make all'
+  needs: ["nfqlt/debian-jessie"]
+  when: manual
+
+elasticsearch22:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd elasticsearch22 && make all'
+  needs: ["nfqlt/debian-jessie"]
+  when: manual
+
+rabbitmq335:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd rabbitmq335 && make all'
+  needs: ["nfqlt/debian-jessie"]
+  when: manual
+
+nginx16:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd nginx16 && make all'
+  needs: ["nfqlt/debian-jessie"]
+  when: manual
+
+graylog20:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd graylog20 && make all'
+  needs: ["nfqlt/debian-jessie"]
+  when: manual
+
+sphinxsearch:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd sphinxsearch && make all'
+  needs: ["nfqlt/debian-jessie"]
+  when: manual
+
+redis2817:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd redis2817 && make all'
+  needs: ["nfqlt/debian-jessie"]
+  when: manual
+
+mongo24:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd mongo24 && make all'
+  needs: ["nfqlt/debian-jessie"]
+  when: manual
+
+apache24-fastcgi:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd apache24-fastcgi && make all'
+  needs: ["nfqlt/debian-jessie"]
+  when: manual
+
+php56-cli:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd php56-cli && make all'
+  needs: ["nfqlt/debian-jessie"]
+  when: manual
+
+memcached1421:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd memcached1421 && make all'
+  needs: ["nfqlt/debian-jessie"]
+  when: manual
+
+chromedriver:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd chromedriver && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+toolbox-bullseye:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd toolbox-bullseye && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+elasticsearch75:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd elasticsearch75 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+nodeserver16:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd nodeserver16 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+elasticsearch72:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd elasticsearch72 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+elasticsearch68:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd elasticsearch68 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+php82-cli:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd php82-cli && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+php81-cli:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd php81-cli && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+php71-cli:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd php71-cli && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+nginx118:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd nginx118 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+php80-cli:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd php80-cli && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+nodeserver19:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd nodeserver19 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+memcached169:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd memcached169 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+nodeserver12:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd nodeserver12 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+php73-cli:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd php73-cli && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+apache2452-fastcgi:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd apache2452-fastcgi && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+docker18ce:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd docker18ce && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+rabbitmq310:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd rabbitmq310 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+nodeserver10:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd nodeserver10 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+elasticsearch710:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd elasticsearch710 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+elasticsearch716:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd elasticsearch716 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+redis60:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd redis60 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+phantomjs21:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd phantomjs21 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+rabbitmq389:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd rabbitmq389 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+nodeserver18:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd nodeserver18 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+dev:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd dev && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+elasticsearch79:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd elasticsearch79 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+mailhog:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd mailhog && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+rabbitmq38:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd rabbitmq38 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+php74-cli:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd php74-cli && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+mongo50:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd mongo50 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+apache24:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd apache24 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+rabbitmq378:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd rabbitmq378 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+aws-mock:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd aws-mock && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+nodeserver14:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd nodeserver14 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+elasticsearch77:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd elasticsearch77 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+toolbox:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd toolbox && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+php72-cli:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd php72-cli && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+phantomjs19:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd phantomjs19 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual
+
+mysql55-data:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd mysql55-data && make all'
+  needs: ["nfqlt/mysql55"]
+  when: manual
+
+mysql80-data:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd mysql80-data && make all'
+  needs: ["nfqlt/mysql80"]
+  when: manual
+
+mongo32:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd mongo32 && make all'
+  needs: ["nfqlt/debian-stretch"]
+  when: manual
+
+redis326:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd redis326 && make all'
+  needs: ["nfqlt/debian-stretch"]
+  when: manual
+
+birt45:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd birt45 && make all'
+  needs: ["nfqlt/debian-stretch"]
+  when: manual
+
+chromedriver73:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd chromedriver73 && make all'
+  needs: ["nfqlt/debian-stretch"]
+  when: manual
+
+rabbitmq366:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd rabbitmq366 && make all'
+  needs: ["nfqlt/debian-stretch"]
+  when: manual
+
+memcached1433:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd memcached1433 && make all'
+  needs: ["nfqlt/debian-stretch"]
+  when: manual
+
+nginx110:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd nginx110 && make all'
+  needs: ["nfqlt/debian-stretch"]
+  when: manual
+
+gearman:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd gearman && make all'
+  needs: ["nfqlt/debian-stretch"]
+  when: manual
+
+php70-cli:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd php70-cli && make all'
+  needs: ["nfqlt/debian-stretch"]
+  when: manual
+
+varnish50:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd varnish50 && make all'
+  needs: ["nfqlt/debian-stretch"]
+  when: manual
+
+certbot:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd certbot && make all'
+  needs: ["nfqlt/debian-buster"]
+  when: manual
+
+router:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd router && make all'
+  needs: ["nfqlt/debian-buster"]
+  when: manual
+
+varnish61:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd varnish61 && make all'
+  needs: ["nfqlt/debian-buster"]
+  when: manual
+
+nginx114:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd nginx114 && make all'
+  needs: ["nfqlt/debian-buster"]
+  when: manual
+
+redis503:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd redis503 && make all'
+  needs: ["nfqlt/debian-buster"]
+  when: manual
+
+memcached156:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd memcached156 && make all'
+  needs: ["nfqlt/debian-buster"]
+  when: manual
+
+gitsync:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd gitsync && make all'
+  needs: ["nfqlt/debian-buster"]
+  when: manual
+
+toolbox-buster:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd toolbox-buster && make all'
+  needs: ["nfqlt/debian-buster"]
+  when: manual
+
+nodeserver8:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd nodeserver8 && make all'
+  needs: ["nfqlt/debian-buster"]
+  when: manual
+
+chromedriver83:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd chromedriver83 && make all'
+  needs: ["nfqlt/debian-buster"]
+  when: manual
+
+elasticsearch56:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd elasticsearch56 && make all'
+  needs: ["nfqlt/debian-buster"]
+  when: manual
+
+apache2438-fastcgi:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd apache2438-fastcgi && make all'
+  needs: ["nfqlt/debian-buster"]
+  when: manual

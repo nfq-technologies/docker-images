@@ -1,7 +1,0 @@
-
-ruby2:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd ruby2 && make all'
-  needs: ["nfqlt/toolbox-buster"]
-  when: manual

@@ -1,7 +1,0 @@
-
-db-tools:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd db-tools && make all'
-  needs: ["nfqlt/toolbox-bullseye"]
-  when: manual

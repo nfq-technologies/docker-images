@@ -1,7 +1,0 @@
-
-xhgui:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd xhgui && make all'
-  needs: ["nfqlt/php81-dev"]
-  when: manual
