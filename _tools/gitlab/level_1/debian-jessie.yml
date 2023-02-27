@@ -1,0 +1,7 @@
+
+debian-jessie:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd debian-jessie && make all'
+  needs: [""]
+  when: manual

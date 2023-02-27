@@ -1,0 +1,7 @@
+
+mysql55:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd mysql55 && make all'
+  needs: [""]
+  when: manual

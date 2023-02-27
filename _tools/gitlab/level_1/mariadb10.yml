@@ -1,0 +1,7 @@
+
+mariadb10:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd mariadb10 && make all'
+  needs: [""]
+  when: manual

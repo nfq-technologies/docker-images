@@ -36,7 +36,7 @@ for level in $levels; do
 		parent=""
 		if [ "$level" != "level_1" ]; then
 			parent="$(/bin/grep ^FROM ./$docker_image/Dockerfile | /usr/bin/cut -d' ' -f2)"
-			echo "$(ci_yml "$docker_image" "$parent")" > $destination_file
 		fi
+		echo "$(ci_yml "$docker_image" "$parent")" > $destination_file
 	done
 done
