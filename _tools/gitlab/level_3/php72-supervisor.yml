@@ -1,0 +1,7 @@
+
+php72-supervisor:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd php72-supervisor && make all'
+  needs: ["nfqlt/php72-cli"]
+  when: manual

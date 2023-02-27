@@ -1,0 +1,7 @@
+
+certbot:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd certbot && make all'
+  needs: ["nfqlt/debian-buster"]
+  when: manual

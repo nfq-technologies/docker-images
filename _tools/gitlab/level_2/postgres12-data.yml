@@ -1,0 +1,7 @@
+
+postgres12-data:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd postgres12-data && make all'
+  needs: ["nfqlt/postgres12"]
+  when: manual

@@ -1,0 +1,7 @@
+
+nginx110:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd nginx110 && make all'
+  needs: ["nfqlt/debian-stretch"]
+  when: manual

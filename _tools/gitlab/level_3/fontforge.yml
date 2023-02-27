@@ -1,0 +1,7 @@
+
+fontforge:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd fontforge && make all'
+  needs: ["nfqlt/toolbox-buster"]
+  when: manual

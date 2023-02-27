@@ -1,0 +1,7 @@
+
+mongo32:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd mongo32 && make all'
+  needs: ["nfqlt/debian-stretch"]
+  when: manual

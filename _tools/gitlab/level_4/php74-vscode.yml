@@ -1,0 +1,7 @@
+
+php74-vscode:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd php74-vscode && make all'
+  needs: ["nfqlt/php74-dev"]
+  when: manual

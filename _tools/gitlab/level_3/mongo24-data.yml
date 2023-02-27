@@ -1,0 +1,7 @@
+
+mongo24-data:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd mongo24-data && make all'
+  needs: ["docker.nfq.lt/nfqlt/mongo24"]
+  when: manual

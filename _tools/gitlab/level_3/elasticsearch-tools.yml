@@ -1,0 +1,7 @@
+
+elasticsearch-tools:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd elasticsearch-tools && make all'
+  needs: ["nfqlt/nginx114"]
+  when: manual

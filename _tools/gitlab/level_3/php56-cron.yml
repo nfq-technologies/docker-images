@@ -1,0 +1,7 @@
+
+php56-cron:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd php56-cron && make all'
+  needs: ["nfqlt/php56-cli"]
+  when: manual

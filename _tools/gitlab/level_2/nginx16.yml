@@ -1,0 +1,7 @@
+
+nginx16:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd nginx16 && make all'
+  needs: ["nfqlt/debian-jessie"]
+  when: manual

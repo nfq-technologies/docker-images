@@ -1,0 +1,7 @@
+
+rabbitmq366:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd rabbitmq366 && make all'
+  needs: ["nfqlt/debian-stretch"]
+  when: manual

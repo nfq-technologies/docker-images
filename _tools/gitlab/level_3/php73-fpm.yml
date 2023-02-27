@@ -1,0 +1,7 @@
+
+php73-fpm:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd php73-fpm && make all'
+  needs: ["nfqlt/php73-cli"]
+  when: manual

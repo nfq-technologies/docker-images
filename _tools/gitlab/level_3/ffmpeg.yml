@@ -1,0 +1,7 @@
+
+ffmpeg:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd ffmpeg && make all'
+  needs: ["nfqlt/toolbox-buster"]
+  when: manual

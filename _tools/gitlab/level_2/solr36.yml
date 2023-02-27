@@ -1,0 +1,7 @@
+
+solr36:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd solr36 && make all'
+  needs: ["nfqlt/debian-jessie"]
+  when: manual

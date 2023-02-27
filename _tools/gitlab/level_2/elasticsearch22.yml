@@ -1,0 +1,7 @@
+
+elasticsearch22:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd elasticsearch22 && make all'
+  needs: ["nfqlt/debian-jessie"]
+  when: manual

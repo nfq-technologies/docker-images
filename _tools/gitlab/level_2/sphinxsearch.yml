@@ -1,0 +1,7 @@
+
+sphinxsearch:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd sphinxsearch && make all'
+  needs: ["nfqlt/debian-jessie"]
+  when: manual

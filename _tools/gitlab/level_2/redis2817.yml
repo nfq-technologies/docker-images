@@ -1,0 +1,7 @@
+
+redis2817:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd redis2817 && make all'
+  needs: ["nfqlt/debian-jessie"]
+  when: manual

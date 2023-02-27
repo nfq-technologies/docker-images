@@ -1,0 +1,7 @@
+
+phpmyadmin:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd phpmyadmin && make all'
+  needs: ["nfqlt/php70-cli"]
+  when: manual

@@ -1,0 +1,7 @@
+
+wkhtmltopdf-broken:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd wkhtmltopdf-broken && make all'
+  needs: ["nfqlt/toolbox"]
+  when: manual

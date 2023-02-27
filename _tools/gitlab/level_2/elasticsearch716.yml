@@ -1,0 +1,7 @@
+
+elasticsearch716:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd elasticsearch716 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual

@@ -1,0 +1,7 @@
+
+php82-fpm:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd php82-fpm && make all'
+  needs: ["nfqlt/php82-cli"]
+  when: manual

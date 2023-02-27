@@ -1,0 +1,7 @@
+
+chromedriver73:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd chromedriver73 && make all'
+  needs: ["nfqlt/debian-stretch"]
+  when: manual

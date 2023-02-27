@@ -1,0 +1,7 @@
+
+nodeserver19:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd nodeserver19 && make all'
+  needs: ["nfqlt/debian-bullseye"]
+  when: manual

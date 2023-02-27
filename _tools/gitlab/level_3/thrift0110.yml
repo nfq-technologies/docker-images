@@ -1,0 +1,7 @@
+
+thrift0110:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd thrift0110 && make all'
+  needs: ["nfqlt/toolbox-buster"]
+  when: manual

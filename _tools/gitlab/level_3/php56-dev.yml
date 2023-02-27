@@ -1,0 +1,7 @@
+
+php56-dev:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd php56-dev && make all'
+  needs: ["nfqlt/php56-cli"]
+  when: manual

@@ -1,0 +1,7 @@
+
+linker18ce:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd linker18ce && make all'
+  needs: ["nfqlt/docker18ce"]
+  when: manual

@@ -1,0 +1,7 @@
+
+mobile-proxy:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd mobile-proxy && make all'
+  needs: ["nfqlt/nginx114"]
+  when: manual

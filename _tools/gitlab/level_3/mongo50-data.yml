@@ -1,0 +1,7 @@
+
+mongo50-data:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd mongo50-data && make all'
+  needs: ["docker.nfq.lt/nfqlt/mongo50"]
+  when: manual

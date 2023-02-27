@@ -1,0 +1,7 @@
+
+cypress5:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd cypress5 && make all'
+  needs: ["nfqlt/node12"]
+  when: manual

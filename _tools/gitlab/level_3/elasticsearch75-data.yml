@@ -1,0 +1,7 @@
+
+elasticsearch75-data:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd elasticsearch75-data && make all'
+  needs: ["nfqlt/elasticsearch75"]
+  when: manual

@@ -1,0 +1,7 @@
+
+apache2438-fastcgi:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd apache2438-fastcgi && make all'
+  needs: ["nfqlt/debian-buster"]
+  when: manual

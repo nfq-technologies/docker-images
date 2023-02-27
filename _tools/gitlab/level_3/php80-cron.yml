@@ -1,0 +1,7 @@
+
+php80-cron:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd php80-cron && make all'
+  needs: ["nfqlt/php80-cli"]
+  when: manual

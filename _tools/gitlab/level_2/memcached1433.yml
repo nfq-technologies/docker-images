@@ -1,0 +1,7 @@
+
+memcached1433:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd memcached1433 && make all'
+  needs: ["nfqlt/debian-stretch"]
+  when: manual

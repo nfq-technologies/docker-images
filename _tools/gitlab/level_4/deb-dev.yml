@@ -1,0 +1,7 @@
+
+deb-dev:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd deb-dev && make all'
+  needs: ["nfqlt/php70-dev"]
+  when: manual

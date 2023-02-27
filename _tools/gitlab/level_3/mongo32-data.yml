@@ -1,0 +1,7 @@
+
+mongo32-data:
+  image: nfqlt/aws-tools-docker
+  tags: [nfq_ip]
+  script: 'cd mongo32-data && make all'
+  needs: ["docker.nfq.lt/nfqlt/mongo32"]
+  when: manual
