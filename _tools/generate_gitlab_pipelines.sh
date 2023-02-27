@@ -13,7 +13,7 @@ level_5="$(_tools/relational_sorting.php 5)"
 
 function ci_yml() {
 	image="$1"
-	if [ -n $parent ]; then
+	if [ -n "$parent" ]; then
 		parent='"'$parent'"'
 	fi
 	echo "

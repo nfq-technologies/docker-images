@@ -3,103 +3,103 @@ lib-smartclient130:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd lib-smartclient130 && make all'
-  needs: [""]
+  needs: []
   when: manual
 
 mysql57:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd mysql57 && make all'
-  needs: [""]
+  needs: []
   when: manual
 
 postgres12:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd postgres12 && make all'
-  needs: [""]
+  needs: []
   when: manual
 
 mysql56:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd mysql56 && make all'
-  needs: [""]
+  needs: []
   when: manual
 
 lib-smartclient120:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd lib-smartclient120 && make all'
-  needs: [""]
+  needs: []
   when: manual
 
 debian-jessie:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd debian-jessie && make all'
-  needs: [""]
+  needs: []
   when: manual
 
 debian-bullseye:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd debian-bullseye && make all'
-  needs: [""]
+  needs: []
   when: manual
 
 lib-smartclient111:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd lib-smartclient111 && make all'
-  needs: [""]
+  needs: []
   when: manual
 
 mariadb10:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd mariadb10 && make all'
-  needs: [""]
+  needs: []
   when: manual
 
 mysql55:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd mysql55 && make all'
-  needs: [""]
+  needs: []
   when: manual
 
 mysql80:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd mysql80 && make all'
-  needs: [""]
+  needs: []
   when: manual
 
 lib-smartclient100:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd lib-smartclient100 && make all'
-  needs: [""]
+  needs: []
   when: manual
 
 lib-smartclient121:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd lib-smartclient121 && make all'
-  needs: [""]
+  needs: []
   when: manual
 
 debian-stretch:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd debian-stretch && make all'
-  needs: [""]
+  needs: []
   when: manual
 
 debian-buster:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd debian-buster && make all'
-  needs: [""]
+  needs: []
   when: manual
