@@ -1,15 +1,5 @@
-include: _tools/gitlab/*/*
-stages: 
-  - level_1
-  - level_2
-  - level_3
-  - level_4
-  - level_5
-
-
+include: _tools/gitlab/*/*/*.yml
 default:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd debian-buster && make all'
-  needs: []
-  when: manual
