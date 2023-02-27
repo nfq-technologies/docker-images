@@ -10,7 +10,7 @@ mongo24-data:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd mongo24-data && make all'
-  needs: ["nfqlt"]
+  needs: ["mongo24"]
   when: manual
 
 php56-supervisor:
@@ -332,7 +332,7 @@ mongo50-data:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd mongo50-data && make all'
-  needs: ["nfqlt"]
+  needs: ["mongo50"]
   when: manual
 
 elasticsearch77-data:
@@ -395,7 +395,7 @@ mongo32-data:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd mongo32-data && make all'
-  needs: ["nfqlt"]
+  needs: ["mongo32"]
   when: manual
 
 php70-dev:
