@@ -35,7 +35,7 @@ for level in $levels; do
 		echo "Generating gitlab-ci.yml for image $docker_image"
 		parent=""
 		if [ "$level" != "level_1" ]; then
-			parent="$(/bin/grep ^FROM ./$docker_image/Dockerfile | /usr/bin/cut -d' ' -f2)"
+			parent="$(grep ^FROM ./$docker_image/Dockerfile | cut -d' ' -f2 | cut -d'/' -f2)"
 		fi
 		echo "$(ci_yml "$docker_image" "$parent")" >> $destination_file
 	done

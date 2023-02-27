@@ -3,54 +3,54 @@ cypress7:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd cypress7 && make all'
-  needs: ["nfqlt/node16"]
+  needs: ["node16"]
   when: manual
 
 cypress9:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd cypress9 && make all'
-  needs: ["nfqlt/node16"]
+  needs: ["node16"]
   when: manual
 
 cypress5:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd cypress5 && make all'
-  needs: ["nfqlt/node12"]
+  needs: ["node12"]
   when: manual
 
 cypress4:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd cypress4 && make all'
-  needs: ["nfqlt/node12"]
+  needs: ["node12"]
   when: manual
 
 aws-docker-tools:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd aws-docker-tools && make all'
-  needs: ["nfqlt/aws-tools"]
+  needs: ["aws-tools"]
   when: manual
 
 xhgui:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd xhgui && make all'
-  needs: ["nfqlt/php81-dev"]
+  needs: ["php81-dev"]
   when: manual
 
 php74-vscode:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd php74-vscode && make all'
-  needs: ["nfqlt/php74-dev"]
+  needs: ["php74-dev"]
   when: manual
 
 deb-dev:
   image: nfqlt/aws-tools-docker
   tags: [nfq_ip]
   script: 'cd deb-dev && make all'
-  needs: ["nfqlt/php70-dev"]
+  needs: ["php70-dev"]
   when: manual
