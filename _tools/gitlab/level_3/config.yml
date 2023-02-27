@@ -1,420 +1,672 @@
 
 elasticsearch22-data:
   stage: level_3
-  needs: ["elasticsearch22"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["elasticsearch22"]
 
 mongo24-data:
   stage: level_3
-  needs: ["mongo24"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["mongo24"]
 
 php56-supervisor:
   stage: level_3
-  needs: ["php56-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php56-cli"]
 
 php56-dev:
   stage: level_3
-  needs: ["php56-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php56-cli"]
 
 php56-fpm:
   stage: level_3
-  needs: ["php56-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php56-cli"]
 
 php56-cron:
   stage: level_3
-  needs: ["php56-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php56-cli"]
 
 node10:
   stage: level_3
-  needs: ["toolbox-bullseye"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-bullseye"]
 
 node18:
   stage: level_3
-  needs: ["toolbox-bullseye"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-bullseye"]
 
 node14:
   stage: level_3
-  needs: ["toolbox-bullseye"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-bullseye"]
 
 node16:
   stage: level_3
-  needs: ["toolbox-bullseye"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-bullseye"]
 
 wkhtmltopdf126-broken:
   stage: level_3
-  needs: ["toolbox-bullseye"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-bullseye"]
 
 db-tools:
   stage: level_3
-  needs: ["toolbox-bullseye"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-bullseye"]
 
 node12:
   stage: level_3
-  needs: ["toolbox-bullseye"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-bullseye"]
 
 wkhtmltopdf126:
   stage: level_3
-  needs: ["toolbox-bullseye"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-bullseye"]
 
 aws-tools:
   stage: level_3
-  needs: ["toolbox-bullseye"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-bullseye"]
 
 node19:
   stage: level_3
-  needs: ["toolbox-bullseye"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-bullseye"]
 
 elasticsearch75-data:
   stage: level_3
-  needs: ["elasticsearch75"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["elasticsearch75"]
 
 elasticsearch72-data:
   stage: level_3
-  needs: ["elasticsearch72"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["elasticsearch72"]
 
 elasticsearch68-data:
   stage: level_3
-  needs: ["elasticsearch68"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["elasticsearch68"]
 
 php82-supervisor:
   stage: level_3
-  needs: ["php82-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php82-cli"]
 
 php82-fpm:
   stage: level_3
-  needs: ["php82-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php82-cli"]
 
 php82-dev:
   stage: level_3
-  needs: ["php82-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php82-cli"]
 
 php81-cron:
   stage: level_3
-  needs: ["php81-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php81-cli"]
 
 php81-supervisor:
   stage: level_3
-  needs: ["php81-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php81-cli"]
 
 php82-cron:
   stage: level_3
-  needs: ["php81-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php81-cli"]
 
 php81-dev:
   stage: level_3
-  needs: ["php81-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php81-cli"]
 
 php81-fpm:
   stage: level_3
-  needs: ["php81-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php81-cli"]
 
 php71-cron:
   stage: level_3
-  needs: ["php71-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php71-cli"]
 
 php71-fpm:
   stage: level_3
-  needs: ["php71-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php71-cli"]
 
 php71-dev:
   stage: level_3
-  needs: ["php71-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php71-cli"]
 
 php71-supervisor:
   stage: level_3
-  needs: ["php71-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php71-cli"]
 
 php80-supervisor:
   stage: level_3
-  needs: ["php80-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php80-cli"]
 
 php80-cron:
   stage: level_3
-  needs: ["php80-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php80-cli"]
 
 php80-dev:
   stage: level_3
-  needs: ["php80-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php80-cli"]
 
 php80-fpm:
   stage: level_3
-  needs: ["php80-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php80-cli"]
 
 php73-cron:
   stage: level_3
-  needs: ["php73-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php73-cli"]
 
 php73-dev:
   stage: level_3
-  needs: ["php73-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php73-cli"]
 
 php73-fpm:
   stage: level_3
-  needs: ["php73-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php73-cli"]
 
 php73-supervisor:
   stage: level_3
-  needs: ["php73-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php73-cli"]
 
 linker18ce:
   stage: level_3
-  needs: ["docker18ce"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["docker18ce"]
 
 elasticsearch710-data:
   stage: level_3
-  needs: ["elasticsearch710"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["elasticsearch710"]
 
 elasticsearch716-data:
   stage: level_3
-  needs: ["elasticsearch716"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["elasticsearch716"]
 
 elasticsearch79-data:
   stage: level_3
-  needs: ["elasticsearch79"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["elasticsearch79"]
 
 php74-cron:
   stage: level_3
-  needs: ["php74-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php74-cli"]
 
 php74-supervisor:
   stage: level_3
-  needs: ["php74-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php74-cli"]
 
 php74-dev:
   stage: level_3
-  needs: ["php74-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php74-cli"]
 
 php74-fpm:
   stage: level_3
-  needs: ["php74-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php74-cli"]
 
 mongo50-data:
   stage: level_3
-  needs: ["mongo50"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["mongo50"]
 
 elasticsearch77-data:
   stage: level_3
-  needs: ["elasticsearch77"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["elasticsearch77"]
 
 wkhtmltopdf-broken:
   stage: level_3
-  needs: ["toolbox"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox"]
 
 wkhtmltopdf:
   stage: level_3
-  needs: ["toolbox"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox"]
 
 thrift091:
   stage: level_3
-  needs: ["toolbox"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox"]
 
 php72-cron:
   stage: level_3
-  needs: ["php72-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php72-cli"]
 
 php72-dev:
   stage: level_3
-  needs: ["php72-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php72-cli"]
 
 php72-supervisor:
   stage: level_3
-  needs: ["php72-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php72-cli"]
 
 php72-fpm:
   stage: level_3
-  needs: ["php72-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php72-cli"]
 
 mongo32-data:
   stage: level_3
-  needs: ["mongo32"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["mongo32"]
 
 php70-dev:
   stage: level_3
-  needs: ["php70-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php70-cli"]
 
 phpmyadmin:
   stage: level_3
-  needs: ["php70-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php70-cli"]
 
 php70-cron:
   stage: level_3
-  needs: ["php70-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php70-cli"]
 
 php70-supervisor:
   stage: level_3
-  needs: ["php70-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php70-cli"]
 
 php70-fpm:
   stage: level_3
-  needs: ["php70-cli"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php70-cli"]
 
 mobile-proxy:
   stage: level_3
-  needs: ["nginx114"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["nginx114"]
 
 https-dev:
   stage: level_3
-  needs: ["nginx114"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["nginx114"]
 
 proxy:
   stage: level_3
-  needs: ["nginx114"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["nginx114"]
 
 elasticsearch-tools:
   stage: level_3
-  needs: ["nginx114"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["nginx114"]
 
 thrift093:
   stage: level_3
-  needs: ["toolbox-buster"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-buster"]
 
 ffmpeg:
   stage: level_3
-  needs: ["toolbox-buster"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-buster"]
 
 graphic-tools:
   stage: level_3
-  needs: ["toolbox-buster"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-buster"]
 
 pdftk:
   stage: level_3
-  needs: ["toolbox-buster"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-buster"]
 
 chromium:
   stage: level_3
-  needs: ["toolbox-buster"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-buster"]
 
 node6:
   stage: level_3
-  needs: ["toolbox-buster"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-buster"]
 
 packager:
   stage: level_3
-  needs: ["toolbox-buster"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-buster"]
 
 fontforge:
   stage: level_3
-  needs: ["toolbox-buster"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-buster"]
 
 wkhtmltopdf125:
   stage: level_3
-  needs: ["toolbox-buster"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-buster"]
 
 thrift0110:
   stage: level_3
-  needs: ["toolbox-buster"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-buster"]
 
 sonar-scanner-cli4:
   stage: level_3
-  needs: ["toolbox-buster"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-buster"]
 
 node4:
   stage: level_3
-  needs: ["toolbox-buster"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-buster"]
 
 wkhtmltopdf125-broken:
   stage: level_3
-  needs: ["toolbox-buster"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-buster"]
 
 ruby2:
   stage: level_3
-  needs: ["toolbox-buster"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-buster"]
 
 phyaml:
   stage: level_3
-  needs: ["toolbox-buster"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-buster"]
 
 node8:
   stage: level_3
-  needs: ["toolbox-buster"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-buster"]
 
 ghostscript:
   stage: level_3
-  needs: ["toolbox-buster"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["toolbox-buster"]
 
 elasticsearch56-data:
   stage: level_3
-  needs: ["elasticsearch56"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["elasticsearch56"]

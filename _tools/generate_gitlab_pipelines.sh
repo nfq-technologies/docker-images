@@ -10,7 +10,6 @@ level_4="$(_tools/relational_sorting.php 4)"
 level_5="$(_tools/relational_sorting.php 5)"
 
 
-
 function ci_yml() {
 	local image="$1"
 	local level="$2"
@@ -22,8 +21,11 @@ function ci_yml() {
 	echo "
 $image:
   stage: $level
-  needs: [$parent]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: [$parent]
 "
 }
 

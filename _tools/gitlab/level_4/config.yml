@@ -1,40 +1,64 @@
 
 cypress7:
   stage: level_4
-  needs: ["node16"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["node16"]
 
 cypress9:
   stage: level_4
-  needs: ["node16"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["node16"]
 
 cypress5:
   stage: level_4
-  needs: ["node12"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["node12"]
 
 cypress4:
   stage: level_4
-  needs: ["node12"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["node12"]
 
 aws-docker-tools:
   stage: level_4
-  needs: ["aws-tools"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["aws-tools"]
 
 xhgui:
   stage: level_4
-  needs: ["php81-dev"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php81-dev"]
 
 php74-vscode:
   stage: level_4
-  needs: ["php74-dev"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php74-dev"]
 
 deb-dev:
   stage: level_4
-  needs: ["php70-dev"]
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: ["php70-dev"]

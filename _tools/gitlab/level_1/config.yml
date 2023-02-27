@@ -1,75 +1,120 @@
 
 lib-smartclient130:
   stage: level_1
-  needs: []
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: []
 
 mysql57:
   stage: level_1
-  needs: []
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: []
 
 postgres12:
   stage: level_1
-  needs: []
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: []
 
 mysql56:
   stage: level_1
-  needs: []
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: []
 
 lib-smartclient120:
   stage: level_1
-  needs: []
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: []
 
 debian-jessie:
   stage: level_1
-  needs: []
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: []
 
 debian-bullseye:
   stage: level_1
-  needs: []
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: []
 
 lib-smartclient111:
   stage: level_1
-  needs: []
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: []
 
 mariadb10:
   stage: level_1
-  needs: []
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: []
 
 mysql55:
   stage: level_1
-  needs: []
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: []
 
 mysql80:
   stage: level_1
-  needs: []
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: []
 
 lib-smartclient100:
   stage: level_1
-  needs: []
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: []
 
 lib-smartclient121:
   stage: level_1
-  needs: []
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: []
 
 debian-stretch:
   stage: level_1
-  needs: []
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: []
 
 debian-buster:
   stage: level_1
-  needs: []
+  image: nfqlt/aws-tools-docker
+  script: 'cd debian-buster && make all'
+  tags: [nfq_ip]
   when: manual
+  needs: []
