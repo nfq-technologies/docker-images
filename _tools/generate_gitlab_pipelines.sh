@@ -12,15 +12,16 @@ level_5="$(_tools/relational_sorting.php 5)"
 
 
 function ci_yml() {
-	image="$1"
+	local image="$1"
+	local level="$2"
+	local parent="$3"
+
 	if [ -n "$parent" ]; then
 		parent='"'$parent'"'
 	fi
 	echo "
 $image:
-  image: nfqlt/aws-tools-docker
-  tags: [nfq_ip]
-  script: 'cd $image && make all'
+  stage: $level
   needs: [$parent]
   when: manual
 "
@@ -37,6 +38,6 @@ for level in $levels; do
 		if [ "$level" != "level_1" ]; then
 			parent="$(grep ^FROM ./$docker_image/Dockerfile | cut -d' ' -f2 | cut -d'/' -f2)"
 		fi
-		echo "$(ci_yml "$docker_image" "$parent")" >> $destination_file
+		echo "$(ci_yml "$docker_image" "$level" "$parent")" >> $destination_file
 	done
 done
