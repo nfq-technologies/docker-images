@@ -38,7 +38,7 @@ debian-jessie:
 debian-bullseye:
   stage: level_1
   script: 'cd debian-bullseye && make all-amd64 && make publish'
-  needs: [, debian-bullseye_arm64]
+  needs: [debian-bullseye_arm64]
   when: manual
 debian-bullseye_arm64:
   stage: level_1
@@ -56,7 +56,7 @@ lib-smartclient111:
 mariadb10:
   stage: level_1
   script: 'cd mariadb10 && make all-amd64 && make publish'
-  needs: [, mariadb10_arm64]
+  needs: [mariadb10_arm64]
   when: manual
 mariadb10_arm64:
   stage: level_1
@@ -74,7 +74,7 @@ mysql55:
 mysql80:
   stage: level_1
   script: 'cd mysql80 && make all-amd64 && make publish'
-  needs: [, mysql80_arm64]
+  needs: [mysql80_arm64]
   when: manual
 mysql80_arm64:
   stage: level_1

@@ -26,7 +26,7 @@ cypress4:
 aws-docker-tools:
   stage: level_4
   script: 'cd aws-docker-tools && make all-amd64 && make publish'
-  needs: ["aws-tools", aws-docker-tools_arm64]
+  needs: [aws-docker-tools_arm64]
   when: manual
 aws-docker-tools_arm64:
   stage: level_4

@@ -34,7 +34,7 @@ $image:
 ${image}:
   stage: $level
   script: 'cd $image && make all-amd64 && make publish'
-  needs: [$parent, ${image}_arm64]
+  needs: [${image}_arm64]
   when: manual
 ${image}_arm64:
   stage: $level

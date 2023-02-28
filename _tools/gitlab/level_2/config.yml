@@ -2,7 +2,7 @@
 mysql57-data:
   stage: level_2
   script: 'cd mysql57-data && make all-amd64 && make publish'
-  needs: ["mysql57", mysql57-data_arm64]
+  needs: [mysql57-data_arm64]
   when: manual
 mysql57-data_arm64:
   stage: level_2
@@ -20,7 +20,7 @@ postgres12-data:
 mysql56-data:
   stage: level_2
   script: 'cd mysql56-data && make all-amd64 && make publish'
-  needs: ["mysql56", mysql56-data_arm64]
+  needs: [mysql56-data_arm64]
   when: manual
 mysql56-data_arm64:
   stage: level_2
@@ -98,7 +98,7 @@ memcached1421:
 chromedriver:
   stage: level_2
   script: 'cd chromedriver && make all-amd64 && make publish'
-  needs: ["debian-bullseye", chromedriver_arm64]
+  needs: [chromedriver_arm64]
   when: manual
 chromedriver_arm64:
   stage: level_2
@@ -110,7 +110,7 @@ chromedriver_arm64:
 toolbox-bullseye:
   stage: level_2
   script: 'cd toolbox-bullseye && make all-amd64 && make publish'
-  needs: ["debian-bullseye", toolbox-bullseye_arm64]
+  needs: [toolbox-bullseye_arm64]
   when: manual
 toolbox-bullseye_arm64:
   stage: level_2
@@ -140,7 +140,7 @@ elasticsearch72:
 elasticsearch68:
   stage: level_2
   script: 'cd elasticsearch68 && make all-amd64 && make publish'
-  needs: ["debian-bullseye", elasticsearch68_arm64]
+  needs: [elasticsearch68_arm64]
   when: manual
 elasticsearch68_arm64:
   stage: level_2
@@ -152,7 +152,7 @@ elasticsearch68_arm64:
 php82-cli:
   stage: level_2
   script: 'cd php82-cli && make all-amd64 && make publish'
-  needs: ["debian-bullseye", php82-cli_arm64]
+  needs: [php82-cli_arm64]
   when: manual
 php82-cli_arm64:
   stage: level_2
@@ -164,7 +164,7 @@ php82-cli_arm64:
 php81-cli:
   stage: level_2
   script: 'cd php81-cli && make all-amd64 && make publish'
-  needs: ["debian-bullseye", php81-cli_arm64]
+  needs: [php81-cli_arm64]
   when: manual
 php81-cli_arm64:
   stage: level_2
@@ -182,7 +182,7 @@ php71-cli:
 nginx118:
   stage: level_2
   script: 'cd nginx118 && make all-amd64 && make publish'
-  needs: ["debian-bullseye", nginx118_arm64]
+  needs: [nginx118_arm64]
   when: manual
 nginx118_arm64:
   stage: level_2
@@ -206,7 +206,7 @@ nodeserver19:
 memcached169:
   stage: level_2
   script: 'cd memcached169 && make all-amd64 && make publish'
-  needs: ["debian-bullseye", memcached169_arm64]
+  needs: [memcached169_arm64]
   when: manual
 memcached169_arm64:
   stage: level_2
@@ -236,7 +236,7 @@ apache2452-fastcgi:
 docker18ce:
   stage: level_2
   script: 'cd docker18ce && make all-amd64 && make publish'
-  needs: ["debian-bullseye", docker18ce_arm64]
+  needs: [docker18ce_arm64]
   when: manual
 docker18ce_arm64:
   stage: level_2
@@ -248,7 +248,7 @@ docker18ce_arm64:
 rabbitmq310:
   stage: level_2
   script: 'cd rabbitmq310 && make all-amd64 && make publish'
-  needs: ["debian-bullseye", rabbitmq310_arm64]
+  needs: [rabbitmq310_arm64]
   when: manual
 rabbitmq310_arm64:
   stage: level_2
@@ -272,7 +272,7 @@ elasticsearch710:
 elasticsearch716:
   stage: level_2
   script: 'cd elasticsearch716 && make all-amd64 && make publish'
-  needs: ["debian-bullseye", elasticsearch716_arm64]
+  needs: [elasticsearch716_arm64]
   when: manual
 elasticsearch716_arm64:
   stage: level_2
@@ -284,7 +284,7 @@ elasticsearch716_arm64:
 redis60:
   stage: level_2
   script: 'cd redis60 && make all-amd64 && make publish'
-  needs: ["debian-bullseye", redis60_arm64]
+  needs: [redis60_arm64]
   when: manual
 redis60_arm64:
   stage: level_2
@@ -302,7 +302,7 @@ phantomjs21:
 rabbitmq389:
   stage: level_2
   script: 'cd rabbitmq389 && make all-amd64 && make publish'
-  needs: ["debian-bullseye", rabbitmq389_arm64]
+  needs: [rabbitmq389_arm64]
   when: manual
 rabbitmq389_arm64:
   stage: level_2
@@ -320,7 +320,7 @@ nodeserver18:
 dev:
   stage: level_2
   script: 'cd dev && make all-amd64 && make publish'
-  needs: ["debian-bullseye", dev_arm64]
+  needs: [dev_arm64]
   when: manual
 dev_arm64:
   stage: level_2
@@ -338,7 +338,7 @@ elasticsearch79:
 mailhog:
   stage: level_2
   script: 'cd mailhog && make all-amd64 && make publish'
-  needs: ["debian-bullseye", mailhog_arm64]
+  needs: [mailhog_arm64]
   when: manual
 mailhog_arm64:
   stage: level_2
@@ -368,7 +368,7 @@ mongo50:
 apache24:
   stage: level_2
   script: 'cd apache24 && make all-amd64 && make publish'
-  needs: ["debian-bullseye", apache24_arm64]
+  needs: [apache24_arm64]
   when: manual
 apache24_arm64:
   stage: level_2
@@ -386,7 +386,7 @@ rabbitmq378:
 aws-mock:
   stage: level_2
   script: 'cd aws-mock && make all-amd64 && make publish'
-  needs: ["debian-bullseye", aws-mock_arm64]
+  needs: [aws-mock_arm64]
   when: manual
 aws-mock_arm64:
   stage: level_2
@@ -428,7 +428,7 @@ phantomjs19:
 mysql55-data:
   stage: level_2
   script: 'cd mysql55-data && make all-amd64 && make publish'
-  needs: ["mysql55", mysql55-data_arm64]
+  needs: [mysql55-data_arm64]
   when: manual
 mysql55-data_arm64:
   stage: level_2
@@ -440,7 +440,7 @@ mysql55-data_arm64:
 mysql80-data:
   stage: level_2
   script: 'cd mysql80-data && make all-amd64 && make publish'
-  needs: ["mysql80", mysql80-data_arm64]
+  needs: [mysql80-data_arm64]
   when: manual
 mysql80-data_arm64:
   stage: level_2
