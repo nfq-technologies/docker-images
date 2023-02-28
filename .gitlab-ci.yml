@@ -8,8 +8,8 @@ stages:
 
 default:
   image: nfqlt/aws-docker-tools
-  tags: [nfq]
+  tags: [nfq_ip]
   before_script:
-    - echo "docker.nfq.lt 172.18.1.171"
+    - echo "docker.nfq.lt 172.18.1.171" >> /etc/hosts
     - docker login $dockerhub_user $dockerhub_token
-    - docker login https://docker.nfq.lt $nfqhub_user $nfqhub_token
+    - docker login https://docker.nfq.lt $nfqhub_user $nfqhub_token 
