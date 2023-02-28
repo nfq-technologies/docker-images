@@ -75,7 +75,7 @@ manifest:
 	@echo "# Building manifest..."
 	echo
 	docker manifest rm $(IMAGE_FULL_NAME) || true
-	docker manifest create $(IMAGE_FULL_NAME) --amend $(IMAGE_FULL_NAME):amd64 --amend $(IMAGE_FULL_NAME):arm64
+	docker manifest create $(IMAGE_FULL_NAME):latest $(IMAGE_FULL_NAME):amd64 $(IMAGE_FULL_NAME):arm64
 	docker manifest push $(IMAGE_FULL_NAME):latest
 	make status
 
@@ -116,11 +116,6 @@ push-arm64:
 	@echo "# Pushing arm image to registry..."
 	@echo
 	DOCKER_CONTEXT=$(ARM64_CONTEXT) docker push $(IMAGE_FULL_NAME):arm64
-
-manifest:
-	docker manifest rm $(IMAGE_FULL_NAME):latest
-	docker manifest create $(IMAGE_FULL_NAME):latest $(IMAGE_FULL_NAME):amd64 $(IMAGE_FULL_NAME):arm64
-	docker manifest push $(IMAGE_FULL_NAME):latest
 
 pull:
 	@echo

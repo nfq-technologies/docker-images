@@ -18,15 +18,32 @@ function ci_yml() {
 	if [ -n "$parent" ]; then
 		parent='"'$parent'"'
 	fi
-	echo "
+
+	buildfile="$(readlink $image/Makefile)"
+	# If this is NOT a multi arch build
+	if [ "$buildfile" == "../_tools/makefiles/base-image-amd64-Makefile" ]; then
+		echo "
 $image:
   stage: $level
-  image: nfqlt/aws-tools-docker
-  script: 'cd debian-buster && make all'
-  tags: [nfq_ip]
-  when: manual
+  script: 'cd $image && make all && make publish'
   needs: [$parent]
+  when: manual
 "
+	else
+		echo "
+${image}:
+  stage: $level
+  script: 'cd $image && make all-amd64 && make publish'
+  needs: [$parent, ${image}_arm64]
+  when: manual
+${image}_arm64:
+  stage: $level
+  script: 'cd $image && make all-arm64'
+  tags: [nfq_ip, arm]
+  needs: [$parent]
+  when: manual
+"
+	fi
 }
 
 
