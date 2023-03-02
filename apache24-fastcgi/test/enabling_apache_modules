@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-CMD="docker run -it -e NFQ_ENABLE_APACHE_MODULES $1 run-parts /etc/rc.d"
+CMD="docker run -e NFQ_ENABLE_APACHE_MODULES $1 run-parts /etc/rc.d"
 
 
 # test enabling some modules
