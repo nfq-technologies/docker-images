@@ -31,7 +31,7 @@ aws-docker-tools:
 aws-docker-tools_arm64:
   stage: level_4
   script: 'cd aws-docker-tools && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["aws-tools"]
   when: manual
 

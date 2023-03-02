@@ -7,7 +7,7 @@ elasticsearch22-data:
 elasticsearch22-data_arm64:
   stage: level_3
   script: 'cd elasticsearch22-data && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["elasticsearch22"]
   when: manual
 
@@ -19,7 +19,7 @@ mongo24-data:
 mongo24-data_arm64:
   stage: level_3
   script: 'cd mongo24-data && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["mongo24"]
   when: manual
 
@@ -61,7 +61,7 @@ node18:
 node18_arm64:
   stage: level_3
   script: 'cd node18 && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["toolbox-bullseye"]
   when: manual
 
@@ -73,7 +73,7 @@ node14:
 node14_arm64:
   stage: level_3
   script: 'cd node14 && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["toolbox-bullseye"]
   when: manual
 
@@ -85,7 +85,7 @@ node16:
 node16_arm64:
   stage: level_3
   script: 'cd node16 && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["toolbox-bullseye"]
   when: manual
 
@@ -97,7 +97,7 @@ wkhtmltopdf126-broken:
 wkhtmltopdf126-broken_arm64:
   stage: level_3
   script: 'cd wkhtmltopdf126-broken && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["toolbox-bullseye"]
   when: manual
 
@@ -127,7 +127,7 @@ aws-tools:
 aws-tools_arm64:
   stage: level_3
   script: 'cd aws-tools && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["toolbox-bullseye"]
   when: manual
 
@@ -139,7 +139,7 @@ node19:
 node19_arm64:
   stage: level_3
   script: 'cd node19 && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["toolbox-bullseye"]
   when: manual
 
@@ -151,7 +151,7 @@ elasticsearch75-data:
 elasticsearch75-data_arm64:
   stage: level_3
   script: 'cd elasticsearch75-data && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["elasticsearch75"]
   when: manual
 
@@ -163,7 +163,7 @@ elasticsearch72-data:
 elasticsearch72-data_arm64:
   stage: level_3
   script: 'cd elasticsearch72-data && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["elasticsearch72"]
   when: manual
 
@@ -175,7 +175,7 @@ elasticsearch68-data:
 elasticsearch68-data_arm64:
   stage: level_3
   script: 'cd elasticsearch68-data && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["elasticsearch68"]
   when: manual
 
@@ -187,7 +187,7 @@ php82-supervisor:
 php82-supervisor_arm64:
   stage: level_3
   script: 'cd php82-supervisor && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["php82-cli"]
   when: manual
 
@@ -199,7 +199,7 @@ php82-fpm:
 php82-fpm_arm64:
   stage: level_3
   script: 'cd php82-fpm && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["php82-cli"]
   when: manual
 
@@ -211,7 +211,7 @@ php82-dev:
 php82-dev_arm64:
   stage: level_3
   script: 'cd php82-dev && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["php82-cli"]
   when: manual
 
@@ -223,7 +223,7 @@ php81-cron:
 php81-cron_arm64:
   stage: level_3
   script: 'cd php81-cron && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["php81-cli"]
   when: manual
 
@@ -235,7 +235,7 @@ php81-supervisor:
 php81-supervisor_arm64:
   stage: level_3
   script: 'cd php81-supervisor && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["php81-cli"]
   when: manual
 
@@ -247,7 +247,7 @@ php82-cron:
 php82-cron_arm64:
   stage: level_3
   script: 'cd php82-cron && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["php81-cli"]
   when: manual
 
@@ -259,7 +259,7 @@ php81-dev:
 php81-dev_arm64:
   stage: level_3
   script: 'cd php81-dev && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["php81-cli"]
   when: manual
 
@@ -271,7 +271,7 @@ php81-fpm:
 php81-fpm_arm64:
   stage: level_3
   script: 'cd php81-fpm && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["php81-cli"]
   when: manual
 
@@ -355,7 +355,7 @@ linker18ce:
 linker18ce_arm64:
   stage: level_3
   script: 'cd linker18ce && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["docker18ce"]
   when: manual
 
@@ -367,7 +367,7 @@ elasticsearch710-data:
 elasticsearch710-data_arm64:
   stage: level_3
   script: 'cd elasticsearch710-data && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["elasticsearch710"]
   when: manual
 
@@ -379,7 +379,7 @@ elasticsearch716-data:
 elasticsearch716-data_arm64:
   stage: level_3
   script: 'cd elasticsearch716-data && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["elasticsearch716"]
   when: manual
 
@@ -391,7 +391,7 @@ elasticsearch79-data:
 elasticsearch79-data_arm64:
   stage: level_3
   script: 'cd elasticsearch79-data && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["elasticsearch79"]
   when: manual
 
@@ -427,7 +427,7 @@ mongo50-data:
 mongo50-data_arm64:
   stage: level_3
   script: 'cd mongo50-data && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["mongo50"]
   when: manual
 
@@ -439,7 +439,7 @@ elasticsearch77-data:
 elasticsearch77-data_arm64:
   stage: level_3
   script: 'cd elasticsearch77-data && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["elasticsearch77"]
   when: manual
 
@@ -493,7 +493,7 @@ mongo32-data:
 mongo32-data_arm64:
   stage: level_3
   script: 'cd mongo32-data && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["mongo32"]
   when: manual
 
@@ -661,6 +661,6 @@ elasticsearch56-data:
 elasticsearch56-data_arm64:
   stage: level_3
   script: 'cd elasticsearch56-data && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["elasticsearch56"]
   when: manual

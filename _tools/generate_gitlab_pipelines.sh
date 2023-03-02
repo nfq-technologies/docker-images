@@ -39,7 +39,7 @@ ${image}:
 ${image}_arm64:
   stage: $level
   script: 'cd $image && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: [$parent]
   when: manual
 "

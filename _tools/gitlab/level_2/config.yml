@@ -7,7 +7,7 @@ mysql57-data:
 mysql57-data_arm64:
   stage: level_2
   script: 'cd mysql57-data && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["mysql57"]
   when: manual
 
@@ -25,7 +25,7 @@ mysql56-data:
 mysql56-data_arm64:
   stage: level_2
   script: 'cd mysql56-data && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["mysql56"]
   when: manual
 
@@ -103,7 +103,7 @@ chromedriver:
 chromedriver_arm64:
   stage: level_2
   script: 'cd chromedriver && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["debian-bullseye"]
   when: manual
 
@@ -115,7 +115,7 @@ toolbox-bullseye:
 toolbox-bullseye_arm64:
   stage: level_2
   script: 'cd toolbox-bullseye && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["debian-bullseye"]
   when: manual
 
@@ -145,7 +145,7 @@ elasticsearch68:
 elasticsearch68_arm64:
   stage: level_2
   script: 'cd elasticsearch68 && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["debian-bullseye"]
   when: manual
 
@@ -157,7 +157,7 @@ php82-cli:
 php82-cli_arm64:
   stage: level_2
   script: 'cd php82-cli && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["debian-bullseye"]
   when: manual
 
@@ -169,7 +169,7 @@ php81-cli:
 php81-cli_arm64:
   stage: level_2
   script: 'cd php81-cli && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["debian-bullseye"]
   when: manual
 
@@ -187,7 +187,7 @@ nginx118:
 nginx118_arm64:
   stage: level_2
   script: 'cd nginx118 && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["debian-bullseye"]
   when: manual
 
@@ -211,7 +211,7 @@ memcached169:
 memcached169_arm64:
   stage: level_2
   script: 'cd memcached169 && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["debian-bullseye"]
   when: manual
 
@@ -241,7 +241,7 @@ docker18ce:
 docker18ce_arm64:
   stage: level_2
   script: 'cd docker18ce && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["debian-bullseye"]
   when: manual
 
@@ -253,7 +253,7 @@ rabbitmq310:
 rabbitmq310_arm64:
   stage: level_2
   script: 'cd rabbitmq310 && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["debian-bullseye"]
   when: manual
 
@@ -277,7 +277,7 @@ elasticsearch716:
 elasticsearch716_arm64:
   stage: level_2
   script: 'cd elasticsearch716 && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["debian-bullseye"]
   when: manual
 
@@ -289,7 +289,7 @@ redis60:
 redis60_arm64:
   stage: level_2
   script: 'cd redis60 && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["debian-bullseye"]
   when: manual
 
@@ -307,7 +307,7 @@ rabbitmq389:
 rabbitmq389_arm64:
   stage: level_2
   script: 'cd rabbitmq389 && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["debian-bullseye"]
   when: manual
 
@@ -325,7 +325,7 @@ dev:
 dev_arm64:
   stage: level_2
   script: 'cd dev && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["debian-bullseye"]
   when: manual
 
@@ -343,7 +343,7 @@ mailhog:
 mailhog_arm64:
   stage: level_2
   script: 'cd mailhog && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["debian-bullseye"]
   when: manual
 
@@ -373,7 +373,7 @@ apache24:
 apache24_arm64:
   stage: level_2
   script: 'cd apache24 && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["debian-bullseye"]
   when: manual
 
@@ -391,7 +391,7 @@ aws-mock:
 aws-mock_arm64:
   stage: level_2
   script: 'cd aws-mock && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["debian-bullseye"]
   when: manual
 
@@ -433,7 +433,7 @@ mysql55-data:
 mysql55-data_arm64:
   stage: level_2
   script: 'cd mysql55-data && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["mysql55"]
   when: manual
 
@@ -445,7 +445,7 @@ mysql80-data:
 mysql80-data_arm64:
   stage: level_2
   script: 'cd mysql80-data && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: ["mysql80"]
   when: manual
 

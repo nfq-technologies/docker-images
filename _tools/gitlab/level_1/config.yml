@@ -43,7 +43,7 @@ debian-bullseye:
 debian-bullseye_arm64:
   stage: level_1
   script: 'cd debian-bullseye && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: []
   when: manual
 
@@ -61,7 +61,7 @@ mariadb10:
 mariadb10_arm64:
   stage: level_1
   script: 'cd mariadb10 && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: []
   when: manual
 
@@ -79,7 +79,7 @@ mysql80:
 mysql80_arm64:
   stage: level_1
   script: 'cd mysql80 && make all-arm64'
-  tags: [nfq_ip, arm]
+  tags: [arm]
   needs: []
   when: manual
 
