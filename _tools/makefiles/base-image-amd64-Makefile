@@ -1,10 +1,10 @@
 # base-image-amd64-Makefile
 
 IMAGE_BASE_NAME = $(shell basename $(shell pwd))
-IMAGE_TYPE = $(shell basename $(shell dirname $(shell pwd)))
-IMAGE_REGISTRY = $(shell ../_tools/makefiles/get_default_registry.sh)
+IMAGE_TYPE = nfqlt
+IMAGE_REGISTRY = 
 IMAGE_FULL_NAME = $(IMAGE_REGISTRY)$(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
-CHILDREN = $(shell ../_tools/relational_sorting.php)
+CHILDREN = $(shell ../_tools/sorting.sh)
 
 
 COMMANDS = all build test push pull clean branch-all branch-build run run-bash
