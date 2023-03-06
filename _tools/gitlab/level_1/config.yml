@@ -1,108 +1,4404 @@
 
-lib-smartclient130:
+docker-images:
   stage: level_1
-  script: 'cd lib-smartclient130 && make all && make publish'
-  needs: []
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
   when: manual
-
-mysql57:
+docker-images_arm64:
   stage: level_1
-  script: 'cd mysql57 && make all && make publish'
-  needs: []
-  when: manual
-
-postgres12:
-  stage: level_1
-  script: 'cd postgres12 && make all && make publish'
-  needs: []
-  when: manual
-
-mysql56:
-  stage: level_1
-  script: 'cd mysql56 && make all && make publish'
-  needs: []
-  when: manual
-
-lib-smartclient120:
-  stage: level_1
-  script: 'cd lib-smartclient120 && make all && make publish'
-  needs: []
-  when: manual
-
-debian-jessie:
-  stage: level_1
-  script: 'cd debian-jessie && make all && make publish'
-  needs: []
-  when: manual
-
-debian-bullseye:
-  stage: level_1
-  script: 'cd debian-bullseye && make all-amd64 && make publish'
-  needs: [debian-bullseye_arm64]
-  when: manual
-debian-bullseye_arm64:
-  stage: level_1
-  script: 'cd debian-bullseye && make all-arm64'
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
   tags: [arm]
   needs: []
   when: manual
 
-lib-smartclient111:
+docker-images:
   stage: level_1
-  script: 'cd lib-smartclient111 && make all && make publish'
-  needs: []
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
   when: manual
-
-mariadb10:
+docker-images_arm64:
   stage: level_1
-  script: 'cd mariadb10 && make all-amd64 && make publish'
-  needs: [mariadb10_arm64]
-  when: manual
-mariadb10_arm64:
-  stage: level_1
-  script: 'cd mariadb10 && make all-arm64'
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
   tags: [arm]
   needs: []
   when: manual
 
-mysql55:
+docker-images:
   stage: level_1
-  script: 'cd mysql55 && make all && make publish'
-  needs: []
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
   when: manual
-
-mysql80:
+docker-images_arm64:
   stage: level_1
-  script: 'cd mysql80 && make all-amd64 && make publish'
-  needs: [mysql80_arm64]
-  when: manual
-mysql80_arm64:
-  stage: level_1
-  script: 'cd mysql80 && make all-arm64'
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
   tags: [arm]
   needs: []
   when: manual
 
-lib-smartclient100:
+docker-images:
   stage: level_1
-  script: 'cd lib-smartclient100 && make all && make publish'
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
   needs: []
   when: manual
 
-lib-smartclient121:
+docker-images:
   stage: level_1
-  script: 'cd lib-smartclient121 && make all && make publish'
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
   needs: []
   when: manual
 
-debian-stretch:
+docker-images:
   stage: level_1
-  script: 'cd debian-stretch && make all && make publish'
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
   needs: []
   when: manual
 
-debian-buster:
+docker-images:
   stage: level_1
-  script: 'cd debian-buster && make all && make publish'
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+docker-images:
+  stage: level_1
+  script: 'cd docker-images && make build-amd64 && make test-amd64'
+  needs: [docker-images_arm64]
+  when: manual
+docker-images_arm64:
+  stage: level_1
+  script: 'cd docker-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: manual
+
+gitlab-images:
+  stage: level_1
+  script: 'cd gitlab-images && make build-amd64 && make test-amd64'
+  needs: [gitlab-images_arm64]
+  when: manual
+gitlab-images_arm64:
+  stage: level_1
+  script: 'cd gitlab-images && make build-arm64 && make test-amd64'
+  tags: [arm]
   needs: []
   when: manual

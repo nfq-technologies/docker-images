@@ -15,6 +15,12 @@ function ci_yml() {
 	local level="$2"
 	local parent="$3"
 
+	automation='manual'
+
+	if [ "$level" != "level_1" ]; then
+		automation='on_success'
+	fi
+
 	if [ -n "$parent" ]; then
 		parent='"'$parent'"'
 	fi
@@ -23,27 +29,29 @@ function ci_yml() {
 	# If this is NOT a multi arch build
 	if [ "$buildfile" == "../_tools/makefiles/base-image-amd64-Makefile" ]; then
 		echo "
-$image:
+${image}:
   stage: $level
-  script: 'cd $image && make all && make publish'
+  script: 'cd $image && make clean build test'
+#  script: 'cd $image && make all && make publish'
   needs: [$parent]
-  when: manual
+  when: $automation
 "
 	else
 		echo "
 ${image}:
   stage: $level
-  script: 'cd $image && make all-amd64 && make publish'
+  script: 'cd $image && make build-amd64 && make test-amd64'
   needs: [${image}_arm64]
-  when: manual
+  when: $automation
 ${image}_arm64:
   stage: $level
-  script: 'cd $image && make all-arm64'
+  script: 'cd $image && make build-arm64 && make test-amd64'
   tags: [arm]
   needs: [$parent]
-  when: manual
+  when: $automation
 "
 	fi
+
 }
 
 
