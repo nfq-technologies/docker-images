@@ -1,0 +1,96 @@
+
+nfqlt/xhgui:
+  stage: level_4
+  script: 'cd nfqlt/xhgui && make build-amd64 && make test-amd64'
+  needs: [nfqlt/xhgui_arm64]
+  when: on_success
+nfqlt/xhgui_arm64:
+  stage: level_4
+  script: 'cd nfqlt/xhgui && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php74-vscode:
+  stage: level_4
+  script: 'cd nfqlt/php74-vscode && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php74-vscode_arm64]
+  when: on_success
+nfqlt/php74-vscode_arm64:
+  stage: level_4
+  script: 'cd nfqlt/php74-vscode && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/deb-dev:
+  stage: level_4
+  script: 'cd nfqlt/deb-dev && make build-amd64 && make test-amd64'
+  needs: [nfqlt/deb-dev_arm64]
+  when: on_success
+nfqlt/deb-dev_arm64:
+  stage: level_4
+  script: 'cd nfqlt/deb-dev && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/cypress9:
+  stage: level_4
+  script: 'cd nfqlt/cypress9 && make build-amd64 && make test-amd64'
+  needs: [nfqlt/cypress9_arm64]
+  when: on_success
+nfqlt/cypress9_arm64:
+  stage: level_4
+  script: 'cd nfqlt/cypress9 && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/cypress7:
+  stage: level_4
+  script: 'cd nfqlt/cypress7 && make build-amd64 && make test-amd64'
+  needs: [nfqlt/cypress7_arm64]
+  when: on_success
+nfqlt/cypress7_arm64:
+  stage: level_4
+  script: 'cd nfqlt/cypress7 && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/cypress5:
+  stage: level_4
+  script: 'cd nfqlt/cypress5 && make build-amd64 && make test-amd64'
+  needs: [nfqlt/cypress5_arm64]
+  when: on_success
+nfqlt/cypress5_arm64:
+  stage: level_4
+  script: 'cd nfqlt/cypress5 && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/cypress4:
+  stage: level_4
+  script: 'cd nfqlt/cypress4 && make build-amd64 && make test-amd64'
+  needs: [nfqlt/cypress4_arm64]
+  when: on_success
+nfqlt/cypress4_arm64:
+  stage: level_4
+  script: 'cd nfqlt/cypress4 && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/aws-docker-tools:
+  stage: level_4
+  script: 'cd nfqlt/aws-docker-tools && make build-amd64 && make test-amd64'
+  needs: [nfqlt/aws-docker-tools_arm64]
+  when: on_success
+nfqlt/aws-docker-tools_arm64:
+  stage: level_4
+  script: 'cd nfqlt/aws-docker-tools && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success

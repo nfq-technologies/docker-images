@@ -1,0 +1,972 @@
+
+nfqlt/wkhtmltopdf:
+  stage: level_3
+  script: 'cd nfqlt/wkhtmltopdf && make build-amd64 && make test-amd64'
+  needs: [nfqlt/wkhtmltopdf_arm64]
+  when: on_success
+nfqlt/wkhtmltopdf_arm64:
+  stage: level_3
+  script: 'cd nfqlt/wkhtmltopdf && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/wkhtmltopdf-broken:
+  stage: level_3
+  script: 'cd nfqlt/wkhtmltopdf-broken && make build-amd64 && make test-amd64'
+  needs: [nfqlt/wkhtmltopdf-broken_arm64]
+  when: on_success
+nfqlt/wkhtmltopdf-broken_arm64:
+  stage: level_3
+  script: 'cd nfqlt/wkhtmltopdf-broken && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/wkhtmltopdf126:
+  stage: level_3
+  script: 'cd nfqlt/wkhtmltopdf126 && make build-amd64 && make test-amd64'
+  needs: [nfqlt/wkhtmltopdf126_arm64]
+  when: on_success
+nfqlt/wkhtmltopdf126_arm64:
+  stage: level_3
+  script: 'cd nfqlt/wkhtmltopdf126 && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/wkhtmltopdf126-broken:
+  stage: level_3
+  script: 'cd nfqlt/wkhtmltopdf126-broken && make build-amd64 && make test-amd64'
+  needs: [nfqlt/wkhtmltopdf126-broken_arm64]
+  when: on_success
+nfqlt/wkhtmltopdf126-broken_arm64:
+  stage: level_3
+  script: 'cd nfqlt/wkhtmltopdf126-broken && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/wkhtmltopdf125:
+  stage: level_3
+  script: 'cd nfqlt/wkhtmltopdf125 && make build-amd64 && make test-amd64'
+  needs: [nfqlt/wkhtmltopdf125_arm64]
+  when: on_success
+nfqlt/wkhtmltopdf125_arm64:
+  stage: level_3
+  script: 'cd nfqlt/wkhtmltopdf125 && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/wkhtmltopdf125-broken:
+  stage: level_3
+  script: 'cd nfqlt/wkhtmltopdf125-broken && make build-amd64 && make test-amd64'
+  needs: [nfqlt/wkhtmltopdf125-broken_arm64]
+  when: on_success
+nfqlt/wkhtmltopdf125-broken_arm64:
+  stage: level_3
+  script: 'cd nfqlt/wkhtmltopdf125-broken && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/thrift093:
+  stage: level_3
+  script: 'cd nfqlt/thrift093 && make build-amd64 && make test-amd64'
+  needs: [nfqlt/thrift093_arm64]
+  when: on_success
+nfqlt/thrift093_arm64:
+  stage: level_3
+  script: 'cd nfqlt/thrift093 && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/thrift091:
+  stage: level_3
+  script: 'cd nfqlt/thrift091 && make build-amd64 && make test-amd64'
+  needs: [nfqlt/thrift091_arm64]
+  when: on_success
+nfqlt/thrift091_arm64:
+  stage: level_3
+  script: 'cd nfqlt/thrift091 && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/thrift0110:
+  stage: level_3
+  script: 'cd nfqlt/thrift0110 && make build-amd64 && make test-amd64'
+  needs: [nfqlt/thrift0110_arm64]
+  when: on_success
+nfqlt/thrift0110_arm64:
+  stage: level_3
+  script: 'cd nfqlt/thrift0110 && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/sonar-scanner-cli4:
+  stage: level_3
+  script: 'cd nfqlt/sonar-scanner-cli4 && make build-amd64 && make test-amd64'
+  needs: [nfqlt/sonar-scanner-cli4_arm64]
+  when: on_success
+nfqlt/sonar-scanner-cli4_arm64:
+  stage: level_3
+  script: 'cd nfqlt/sonar-scanner-cli4 && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/ruby2:
+  stage: level_3
+  script: 'cd nfqlt/ruby2 && make build-amd64 && make test-amd64'
+  needs: [nfqlt/ruby2_arm64]
+  when: on_success
+nfqlt/ruby2_arm64:
+  stage: level_3
+  script: 'cd nfqlt/ruby2 && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/proxy:
+  stage: level_3
+  script: 'cd nfqlt/proxy && make build-amd64 && make test-amd64'
+  needs: [nfqlt/proxy_arm64]
+  when: on_success
+nfqlt/proxy_arm64:
+  stage: level_3
+  script: 'cd nfqlt/proxy && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/phyaml:
+  stage: level_3
+  script: 'cd nfqlt/phyaml && make build-amd64 && make test-amd64'
+  needs: [nfqlt/phyaml_arm64]
+  when: on_success
+nfqlt/phyaml_arm64:
+  stage: level_3
+  script: 'cd nfqlt/phyaml && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/phpmyadmin:
+  stage: level_3
+  script: 'cd nfqlt/phpmyadmin && make build-amd64 && make test-amd64'
+  needs: [nfqlt/phpmyadmin_arm64]
+  when: on_success
+nfqlt/phpmyadmin_arm64:
+  stage: level_3
+  script: 'cd nfqlt/phpmyadmin && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php82-supervisor:
+  stage: level_3
+  script: 'cd nfqlt/php82-supervisor && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php82-supervisor_arm64]
+  when: on_success
+nfqlt/php82-supervisor_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php82-supervisor && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php82-fpm:
+  stage: level_3
+  script: 'cd nfqlt/php82-fpm && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php82-fpm_arm64]
+  when: on_success
+nfqlt/php82-fpm_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php82-fpm && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php82-dev:
+  stage: level_3
+  script: 'cd nfqlt/php82-dev && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php82-dev_arm64]
+  when: on_success
+nfqlt/php82-dev_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php82-dev && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php82-cron:
+  stage: level_3
+  script: 'cd nfqlt/php82-cron && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php82-cron_arm64]
+  when: on_success
+nfqlt/php82-cron_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php82-cron && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php81-supervisor:
+  stage: level_3
+  script: 'cd nfqlt/php81-supervisor && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php81-supervisor_arm64]
+  when: on_success
+nfqlt/php81-supervisor_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php81-supervisor && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php81-fpm:
+  stage: level_3
+  script: 'cd nfqlt/php81-fpm && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php81-fpm_arm64]
+  when: on_success
+nfqlt/php81-fpm_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php81-fpm && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php81-dev:
+  stage: level_3
+  script: 'cd nfqlt/php81-dev && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php81-dev_arm64]
+  when: on_success
+nfqlt/php81-dev_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php81-dev && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php81-cron:
+  stage: level_3
+  script: 'cd nfqlt/php81-cron && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php81-cron_arm64]
+  when: on_success
+nfqlt/php81-cron_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php81-cron && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php80-supervisor:
+  stage: level_3
+  script: 'cd nfqlt/php80-supervisor && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php80-supervisor_arm64]
+  when: on_success
+nfqlt/php80-supervisor_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php80-supervisor && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php80-fpm:
+  stage: level_3
+  script: 'cd nfqlt/php80-fpm && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php80-fpm_arm64]
+  when: on_success
+nfqlt/php80-fpm_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php80-fpm && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php80-dev:
+  stage: level_3
+  script: 'cd nfqlt/php80-dev && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php80-dev_arm64]
+  when: on_success
+nfqlt/php80-dev_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php80-dev && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php80-cron:
+  stage: level_3
+  script: 'cd nfqlt/php80-cron && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php80-cron_arm64]
+  when: on_success
+nfqlt/php80-cron_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php80-cron && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php74-supervisor:
+  stage: level_3
+  script: 'cd nfqlt/php74-supervisor && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php74-supervisor_arm64]
+  when: on_success
+nfqlt/php74-supervisor_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php74-supervisor && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php74-fpm:
+  stage: level_3
+  script: 'cd nfqlt/php74-fpm && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php74-fpm_arm64]
+  when: on_success
+nfqlt/php74-fpm_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php74-fpm && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php74-dev:
+  stage: level_3
+  script: 'cd nfqlt/php74-dev && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php74-dev_arm64]
+  when: on_success
+nfqlt/php74-dev_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php74-dev && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php74-cron:
+  stage: level_3
+  script: 'cd nfqlt/php74-cron && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php74-cron_arm64]
+  when: on_success
+nfqlt/php74-cron_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php74-cron && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php73-supervisor:
+  stage: level_3
+  script: 'cd nfqlt/php73-supervisor && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php73-supervisor_arm64]
+  when: on_success
+nfqlt/php73-supervisor_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php73-supervisor && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php73-fpm:
+  stage: level_3
+  script: 'cd nfqlt/php73-fpm && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php73-fpm_arm64]
+  when: on_success
+nfqlt/php73-fpm_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php73-fpm && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php73-dev:
+  stage: level_3
+  script: 'cd nfqlt/php73-dev && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php73-dev_arm64]
+  when: on_success
+nfqlt/php73-dev_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php73-dev && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php73-cron:
+  stage: level_3
+  script: 'cd nfqlt/php73-cron && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php73-cron_arm64]
+  when: on_success
+nfqlt/php73-cron_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php73-cron && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php72-supervisor:
+  stage: level_3
+  script: 'cd nfqlt/php72-supervisor && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php72-supervisor_arm64]
+  when: on_success
+nfqlt/php72-supervisor_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php72-supervisor && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php72-fpm:
+  stage: level_3
+  script: 'cd nfqlt/php72-fpm && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php72-fpm_arm64]
+  when: on_success
+nfqlt/php72-fpm_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php72-fpm && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php72-dev:
+  stage: level_3
+  script: 'cd nfqlt/php72-dev && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php72-dev_arm64]
+  when: on_success
+nfqlt/php72-dev_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php72-dev && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php72-cron:
+  stage: level_3
+  script: 'cd nfqlt/php72-cron && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php72-cron_arm64]
+  when: on_success
+nfqlt/php72-cron_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php72-cron && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php71-supervisor:
+  stage: level_3
+  script: 'cd nfqlt/php71-supervisor && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php71-supervisor_arm64]
+  when: on_success
+nfqlt/php71-supervisor_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php71-supervisor && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php71-fpm:
+  stage: level_3
+  script: 'cd nfqlt/php71-fpm && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php71-fpm_arm64]
+  when: on_success
+nfqlt/php71-fpm_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php71-fpm && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php71-dev:
+  stage: level_3
+  script: 'cd nfqlt/php71-dev && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php71-dev_arm64]
+  when: on_success
+nfqlt/php71-dev_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php71-dev && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php71-cron:
+  stage: level_3
+  script: 'cd nfqlt/php71-cron && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php71-cron_arm64]
+  when: on_success
+nfqlt/php71-cron_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php71-cron && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php70-supervisor:
+  stage: level_3
+  script: 'cd nfqlt/php70-supervisor && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php70-supervisor_arm64]
+  when: on_success
+nfqlt/php70-supervisor_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php70-supervisor && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php70-fpm:
+  stage: level_3
+  script: 'cd nfqlt/php70-fpm && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php70-fpm_arm64]
+  when: on_success
+nfqlt/php70-fpm_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php70-fpm && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php70-dev:
+  stage: level_3
+  script: 'cd nfqlt/php70-dev && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php70-dev_arm64]
+  when: on_success
+nfqlt/php70-dev_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php70-dev && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php70-cron:
+  stage: level_3
+  script: 'cd nfqlt/php70-cron && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php70-cron_arm64]
+  when: on_success
+nfqlt/php70-cron_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php70-cron && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php56-supervisor:
+  stage: level_3
+  script: 'cd nfqlt/php56-supervisor && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php56-supervisor_arm64]
+  when: on_success
+nfqlt/php56-supervisor_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php56-supervisor && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php56-fpm:
+  stage: level_3
+  script: 'cd nfqlt/php56-fpm && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php56-fpm_arm64]
+  when: on_success
+nfqlt/php56-fpm_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php56-fpm && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php56-dev:
+  stage: level_3
+  script: 'cd nfqlt/php56-dev && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php56-dev_arm64]
+  when: on_success
+nfqlt/php56-dev_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php56-dev && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/php56-cron:
+  stage: level_3
+  script: 'cd nfqlt/php56-cron && make build-amd64 && make test-amd64'
+  needs: [nfqlt/php56-cron_arm64]
+  when: on_success
+nfqlt/php56-cron_arm64:
+  stage: level_3
+  script: 'cd nfqlt/php56-cron && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/pdftk:
+  stage: level_3
+  script: 'cd nfqlt/pdftk && make build-amd64 && make test-amd64'
+  needs: [nfqlt/pdftk_arm64]
+  when: on_success
+nfqlt/pdftk_arm64:
+  stage: level_3
+  script: 'cd nfqlt/pdftk && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/packager:
+  stage: level_3
+  script: 'cd nfqlt/packager && make build-amd64 && make test-amd64'
+  needs: [nfqlt/packager_arm64]
+  when: on_success
+nfqlt/packager_arm64:
+  stage: level_3
+  script: 'cd nfqlt/packager && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/node8:
+  stage: level_3
+  script: 'cd nfqlt/node8 && make build-amd64 && make test-amd64'
+  needs: [nfqlt/node8_arm64]
+  when: on_success
+nfqlt/node8_arm64:
+  stage: level_3
+  script: 'cd nfqlt/node8 && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/node6:
+  stage: level_3
+  script: 'cd nfqlt/node6 && make build-amd64 && make test-amd64'
+  needs: [nfqlt/node6_arm64]
+  when: on_success
+nfqlt/node6_arm64:
+  stage: level_3
+  script: 'cd nfqlt/node6 && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/node4:
+  stage: level_3
+  script: 'cd nfqlt/node4 && make build-amd64 && make test-amd64'
+  needs: [nfqlt/node4_arm64]
+  when: on_success
+nfqlt/node4_arm64:
+  stage: level_3
+  script: 'cd nfqlt/node4 && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/node19:
+  stage: level_3
+  script: 'cd nfqlt/node19 && make build-amd64 && make test-amd64'
+  needs: [nfqlt/node19_arm64]
+  when: on_success
+nfqlt/node19_arm64:
+  stage: level_3
+  script: 'cd nfqlt/node19 && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/node18:
+  stage: level_3
+  script: 'cd nfqlt/node18 && make build-amd64 && make test-amd64'
+  needs: [nfqlt/node18_arm64]
+  when: on_success
+nfqlt/node18_arm64:
+  stage: level_3
+  script: 'cd nfqlt/node18 && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/node16:
+  stage: level_3
+  script: 'cd nfqlt/node16 && make build-amd64 && make test-amd64'
+  needs: [nfqlt/node16_arm64]
+  when: on_success
+nfqlt/node16_arm64:
+  stage: level_3
+  script: 'cd nfqlt/node16 && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/node14:
+  stage: level_3
+  script: 'cd nfqlt/node14 && make build-amd64 && make test-amd64'
+  needs: [nfqlt/node14_arm64]
+  when: on_success
+nfqlt/node14_arm64:
+  stage: level_3
+  script: 'cd nfqlt/node14 && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/node12:
+  stage: level_3
+  script: 'cd nfqlt/node12 && make build-amd64 && make test-amd64'
+  needs: [nfqlt/node12_arm64]
+  when: on_success
+nfqlt/node12_arm64:
+  stage: level_3
+  script: 'cd nfqlt/node12 && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/node10:
+  stage: level_3
+  script: 'cd nfqlt/node10 && make build-amd64 && make test-amd64'
+  needs: [nfqlt/node10_arm64]
+  when: on_success
+nfqlt/node10_arm64:
+  stage: level_3
+  script: 'cd nfqlt/node10 && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/mobile-proxy:
+  stage: level_3
+  script: 'cd nfqlt/mobile-proxy && make build-amd64 && make test-amd64'
+  needs: [nfqlt/mobile-proxy_arm64]
+  when: on_success
+nfqlt/mobile-proxy_arm64:
+  stage: level_3
+  script: 'cd nfqlt/mobile-proxy && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/linker18ce:
+  stage: level_3
+  script: 'cd nfqlt/linker18ce && make build-amd64 && make test-amd64'
+  needs: [nfqlt/linker18ce_arm64]
+  when: on_success
+nfqlt/linker18ce_arm64:
+  stage: level_3
+  script: 'cd nfqlt/linker18ce && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/https-dev:
+  stage: level_3
+  script: 'cd nfqlt/https-dev && make build-amd64 && make test-amd64'
+  needs: [nfqlt/https-dev_arm64]
+  when: on_success
+nfqlt/https-dev_arm64:
+  stage: level_3
+  script: 'cd nfqlt/https-dev && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/graphic-tools:
+  stage: level_3
+  script: 'cd nfqlt/graphic-tools && make build-amd64 && make test-amd64'
+  needs: [nfqlt/graphic-tools_arm64]
+  when: on_success
+nfqlt/graphic-tools_arm64:
+  stage: level_3
+  script: 'cd nfqlt/graphic-tools && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/ghostscript:
+  stage: level_3
+  script: 'cd nfqlt/ghostscript && make build-amd64 && make test-amd64'
+  needs: [nfqlt/ghostscript_arm64]
+  when: on_success
+nfqlt/ghostscript_arm64:
+  stage: level_3
+  script: 'cd nfqlt/ghostscript && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/fontforge:
+  stage: level_3
+  script: 'cd nfqlt/fontforge && make build-amd64 && make test-amd64'
+  needs: [nfqlt/fontforge_arm64]
+  when: on_success
+nfqlt/fontforge_arm64:
+  stage: level_3
+  script: 'cd nfqlt/fontforge && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/ffmpeg:
+  stage: level_3
+  script: 'cd nfqlt/ffmpeg && make build-amd64 && make test-amd64'
+  needs: [nfqlt/ffmpeg_arm64]
+  when: on_success
+nfqlt/ffmpeg_arm64:
+  stage: level_3
+  script: 'cd nfqlt/ffmpeg && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/elasticsearch-tools:
+  stage: level_3
+  script: 'cd nfqlt/elasticsearch-tools && make build-amd64 && make test-amd64'
+  needs: [nfqlt/elasticsearch-tools_arm64]
+  when: on_success
+nfqlt/elasticsearch-tools_arm64:
+  stage: level_3
+  script: 'cd nfqlt/elasticsearch-tools && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/elasticsearch79-data:
+  stage: level_3
+  script: 'cd nfqlt/elasticsearch79-data && make build-amd64 && make test-amd64'
+  needs: [nfqlt/elasticsearch79-data_arm64]
+  when: on_success
+nfqlt/elasticsearch79-data_arm64:
+  stage: level_3
+  script: 'cd nfqlt/elasticsearch79-data && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/elasticsearch77-data:
+  stage: level_3
+  script: 'cd nfqlt/elasticsearch77-data && make build-amd64 && make test-amd64'
+  needs: [nfqlt/elasticsearch77-data_arm64]
+  when: on_success
+nfqlt/elasticsearch77-data_arm64:
+  stage: level_3
+  script: 'cd nfqlt/elasticsearch77-data && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/elasticsearch75-data:
+  stage: level_3
+  script: 'cd nfqlt/elasticsearch75-data && make build-amd64 && make test-amd64'
+  needs: [nfqlt/elasticsearch75-data_arm64]
+  when: on_success
+nfqlt/elasticsearch75-data_arm64:
+  stage: level_3
+  script: 'cd nfqlt/elasticsearch75-data && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/elasticsearch72-data:
+  stage: level_3
+  script: 'cd nfqlt/elasticsearch72-data && make build-amd64 && make test-amd64'
+  needs: [nfqlt/elasticsearch72-data_arm64]
+  when: on_success
+nfqlt/elasticsearch72-data_arm64:
+  stage: level_3
+  script: 'cd nfqlt/elasticsearch72-data && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/elasticsearch716-data:
+  stage: level_3
+  script: 'cd nfqlt/elasticsearch716-data && make build-amd64 && make test-amd64'
+  needs: [nfqlt/elasticsearch716-data_arm64]
+  when: on_success
+nfqlt/elasticsearch716-data_arm64:
+  stage: level_3
+  script: 'cd nfqlt/elasticsearch716-data && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/elasticsearch710-data:
+  stage: level_3
+  script: 'cd nfqlt/elasticsearch710-data && make build-amd64 && make test-amd64'
+  needs: [nfqlt/elasticsearch710-data_arm64]
+  when: on_success
+nfqlt/elasticsearch710-data_arm64:
+  stage: level_3
+  script: 'cd nfqlt/elasticsearch710-data && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/elasticsearch68-data:
+  stage: level_3
+  script: 'cd nfqlt/elasticsearch68-data && make build-amd64 && make test-amd64'
+  needs: [nfqlt/elasticsearch68-data_arm64]
+  when: on_success
+nfqlt/elasticsearch68-data_arm64:
+  stage: level_3
+  script: 'cd nfqlt/elasticsearch68-data && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/elasticsearch56-data:
+  stage: level_3
+  script: 'cd nfqlt/elasticsearch56-data && make build-amd64 && make test-amd64'
+  needs: [nfqlt/elasticsearch56-data_arm64]
+  when: on_success
+nfqlt/elasticsearch56-data_arm64:
+  stage: level_3
+  script: 'cd nfqlt/elasticsearch56-data && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/elasticsearch22-data:
+  stage: level_3
+  script: 'cd nfqlt/elasticsearch22-data && make build-amd64 && make test-amd64'
+  needs: [nfqlt/elasticsearch22-data_arm64]
+  when: on_success
+nfqlt/elasticsearch22-data_arm64:
+  stage: level_3
+  script: 'cd nfqlt/elasticsearch22-data && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/db-tools:
+  stage: level_3
+  script: 'cd nfqlt/db-tools && make build-amd64 && make test-amd64'
+  needs: [nfqlt/db-tools_arm64]
+  when: on_success
+nfqlt/db-tools_arm64:
+  stage: level_3
+  script: 'cd nfqlt/db-tools && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/chromium:
+  stage: level_3
+  script: 'cd nfqlt/chromium && make build-amd64 && make test-amd64'
+  needs: [nfqlt/chromium_arm64]
+  when: on_success
+nfqlt/chromium_arm64:
+  stage: level_3
+  script: 'cd nfqlt/chromium && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success
+
+nfqlt/aws-tools:
+  stage: level_3
+  script: 'cd nfqlt/aws-tools && make build-amd64 && make test-amd64'
+  needs: [nfqlt/aws-tools_arm64]
+  when: on_success
+nfqlt/aws-tools_arm64:
+  stage: level_3
+  script: 'cd nfqlt/aws-tools && make build-arm64 && make test-amd64'
+  tags: [arm]
+  needs: []
+  when: on_success

@@ -3,11 +3,11 @@
 set -e
 
 levels="level_1 level_2 level_3 level_4 level_5"
-level_1="$(_tools/relational_sorting.php 1)"
-level_2="$(_tools/relational_sorting.php 2)"
-level_3="$(_tools/relational_sorting.php 3)"
-level_4="$(_tools/relational_sorting.php 4)"
-level_5="$(_tools/relational_sorting.php 5)"
+level_1="$(_tools/sorting.sh 1)"
+level_2="$(_tools/sorting.sh 2)"
+level_3="$(_tools/sorting.sh 3)"
+level_4="$(_tools/sorting.sh 4)"
+level_5="$(_tools/sorting.sh 5)"
 
 
 function ci_yml() {
@@ -31,8 +31,7 @@ function ci_yml() {
 		echo "
 ${image}:
   stage: $level
-  script: 'cd $image && make clean build test'
-#  script: 'cd $image && make all && make publish'
+  script: 'cd $image && make all && make publish'
   needs: [$parent]
   when: $automation
 "
@@ -40,18 +39,17 @@ ${image}:
 		echo "
 ${image}:
   stage: $level
-  script: 'cd $image && make build-amd64 && make test-amd64'
+  script: 'cd $image && make all-amd64 && make publish-amd64'
   needs: [${image}_arm64]
   when: $automation
 ${image}_arm64:
   stage: $level
-  script: 'cd $image && make build-arm64 && make test-amd64'
+  script: 'cd $image && make all-arm64 && make publish-arm64'
   tags: [arm]
   needs: [$parent]
   when: $automation
 "
 	fi
-
 }
 
 
