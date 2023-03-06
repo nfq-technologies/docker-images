@@ -3,12 +3,11 @@
 set -e
 
 levels="level_1 level_2 level_3 level_4 level_5"
-level_1="$(_tools/sorting.sh 1)"
-level_2="$(_tools/sorting.sh 2)"
-level_3="$(_tools/sorting.sh 3)"
-level_4="$(_tools/sorting.sh 4)"
-level_5="$(_tools/sorting.sh 5)"
-
+level_1="$(_tools/borting.sh 1)"
+level_2="$(_tools/borting.sh 2)"
+level_3="$(_tools/borting.sh 3)"
+level_4="$(_tools/borting.sh 4)"
+level_5="$(_tools/borting.sh 5)"
 
 function ci_yml() {
 	local image="$1"
@@ -58,11 +57,12 @@ for level in $levels; do
 	destination_file="./_tools/gitlab/$level/config.yml"
 	rm -f "./_tools/gitlab/$level/config.yml"
 	for docker_image in ${!level}; do
+		image_path="$(echo $docker_image | cut -d"/" -f2)"
 		echo "Generating gitlab-ci.yml for image $docker_image"
 		parent=""
 		if [ "$level" != "level_1" ]; then
-			parent="$(grep ^FROM ./$docker_image/Dockerfile | cut -d' ' -f2 | cut -d'/' -f2)"
+			parent="$(grep ^FROM ./$image_path/Dockerfile | cut -d' ' -f2 | cut -d'/' -f2)"
 		fi
-		echo "$(ci_yml "$docker_image" "$level" "$parent")" >> $destination_file
+		echo "$(ci_yml "$image_path" "$level" "$parent")" >> $destination_file
 	done
 done

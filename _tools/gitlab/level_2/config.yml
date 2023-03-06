@@ -1,924 +1,582 @@
 
-nfqlt/varnish61:
+postgres12-data:
   stage: level_2
-  script: 'cd nfqlt/varnish61 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/varnish61_arm64]
+  script: 'cd postgres12-data && make all && make publish'
+  needs: ["postgres12"]
   when: on_success
-nfqlt/varnish61_arm64:
-  stage: level_2
-  script: 'cd nfqlt/varnish61 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
-  when: on_success
 
-nfqlt/varnish50:
+mysql80-data:
   stage: level_2
-  script: 'cd nfqlt/varnish50 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/varnish50_arm64]
+  script: 'cd mysql80-data && make all-amd64 && make publish-amd64'
+  needs: [mysql80-data_arm64]
   when: on_success
-nfqlt/varnish50_arm64:
+mysql80-data_arm64:
   stage: level_2
-  script: 'cd nfqlt/varnish50 && make build-arm64 && make test-amd64'
+  script: 'cd mysql80-data && make all-arm64 && make publish-arm64'
   tags: [arm]
-  needs: []
+  needs: ["mysql80"]
   when: on_success
 
-nfqlt/toolbox:
+mysql57-data:
   stage: level_2
-  script: 'cd nfqlt/toolbox && make build-amd64 && make test-amd64'
-  needs: [nfqlt/toolbox_arm64]
+  script: 'cd mysql57-data && make all-amd64 && make publish-amd64'
+  needs: [mysql57-data_arm64]
   when: on_success
-nfqlt/toolbox_arm64:
+mysql57-data_arm64:
   stage: level_2
-  script: 'cd nfqlt/toolbox && make build-arm64 && make test-amd64'
+  script: 'cd mysql57-data && make all-arm64 && make publish-arm64'
   tags: [arm]
-  needs: []
+  needs: ["mysql57"]
   when: on_success
 
-nfqlt/toolbox-buster:
+mysql56-data:
   stage: level_2
-  script: 'cd nfqlt/toolbox-buster && make build-amd64 && make test-amd64'
-  needs: [nfqlt/toolbox-buster_arm64]
+  script: 'cd mysql56-data && make all-amd64 && make publish-amd64'
+  needs: [mysql56-data_arm64]
   when: on_success
-nfqlt/toolbox-buster_arm64:
+mysql56-data_arm64:
   stage: level_2
-  script: 'cd nfqlt/toolbox-buster && make build-arm64 && make test-amd64'
+  script: 'cd mysql56-data && make all-arm64 && make publish-arm64'
   tags: [arm]
-  needs: []
+  needs: ["mysql56"]
   when: on_success
 
-nfqlt/toolbox-bullseye:
+mysql55-data:
   stage: level_2
-  script: 'cd nfqlt/toolbox-bullseye && make build-amd64 && make test-amd64'
-  needs: [nfqlt/toolbox-bullseye_arm64]
+  script: 'cd mysql55-data && make all-amd64 && make publish-amd64'
+  needs: [mysql55-data_arm64]
   when: on_success
-nfqlt/toolbox-bullseye_arm64:
+mysql55-data_arm64:
   stage: level_2
-  script: 'cd nfqlt/toolbox-bullseye && make build-arm64 && make test-amd64'
+  script: 'cd mysql55-data && make all-arm64 && make publish-arm64'
   tags: [arm]
-  needs: []
+  needs: ["mysql55"]
   when: on_success
 
-nfqlt/sphinxsearch:
-  stage: level_2
-  script: 'cd nfqlt/sphinxsearch && make build-amd64 && make test-amd64'
-  needs: [nfqlt/sphinxsearch_arm64]
-  when: on_success
-nfqlt/sphinxsearch_arm64:
+birt45:
   stage: level_2
-  script: 'cd nfqlt/sphinxsearch && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd birt45 && make all && make publish'
+  needs: ["debian-stretch"]
   when: on_success
 
-nfqlt/solr36:
-  stage: level_2
-  script: 'cd nfqlt/solr36 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/solr36_arm64]
-  when: on_success
-nfqlt/solr36_arm64:
+chromedriver73:
   stage: level_2
-  script: 'cd nfqlt/solr36 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd chromedriver73 && make all && make publish'
+  needs: ["debian-stretch"]
   when: on_success
 
-nfqlt/router:
-  stage: level_2
-  script: 'cd nfqlt/router && make build-amd64 && make test-amd64'
-  needs: [nfqlt/router_arm64]
-  when: on_success
-nfqlt/router_arm64:
+gearman:
   stage: level_2
-  script: 'cd nfqlt/router && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd gearman && make all && make publish'
+  needs: ["debian-stretch"]
   when: on_success
 
-nfqlt/redis60:
+memcached1433:
   stage: level_2
-  script: 'cd nfqlt/redis60 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/redis60_arm64]
-  when: on_success
-nfqlt/redis60_arm64:
-  stage: level_2
-  script: 'cd nfqlt/redis60 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd memcached1433 && make all && make publish'
+  needs: ["debian-stretch"]
   when: on_success
 
-nfqlt/redis503:
+mongo32:
   stage: level_2
-  script: 'cd nfqlt/redis503 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/redis503_arm64]
+  script: 'cd mongo32 && make all && make publish'
+  needs: ["debian-stretch"]
   when: on_success
-nfqlt/redis503_arm64:
-  stage: level_2
-  script: 'cd nfqlt/redis503 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
-  when: on_success
 
-nfqlt/redis326:
+nginx110:
   stage: level_2
-  script: 'cd nfqlt/redis326 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/redis326_arm64]
-  when: on_success
-nfqlt/redis326_arm64:
-  stage: level_2
-  script: 'cd nfqlt/redis326 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd nginx110 && make all && make publish'
+  needs: ["debian-stretch"]
   when: on_success
 
-nfqlt/redis2817:
+php70-cli:
   stage: level_2
-  script: 'cd nfqlt/redis2817 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/redis2817_arm64]
+  script: 'cd php70-cli && make all && make publish'
+  needs: ["debian-stretch"]
   when: on_success
-nfqlt/redis2817_arm64:
-  stage: level_2
-  script: 'cd nfqlt/redis2817 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
-  when: on_success
 
-nfqlt/rabbitmq38:
-  stage: level_2
-  script: 'cd nfqlt/rabbitmq38 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/rabbitmq38_arm64]
-  when: on_success
-nfqlt/rabbitmq38_arm64:
+rabbitmq366:
   stage: level_2
-  script: 'cd nfqlt/rabbitmq38 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd rabbitmq366 && make all && make publish'
+  needs: ["debian-stretch"]
   when: on_success
 
-nfqlt/rabbitmq389:
-  stage: level_2
-  script: 'cd nfqlt/rabbitmq389 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/rabbitmq389_arm64]
-  when: on_success
-nfqlt/rabbitmq389_arm64:
+redis326:
   stage: level_2
-  script: 'cd nfqlt/rabbitmq389 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd redis326 && make all && make publish'
+  needs: ["debian-stretch"]
   when: on_success
 
-nfqlt/rabbitmq378:
-  stage: level_2
-  script: 'cd nfqlt/rabbitmq378 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/rabbitmq378_arm64]
-  when: on_success
-nfqlt/rabbitmq378_arm64:
+varnish50:
   stage: level_2
-  script: 'cd nfqlt/rabbitmq378 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd varnish50 && make all && make publish'
+  needs: ["debian-stretch"]
   when: on_success
 
-nfqlt/rabbitmq366:
+apache24-fastcgi:
   stage: level_2
-  script: 'cd nfqlt/rabbitmq366 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/rabbitmq366_arm64]
-  when: on_success
-nfqlt/rabbitmq366_arm64:
-  stage: level_2
-  script: 'cd nfqlt/rabbitmq366 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd apache24-fastcgi && make all && make publish'
+  needs: ["debian-jessie"]
   when: on_success
 
-nfqlt/rabbitmq335:
+elasticsearch22:
   stage: level_2
-  script: 'cd nfqlt/rabbitmq335 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/rabbitmq335_arm64]
+  script: 'cd elasticsearch22 && make all && make publish'
+  needs: ["debian-jessie"]
   when: on_success
-nfqlt/rabbitmq335_arm64:
-  stage: level_2
-  script: 'cd nfqlt/rabbitmq335 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
-  when: on_success
 
-nfqlt/rabbitmq310:
+graylog20:
   stage: level_2
-  script: 'cd nfqlt/rabbitmq310 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/rabbitmq310_arm64]
-  when: on_success
-nfqlt/rabbitmq310_arm64:
-  stage: level_2
-  script: 'cd nfqlt/rabbitmq310 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd graylog20 && make all && make publish'
+  needs: ["debian-jessie"]
   when: on_success
 
-nfqlt/postgres12-data:
+memcached1421:
   stage: level_2
-  script: 'cd nfqlt/postgres12-data && make build-amd64 && make test-amd64'
-  needs: [nfqlt/postgres12-data_arm64]
+  script: 'cd memcached1421 && make all && make publish'
+  needs: ["debian-jessie"]
   when: on_success
-nfqlt/postgres12-data_arm64:
-  stage: level_2
-  script: 'cd nfqlt/postgres12-data && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
-  when: on_success
 
-nfqlt/php82-cli:
-  stage: level_2
-  script: 'cd nfqlt/php82-cli && make build-amd64 && make test-amd64'
-  needs: [nfqlt/php82-cli_arm64]
-  when: on_success
-nfqlt/php82-cli_arm64:
+mongo24:
   stage: level_2
-  script: 'cd nfqlt/php82-cli && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd mongo24 && make all && make publish'
+  needs: ["debian-jessie"]
   when: on_success
 
-nfqlt/php81-cli:
-  stage: level_2
-  script: 'cd nfqlt/php81-cli && make build-amd64 && make test-amd64'
-  needs: [nfqlt/php81-cli_arm64]
-  when: on_success
-nfqlt/php81-cli_arm64:
+nginx16:
   stage: level_2
-  script: 'cd nfqlt/php81-cli && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd nginx16 && make all && make publish'
+  needs: ["debian-jessie"]
   when: on_success
 
-nfqlt/php80-cli:
-  stage: level_2
-  script: 'cd nfqlt/php80-cli && make build-amd64 && make test-amd64'
-  needs: [nfqlt/php80-cli_arm64]
-  when: on_success
-nfqlt/php80-cli_arm64:
+php56-cli:
   stage: level_2
-  script: 'cd nfqlt/php80-cli && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd php56-cli && make all && make publish'
+  needs: ["debian-jessie"]
   when: on_success
 
-nfqlt/php74-cli:
+rabbitmq335:
   stage: level_2
-  script: 'cd nfqlt/php74-cli && make build-amd64 && make test-amd64'
-  needs: [nfqlt/php74-cli_arm64]
-  when: on_success
-nfqlt/php74-cli_arm64:
-  stage: level_2
-  script: 'cd nfqlt/php74-cli && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd rabbitmq335 && make all && make publish'
+  needs: ["debian-jessie"]
   when: on_success
 
-nfqlt/php73-cli:
+redis2817:
   stage: level_2
-  script: 'cd nfqlt/php73-cli && make build-amd64 && make test-amd64'
-  needs: [nfqlt/php73-cli_arm64]
+  script: 'cd redis2817 && make all && make publish'
+  needs: ["debian-jessie"]
   when: on_success
-nfqlt/php73-cli_arm64:
-  stage: level_2
-  script: 'cd nfqlt/php73-cli && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
-  when: on_success
 
-nfqlt/php72-cli:
+solr36:
   stage: level_2
-  script: 'cd nfqlt/php72-cli && make build-amd64 && make test-amd64'
-  needs: [nfqlt/php72-cli_arm64]
-  when: on_success
-nfqlt/php72-cli_arm64:
-  stage: level_2
-  script: 'cd nfqlt/php72-cli && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd solr36 && make all && make publish'
+  needs: ["debian-jessie"]
   when: on_success
 
-nfqlt/php71-cli:
+sphinxsearch:
   stage: level_2
-  script: 'cd nfqlt/php71-cli && make build-amd64 && make test-amd64'
-  needs: [nfqlt/php71-cli_arm64]
+  script: 'cd sphinxsearch && make all && make publish'
+  needs: ["debian-jessie"]
   when: on_success
-nfqlt/php71-cli_arm64:
-  stage: level_2
-  script: 'cd nfqlt/php71-cli && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
-  when: on_success
 
-nfqlt/php70-cli:
-  stage: level_2
-  script: 'cd nfqlt/php70-cli && make build-amd64 && make test-amd64'
-  needs: [nfqlt/php70-cli_arm64]
-  when: on_success
-nfqlt/php70-cli_arm64:
+apache2438-fastcgi:
   stage: level_2
-  script: 'cd nfqlt/php70-cli && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd apache2438-fastcgi && make all && make publish'
+  needs: ["debian-buster"]
   when: on_success
 
-nfqlt/php56-cli:
-  stage: level_2
-  script: 'cd nfqlt/php56-cli && make build-amd64 && make test-amd64'
-  needs: [nfqlt/php56-cli_arm64]
-  when: on_success
-nfqlt/php56-cli_arm64:
+certbot:
   stage: level_2
-  script: 'cd nfqlt/php56-cli && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd certbot && make all && make publish'
+  needs: ["debian-buster"]
   when: on_success
 
-nfqlt/phantomjs21:
-  stage: level_2
-  script: 'cd nfqlt/phantomjs21 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/phantomjs21_arm64]
-  when: on_success
-nfqlt/phantomjs21_arm64:
+chromedriver83:
   stage: level_2
-  script: 'cd nfqlt/phantomjs21 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd chromedriver83 && make all && make publish'
+  needs: ["debian-buster"]
   when: on_success
 
-nfqlt/phantomjs19:
-  stage: level_2
-  script: 'cd nfqlt/phantomjs19 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/phantomjs19_arm64]
-  when: on_success
-nfqlt/phantomjs19_arm64:
+elasticsearch56:
   stage: level_2
-  script: 'cd nfqlt/phantomjs19 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd elasticsearch56 && make all && make publish'
+  needs: ["debian-buster"]
   when: on_success
 
-nfqlt/nodeserver8:
-  stage: level_2
-  script: 'cd nfqlt/nodeserver8 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/nodeserver8_arm64]
-  when: on_success
-nfqlt/nodeserver8_arm64:
+gitsync:
   stage: level_2
-  script: 'cd nfqlt/nodeserver8 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd gitsync && make all && make publish'
+  needs: ["debian-buster"]
   when: on_success
 
-nfqlt/nodeserver19:
-  stage: level_2
-  script: 'cd nfqlt/nodeserver19 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/nodeserver19_arm64]
-  when: on_success
-nfqlt/nodeserver19_arm64:
+memcached156:
   stage: level_2
-  script: 'cd nfqlt/nodeserver19 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd memcached156 && make all && make publish'
+  needs: ["debian-buster"]
   when: on_success
 
-nfqlt/nodeserver18:
-  stage: level_2
-  script: 'cd nfqlt/nodeserver18 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/nodeserver18_arm64]
-  when: on_success
-nfqlt/nodeserver18_arm64:
+nginx114:
   stage: level_2
-  script: 'cd nfqlt/nodeserver18 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd nginx114 && make all && make publish'
+  needs: ["debian-buster"]
   when: on_success
 
-nfqlt/nodeserver16:
+nodeserver8:
   stage: level_2
-  script: 'cd nfqlt/nodeserver16 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/nodeserver16_arm64]
-  when: on_success
-nfqlt/nodeserver16_arm64:
-  stage: level_2
-  script: 'cd nfqlt/nodeserver16 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd nodeserver8 && make all && make publish'
+  needs: ["debian-buster"]
   when: on_success
 
-nfqlt/nodeserver14:
+redis503:
   stage: level_2
-  script: 'cd nfqlt/nodeserver14 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/nodeserver14_arm64]
+  script: 'cd redis503 && make all && make publish'
+  needs: ["debian-buster"]
   when: on_success
-nfqlt/nodeserver14_arm64:
-  stage: level_2
-  script: 'cd nfqlt/nodeserver14 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
-  when: on_success
 
-nfqlt/nodeserver12:
-  stage: level_2
-  script: 'cd nfqlt/nodeserver12 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/nodeserver12_arm64]
-  when: on_success
-nfqlt/nodeserver12_arm64:
+router:
   stage: level_2
-  script: 'cd nfqlt/nodeserver12 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd router && make all && make publish'
+  needs: ["debian-buster"]
   when: on_success
 
-nfqlt/nodeserver10:
-  stage: level_2
-  script: 'cd nfqlt/nodeserver10 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/nodeserver10_arm64]
-  when: on_success
-nfqlt/nodeserver10_arm64:
+toolbox-buster:
   stage: level_2
-  script: 'cd nfqlt/nodeserver10 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd toolbox-buster && make all && make publish'
+  needs: ["debian-buster"]
   when: on_success
 
-nfqlt/nginx16:
-  stage: level_2
-  script: 'cd nfqlt/nginx16 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/nginx16_arm64]
-  when: on_success
-nfqlt/nginx16_arm64:
+varnish61:
   stage: level_2
-  script: 'cd nfqlt/nginx16 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd varnish61 && make all && make publish'
+  needs: ["debian-buster"]
   when: on_success
 
-nfqlt/nginx118:
-  stage: level_2
-  script: 'cd nfqlt/nginx118 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/nginx118_arm64]
-  when: on_success
-nfqlt/nginx118_arm64:
+apache2452-fastcgi:
   stage: level_2
-  script: 'cd nfqlt/nginx118 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd apache2452-fastcgi && make all && make publish'
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/nginx114:
+apache24:
   stage: level_2
-  script: 'cd nfqlt/nginx114 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/nginx114_arm64]
+  script: 'cd apache24 && make all-amd64 && make publish-amd64'
+  needs: [apache24_arm64]
   when: on_success
-nfqlt/nginx114_arm64:
+apache24_arm64:
   stage: level_2
-  script: 'cd nfqlt/nginx114 && make build-arm64 && make test-amd64'
+  script: 'cd apache24 && make all-arm64 && make publish-arm64'
   tags: [arm]
-  needs: []
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/nginx110:
+aws-mock:
   stage: level_2
-  script: 'cd nfqlt/nginx110 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/nginx110_arm64]
+  script: 'cd aws-mock && make all-amd64 && make publish-amd64'
+  needs: [aws-mock_arm64]
   when: on_success
-nfqlt/nginx110_arm64:
+aws-mock_arm64:
   stage: level_2
-  script: 'cd nfqlt/nginx110 && make build-arm64 && make test-amd64'
+  script: 'cd aws-mock && make all-arm64 && make publish-arm64'
   tags: [arm]
-  needs: []
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/mysql80-data:
+chromedriver:
   stage: level_2
-  script: 'cd nfqlt/mysql80-data && make build-amd64 && make test-amd64'
-  needs: [nfqlt/mysql80-data_arm64]
+  script: 'cd chromedriver && make all-amd64 && make publish-amd64'
+  needs: [chromedriver_arm64]
   when: on_success
-nfqlt/mysql80-data_arm64:
+chromedriver_arm64:
   stage: level_2
-  script: 'cd nfqlt/mysql80-data && make build-arm64 && make test-amd64'
+  script: 'cd chromedriver && make all-arm64 && make publish-arm64'
   tags: [arm]
-  needs: []
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/mysql57-data:
+dev:
   stage: level_2
-  script: 'cd nfqlt/mysql57-data && make build-amd64 && make test-amd64'
-  needs: [nfqlt/mysql57-data_arm64]
+  script: 'cd dev && make all-amd64 && make publish-amd64'
+  needs: [dev_arm64]
   when: on_success
-nfqlt/mysql57-data_arm64:
+dev_arm64:
   stage: level_2
-  script: 'cd nfqlt/mysql57-data && make build-arm64 && make test-amd64'
+  script: 'cd dev && make all-arm64 && make publish-arm64'
   tags: [arm]
-  needs: []
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/mysql56-data:
+docker18ce:
   stage: level_2
-  script: 'cd nfqlt/mysql56-data && make build-amd64 && make test-amd64'
-  needs: [nfqlt/mysql56-data_arm64]
+  script: 'cd docker18ce && make all-amd64 && make publish-amd64'
+  needs: [docker18ce_arm64]
   when: on_success
-nfqlt/mysql56-data_arm64:
+docker18ce_arm64:
   stage: level_2
-  script: 'cd nfqlt/mysql56-data && make build-arm64 && make test-amd64'
+  script: 'cd docker18ce && make all-arm64 && make publish-arm64'
   tags: [arm]
-  needs: []
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/mysql55-data:
+elasticsearch68:
   stage: level_2
-  script: 'cd nfqlt/mysql55-data && make build-amd64 && make test-amd64'
-  needs: [nfqlt/mysql55-data_arm64]
+  script: 'cd elasticsearch68 && make all-amd64 && make publish-amd64'
+  needs: [elasticsearch68_arm64]
   when: on_success
-nfqlt/mysql55-data_arm64:
+elasticsearch68_arm64:
   stage: level_2
-  script: 'cd nfqlt/mysql55-data && make build-arm64 && make test-amd64'
+  script: 'cd elasticsearch68 && make all-arm64 && make publish-arm64'
   tags: [arm]
-  needs: []
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/mongo50:
-  stage: level_2
-  script: 'cd nfqlt/mongo50 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/mongo50_arm64]
-  when: on_success
-nfqlt/mongo50_arm64:
+elasticsearch710:
   stage: level_2
-  script: 'cd nfqlt/mongo50 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd elasticsearch710 && make all && make publish'
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/mongo32:
+elasticsearch716:
   stage: level_2
-  script: 'cd nfqlt/mongo32 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/mongo32_arm64]
+  script: 'cd elasticsearch716 && make all-amd64 && make publish-amd64'
+  needs: [elasticsearch716_arm64]
   when: on_success
-nfqlt/mongo32_arm64:
+elasticsearch716_arm64:
   stage: level_2
-  script: 'cd nfqlt/mongo32 && make build-arm64 && make test-amd64'
+  script: 'cd elasticsearch716 && make all-arm64 && make publish-arm64'
   tags: [arm]
-  needs: []
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/mongo24:
+elasticsearch72:
   stage: level_2
-  script: 'cd nfqlt/mongo24 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/mongo24_arm64]
-  when: on_success
-nfqlt/mongo24_arm64:
-  stage: level_2
-  script: 'cd nfqlt/mongo24 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd elasticsearch72 && make all && make publish'
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/memcached169:
+elasticsearch75:
   stage: level_2
-  script: 'cd nfqlt/memcached169 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/memcached169_arm64]
+  script: 'cd elasticsearch75 && make all && make publish'
+  needs: ["debian-bullseye"]
   when: on_success
-nfqlt/memcached169_arm64:
-  stage: level_2
-  script: 'cd nfqlt/memcached169 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
-  when: on_success
 
-nfqlt/memcached156:
+elasticsearch77:
   stage: level_2
-  script: 'cd nfqlt/memcached156 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/memcached156_arm64]
-  when: on_success
-nfqlt/memcached156_arm64:
-  stage: level_2
-  script: 'cd nfqlt/memcached156 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd elasticsearch77 && make all && make publish'
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/memcached1433:
+elasticsearch79:
   stage: level_2
-  script: 'cd nfqlt/memcached1433 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/memcached1433_arm64]
+  script: 'cd elasticsearch79 && make all && make publish'
+  needs: ["debian-bullseye"]
   when: on_success
-nfqlt/memcached1433_arm64:
-  stage: level_2
-  script: 'cd nfqlt/memcached1433 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
-  when: on_success
 
-nfqlt/memcached1421:
+mailhog:
   stage: level_2
-  script: 'cd nfqlt/memcached1421 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/memcached1421_arm64]
+  script: 'cd mailhog && make all-amd64 && make publish-amd64'
+  needs: [mailhog_arm64]
   when: on_success
-nfqlt/memcached1421_arm64:
+mailhog_arm64:
   stage: level_2
-  script: 'cd nfqlt/memcached1421 && make build-arm64 && make test-amd64'
+  script: 'cd mailhog && make all-arm64 && make publish-arm64'
   tags: [arm]
-  needs: []
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/mailhog:
+memcached169:
   stage: level_2
-  script: 'cd nfqlt/mailhog && make build-amd64 && make test-amd64'
-  needs: [nfqlt/mailhog_arm64]
+  script: 'cd memcached169 && make all-amd64 && make publish-amd64'
+  needs: [memcached169_arm64]
   when: on_success
-nfqlt/mailhog_arm64:
+memcached169_arm64:
   stage: level_2
-  script: 'cd nfqlt/mailhog && make build-arm64 && make test-amd64'
+  script: 'cd memcached169 && make all-arm64 && make publish-arm64'
   tags: [arm]
-  needs: []
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/graylog20:
-  stage: level_2
-  script: 'cd nfqlt/graylog20 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/graylog20_arm64]
-  when: on_success
-nfqlt/graylog20_arm64:
+mongo50:
   stage: level_2
-  script: 'cd nfqlt/graylog20 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd mongo50 && make all && make publish'
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/gitsync:
+nginx118:
   stage: level_2
-  script: 'cd nfqlt/gitsync && make build-amd64 && make test-amd64'
-  needs: [nfqlt/gitsync_arm64]
+  script: 'cd nginx118 && make all-amd64 && make publish-amd64'
+  needs: [nginx118_arm64]
   when: on_success
-nfqlt/gitsync_arm64:
+nginx118_arm64:
   stage: level_2
-  script: 'cd nfqlt/gitsync && make build-arm64 && make test-amd64'
+  script: 'cd nginx118 && make all-arm64 && make publish-arm64'
   tags: [arm]
-  needs: []
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/gearman:
-  stage: level_2
-  script: 'cd nfqlt/gearman && make build-amd64 && make test-amd64'
-  needs: [nfqlt/gearman_arm64]
-  when: on_success
-nfqlt/gearman_arm64:
+nodeserver10:
   stage: level_2
-  script: 'cd nfqlt/gearman && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd nodeserver10 && make all && make publish'
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/elasticsearch79:
-  stage: level_2
-  script: 'cd nfqlt/elasticsearch79 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/elasticsearch79_arm64]
-  when: on_success
-nfqlt/elasticsearch79_arm64:
+nodeserver12:
   stage: level_2
-  script: 'cd nfqlt/elasticsearch79 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd nodeserver12 && make all && make publish'
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/elasticsearch77:
-  stage: level_2
-  script: 'cd nfqlt/elasticsearch77 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/elasticsearch77_arm64]
-  when: on_success
-nfqlt/elasticsearch77_arm64:
+nodeserver14:
   stage: level_2
-  script: 'cd nfqlt/elasticsearch77 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd nodeserver14 && make all && make publish'
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/elasticsearch75:
-  stage: level_2
-  script: 'cd nfqlt/elasticsearch75 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/elasticsearch75_arm64]
-  when: on_success
-nfqlt/elasticsearch75_arm64:
+nodeserver16:
   stage: level_2
-  script: 'cd nfqlt/elasticsearch75 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd nodeserver16 && make all && make publish'
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/elasticsearch72:
+nodeserver18:
   stage: level_2
-  script: 'cd nfqlt/elasticsearch72 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/elasticsearch72_arm64]
-  when: on_success
-nfqlt/elasticsearch72_arm64:
-  stage: level_2
-  script: 'cd nfqlt/elasticsearch72 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd nodeserver18 && make all && make publish'
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/elasticsearch716:
+nodeserver19:
   stage: level_2
-  script: 'cd nfqlt/elasticsearch716 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/elasticsearch716_arm64]
+  script: 'cd nodeserver19 && make all && make publish'
+  needs: ["debian-bullseye"]
   when: on_success
-nfqlt/elasticsearch716_arm64:
-  stage: level_2
-  script: 'cd nfqlt/elasticsearch716 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
-  when: on_success
 
-nfqlt/elasticsearch710:
-  stage: level_2
-  script: 'cd nfqlt/elasticsearch710 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/elasticsearch710_arm64]
-  when: on_success
-nfqlt/elasticsearch710_arm64:
+phantomjs19:
   stage: level_2
-  script: 'cd nfqlt/elasticsearch710 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd phantomjs19 && make all && make publish'
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/elasticsearch68:
-  stage: level_2
-  script: 'cd nfqlt/elasticsearch68 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/elasticsearch68_arm64]
-  when: on_success
-nfqlt/elasticsearch68_arm64:
+phantomjs21:
   stage: level_2
-  script: 'cd nfqlt/elasticsearch68 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd phantomjs21 && make all && make publish'
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/elasticsearch56:
-  stage: level_2
-  script: 'cd nfqlt/elasticsearch56 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/elasticsearch56_arm64]
-  when: on_success
-nfqlt/elasticsearch56_arm64:
+php71-cli:
   stage: level_2
-  script: 'cd nfqlt/elasticsearch56 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd php71-cli && make all && make publish'
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/elasticsearch22:
-  stage: level_2
-  script: 'cd nfqlt/elasticsearch22 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/elasticsearch22_arm64]
-  when: on_success
-nfqlt/elasticsearch22_arm64:
+php72-cli:
   stage: level_2
-  script: 'cd nfqlt/elasticsearch22 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd php72-cli && make all && make publish'
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/docker18ce:
-  stage: level_2
-  script: 'cd nfqlt/docker18ce && make build-amd64 && make test-amd64'
-  needs: [nfqlt/docker18ce_arm64]
-  when: on_success
-nfqlt/docker18ce_arm64:
+php73-cli:
   stage: level_2
-  script: 'cd nfqlt/docker18ce && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd php73-cli && make all && make publish'
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/dev:
-  stage: level_2
-  script: 'cd nfqlt/dev && make build-amd64 && make test-amd64'
-  needs: [nfqlt/dev_arm64]
-  when: on_success
-nfqlt/dev_arm64:
+php74-cli:
   stage: level_2
-  script: 'cd nfqlt/dev && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd php74-cli && make all && make publish'
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/chromedriver:
-  stage: level_2
-  script: 'cd nfqlt/chromedriver && make build-amd64 && make test-amd64'
-  needs: [nfqlt/chromedriver_arm64]
-  when: on_success
-nfqlt/chromedriver_arm64:
+php80-cli:
   stage: level_2
-  script: 'cd nfqlt/chromedriver && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd php80-cli && make all && make publish'
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/chromedriver83:
+php81-cli:
   stage: level_2
-  script: 'cd nfqlt/chromedriver83 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/chromedriver83_arm64]
+  script: 'cd php81-cli && make all-amd64 && make publish-amd64'
+  needs: [php81-cli_arm64]
   when: on_success
-nfqlt/chromedriver83_arm64:
+php81-cli_arm64:
   stage: level_2
-  script: 'cd nfqlt/chromedriver83 && make build-arm64 && make test-amd64'
+  script: 'cd php81-cli && make all-arm64 && make publish-arm64'
   tags: [arm]
-  needs: []
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/chromedriver73:
+php82-cli:
   stage: level_2
-  script: 'cd nfqlt/chromedriver73 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/chromedriver73_arm64]
+  script: 'cd php82-cli && make all-amd64 && make publish-amd64'
+  needs: [php82-cli_arm64]
   when: on_success
-nfqlt/chromedriver73_arm64:
+php82-cli_arm64:
   stage: level_2
-  script: 'cd nfqlt/chromedriver73 && make build-arm64 && make test-amd64'
+  script: 'cd php82-cli && make all-arm64 && make publish-arm64'
   tags: [arm]
-  needs: []
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/certbot:
+rabbitmq310:
   stage: level_2
-  script: 'cd nfqlt/certbot && make build-amd64 && make test-amd64'
-  needs: [nfqlt/certbot_arm64]
+  script: 'cd rabbitmq310 && make all-amd64 && make publish-amd64'
+  needs: [rabbitmq310_arm64]
   when: on_success
-nfqlt/certbot_arm64:
+rabbitmq310_arm64:
   stage: level_2
-  script: 'cd nfqlt/certbot && make build-arm64 && make test-amd64'
+  script: 'cd rabbitmq310 && make all-arm64 && make publish-arm64'
   tags: [arm]
-  needs: []
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/birt45:
+rabbitmq378:
   stage: level_2
-  script: 'cd nfqlt/birt45 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/birt45_arm64]
-  when: on_success
-nfqlt/birt45_arm64:
-  stage: level_2
-  script: 'cd nfqlt/birt45 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd rabbitmq378 && make all && make publish'
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/aws-mock:
+rabbitmq389:
   stage: level_2
-  script: 'cd nfqlt/aws-mock && make build-amd64 && make test-amd64'
-  needs: [nfqlt/aws-mock_arm64]
+  script: 'cd rabbitmq389 && make all-amd64 && make publish-amd64'
+  needs: [rabbitmq389_arm64]
   when: on_success
-nfqlt/aws-mock_arm64:
+rabbitmq389_arm64:
   stage: level_2
-  script: 'cd nfqlt/aws-mock && make build-arm64 && make test-amd64'
+  script: 'cd rabbitmq389 && make all-arm64 && make publish-arm64'
   tags: [arm]
-  needs: []
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/apache24-fastcgi:
+rabbitmq38:
   stage: level_2
-  script: 'cd nfqlt/apache24-fastcgi && make build-amd64 && make test-amd64'
-  needs: [nfqlt/apache24-fastcgi_arm64]
+  script: 'cd rabbitmq38 && make all && make publish'
+  needs: ["debian-bullseye"]
   when: on_success
-nfqlt/apache24-fastcgi_arm64:
-  stage: level_2
-  script: 'cd nfqlt/apache24-fastcgi && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
-  when: on_success
 
-nfqlt/apache24:
+redis60:
   stage: level_2
-  script: 'cd nfqlt/apache24 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/apache24_arm64]
+  script: 'cd redis60 && make all-amd64 && make publish-amd64'
+  needs: [redis60_arm64]
   when: on_success
-nfqlt/apache24_arm64:
+redis60_arm64:
   stage: level_2
-  script: 'cd nfqlt/apache24 && make build-arm64 && make test-amd64'
+  script: 'cd redis60 && make all-arm64 && make publish-arm64'
   tags: [arm]
-  needs: []
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/apache2452-fastcgi:
+toolbox-bullseye:
   stage: level_2
-  script: 'cd nfqlt/apache2452-fastcgi && make build-amd64 && make test-amd64'
-  needs: [nfqlt/apache2452-fastcgi_arm64]
+  script: 'cd toolbox-bullseye && make all-amd64 && make publish-amd64'
+  needs: [toolbox-bullseye_arm64]
   when: on_success
-nfqlt/apache2452-fastcgi_arm64:
+toolbox-bullseye_arm64:
   stage: level_2
-  script: 'cd nfqlt/apache2452-fastcgi && make build-arm64 && make test-amd64'
+  script: 'cd toolbox-bullseye && make all-arm64 && make publish-arm64'
   tags: [arm]
-  needs: []
+  needs: ["debian-bullseye"]
   when: on_success
 
-nfqlt/apache2438-fastcgi:
+toolbox:
   stage: level_2
-  script: 'cd nfqlt/apache2438-fastcgi && make build-amd64 && make test-amd64'
-  needs: [nfqlt/apache2438-fastcgi_arm64]
-  when: on_success
-nfqlt/apache2438-fastcgi_arm64:
-  stage: level_2
-  script: 'cd nfqlt/apache2438-fastcgi && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd toolbox && make all && make publish'
+  needs: ["debian-bullseye"]
   when: on_success

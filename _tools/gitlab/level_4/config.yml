@@ -1,96 +1,90 @@
 
-nfqlt/xhgui:
+deb-dev:
   stage: level_4
-  script: 'cd nfqlt/xhgui && make build-amd64 && make test-amd64'
-  needs: [nfqlt/xhgui_arm64]
-  when: on_success
-nfqlt/xhgui_arm64:
-  stage: level_4
-  script: 'cd nfqlt/xhgui && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd deb-dev && make all && make publish'
+  needs: ["php70-dev"]
   when: on_success
 
-nfqlt/php74-vscode:
+php74-vscode:
   stage: level_4
-  script: 'cd nfqlt/php74-vscode && make build-amd64 && make test-amd64'
-  needs: [nfqlt/php74-vscode_arm64]
-  when: on_success
-nfqlt/php74-vscode_arm64:
-  stage: level_4
-  script: 'cd nfqlt/php74-vscode && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd php74-vscode && make all && make publish'
+  needs: ["php74-dev"]
   when: on_success
 
-nfqlt/deb-dev:
+xhgui:
   stage: level_4
-  script: 'cd nfqlt/deb-dev && make build-amd64 && make test-amd64'
-  needs: [nfqlt/deb-dev_arm64]
-  when: on_success
-nfqlt/deb-dev_arm64:
-  stage: level_4
-  script: 'cd nfqlt/deb-dev && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd xhgui && make all && make publish'
+  needs: ["php81-dev"]
   when: on_success
 
-nfqlt/cypress9:
+aws-docker-tools:
   stage: level_4
-  script: 'cd nfqlt/cypress9 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/cypress9_arm64]
+  script: 'cd aws-docker-tools && make all-amd64 && make publish-amd64'
+  needs: [aws-docker-tools_arm64]
   when: on_success
-nfqlt/cypress9_arm64:
+aws-docker-tools_arm64:
   stage: level_4
-  script: 'cd nfqlt/cypress9 && make build-arm64 && make test-amd64'
+  script: 'cd aws-docker-tools && make all-arm64 && make publish-arm64'
   tags: [arm]
-  needs: []
+  needs: ["aws-tools"]
   when: on_success
 
-nfqlt/cypress7:
+cypress4:
   stage: level_4
-  script: 'cd nfqlt/cypress7 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/cypress7_arm64]
-  when: on_success
-nfqlt/cypress7_arm64:
-  stage: level_4
-  script: 'cd nfqlt/cypress7 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd cypress4 && make all && make publish'
+  needs: ["node12"]
   when: on_success
 
-nfqlt/cypress5:
+cypress5:
   stage: level_4
-  script: 'cd nfqlt/cypress5 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/cypress5_arm64]
-  when: on_success
-nfqlt/cypress5_arm64:
-  stage: level_4
-  script: 'cd nfqlt/cypress5 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd cypress5 && make all && make publish'
+  needs: ["node12"]
   when: on_success
 
-nfqlt/cypress4:
+cypress7:
   stage: level_4
-  script: 'cd nfqlt/cypress4 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/cypress4_arm64]
-  when: on_success
-nfqlt/cypress4_arm64:
-  stage: level_4
-  script: 'cd nfqlt/cypress4 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
+  script: 'cd cypress7 && make all && make publish'
+  needs: ["node16"]
   when: on_success
 
-nfqlt/aws-docker-tools:
+cypress9:
   stage: level_4
-  script: 'cd nfqlt/aws-docker-tools && make build-amd64 && make test-amd64'
-  needs: [nfqlt/aws-docker-tools_arm64]
+  script: 'cd cypress9 && make all && make publish'
+  needs: ["node16"]
   when: on_success
-nfqlt/aws-docker-tools_arm64:
+
+aws-docker-tools:
   stage: level_4
-  script: 'cd nfqlt/aws-docker-tools && make build-arm64 && make test-amd64'
+  script: 'cd aws-docker-tools && make all-amd64 && make publish-amd64'
+  needs: [aws-docker-tools_arm64]
+  when: on_success
+aws-docker-tools_arm64:
+  stage: level_4
+  script: 'cd aws-docker-tools && make all-arm64 && make publish-arm64'
   tags: [arm]
-  needs: []
+  needs: ["aws-tools"]
+  when: on_success
+
+cypress4:
+  stage: level_4
+  script: 'cd cypress4 && make all && make publish'
+  needs: ["node12"]
+  when: on_success
+
+cypress5:
+  stage: level_4
+  script: 'cd cypress5 && make all && make publish'
+  needs: ["node12"]
+  when: on_success
+
+cypress7:
+  stage: level_4
+  script: 'cd cypress7 && make all && make publish'
+  needs: ["node16"]
+  when: on_success
+
+cypress9:
+  stage: level_4
+  script: 'cd cypress9 && make all && make publish'
+  needs: ["node16"]
   when: on_success

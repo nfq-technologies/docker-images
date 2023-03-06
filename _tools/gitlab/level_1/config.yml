@@ -1,180 +1,108 @@
 
-nfqlt/postgres12:
+postgres12:
   stage: level_1
-  script: 'cd nfqlt/postgres12 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/postgres12_arm64]
+  script: 'cd postgres12 && make all && make publish'
+  needs: []
   when: manual
-nfqlt/postgres12_arm64:
+
+mysql80:
   stage: level_1
-  script: 'cd nfqlt/postgres12 && make build-arm64 && make test-amd64'
+  script: 'cd mysql80 && make all-amd64 && make publish-amd64'
+  needs: [mysql80_arm64]
+  when: manual
+mysql80_arm64:
+  stage: level_1
+  script: 'cd mysql80 && make all-arm64 && make publish-arm64'
   tags: [arm]
   needs: []
   when: manual
 
-nfqlt/mysql80:
+mysql57:
   stage: level_1
-  script: 'cd nfqlt/mysql80 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/mysql80_arm64]
+  script: 'cd mysql57 && make all && make publish'
+  needs: []
   when: manual
-nfqlt/mysql80_arm64:
+
+mysql56:
   stage: level_1
-  script: 'cd nfqlt/mysql80 && make build-arm64 && make test-amd64'
+  script: 'cd mysql56 && make all && make publish'
+  needs: []
+  when: manual
+
+mysql55:
+  stage: level_1
+  script: 'cd mysql55 && make all && make publish'
+  needs: []
+  when: manual
+
+mariadb10:
+  stage: level_1
+  script: 'cd mariadb10 && make all-amd64 && make publish-amd64'
+  needs: [mariadb10_arm64]
+  when: manual
+mariadb10_arm64:
+  stage: level_1
+  script: 'cd mariadb10 && make all-arm64 && make publish-arm64'
   tags: [arm]
   needs: []
   when: manual
 
-nfqlt/mysql57:
+lib-smartclient130:
   stage: level_1
-  script: 'cd nfqlt/mysql57 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/mysql57_arm64]
-  when: manual
-nfqlt/mysql57_arm64:
-  stage: level_1
-  script: 'cd nfqlt/mysql57 && make build-arm64 && make test-amd64'
-  tags: [arm]
+  script: 'cd lib-smartclient130 && make all && make publish'
   needs: []
   when: manual
 
-nfqlt/mysql56:
+lib-smartclient121:
   stage: level_1
-  script: 'cd nfqlt/mysql56 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/mysql56_arm64]
-  when: manual
-nfqlt/mysql56_arm64:
-  stage: level_1
-  script: 'cd nfqlt/mysql56 && make build-arm64 && make test-amd64'
-  tags: [arm]
+  script: 'cd lib-smartclient121 && make all && make publish'
   needs: []
   when: manual
 
-nfqlt/mysql55:
+lib-smartclient120:
   stage: level_1
-  script: 'cd nfqlt/mysql55 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/mysql55_arm64]
-  when: manual
-nfqlt/mysql55_arm64:
-  stage: level_1
-  script: 'cd nfqlt/mysql55 && make build-arm64 && make test-amd64'
-  tags: [arm]
+  script: 'cd lib-smartclient120 && make all && make publish'
   needs: []
   when: manual
 
-nfqlt/mariadb10:
+lib-smartclient111:
   stage: level_1
-  script: 'cd nfqlt/mariadb10 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/mariadb10_arm64]
-  when: manual
-nfqlt/mariadb10_arm64:
-  stage: level_1
-  script: 'cd nfqlt/mariadb10 && make build-arm64 && make test-amd64'
-  tags: [arm]
+  script: 'cd lib-smartclient111 && make all && make publish'
   needs: []
   when: manual
 
-nfqlt/lib-smartclient130:
+lib-smartclient100:
   stage: level_1
-  script: 'cd nfqlt/lib-smartclient130 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/lib-smartclient130_arm64]
-  when: manual
-nfqlt/lib-smartclient130_arm64:
-  stage: level_1
-  script: 'cd nfqlt/lib-smartclient130 && make build-arm64 && make test-amd64'
-  tags: [arm]
+  script: 'cd lib-smartclient100 && make all && make publish'
   needs: []
   when: manual
 
-nfqlt/lib-smartclient121:
+debian-stretch:
   stage: level_1
-  script: 'cd nfqlt/lib-smartclient121 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/lib-smartclient121_arm64]
-  when: manual
-nfqlt/lib-smartclient121_arm64:
-  stage: level_1
-  script: 'cd nfqlt/lib-smartclient121 && make build-arm64 && make test-amd64'
-  tags: [arm]
+  script: 'cd debian-stretch && make all && make publish'
   needs: []
   when: manual
 
-nfqlt/lib-smartclient120:
+debian-jessie:
   stage: level_1
-  script: 'cd nfqlt/lib-smartclient120 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/lib-smartclient120_arm64]
-  when: manual
-nfqlt/lib-smartclient120_arm64:
-  stage: level_1
-  script: 'cd nfqlt/lib-smartclient120 && make build-arm64 && make test-amd64'
-  tags: [arm]
+  script: 'cd debian-jessie && make all && make publish'
   needs: []
   when: manual
 
-nfqlt/lib-smartclient111:
+debian-buster:
   stage: level_1
-  script: 'cd nfqlt/lib-smartclient111 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/lib-smartclient111_arm64]
-  when: manual
-nfqlt/lib-smartclient111_arm64:
-  stage: level_1
-  script: 'cd nfqlt/lib-smartclient111 && make build-arm64 && make test-amd64'
-  tags: [arm]
+  script: 'cd debian-buster && make all && make publish'
   needs: []
   when: manual
 
-nfqlt/lib-smartclient100:
+debian-bullseye:
   stage: level_1
-  script: 'cd nfqlt/lib-smartclient100 && make build-amd64 && make test-amd64'
-  needs: [nfqlt/lib-smartclient100_arm64]
+  script: 'cd debian-bullseye && make all-amd64 && make publish-amd64'
+  needs: [debian-bullseye_arm64]
   when: manual
-nfqlt/lib-smartclient100_arm64:
+debian-bullseye_arm64:
   stage: level_1
-  script: 'cd nfqlt/lib-smartclient100 && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
-  when: manual
-
-nfqlt/debian-stretch:
-  stage: level_1
-  script: 'cd nfqlt/debian-stretch && make build-amd64 && make test-amd64'
-  needs: [nfqlt/debian-stretch_arm64]
-  when: manual
-nfqlt/debian-stretch_arm64:
-  stage: level_1
-  script: 'cd nfqlt/debian-stretch && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
-  when: manual
-
-nfqlt/debian-jessie:
-  stage: level_1
-  script: 'cd nfqlt/debian-jessie && make build-amd64 && make test-amd64'
-  needs: [nfqlt/debian-jessie_arm64]
-  when: manual
-nfqlt/debian-jessie_arm64:
-  stage: level_1
-  script: 'cd nfqlt/debian-jessie && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
-  when: manual
-
-nfqlt/debian-buster:
-  stage: level_1
-  script: 'cd nfqlt/debian-buster && make build-amd64 && make test-amd64'
-  needs: [nfqlt/debian-buster_arm64]
-  when: manual
-nfqlt/debian-buster_arm64:
-  stage: level_1
-  script: 'cd nfqlt/debian-buster && make build-arm64 && make test-amd64'
-  tags: [arm]
-  needs: []
-  when: manual
-
-nfqlt/debian-bullseye:
-  stage: level_1
-  script: 'cd nfqlt/debian-bullseye && make build-amd64 && make test-amd64'
-  needs: [nfqlt/debian-bullseye_arm64]
-  when: manual
-nfqlt/debian-bullseye_arm64:
-  stage: level_1
-  script: 'cd nfqlt/debian-bullseye && make build-arm64 && make test-amd64'
+  script: 'cd debian-bullseye && make all-arm64 && make publish-arm64'
   tags: [arm]
   needs: []
   when: manual
