@@ -1,90 +1,90 @@
 
 deb-dev:
   stage: level_4
-  script: 'cd deb-dev && make all && make publish'
+  script: 'cd deb-dev && make all'
   needs: ["php70-dev"]
   when: on_success
 
 php74-vscode:
   stage: level_4
-  script: 'cd php74-vscode && make all && make publish'
+  script: 'cd php74-vscode && make all'
   needs: ["php74-dev"]
   when: on_success
 
 xhgui:
   stage: level_4
-  script: 'cd xhgui && make all && make publish'
+  script: 'cd xhgui && make all'
   needs: ["php81-dev"]
   when: on_success
 
 aws-docker-tools:
   stage: level_4
-  script: 'cd aws-docker-tools && make all-amd64 && make publish-amd64'
+  script: 'cd aws-docker-tools && make all-amd64'
   needs: [aws-docker-tools_arm64]
   when: on_success
 aws-docker-tools_arm64:
   stage: level_4
-  script: 'cd aws-docker-tools && make all-arm64 && make publish-arm64'
+  script: 'cd aws-docker-tools && make all-arm64'
   tags: [arm]
   needs: ["aws-tools"]
   when: on_success
 
 cypress4:
   stage: level_4
-  script: 'cd cypress4 && make all && make publish'
+  script: 'cd cypress4 && make all'
   needs: ["node12"]
   when: on_success
 
 cypress5:
   stage: level_4
-  script: 'cd cypress5 && make all && make publish'
+  script: 'cd cypress5 && make all'
   needs: ["node12"]
   when: on_success
 
 cypress7:
   stage: level_4
-  script: 'cd cypress7 && make all && make publish'
+  script: 'cd cypress7 && make all'
   needs: ["node16"]
   when: on_success
 
 cypress9:
   stage: level_4
-  script: 'cd cypress9 && make all && make publish'
+  script: 'cd cypress9 && make all'
   needs: ["node16"]
   when: on_success
 
 aws-docker-tools:
   stage: level_4
-  script: 'cd aws-docker-tools && make all-amd64 && make publish-amd64'
+  script: 'cd aws-docker-tools && make all-amd64'
   needs: [aws-docker-tools_arm64]
   when: on_success
 aws-docker-tools_arm64:
   stage: level_4
-  script: 'cd aws-docker-tools && make all-arm64 && make publish-arm64'
+  script: 'cd aws-docker-tools && make all-arm64'
   tags: [arm]
   needs: ["aws-tools"]
   when: on_success
 
 cypress4:
   stage: level_4
-  script: 'cd cypress4 && make all && make publish'
+  script: 'cd cypress4 && make all'
   needs: ["node12"]
   when: on_success
 
 cypress5:
   stage: level_4
-  script: 'cd cypress5 && make all && make publish'
+  script: 'cd cypress5 && make all'
   needs: ["node12"]
   when: on_success
 
 cypress7:
   stage: level_4
-  script: 'cd cypress7 && make all && make publish'
+  script: 'cd cypress7 && make all'
   needs: ["node16"]
   when: on_success
 
 cypress9:
   stage: level_4
-  script: 'cd cypress9 && make all && make publish'
+  script: 'cd cypress9 && make all'
   needs: ["node16"]
   when: on_success

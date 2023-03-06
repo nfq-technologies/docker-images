@@ -3,11 +3,11 @@
 set -e
 
 levels="level_1 level_2 level_3 level_4 level_5"
-level_1="$(_tools/borting.sh 1)"
-level_2="$(_tools/borting.sh 2)"
-level_3="$(_tools/borting.sh 3)"
-level_4="$(_tools/borting.sh 4)"
-level_5="$(_tools/borting.sh 5)"
+level_1="$(_tools/sorting.sh 1)"
+level_2="$(_tools/sorting.sh 2)"
+level_3="$(_tools/sorting.sh 3)"
+level_4="$(_tools/sorting.sh 4)"
+level_5="$(_tools/sorting.sh 5)"
 
 function ci_yml() {
 	local image="$1"
@@ -30,7 +30,7 @@ function ci_yml() {
 		echo "
 ${image}:
   stage: $level
-  script: 'cd $image && make all && make publish'
+  script: 'cd $image && make all'
   needs: [$parent]
   when: $automation
 "
@@ -38,12 +38,12 @@ ${image}:
 		echo "
 ${image}:
   stage: $level
-  script: 'cd $image && make all-amd64 && make publish-amd64'
+  script: 'cd $image && make all-amd64'
   needs: [${image}_arm64]
   when: $automation
 ${image}_arm64:
   stage: $level
-  script: 'cd $image && make all-arm64 && make publish-arm64'
+  script: 'cd $image && make all-arm64'
   tags: [arm]
   needs: [$parent]
   when: $automation
