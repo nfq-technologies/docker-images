@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex
 
 name=test_box_$(date +%s%N)
 cwd=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
