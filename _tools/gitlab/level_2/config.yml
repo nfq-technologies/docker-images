@@ -1,7 +1,7 @@
 
 postgres12-data:
   stage: level_2
-  script: 'cd postgres12-data && make all'
+  script: 'cd postgres12-data && make all && make publish'
   needs: ["postgres12"]
   when: on_success
 
@@ -11,7 +11,7 @@ mysql80-data:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mysql80-data && make all-amd64'
+  script: 'cd mysql80-data && make all-amd64 && make publish'
   needs: [mysql80-data_arm64]
   when: on_success
 mysql80-data_arm64:
@@ -27,7 +27,7 @@ mysql57-data:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mysql57-data && make all-amd64'
+  script: 'cd mysql57-data && make all-amd64 && make publish'
   needs: [mysql57-data_arm64]
   when: on_success
 mysql57-data_arm64:
@@ -43,7 +43,7 @@ mysql56-data:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mysql56-data && make all-amd64'
+  script: 'cd mysql56-data && make all-amd64 && make publish'
   needs: [mysql56-data_arm64]
   when: on_success
 mysql56-data_arm64:
@@ -59,7 +59,7 @@ mysql55-data:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mysql55-data && make all-amd64'
+  script: 'cd mysql55-data && make all-amd64 && make publish'
   needs: [mysql55-data_arm64]
   when: on_success
 mysql55-data_arm64:
@@ -71,205 +71,205 @@ mysql55-data_arm64:
 
 birt45:
   stage: level_2
-  script: 'cd birt45 && make all'
+  script: 'cd birt45 && make all && make publish'
   needs: ["debian-stretch"]
   when: on_success
 
 chromedriver73:
   stage: level_2
-  script: 'cd chromedriver73 && make all'
+  script: 'cd chromedriver73 && make all && make publish'
   needs: ["debian-stretch"]
   when: on_success
 
 gearman:
   stage: level_2
-  script: 'cd gearman && make all'
+  script: 'cd gearman && make all && make publish'
   needs: ["debian-stretch"]
   when: on_success
 
 memcached1433:
   stage: level_2
-  script: 'cd memcached1433 && make all'
+  script: 'cd memcached1433 && make all && make publish'
   needs: ["debian-stretch"]
   when: on_success
 
 mongo32:
   stage: level_2
-  script: 'cd mongo32 && make all'
+  script: 'cd mongo32 && make all && make publish'
   needs: ["debian-stretch"]
   when: on_success
 
 nginx110:
   stage: level_2
-  script: 'cd nginx110 && make all'
+  script: 'cd nginx110 && make all && make publish'
   needs: ["debian-stretch"]
   when: on_success
 
 php70-cli:
   stage: level_2
-  script: 'cd php70-cli && make all'
+  script: 'cd php70-cli && make all && make publish'
   needs: ["debian-stretch"]
   when: on_success
 
 rabbitmq366:
   stage: level_2
-  script: 'cd rabbitmq366 && make all'
+  script: 'cd rabbitmq366 && make all && make publish'
   needs: ["debian-stretch"]
   when: on_success
 
 redis326:
   stage: level_2
-  script: 'cd redis326 && make all'
+  script: 'cd redis326 && make all && make publish'
   needs: ["debian-stretch"]
   when: on_success
 
 varnish50:
   stage: level_2
-  script: 'cd varnish50 && make all'
+  script: 'cd varnish50 && make all && make publish'
   needs: ["debian-stretch"]
   when: on_success
 
 apache24-fastcgi:
   stage: level_2
-  script: 'cd apache24-fastcgi && make all'
+  script: 'cd apache24-fastcgi && make all && make publish'
   needs: ["debian-jessie"]
   when: on_success
 
 elasticsearch22:
   stage: level_2
-  script: 'cd elasticsearch22 && make all'
+  script: 'cd elasticsearch22 && make all && make publish'
   needs: ["debian-jessie"]
   when: on_success
 
 graylog20:
   stage: level_2
-  script: 'cd graylog20 && make all'
+  script: 'cd graylog20 && make all && make publish'
   needs: ["debian-jessie"]
   when: on_success
 
 memcached1421:
   stage: level_2
-  script: 'cd memcached1421 && make all'
+  script: 'cd memcached1421 && make all && make publish'
   needs: ["debian-jessie"]
   when: on_success
 
 mongo24:
   stage: level_2
-  script: 'cd mongo24 && make all'
+  script: 'cd mongo24 && make all && make publish'
   needs: ["debian-jessie"]
   when: on_success
 
 nginx16:
   stage: level_2
-  script: 'cd nginx16 && make all'
+  script: 'cd nginx16 && make all && make publish'
   needs: ["debian-jessie"]
   when: on_success
 
 php56-cli:
   stage: level_2
-  script: 'cd php56-cli && make all'
+  script: 'cd php56-cli && make all && make publish'
   needs: ["debian-jessie"]
   when: on_success
 
 rabbitmq335:
   stage: level_2
-  script: 'cd rabbitmq335 && make all'
+  script: 'cd rabbitmq335 && make all && make publish'
   needs: ["debian-jessie"]
   when: on_success
 
 redis2817:
   stage: level_2
-  script: 'cd redis2817 && make all'
+  script: 'cd redis2817 && make all && make publish'
   needs: ["debian-jessie"]
   when: on_success
 
 solr36:
   stage: level_2
-  script: 'cd solr36 && make all'
+  script: 'cd solr36 && make all && make publish'
   needs: ["debian-jessie"]
   when: on_success
 
 sphinxsearch:
   stage: level_2
-  script: 'cd sphinxsearch && make all'
+  script: 'cd sphinxsearch && make all && make publish'
   needs: ["debian-jessie"]
   when: on_success
 
 apache2438-fastcgi:
   stage: level_2
-  script: 'cd apache2438-fastcgi && make all'
+  script: 'cd apache2438-fastcgi && make all && make publish'
   needs: ["debian-buster"]
   when: on_success
 
 certbot:
   stage: level_2
-  script: 'cd certbot && make all'
+  script: 'cd certbot && make all && make publish'
   needs: ["debian-buster"]
   when: on_success
 
 chromedriver83:
   stage: level_2
-  script: 'cd chromedriver83 && make all'
+  script: 'cd chromedriver83 && make all && make publish'
   needs: ["debian-buster"]
   when: on_success
 
 elasticsearch56:
   stage: level_2
-  script: 'cd elasticsearch56 && make all'
+  script: 'cd elasticsearch56 && make all && make publish'
   needs: ["debian-buster"]
   when: on_success
 
 gitsync:
   stage: level_2
-  script: 'cd gitsync && make all'
+  script: 'cd gitsync && make all && make publish'
   needs: ["debian-buster"]
   when: on_success
 
 memcached156:
   stage: level_2
-  script: 'cd memcached156 && make all'
+  script: 'cd memcached156 && make all && make publish'
   needs: ["debian-buster"]
   when: on_success
 
 nginx114:
   stage: level_2
-  script: 'cd nginx114 && make all'
+  script: 'cd nginx114 && make all && make publish'
   needs: ["debian-buster"]
   when: on_success
 
 nodeserver8:
   stage: level_2
-  script: 'cd nodeserver8 && make all'
+  script: 'cd nodeserver8 && make all && make publish'
   needs: ["debian-buster"]
   when: on_success
 
 redis503:
   stage: level_2
-  script: 'cd redis503 && make all'
+  script: 'cd redis503 && make all && make publish'
   needs: ["debian-buster"]
   when: on_success
 
 router:
   stage: level_2
-  script: 'cd router && make all'
+  script: 'cd router && make all && make publish'
   needs: ["debian-buster"]
   when: on_success
 
 toolbox-buster:
   stage: level_2
-  script: 'cd toolbox-buster && make all'
+  script: 'cd toolbox-buster && make all && make publish'
   needs: ["debian-buster"]
   when: on_success
 
 varnish61:
   stage: level_2
-  script: 'cd varnish61 && make all'
+  script: 'cd varnish61 && make all && make publish'
   needs: ["debian-buster"]
   when: on_success
 
 apache2452-fastcgi:
   stage: level_2
-  script: 'cd apache2452-fastcgi && make all'
+  script: 'cd apache2452-fastcgi && make all && make publish'
   needs: ["debian-bullseye"]
   when: on_success
 
@@ -279,7 +279,7 @@ apache24:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd apache24 && make all-amd64'
+  script: 'cd apache24 && make all-amd64 && make publish'
   needs: [apache24_arm64]
   when: on_success
 apache24_arm64:
@@ -295,7 +295,7 @@ aws-mock:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd aws-mock && make all-amd64'
+  script: 'cd aws-mock && make all-amd64 && make publish'
   needs: [aws-mock_arm64]
   when: on_success
 aws-mock_arm64:
@@ -311,7 +311,7 @@ chromedriver:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd chromedriver && make all-amd64'
+  script: 'cd chromedriver && make all-amd64 && make publish'
   needs: [chromedriver_arm64]
   when: on_success
 chromedriver_arm64:
@@ -327,7 +327,7 @@ dev:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd dev && make all-amd64'
+  script: 'cd dev && make all-amd64 && make publish'
   needs: [dev_arm64]
   when: on_success
 dev_arm64:
@@ -343,7 +343,7 @@ docker18ce:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd docker18ce && make all-amd64'
+  script: 'cd docker18ce && make all-amd64 && make publish'
   needs: [docker18ce_arm64]
   when: on_success
 docker18ce_arm64:
@@ -359,7 +359,7 @@ elasticsearch68:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd elasticsearch68 && make all-amd64'
+  script: 'cd elasticsearch68 && make all-amd64 && make publish'
   needs: [elasticsearch68_arm64]
   when: on_success
 elasticsearch68_arm64:
@@ -371,7 +371,7 @@ elasticsearch68_arm64:
 
 elasticsearch710:
   stage: level_2
-  script: 'cd elasticsearch710 && make all'
+  script: 'cd elasticsearch710 && make all && make publish'
   needs: ["debian-bullseye"]
   when: on_success
 
@@ -381,7 +381,7 @@ elasticsearch716:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd elasticsearch716 && make all-amd64'
+  script: 'cd elasticsearch716 && make all-amd64 && make publish'
   needs: [elasticsearch716_arm64]
   when: on_success
 elasticsearch716_arm64:
@@ -393,25 +393,25 @@ elasticsearch716_arm64:
 
 elasticsearch72:
   stage: level_2
-  script: 'cd elasticsearch72 && make all'
+  script: 'cd elasticsearch72 && make all && make publish'
   needs: ["debian-bullseye"]
   when: on_success
 
 elasticsearch75:
   stage: level_2
-  script: 'cd elasticsearch75 && make all'
+  script: 'cd elasticsearch75 && make all && make publish'
   needs: ["debian-bullseye"]
   when: on_success
 
 elasticsearch77:
   stage: level_2
-  script: 'cd elasticsearch77 && make all'
+  script: 'cd elasticsearch77 && make all && make publish'
   needs: ["debian-bullseye"]
   when: on_success
 
 elasticsearch79:
   stage: level_2
-  script: 'cd elasticsearch79 && make all'
+  script: 'cd elasticsearch79 && make all && make publish'
   needs: ["debian-bullseye"]
   when: on_success
 
@@ -421,7 +421,7 @@ mailhog:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mailhog && make all-amd64'
+  script: 'cd mailhog && make all-amd64 && make publish'
   needs: [mailhog_arm64]
   when: on_success
 mailhog_arm64:
@@ -437,7 +437,7 @@ memcached169:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd memcached169 && make all-amd64'
+  script: 'cd memcached169 && make all-amd64 && make publish'
   needs: [memcached169_arm64]
   when: on_success
 memcached169_arm64:
@@ -449,7 +449,7 @@ memcached169_arm64:
 
 mongo50:
   stage: level_2
-  script: 'cd mongo50 && make all'
+  script: 'cd mongo50 && make all && make publish'
   needs: ["debian-bullseye"]
   when: on_success
 
@@ -459,7 +459,7 @@ nginx118:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd nginx118 && make all-amd64'
+  script: 'cd nginx118 && make all-amd64 && make publish'
   needs: [nginx118_arm64]
   when: on_success
 nginx118_arm64:
@@ -471,79 +471,79 @@ nginx118_arm64:
 
 nodeserver10:
   stage: level_2
-  script: 'cd nodeserver10 && make all'
+  script: 'cd nodeserver10 && make all && make publish'
   needs: ["debian-bullseye"]
   when: on_success
 
 nodeserver12:
   stage: level_2
-  script: 'cd nodeserver12 && make all'
+  script: 'cd nodeserver12 && make all && make publish'
   needs: ["debian-bullseye"]
   when: on_success
 
 nodeserver14:
   stage: level_2
-  script: 'cd nodeserver14 && make all'
+  script: 'cd nodeserver14 && make all && make publish'
   needs: ["debian-bullseye"]
   when: on_success
 
 nodeserver16:
   stage: level_2
-  script: 'cd nodeserver16 && make all'
+  script: 'cd nodeserver16 && make all && make publish'
   needs: ["debian-bullseye"]
   when: on_success
 
 nodeserver18:
   stage: level_2
-  script: 'cd nodeserver18 && make all'
+  script: 'cd nodeserver18 && make all && make publish'
   needs: ["debian-bullseye"]
   when: on_success
 
 nodeserver19:
   stage: level_2
-  script: 'cd nodeserver19 && make all'
+  script: 'cd nodeserver19 && make all && make publish'
   needs: ["debian-bullseye"]
   when: on_success
 
 phantomjs19:
   stage: level_2
-  script: 'cd phantomjs19 && make all'
+  script: 'cd phantomjs19 && make all && make publish'
   needs: ["debian-bullseye"]
   when: on_success
 
 phantomjs21:
   stage: level_2
-  script: 'cd phantomjs21 && make all'
+  script: 'cd phantomjs21 && make all && make publish'
   needs: ["debian-bullseye"]
   when: on_success
 
 php71-cli:
   stage: level_2
-  script: 'cd php71-cli && make all'
+  script: 'cd php71-cli && make all && make publish'
   needs: ["debian-bullseye"]
   when: on_success
 
 php72-cli:
   stage: level_2
-  script: 'cd php72-cli && make all'
+  script: 'cd php72-cli && make all && make publish'
   needs: ["debian-bullseye"]
   when: on_success
 
 php73-cli:
   stage: level_2
-  script: 'cd php73-cli && make all'
+  script: 'cd php73-cli && make all && make publish'
   needs: ["debian-bullseye"]
   when: on_success
 
 php74-cli:
   stage: level_2
-  script: 'cd php74-cli && make all'
+  script: 'cd php74-cli && make all && make publish'
   needs: ["debian-bullseye"]
   when: on_success
 
 php80-cli:
   stage: level_2
-  script: 'cd php80-cli && make all'
+  script: 'cd php80-cli && make all && make publish'
   needs: ["debian-bullseye"]
   when: on_success
 
@@ -553,7 +553,7 @@ php81-cli:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php81-cli && make all-amd64'
+  script: 'cd php81-cli && make all-amd64 && make publish'
   needs: [php81-cli_arm64]
   when: on_success
 php81-cli_arm64:
@@ -569,7 +569,7 @@ php82-cli:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php82-cli && make all-amd64'
+  script: 'cd php82-cli && make all-amd64 && make publish'
   needs: [php82-cli_arm64]
   when: on_success
 php82-cli_arm64:
@@ -585,7 +585,7 @@ rabbitmq310:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd rabbitmq310 && make all-amd64'
+  script: 'cd rabbitmq310 && make all-amd64 && make publish'
   needs: [rabbitmq310_arm64]
   when: on_success
 rabbitmq310_arm64:
@@ -597,7 +597,7 @@ rabbitmq310_arm64:
 
 rabbitmq378:
   stage: level_2
-  script: 'cd rabbitmq378 && make all'
+  script: 'cd rabbitmq378 && make all && make publish'
   needs: ["debian-bullseye"]
   when: on_success
 
@@ -607,7 +607,7 @@ rabbitmq389:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd rabbitmq389 && make all-amd64'
+  script: 'cd rabbitmq389 && make all-amd64 && make publish'
   needs: [rabbitmq389_arm64]
   when: on_success
 rabbitmq389_arm64:
@@ -619,7 +619,7 @@ rabbitmq389_arm64:
 
 rabbitmq38:
   stage: level_2
-  script: 'cd rabbitmq38 && make all'
+  script: 'cd rabbitmq38 && make all && make publish'
   needs: ["debian-bullseye"]
   when: on_success
 
@@ -629,7 +629,7 @@ redis60:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd redis60 && make all-amd64'
+  script: 'cd redis60 && make all-amd64 && make publish'
   needs: [redis60_arm64]
   when: on_success
 redis60_arm64:
@@ -645,7 +645,7 @@ toolbox-bullseye:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd toolbox-bullseye && make all-amd64'
+  script: 'cd toolbox-bullseye && make all-amd64 && make publish'
   needs: [toolbox-bullseye_arm64]
   when: on_success
 toolbox-bullseye_arm64:
@@ -657,6 +657,6 @@ toolbox-bullseye_arm64:
 
 toolbox:
   stage: level_2
-  script: 'cd toolbox && make all'
+  script: 'cd toolbox && make all && make publish'
   needs: ["debian-bullseye"]
   when: on_success
