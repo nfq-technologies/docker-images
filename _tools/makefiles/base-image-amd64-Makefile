@@ -2,7 +2,7 @@
 
 IMAGE_BASE_NAME = $(shell basename $(shell pwd))
 IMAGE_TYPE = nfqlt
-IMAGE_REGISTRY = 
+IMAGE_REGISTRY = docker.nfq.lt/
 IMAGE_FULL_NAME = $(IMAGE_REGISTRY)$(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
 CHILDREN = $(shell ../_tools/sorting.sh)
 
