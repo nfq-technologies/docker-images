@@ -11,7 +11,7 @@ mysql80-data:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mysql80-data && make all-amd64 && make publish'
+  script: 'cd mysql80-data && make all-amd64 && make manifest'
   needs: [mysql80-data_arm64]
   when: on_success
 mysql80-data_arm64:
@@ -27,7 +27,7 @@ mysql57-data:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mysql57-data && make all-amd64 && make publish'
+  script: 'cd mysql57-data && make all-amd64 && make manifest'
   needs: [mysql57-data_arm64]
   when: on_success
 mysql57-data_arm64:
@@ -43,7 +43,7 @@ mysql56-data:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mysql56-data && make all-amd64 && make publish'
+  script: 'cd mysql56-data && make all-amd64 && make manifest'
   needs: [mysql56-data_arm64]
   when: on_success
 mysql56-data_arm64:
@@ -59,7 +59,7 @@ mysql55-data:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mysql55-data && make all-amd64 && make publish'
+  script: 'cd mysql55-data && make all-amd64 && make manifest'
   needs: [mysql55-data_arm64]
   when: on_success
 mysql55-data_arm64:
@@ -279,7 +279,7 @@ apache24:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd apache24 && make all-amd64 && make publish'
+  script: 'cd apache24 && make all-amd64 && make manifest'
   needs: [apache24_arm64]
   when: on_success
 apache24_arm64:
@@ -295,7 +295,7 @@ aws-mock:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd aws-mock && make all-amd64 && make publish'
+  script: 'cd aws-mock && make all-amd64 && make manifest'
   needs: [aws-mock_arm64]
   when: on_success
 aws-mock_arm64:
@@ -311,7 +311,7 @@ chromedriver:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd chromedriver && make all-amd64 && make publish'
+  script: 'cd chromedriver && make all-amd64 && make manifest'
   needs: [chromedriver_arm64]
   when: on_success
 chromedriver_arm64:
@@ -327,7 +327,7 @@ dev:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd dev && make all-amd64 && make publish'
+  script: 'cd dev && make all-amd64 && make manifest'
   needs: [dev_arm64]
   when: on_success
 dev_arm64:
@@ -343,7 +343,7 @@ docker18ce:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd docker18ce && make all-amd64 && make publish'
+  script: 'cd docker18ce && make all-amd64 && make manifest'
   needs: [docker18ce_arm64]
   when: on_success
 docker18ce_arm64:
@@ -359,7 +359,7 @@ elasticsearch68:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd elasticsearch68 && make all-amd64 && make publish'
+  script: 'cd elasticsearch68 && make all-amd64 && make manifest'
   needs: [elasticsearch68_arm64]
   when: on_success
 elasticsearch68_arm64:
@@ -381,7 +381,7 @@ elasticsearch716:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd elasticsearch716 && make all-amd64 && make publish'
+  script: 'cd elasticsearch716 && make all-amd64 && make manifest'
   needs: [elasticsearch716_arm64]
   when: on_success
 elasticsearch716_arm64:
@@ -421,7 +421,7 @@ mailhog:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mailhog && make all-amd64 && make publish'
+  script: 'cd mailhog && make all-amd64 && make manifest'
   needs: [mailhog_arm64]
   when: on_success
 mailhog_arm64:
@@ -437,7 +437,7 @@ memcached169:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd memcached169 && make all-amd64 && make publish'
+  script: 'cd memcached169 && make all-amd64 && make manifest'
   needs: [memcached169_arm64]
   when: on_success
 memcached169_arm64:
@@ -459,7 +459,7 @@ nginx118:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd nginx118 && make all-amd64 && make publish'
+  script: 'cd nginx118 && make all-amd64 && make manifest'
   needs: [nginx118_arm64]
   when: on_success
 nginx118_arm64:
@@ -553,7 +553,7 @@ php81-cli:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php81-cli && make all-amd64 && make publish'
+  script: 'cd php81-cli && make all-amd64 && make manifest'
   needs: [php81-cli_arm64]
   when: on_success
 php81-cli_arm64:
@@ -569,7 +569,7 @@ php82-cli:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php82-cli && make all-amd64 && make publish'
+  script: 'cd php82-cli && make all-amd64 && make manifest'
   needs: [php82-cli_arm64]
   when: on_success
 php82-cli_arm64:
@@ -585,7 +585,7 @@ rabbitmq310:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd rabbitmq310 && make all-amd64 && make publish'
+  script: 'cd rabbitmq310 && make all-amd64 && make manifest'
   needs: [rabbitmq310_arm64]
   when: on_success
 rabbitmq310_arm64:
@@ -607,7 +607,7 @@ rabbitmq389:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd rabbitmq389 && make all-amd64 && make publish'
+  script: 'cd rabbitmq389 && make all-amd64 && make manifest'
   needs: [rabbitmq389_arm64]
   when: on_success
 rabbitmq389_arm64:
@@ -629,7 +629,7 @@ redis60:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd redis60 && make all-amd64 && make publish'
+  script: 'cd redis60 && make all-amd64 && make manifest'
   needs: [redis60_arm64]
   when: on_success
 redis60_arm64:
@@ -645,7 +645,7 @@ toolbox-bullseye:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd toolbox-bullseye && make all-amd64 && make publish'
+  script: 'cd toolbox-bullseye && make all-amd64 && make manifest'
   needs: [toolbox-bullseye_arm64]
   when: on_success
 toolbox-bullseye_arm64:

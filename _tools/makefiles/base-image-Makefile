@@ -173,6 +173,12 @@ publish:
 	@echo "# Publishing image to docker hub..."
 	@echo
 	$(MAKE) -j2 publish-amd64 publish-arm64
+	$(MAKE) manifest
+
+manifest:
+	@echo
+	@echo "# Creating manifest of multiarch image..."
+	@echo
 	docker manifest rm $(IMAGE_PUBLISH_NAME):latest || true
 	docker manifest create $(IMAGE_PUBLISH_NAME):latest $(IMAGE_PUBLISH_NAME):amd64 $(IMAGE_PUBLISH_NAME):arm64
 	docker manifest push $(IMAGE_PUBLISH_NAME):latest
