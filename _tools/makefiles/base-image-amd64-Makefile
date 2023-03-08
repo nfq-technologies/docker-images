@@ -10,8 +10,6 @@ CHILDREN = $(shell ../_tools/sorting.sh)
 COMMANDS = all build test push pull clean branch-all branch-build run run-bash
 SILENT_COMMANDS = help status calc-start calc-stop get-image-name
 
--include ../../tools/makefiles/base-image-custom.Makefile
-
 .PHONY: $(COMMANDS) $(SILENT_COMMANDS)
 .SILENT: $(SILENT_COMMANDS)
 .NOTPARALLEL:
@@ -99,6 +97,14 @@ clean:
 		 xargs -n1 -IT docker rmi $(IMAGE_TYPE)/$(IMAGE_BASE_NAME):T 2>/dev/null || true"
 	make status
 
+publish:
+	@echo
+	@echo "# Publishing image to docker hub..."
+	@echo
+	docker pull ${IMAGE_FULL_NAME}
+	docker tag ${IMAGE_FULL_NAME} $(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
+	docker push $(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
+	docker rmi $(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
 
 status:
 	echo

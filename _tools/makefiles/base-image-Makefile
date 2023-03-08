@@ -12,8 +12,6 @@ AMD64_CONTEXT = "default"
 COMMANDS = all all-arm64 all-amd64 build build-arm64 build-amd64 test test-arm64 test-amd64 push push-arm64 push-amd64 pull clean branch-all branch-build run run-bash publish publish-amd64 publish-arm64
 SILENT_COMMANDS = help status calc-start calc-stop get-image-name
 
--include ../../tools/makefiles/base-image-custom.Makefile
-
 .PHONY: $(COMMANDS) $(SILENT_COMMANDS)
 .SILENT: $(SILENT_COMMANDS)
 #.NOTPARALLEL:
