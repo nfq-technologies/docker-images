@@ -3,11 +3,12 @@
 set -x
 set -e
 
+arch="$([ "`uname -m`" = "aarch64" ] && echo "arm64" || echo "amd64")"
+
 echo force-unsafe-io > /etc/dpkg/dpkg.cfg.d/02apt-speedup
 
 apt-get update
 apt-get upgrade -y
-
 
 # install standard tools
 apt-get install -y --no-install-recommends \
@@ -75,6 +76,11 @@ apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 5791B856FE7BB4
 
 apt-get install -y --no-install-recommends cowsay
 ln -s /usr/games/cowsay /usr/local/bin/
+
+# Installing gojq ( used to replace phyaml )
+wget ftp.lt.debian.org/debian/pool/main/g/gojq/gojq_0.12.11-1_$arch.deb -O ./gojq.deb
+apt install ./gojq.deb
+rm ./gojq.deb
 
 # Generate locales
 echo en_US.UTF-8 UTF-8 > /etc/locale.gen

@@ -46,6 +46,7 @@ check_command 'shellcheck' --version
 
 check_command 'getfacl' --version
 
+check_command 'gojq' --version
 check_command 'cowsay' version
 
 
