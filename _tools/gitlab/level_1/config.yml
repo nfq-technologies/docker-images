@@ -7,6 +7,10 @@ postgres12:
 
 mysql80:
   stage: level_1
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd mysql80 && make all-amd64'
   needs: [mysql80_arm64]
   when: manual
@@ -37,6 +41,10 @@ mysql55:
 
 mariadb10:
   stage: level_1
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd mariadb10 && make all-amd64'
   needs: [mariadb10_arm64]
   when: manual
@@ -97,6 +105,10 @@ debian-buster:
 
 debian-bullseye:
   stage: level_1
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd debian-bullseye && make all-amd64'
   needs: [debian-bullseye_arm64]
   when: manual

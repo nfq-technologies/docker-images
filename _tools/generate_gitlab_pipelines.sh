@@ -30,7 +30,7 @@ function ci_yml() {
 		echo "
 ${image}:
   stage: $level
-  script: 'cd $image && make all'
+  script: 'cd $image && make all && make publish'
   needs: [$parent]
   when: $automation
 "
@@ -38,7 +38,11 @@ ${image}:
 		echo "
 ${image}:
   stage: $level
-  script: 'cd $image && make all-amd64'
+  before_script:
+    - echo "docker.nfq.lt 172.30.20.101" >> /etc/hosts
+    - docker login -u \$dockerhub_user -p \$dockerhub_token
+    - docker login -u \$nfqhub_user -p \$nfqhub_token https://docker.nfq.lt
+  script: 'cd $image && make all-amd64 && make publish'
   needs: [${image}_arm64]
   when: $automation
 ${image}_arm64:

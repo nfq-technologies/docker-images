@@ -19,6 +19,10 @@ xhgui:
 
 aws-docker-tools:
   stage: level_4
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd aws-docker-tools && make all-amd64'
   needs: [aws-docker-tools_arm64]
   when: on_success
@@ -55,6 +59,10 @@ cypress9:
 
 aws-docker-tools:
   stage: level_4
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd aws-docker-tools && make all-amd64'
   needs: [aws-docker-tools_arm64]
   when: on_success

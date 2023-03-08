@@ -10,7 +10,6 @@ default:
   image: nfqlt/aws-docker-tools
   tags: [nfq_ip]
   before_script:
-    - echo "docker.nfq.lt 172.30.20.101" >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   after_script:

@@ -31,6 +31,10 @@ phpmyadmin:
 
 elasticsearch22-data:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch22-data && make all-amd64'
   needs: [elasticsearch22-data_arm64]
   when: on_success
@@ -67,6 +71,10 @@ php56-supervisor:
 
 elasticsearch56-data:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch56-data && make all-amd64'
   needs: [elasticsearch56-data_arm64]
   when: on_success
@@ -205,6 +213,10 @@ wkhtmltopdf125:
 
 linker18ce:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd linker18ce && make all-amd64'
   needs: [linker18ce_arm64]
   when: on_success
@@ -217,6 +229,10 @@ linker18ce_arm64:
 
 elasticsearch68-data:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch68-data && make all-amd64'
   needs: [elasticsearch68-data_arm64]
   when: on_success
@@ -229,6 +245,10 @@ elasticsearch68-data_arm64:
 
 elasticsearch710-data:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch710-data && make all-amd64'
   needs: [elasticsearch710-data_arm64]
   when: on_success
@@ -241,6 +261,10 @@ elasticsearch710-data_arm64:
 
 elasticsearch716-data:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch716-data && make all-amd64'
   needs: [elasticsearch716-data_arm64]
   when: on_success
@@ -253,6 +277,10 @@ elasticsearch716-data_arm64:
 
 elasticsearch72-data:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch72-data && make all-amd64'
   needs: [elasticsearch72-data_arm64]
   when: on_success
@@ -265,6 +293,10 @@ elasticsearch72-data_arm64:
 
 elasticsearch75-data:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch75-data && make all-amd64'
   needs: [elasticsearch75-data_arm64]
   when: on_success
@@ -277,6 +309,10 @@ elasticsearch75-data_arm64:
 
 elasticsearch77-data:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch77-data && make all-amd64'
   needs: [elasticsearch77-data_arm64]
   when: on_success
@@ -289,6 +325,10 @@ elasticsearch77-data_arm64:
 
 elasticsearch79-data:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch79-data && make all-amd64'
   needs: [elasticsearch79-data_arm64]
   when: on_success
@@ -421,6 +461,10 @@ php80-supervisor:
 
 php81-cron:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php81-cron && make all-amd64'
   needs: [php81-cron_arm64]
   when: on_success
@@ -433,6 +477,10 @@ php81-cron_arm64:
 
 php81-dev:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php81-dev && make all-amd64'
   needs: [php81-dev_arm64]
   when: on_success
@@ -445,6 +493,10 @@ php81-dev_arm64:
 
 php81-fpm:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php81-fpm && make all-amd64'
   needs: [php81-fpm_arm64]
   when: on_success
@@ -457,6 +509,10 @@ php81-fpm_arm64:
 
 php81-supervisor:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php81-supervisor && make all-amd64'
   needs: [php81-supervisor_arm64]
   when: on_success
@@ -469,6 +525,10 @@ php81-supervisor_arm64:
 
 php82-cron:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php82-cron && make all-amd64'
   needs: [php82-cron_arm64]
   when: on_success
@@ -481,6 +541,10 @@ php82-cron_arm64:
 
 php82-dev:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php82-dev && make all-amd64'
   needs: [php82-dev_arm64]
   when: on_success
@@ -493,6 +557,10 @@ php82-dev_arm64:
 
 php82-fpm:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php82-fpm && make all-amd64'
   needs: [php82-fpm_arm64]
   when: on_success
@@ -505,6 +573,10 @@ php82-fpm_arm64:
 
 php82-supervisor:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php82-supervisor && make all-amd64'
   needs: [php82-supervisor_arm64]
   when: on_success
@@ -517,6 +589,10 @@ php82-supervisor_arm64:
 
 aws-tools:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd aws-tools && make all-amd64'
   needs: [aws-tools_arm64]
   when: on_success
@@ -547,6 +623,10 @@ node12:
 
 node14:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd node14 && make all-amd64'
   needs: [node14_arm64]
   when: on_success
@@ -559,6 +639,10 @@ node14_arm64:
 
 node16:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd node16 && make all-amd64'
   needs: [node16_arm64]
   when: on_success
@@ -571,6 +655,10 @@ node16_arm64:
 
 node18:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd node18 && make all-amd64'
   needs: [node18_arm64]
   when: on_success
@@ -583,6 +671,10 @@ node18_arm64:
 
 node19:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd node19 && make all-amd64'
   needs: [node19_arm64]
   when: on_success
@@ -595,6 +687,10 @@ node19_arm64:
 
 wkhtmltopdf126-broken:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd wkhtmltopdf126-broken && make all-amd64'
   needs: [wkhtmltopdf126-broken_arm64]
   when: on_success
@@ -613,6 +709,10 @@ wkhtmltopdf126:
 
 aws-tools:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd aws-tools && make all-amd64'
   needs: [aws-tools_arm64]
   when: on_success
@@ -673,6 +773,10 @@ node12:
 
 node14:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd node14 && make all-amd64'
   needs: [node14_arm64]
   when: on_success
@@ -685,6 +789,10 @@ node14_arm64:
 
 node16:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd node16 && make all-amd64'
   needs: [node16_arm64]
   when: on_success
@@ -697,6 +805,10 @@ node16_arm64:
 
 node18:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd node18 && make all-amd64'
   needs: [node18_arm64]
   when: on_success
@@ -709,6 +821,10 @@ node18_arm64:
 
 node19:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd node19 && make all-amd64'
   needs: [node19_arm64]
   when: on_success
@@ -799,6 +915,10 @@ wkhtmltopdf125:
 
 wkhtmltopdf126-broken:
   stage: level_3
+  before_script:
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd wkhtmltopdf126-broken && make all-amd64'
   needs: [wkhtmltopdf126-broken_arm64]
   when: on_success
