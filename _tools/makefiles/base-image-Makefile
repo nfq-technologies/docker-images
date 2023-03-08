@@ -5,6 +5,7 @@ IMAGE_TYPE = nfqlt
 IMAGE_REGISTRY = docker.nfq.lt/
 IMAGE_FULL_NAME = $(IMAGE_REGISTRY)$(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
 CHILDREN = $(shell ../_tools/sorting.sh)
+IMAGE_PUBLISH_NAME = $(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
 
 ARM64_CONTEXT = $(shell [ "`uname -m`" = "x86_64" ] && echo "arm" || echo "default" )
 AMD64_CONTEXT = "default"

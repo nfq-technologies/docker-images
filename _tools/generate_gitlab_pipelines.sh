@@ -14,7 +14,8 @@ function ci_yml() {
 	local level="$2"
 	local parent="$3"
 
-	automation='manual'
+	automation='manual
+  allow_failure: false'
 
 	if [ "$level" != "level_1" ]; then
 		automation='on_success'
