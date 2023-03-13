@@ -12,7 +12,7 @@ mysql80:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mysql80 && make all-amd64 && make manifest'
+  script: 'cd mysql80 && make all-amd64 && make push-manifest && publish-manifest'
   needs: [mysql80_arm64]
   when: manual
   allow_failure: false
@@ -51,7 +51,7 @@ mariadb10:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mariadb10 && make all-amd64 && make manifest'
+  script: 'cd mariadb10 && make all-amd64 && make push-manifest && publish-manifest'
   needs: [mariadb10_arm64]
   when: manual
   allow_failure: false
@@ -125,7 +125,7 @@ debian-bullseye:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd debian-bullseye && make all-amd64 && make manifest'
+  script: 'cd debian-bullseye && make all-amd64 && make push-manifest && publish-manifest'
   needs: [debian-bullseye_arm64]
   when: manual
   allow_failure: false

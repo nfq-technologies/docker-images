@@ -69,15 +69,6 @@ build-arch:
 	rm -f .Dockerfile_$(ARCH)
 	make status
 
-manifest:
-	@echo
-	@echo "# Building manifest..."
-	echo
-	docker manifest rm $(IMAGE_FULL_NAME) || true
-	docker manifest create $(IMAGE_FULL_NAME):latest $(IMAGE_FULL_NAME):amd64 $(IMAGE_FULL_NAME):arm64
-	docker manifest push $(IMAGE_FULL_NAME):latest
-	make status
-
 test:
 	$(MAKE) test-amd64 test-arm64
 
@@ -99,7 +90,16 @@ test-arch:
 	@echo
 
 push:
-	make -j2 push-amd64 push-arm64
+	@echo
+	@echo "# Pushing images to docker registry..."
+	@echo
+	$(MAKE) -j2 push-amd64 push-arm64
+	$(MAKE) push-manifest
+
+push-manifest:
+        @echo
+        @echo "# Creating manifest of multiarch image..."
+        @echo
 	docker manifest rm $(IMAGE_FULL_NAME):latest || true
 	docker manifest create $(IMAGE_FULL_NAME):latest $(IMAGE_FULL_NAME):amd64 $(IMAGE_FULL_NAME):arm64
 	docker manifest push $(IMAGE_FULL_NAME):latest
@@ -170,14 +170,14 @@ get-image-name:
 
 publish:
 	@echo
-	@echo "# Publishing image to docker hub..."
+	@echo "# Publishing images to docker hub..."
 	@echo
 	$(MAKE) -j2 publish-amd64 publish-arm64
-	$(MAKE) manifest
+	$(MAKE) publish-manifest
 
-manifest:
+publish-manifest:
 	@echo
-	@echo "# Creating manifest of multiarch image..."
+	@echo "# Publishing manifest of multiarch image..."
 	@echo
 	docker manifest rm $(IMAGE_PUBLISH_NAME):latest || true
 	docker manifest create $(IMAGE_PUBLISH_NAME):latest $(IMAGE_PUBLISH_NAME):amd64 $(IMAGE_PUBLISH_NAME):arm64
@@ -185,6 +185,7 @@ manifest:
 
 publish-arm64:
 	$(MAKE) CONTEXT=$(ARM64_CONTEXT) ARCH=arm64 publish-arch
+
 publish-amd64:
 	$(MAKE) CONTEXT=$(AMD64_CONTEXT) ARCH=amd64 publish-arch
 
