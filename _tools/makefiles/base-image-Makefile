@@ -97,9 +97,9 @@ push:
 	$(MAKE) push-manifest
 
 push-manifest:
-        @echo
-        @echo "# Creating manifest of multiarch image..."
-        @echo
+	@echo
+	@echo "# Creating manifest of multiarch image..."
+	@echo
 	docker manifest rm $(IMAGE_FULL_NAME):latest || true
 	docker manifest create $(IMAGE_FULL_NAME):latest $(IMAGE_FULL_NAME):amd64 $(IMAGE_FULL_NAME):arm64
 	docker manifest push $(IMAGE_FULL_NAME):latest
@@ -133,15 +133,15 @@ clean:
 	docker rm -f $(shell docker ps -a | grep ' $(IMAGE_FULL_NAME):' | cut -d' ' -f1) 2>/dev/null || true
 	docker rm -f $(shell docker ps -a | grep ' $(IMAGE_FULL_NAME) ' | cut -d' ' -f1) 2>/dev/null || true
 	bash -c "docker images |\
-		 grep '^$(IMAGE_FULL_NAME) ' |\
-		 tr -s ' ' ':' |\
-		 cut -d: -f2 |\
-		 xargs -n1 -IT docker rmi $(IMAGE_FULL_NAME):T 2>/dev/null || true"
+		grep '^$(IMAGE_FULL_NAME) ' |\
+		tr -s ' ' ':' |\
+		cut -d: -f2 |\
+		xargs -n1 -IT docker rmi $(IMAGE_FULL_NAME):T 2>/dev/null || true"
 	bash -c "docker images |\
-		 grep '^$(IMAGE_TYPE)/$(IMAGE_BASE_NAME) ' |\
-		 tr -s ' ' ':' |\
-		 cut -d: -f2 |\
-		 xargs -n1 -IT docker rmi $(IMAGE_TYPE)/$(IMAGE_BASE_NAME):T 2>/dev/null || true"
+		grep '^$(IMAGE_TYPE)/$(IMAGE_BASE_NAME) ' |\
+		tr -s ' ' ':' |\
+		cut -d: -f2 |\
+		xargs -n1 -IT docker rmi $(IMAGE_TYPE)/$(IMAGE_BASE_NAME):T 2>/dev/null || true"
 	make status
 
 
