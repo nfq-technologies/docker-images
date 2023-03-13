@@ -43,7 +43,7 @@ ${image}:
     - echo "docker.nfq.lt 172.30.20.101" >> /etc/hosts
     - docker login -u \$dockerhub_user -p \$dockerhub_token
     - docker login -u \$nfqhub_user -p \$nfqhub_token https://docker.nfq.lt
-  script: 'cd $image && make all-amd64 && make push-manifest && publish-manifest'
+  script: 'cd $image && make all-amd64 && make push-manifest && make publish-manifest'
   needs: [${image}_arm64]
   when: $automation
 ${image}_arm64:
