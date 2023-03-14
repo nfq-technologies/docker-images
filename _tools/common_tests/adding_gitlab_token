@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex
 
 # prepare test
 pid=$BASHPID
@@ -11,7 +11,7 @@ cleanup() {
 
 docker run -v "/tmp/test${pid}:/etc/environment-vm:ro" $1 run-parts /etc/rc.d \
 | grep -i 'Adding gitlab.com token' &> /dev/null \
-|| (echo "Container did not reported appending gitlab token using environment-vm file" && cleanup && exit -1)
+|| (echo "Container did not reported appending gitlab token using environment-vm file" && docker run -v "/tmp/test${pid}:/etc/environment-vm:ro" $1 run-parts /etc/rc.d && cleanup && exit -1)
 
 docker run -e "GITLAB_COM_TOKEN='aaabbbcccddd'" $1 run-parts /etc/rc.d \
 | grep -i 'Adding gitlab.com token' &> /dev/null \
