@@ -2,7 +2,7 @@
 postgres12:
   stage: level_1
   script: 'cd postgres12 && make all && make publish'
-  needs: []
+#  needs: []
   when: manual
 
 mysql80:
@@ -24,19 +24,19 @@ mysql80_arm64:
 mysql57:
   stage: level_1
   script: 'cd mysql57 && make all && make publish'
-  needs: []
+#  needs: []
   when: manual
 
 mysql56:
   stage: level_1
   script: 'cd mysql56 && make all && make publish'
-  needs: []
+#  needs: []
   when: manual
 
 mysql55:
   stage: level_1
   script: 'cd mysql55 && make all && make publish'
-  needs: []
+#  needs: []
   when: manual
 
 mariadb10:
@@ -58,49 +58,49 @@ mariadb10_arm64:
 lib-smartclient130:
   stage: level_1
   script: 'cd lib-smartclient130 && make all && make publish'
-  needs: []
+#  needs: []
   when: manual
 
 lib-smartclient121:
   stage: level_1
   script: 'cd lib-smartclient121 && make all && make publish'
-  needs: []
+#  needs: []
   when: manual
 
 lib-smartclient120:
   stage: level_1
   script: 'cd lib-smartclient120 && make all && make publish'
-  needs: []
+#  needs: []
   when: manual
 
 lib-smartclient111:
   stage: level_1
   script: 'cd lib-smartclient111 && make all && make publish'
-  needs: []
+#  needs: []
   when: manual
 
 lib-smartclient100:
   stage: level_1
   script: 'cd lib-smartclient100 && make all && make publish'
-  needs: []
+#  needs: []
   when: manual
 
 debian-stretch:
   stage: level_1
   script: 'cd debian-stretch && make all && make publish'
-  needs: []
+#  needs: []
   when: manual
 
 debian-jessie:
   stage: level_1
   script: 'cd debian-jessie && make all && make publish'
-  needs: []
+#  needs: []
   when: manual
 
 debian-buster:
   stage: level_1
   script: 'cd debian-buster && make all && make publish'
-  needs: []
+#  needs: []
   when: manual
 
 debian-bullseye:

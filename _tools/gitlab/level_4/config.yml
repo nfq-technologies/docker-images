@@ -2,19 +2,19 @@
 deb-dev:
   stage: level_4
   script: 'cd deb-dev && make all && make publish'
-  needs: ["php70-dev"]
+#  needs: ["php70-dev"]
   when: manual
 
 php74-vscode:
   stage: level_4
   script: 'cd php74-vscode && make all && make publish'
-  needs: ["php74-dev"]
+#  needs: ["php74-dev"]
   when: manual
 
 xhgui:
   stage: level_4
   script: 'cd xhgui && make all && make publish'
-  needs: ["php81-dev"]
+#  needs: ["php81-dev"]
   when: manual
 
 aws-docker-tools:
@@ -36,25 +36,25 @@ aws-docker-tools_arm64:
 cypress4:
   stage: level_4
   script: 'cd cypress4 && make all && make publish'
-  needs: ["node12"]
+#  needs: ["node12"]
   when: manual
 
 cypress5:
   stage: level_4
   script: 'cd cypress5 && make all && make publish'
-  needs: ["node12"]
+#  needs: ["node12"]
   when: manual
 
 cypress7:
   stage: level_4
   script: 'cd cypress7 && make all && make publish'
-  needs: ["node16"]
+#  needs: ["node16"]
   when: manual
 
 cypress9:
   stage: level_4
   script: 'cd cypress9 && make all && make publish'
-  needs: ["node16"]
+#  needs: ["node16"]
   when: manual
 
 aws-docker-tools:
@@ -76,23 +76,23 @@ aws-docker-tools_arm64:
 cypress4:
   stage: level_4
   script: 'cd cypress4 && make all && make publish'
-  needs: ["node12"]
+#  needs: ["node12"]
   when: manual
 
 cypress5:
   stage: level_4
   script: 'cd cypress5 && make all && make publish'
-  needs: ["node12"]
+#  needs: ["node12"]
   when: manual
 
 cypress7:
   stage: level_4
   script: 'cd cypress7 && make all && make publish'
-  needs: ["node16"]
+#  needs: ["node16"]
   when: manual
 
 cypress9:
   stage: level_4
   script: 'cd cypress9 && make all && make publish'
-  needs: ["node16"]
+#  needs: ["node16"]
   when: manual

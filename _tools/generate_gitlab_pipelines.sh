@@ -33,7 +33,7 @@ function ci_yml() {
 ${image}:
   stage: $level
   script: 'cd $image && make all && make publish'
-  needs: [$parent]
+#  needs: [$parent]
   when: $automation
 "
 	else

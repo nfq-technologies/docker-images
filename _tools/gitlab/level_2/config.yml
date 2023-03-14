@@ -2,7 +2,7 @@
 postgres12-data:
   stage: level_2
   script: 'cd postgres12-data && make all && make publish'
-  needs: ["postgres12"]
+#  needs: ["postgres12"]
   when: manual
 
 mysql80-data:
@@ -72,205 +72,205 @@ mysql55-data_arm64:
 birt45:
   stage: level_2
   script: 'cd birt45 && make all && make publish'
-  needs: ["debian-stretch"]
+#  needs: ["debian-stretch"]
   when: manual
 
 chromedriver73:
   stage: level_2
   script: 'cd chromedriver73 && make all && make publish'
-  needs: ["debian-stretch"]
+#  needs: ["debian-stretch"]
   when: manual
 
 gearman:
   stage: level_2
   script: 'cd gearman && make all && make publish'
-  needs: ["debian-stretch"]
+#  needs: ["debian-stretch"]
   when: manual
 
 memcached1433:
   stage: level_2
   script: 'cd memcached1433 && make all && make publish'
-  needs: ["debian-stretch"]
+#  needs: ["debian-stretch"]
   when: manual
 
 mongo32:
   stage: level_2
   script: 'cd mongo32 && make all && make publish'
-  needs: ["debian-stretch"]
+#  needs: ["debian-stretch"]
   when: manual
 
 nginx110:
   stage: level_2
   script: 'cd nginx110 && make all && make publish'
-  needs: ["debian-stretch"]
+#  needs: ["debian-stretch"]
   when: manual
 
 php70-cli:
   stage: level_2
   script: 'cd php70-cli && make all && make publish'
-  needs: ["debian-stretch"]
+#  needs: ["debian-stretch"]
   when: manual
 
 rabbitmq366:
   stage: level_2
   script: 'cd rabbitmq366 && make all && make publish'
-  needs: ["debian-stretch"]
+#  needs: ["debian-stretch"]
   when: manual
 
 redis326:
   stage: level_2
   script: 'cd redis326 && make all && make publish'
-  needs: ["debian-stretch"]
+#  needs: ["debian-stretch"]
   when: manual
 
 varnish50:
   stage: level_2
   script: 'cd varnish50 && make all && make publish'
-  needs: ["debian-stretch"]
+#  needs: ["debian-stretch"]
   when: manual
 
 apache24-fastcgi:
   stage: level_2
   script: 'cd apache24-fastcgi && make all && make publish'
-  needs: ["debian-jessie"]
+#  needs: ["debian-jessie"]
   when: manual
 
 elasticsearch22:
   stage: level_2
   script: 'cd elasticsearch22 && make all && make publish'
-  needs: ["debian-jessie"]
+#  needs: ["debian-jessie"]
   when: manual
 
 graylog20:
   stage: level_2
   script: 'cd graylog20 && make all && make publish'
-  needs: ["debian-jessie"]
+#  needs: ["debian-jessie"]
   when: manual
 
 memcached1421:
   stage: level_2
   script: 'cd memcached1421 && make all && make publish'
-  needs: ["debian-jessie"]
+#  needs: ["debian-jessie"]
   when: manual
 
 mongo24:
   stage: level_2
   script: 'cd mongo24 && make all && make publish'
-  needs: ["debian-jessie"]
+#  needs: ["debian-jessie"]
   when: manual
 
 nginx16:
   stage: level_2
   script: 'cd nginx16 && make all && make publish'
-  needs: ["debian-jessie"]
+#  needs: ["debian-jessie"]
   when: manual
 
 php56-cli:
   stage: level_2
   script: 'cd php56-cli && make all && make publish'
-  needs: ["debian-jessie"]
+#  needs: ["debian-jessie"]
   when: manual
 
 rabbitmq335:
   stage: level_2
   script: 'cd rabbitmq335 && make all && make publish'
-  needs: ["debian-jessie"]
+#  needs: ["debian-jessie"]
   when: manual
 
 redis2817:
   stage: level_2
   script: 'cd redis2817 && make all && make publish'
-  needs: ["debian-jessie"]
+#  needs: ["debian-jessie"]
   when: manual
 
 solr36:
   stage: level_2
   script: 'cd solr36 && make all && make publish'
-  needs: ["debian-jessie"]
+#  needs: ["debian-jessie"]
   when: manual
 
 sphinxsearch:
   stage: level_2
   script: 'cd sphinxsearch && make all && make publish'
-  needs: ["debian-jessie"]
+#  needs: ["debian-jessie"]
   when: manual
 
 apache2438-fastcgi:
   stage: level_2
   script: 'cd apache2438-fastcgi && make all && make publish'
-  needs: ["debian-buster"]
+#  needs: ["debian-buster"]
   when: manual
 
 certbot:
   stage: level_2
   script: 'cd certbot && make all && make publish'
-  needs: ["debian-buster"]
+#  needs: ["debian-buster"]
   when: manual
 
 chromedriver83:
   stage: level_2
   script: 'cd chromedriver83 && make all && make publish'
-  needs: ["debian-buster"]
+#  needs: ["debian-buster"]
   when: manual
 
 elasticsearch56:
   stage: level_2
   script: 'cd elasticsearch56 && make all && make publish'
-  needs: ["debian-buster"]
+#  needs: ["debian-buster"]
   when: manual
 
 gitsync:
   stage: level_2
   script: 'cd gitsync && make all && make publish'
-  needs: ["debian-buster"]
+#  needs: ["debian-buster"]
   when: manual
 
 memcached156:
   stage: level_2
   script: 'cd memcached156 && make all && make publish'
-  needs: ["debian-buster"]
+#  needs: ["debian-buster"]
   when: manual
 
 nginx114:
   stage: level_2
   script: 'cd nginx114 && make all && make publish'
-  needs: ["debian-buster"]
+#  needs: ["debian-buster"]
   when: manual
 
 nodeserver8:
   stage: level_2
   script: 'cd nodeserver8 && make all && make publish'
-  needs: ["debian-buster"]
+#  needs: ["debian-buster"]
   when: manual
 
 redis503:
   stage: level_2
   script: 'cd redis503 && make all && make publish'
-  needs: ["debian-buster"]
+#  needs: ["debian-buster"]
   when: manual
 
 router:
   stage: level_2
   script: 'cd router && make all && make publish'
-  needs: ["debian-buster"]
+#  needs: ["debian-buster"]
   when: manual
 
 toolbox-buster:
   stage: level_2
   script: 'cd toolbox-buster && make all && make publish'
-  needs: ["debian-buster"]
+#  needs: ["debian-buster"]
   when: manual
 
 varnish61:
   stage: level_2
   script: 'cd varnish61 && make all && make publish'
-  needs: ["debian-buster"]
+#  needs: ["debian-buster"]
   when: manual
 
 apache2452-fastcgi:
   stage: level_2
   script: 'cd apache2452-fastcgi && make all && make publish'
-  needs: ["debian-bullseye"]
+#  needs: ["debian-bullseye"]
   when: manual
 
 apache24:
@@ -372,7 +372,7 @@ elasticsearch68_arm64:
 elasticsearch710:
   stage: level_2
   script: 'cd elasticsearch710 && make all && make publish'
-  needs: ["debian-bullseye"]
+#  needs: ["debian-bullseye"]
   when: manual
 
 elasticsearch716:
@@ -394,25 +394,25 @@ elasticsearch716_arm64:
 elasticsearch72:
   stage: level_2
   script: 'cd elasticsearch72 && make all && make publish'
-  needs: ["debian-bullseye"]
+#  needs: ["debian-bullseye"]
   when: manual
 
 elasticsearch75:
   stage: level_2
   script: 'cd elasticsearch75 && make all && make publish'
-  needs: ["debian-bullseye"]
+#  needs: ["debian-bullseye"]
   when: manual
 
 elasticsearch77:
   stage: level_2
   script: 'cd elasticsearch77 && make all && make publish'
-  needs: ["debian-bullseye"]
+#  needs: ["debian-bullseye"]
   when: manual
 
 elasticsearch79:
   stage: level_2
   script: 'cd elasticsearch79 && make all && make publish'
-  needs: ["debian-bullseye"]
+#  needs: ["debian-bullseye"]
   when: manual
 
 mailhog:
@@ -450,7 +450,7 @@ memcached169_arm64:
 mongo50:
   stage: level_2
   script: 'cd mongo50 && make all && make publish'
-  needs: ["debian-bullseye"]
+#  needs: ["debian-bullseye"]
   when: manual
 
 nginx118:
@@ -472,79 +472,79 @@ nginx118_arm64:
 nodeserver10:
   stage: level_2
   script: 'cd nodeserver10 && make all && make publish'
-  needs: ["debian-bullseye"]
+#  needs: ["debian-bullseye"]
   when: manual
 
 nodeserver12:
   stage: level_2
   script: 'cd nodeserver12 && make all && make publish'
-  needs: ["debian-bullseye"]
+#  needs: ["debian-bullseye"]
   when: manual
 
 nodeserver14:
   stage: level_2
   script: 'cd nodeserver14 && make all && make publish'
-  needs: ["debian-bullseye"]
+#  needs: ["debian-bullseye"]
   when: manual
 
 nodeserver16:
   stage: level_2
   script: 'cd nodeserver16 && make all && make publish'
-  needs: ["debian-bullseye"]
+#  needs: ["debian-bullseye"]
   when: manual
 
 nodeserver18:
   stage: level_2
   script: 'cd nodeserver18 && make all && make publish'
-  needs: ["debian-bullseye"]
+#  needs: ["debian-bullseye"]
   when: manual
 
 nodeserver19:
   stage: level_2
   script: 'cd nodeserver19 && make all && make publish'
-  needs: ["debian-bullseye"]
+#  needs: ["debian-bullseye"]
   when: manual
 
 phantomjs19:
   stage: level_2
   script: 'cd phantomjs19 && make all && make publish'
-  needs: ["debian-bullseye"]
+#  needs: ["debian-bullseye"]
   when: manual
 
 phantomjs21:
   stage: level_2
   script: 'cd phantomjs21 && make all && make publish'
-  needs: ["debian-bullseye"]
+#  needs: ["debian-bullseye"]
   when: manual
 
 php71-cli:
   stage: level_2
   script: 'cd php71-cli && make all && make publish'
-  needs: ["debian-bullseye"]
+#  needs: ["debian-bullseye"]
   when: manual
 
 php72-cli:
   stage: level_2
   script: 'cd php72-cli && make all && make publish'
-  needs: ["debian-bullseye"]
+#  needs: ["debian-bullseye"]
   when: manual
 
 php73-cli:
   stage: level_2
   script: 'cd php73-cli && make all && make publish'
-  needs: ["debian-bullseye"]
+#  needs: ["debian-bullseye"]
   when: manual
 
 php74-cli:
   stage: level_2
   script: 'cd php74-cli && make all && make publish'
-  needs: ["debian-bullseye"]
+#  needs: ["debian-bullseye"]
   when: manual
 
 php80-cli:
   stage: level_2
   script: 'cd php80-cli && make all && make publish'
-  needs: ["debian-bullseye"]
+#  needs: ["debian-bullseye"]
   when: manual
 
 php81-cli:
@@ -598,7 +598,7 @@ rabbitmq310_arm64:
 rabbitmq378:
   stage: level_2
   script: 'cd rabbitmq378 && make all && make publish'
-  needs: ["debian-bullseye"]
+#  needs: ["debian-bullseye"]
   when: manual
 
 rabbitmq389:
@@ -620,7 +620,7 @@ rabbitmq389_arm64:
 rabbitmq38:
   stage: level_2
   script: 'cd rabbitmq38 && make all && make publish'
-  needs: ["debian-bullseye"]
+#  needs: ["debian-bullseye"]
   when: manual
 
 redis60:
@@ -658,5 +658,5 @@ toolbox-bullseye_arm64:
 toolbox:
   stage: level_2
   script: 'cd toolbox && make all && make publish'
-  needs: ["debian-bullseye"]
+#  needs: ["debian-bullseye"]
   when: manual
