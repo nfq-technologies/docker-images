@@ -23,7 +23,7 @@ aws-docker-tools:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd aws-docker-tools && make all-amd64 && make push-manifest && make publish-manifest'
+  script: 'cd aws-docker-tools && make all-amd64 && make push-manifest && make publish'
   needs: [aws-docker-tools_arm64]
   when: on_success
 aws-docker-tools_arm64:
@@ -63,7 +63,7 @@ aws-docker-tools:
     - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd aws-docker-tools && make all-amd64 && make push-manifest && make publish-manifest'
+  script: 'cd aws-docker-tools && make all-amd64 && make push-manifest && make publish'
   needs: [aws-docker-tools_arm64]
   when: on_success
 aws-docker-tools_arm64:

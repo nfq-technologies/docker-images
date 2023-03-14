@@ -184,14 +184,14 @@ publish-manifest:
 	docker manifest push $(IMAGE_PUBLISH_NAME):latest
 
 publish-arm64:
-	$(MAKE) CONTEXT=$(ARM64_CONTEXT) ARCH=arm64 publish-arch
+	$(MAKE) ARCH=arm64 publish-arch
 
 publish-amd64:
-	$(MAKE) CONTEXT=$(AMD64_CONTEXT) ARCH=amd64 publish-arch
+	$(MAKE) ARCH=amd64 publish-arch
 
 publish-arch:
-	DOCKER_CONTEXT=$(CONTEXT) docker pull ${IMAGE_FULL_NAME}:$(ARCH)
-	DOCKER_CONTEXT=$(CONTEXT) docker tag ${IMAGE_FULL_NAME}:$(ARCH) ${IMAGE_PUBLISH_NAME}:$(ARCH)
-	DOCKER_CONTEXT=$(CONTEXT) docker push ${IMAGE_PUBLISH_NAME}:$(ARCH)
-	DOCKER_CONTEXT=$(CONTEXT) docker rmi ${IMAGE_PUBLISH_NAME}:$(ARCH)
+	docker pull ${IMAGE_FULL_NAME}:$(ARCH)
+	docker tag ${IMAGE_FULL_NAME}:$(ARCH) ${IMAGE_PUBLISH_NAME}:$(ARCH)
+	docker push ${IMAGE_PUBLISH_NAME}:$(ARCH)
+	docker rmi ${IMAGE_PUBLISH_NAME}:$(ARCH)
 
