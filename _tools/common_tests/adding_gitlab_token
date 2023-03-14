@@ -3,7 +3,7 @@ set -ex
 
 # prepare test
 pid=$BASHPID
-tmp_dir="$(pwd)/${test_pid}"
+tmp_dir="$(pwd)/${pid}"
 echo "GITLAB_COM_TOKEN='aaabbbcccddd'" > $tmp_dir
 
 cleanup() {
