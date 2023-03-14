@@ -3,19 +3,19 @@ deb-dev:
   stage: level_4
   script: 'cd deb-dev && make all && make publish'
   needs: ["php70-dev"]
-  when: on_success
+  when: manual
 
 php74-vscode:
   stage: level_4
   script: 'cd php74-vscode && make all && make publish'
   needs: ["php74-dev"]
-  when: on_success
+  when: manual
 
 xhgui:
   stage: level_4
   script: 'cd xhgui && make all && make publish'
   needs: ["php81-dev"]
-  when: on_success
+  when: manual
 
 aws-docker-tools:
   stage: level_4
@@ -24,38 +24,38 @@ aws-docker-tools:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd aws-docker-tools && make all-amd64 && make push-manifest && make publish'
-  needs: [aws-docker-tools_arm64]
-  when: on_success
+#  needs: [aws-docker-tools_arm64]
+  when: manual
 aws-docker-tools_arm64:
   stage: level_4
   script: 'cd aws-docker-tools && make all-arm64'
   tags: [arm]
-  needs: ["aws-tools"]
-  when: on_success
+#  needs: ["aws-tools"]
+  when: manual
 
 cypress4:
   stage: level_4
   script: 'cd cypress4 && make all && make publish'
   needs: ["node12"]
-  when: on_success
+  when: manual
 
 cypress5:
   stage: level_4
   script: 'cd cypress5 && make all && make publish'
   needs: ["node12"]
-  when: on_success
+  when: manual
 
 cypress7:
   stage: level_4
   script: 'cd cypress7 && make all && make publish'
   needs: ["node16"]
-  when: on_success
+  when: manual
 
 cypress9:
   stage: level_4
   script: 'cd cypress9 && make all && make publish'
   needs: ["node16"]
-  when: on_success
+  when: manual
 
 aws-docker-tools:
   stage: level_4
@@ -64,35 +64,35 @@ aws-docker-tools:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd aws-docker-tools && make all-amd64 && make push-manifest && make publish'
-  needs: [aws-docker-tools_arm64]
-  when: on_success
+#  needs: [aws-docker-tools_arm64]
+  when: manual
 aws-docker-tools_arm64:
   stage: level_4
   script: 'cd aws-docker-tools && make all-arm64'
   tags: [arm]
-  needs: ["aws-tools"]
-  when: on_success
+#  needs: ["aws-tools"]
+  when: manual
 
 cypress4:
   stage: level_4
   script: 'cd cypress4 && make all && make publish'
   needs: ["node12"]
-  when: on_success
+  when: manual
 
 cypress5:
   stage: level_4
   script: 'cd cypress5 && make all && make publish'
   needs: ["node12"]
-  when: on_success
+  when: manual
 
 cypress7:
   stage: level_4
   script: 'cd cypress7 && make all && make publish'
   needs: ["node16"]
-  when: on_success
+  when: manual
 
 cypress9:
   stage: level_4
   script: 'cd cypress9 && make all && make publish'
   needs: ["node16"]
-  when: on_success
+  when: manual

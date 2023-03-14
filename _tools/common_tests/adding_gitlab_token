@@ -3,13 +3,14 @@ set -ex
 
 # prepare test
 pid=$BASHPID
-echo "GITLAB_COM_TOKEN='aaabbbcccddd'" > /tmp/test${pid}
+tmp_dir="${pwd}/${test_pid}"
+echo "GITLAB_COM_TOKEN='aaabbbcccddd'" > $tmp_dir
 
 cleanup() {
-	rm /tmp/test${pid}
+        rm $tmp_dir
 }
 
-docker run -v "/tmp/test${pid}:/etc/environment-vm:ro" $1 run-parts /etc/rc.d \
+docker run -v "$tmp_dir:/etc/environment-vm:ro" $1 run-parts /etc/rc.d \
 | grep -i 'Adding gitlab.com token' &> /dev/null \
 || (echo "Container did not reported appending gitlab token using environment-vm file" && docker run -v "/tmp/test${pid}:/etc/environment-vm:ro" $1 run-parts /etc/rc.d && cleanup && exit -1)
 
