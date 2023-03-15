@@ -7,12 +7,12 @@ tmp_dir="$(pwd)/${pid}"
 echo "PACKAGIST_TOKEN='aaabbbcccddd'" > $tmp_dir
 
 cleanup() {
+	echo "meh"
         rm /tmp/test${pid}
 }
 
 
-docker run -v "$tmp_dir:/etc/environment-vm:ro" $1 ls -la /etc
-docker run -v "$tmp_dir:/etc/environment-vm:ro" $1 cat /etc/environment-vm
+docker run -v "$tmp_dir:/etc/environment-vm:ro" $1 run-parts /etc/rc.d
 sleep 1200
 
 docker run -v "$tmp_dir:/etc/environment-vm:ro" $1 run-parts /etc/rc.d \
