@@ -16,6 +16,6 @@ sleep 10
 kill $esPid
 wait
 
-tar cf /volume/backup.tar /var/elasticsearch/data
+tar cf /backup.tar /var/elasticsearch/data
 sync
 
