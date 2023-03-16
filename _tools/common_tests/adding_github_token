@@ -3,13 +3,8 @@ set -e
 
 # prepare test
 pid=$BASHPID
-echo "VM_GITHUB_TOKEN='aaabbbcccddd'" > /tmp/test${pid}
 
-cleanup() {
-	rm /tmp/test${pid}
-}
-
-docker run -it -v "/tmp/test${pid}:/etc/environment-vm:ro" $1 run-parts /etc/rc.d \
+docker run -it $1 bash -c "echo \"VM_GITHUB_TOKEN='aaabbbcccddd'\" >> /etc/environment-vm && run-parts /etc/rc.d" \
 | grep -i 'Adding github token' &> /dev/null \
 || (echo "Container did not reported appending github token using environment-vm file" && cleanup && exit -1)
 
@@ -17,5 +12,3 @@ docker run -it -e "VM_GITHUB_TOKEN='aaabbbcccddd'" $1 run-parts /etc/rc.d \
 | grep -i 'Adding github token' &> /dev/null \
 || (echo "Container did not reported appending github token using environment variable" && cleanup && exit -1)
 
-
-cleanup
