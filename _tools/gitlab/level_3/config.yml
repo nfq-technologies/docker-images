@@ -2,32 +2,32 @@
 php70-cron:
   stage: level_3
   script: 'cd php70-cron && make all && make publish'
-#  needs: ["php70-cli"]
-  when: manual
+  needs: ["php70-cli"]
+  when: on_success
 
 php70-dev:
   stage: level_3
   script: 'cd php70-dev && make all && make publish'
-#  needs: ["php70-cli"]
-  when: manual
+  needs: ["php70-cli"]
+  when: on_success
 
 php70-fpm:
   stage: level_3
   script: 'cd php70-fpm && make all && make publish'
-#  needs: ["php70-cli"]
-  when: manual
+  needs: ["php70-cli"]
+  when: on_success
 
 php70-supervisor:
   stage: level_3
   script: 'cd php70-supervisor && make all && make publish'
-#  needs: ["php70-cli"]
-  when: manual
+  needs: ["php70-cli"]
+  when: on_success
 
 phpmyadmin:
   stage: level_3
   script: 'cd phpmyadmin && make all && make publish'
-#  needs: ["php70-cli"]
-  when: manual
+  needs: ["php70-cli"]
+  when: on_success
 
 elasticsearch22-data:
   stage: level_3
@@ -36,38 +36,38 @@ elasticsearch22-data:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch22-data && make all-amd64 && make push-manifest && make publish'
-#  needs: [elasticsearch22-data_arm64]
-  when: manual
+  needs: [elasticsearch22-data_arm64]
+  when: on_success
 elasticsearch22-data_arm64:
   stage: level_3
   script: 'cd elasticsearch22-data && make all-arm64'
   tags: [arm]
-#  needs: ["elasticsearch22"]
-  when: manual
+  needs: ["elasticsearch22"]
+  when: on_success
 
 php56-cron:
   stage: level_3
   script: 'cd php56-cron && make all && make publish'
-#  needs: ["php56-cli"]
-  when: manual
+  needs: ["php56-cli"]
+  when: on_success
 
 php56-dev:
   stage: level_3
   script: 'cd php56-dev && make all && make publish'
-#  needs: ["php56-cli"]
-  when: manual
+  needs: ["php56-cli"]
+  when: on_success
 
 php56-fpm:
   stage: level_3
   script: 'cd php56-fpm && make all && make publish'
-#  needs: ["php56-cli"]
-  when: manual
+  needs: ["php56-cli"]
+  when: on_success
 
 php56-supervisor:
   stage: level_3
   script: 'cd php56-supervisor && make all && make publish'
-#  needs: ["php56-cli"]
-  when: manual
+  needs: ["php56-cli"]
+  when: on_success
 
 elasticsearch56-data:
   stage: level_3
@@ -76,140 +76,140 @@ elasticsearch56-data:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch56-data && make all-amd64 && make push-manifest && make publish'
-#  needs: [elasticsearch56-data_arm64]
-  when: manual
+  needs: [elasticsearch56-data_arm64]
+  when: on_success
 elasticsearch56-data_arm64:
   stage: level_3
   script: 'cd elasticsearch56-data && make all-arm64'
   tags: [arm]
-#  needs: ["elasticsearch56"]
-  when: manual
+  needs: ["elasticsearch56"]
+  when: on_success
 
 elasticsearch-tools:
   stage: level_3
   script: 'cd elasticsearch-tools && make all && make publish'
-#  needs: ["nginx114"]
-  when: manual
+  needs: ["nginx114"]
+  when: on_success
 
 https-dev:
   stage: level_3
   script: 'cd https-dev && make all && make publish'
-#  needs: ["nginx114"]
-  when: manual
+  needs: ["nginx114"]
+  when: on_success
 
 mobile-proxy:
   stage: level_3
   script: 'cd mobile-proxy && make all && make publish'
-#  needs: ["nginx114"]
-  when: manual
+  needs: ["nginx114"]
+  when: on_success
 
 proxy:
   stage: level_3
   script: 'cd proxy && make all && make publish'
-#  needs: ["nginx114"]
-  when: manual
+  needs: ["nginx114"]
+  when: on_success
 
 chromium:
   stage: level_3
   script: 'cd chromium && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 ffmpeg:
   stage: level_3
   script: 'cd ffmpeg && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 fontforge:
   stage: level_3
   script: 'cd fontforge && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 ghostscript:
   stage: level_3
   script: 'cd ghostscript && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 graphic-tools:
   stage: level_3
   script: 'cd graphic-tools && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 node4:
   stage: level_3
   script: 'cd node4 && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 node6:
   stage: level_3
   script: 'cd node6 && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 node8:
   stage: level_3
   script: 'cd node8 && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 packager:
   stage: level_3
   script: 'cd packager && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 pdftk:
   stage: level_3
   script: 'cd pdftk && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 phyaml:
   stage: level_3
   script: 'cd phyaml && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 ruby2:
   stage: level_3
   script: 'cd ruby2 && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 sonar-scanner-cli4:
   stage: level_3
   script: 'cd sonar-scanner-cli4 && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 thrift0110:
   stage: level_3
   script: 'cd thrift0110 && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 thrift093:
   stage: level_3
   script: 'cd thrift093 && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 wkhtmltopdf125-broken:
   stage: level_3
   script: 'cd wkhtmltopdf125-broken && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 wkhtmltopdf125:
   stage: level_3
   script: 'cd wkhtmltopdf125 && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 linker18ce:
   stage: level_3
@@ -218,14 +218,14 @@ linker18ce:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd linker18ce && make all-amd64 && make push-manifest && make publish'
-#  needs: [linker18ce_arm64]
-  when: manual
+  needs: [linker18ce_arm64]
+  when: on_success
 linker18ce_arm64:
   stage: level_3
   script: 'cd linker18ce && make all-arm64'
   tags: [arm]
-#  needs: ["docker18ce"]
-  when: manual
+  needs: ["docker18ce"]
+  when: on_success
 
 elasticsearch68-data:
   stage: level_3
@@ -234,14 +234,14 @@ elasticsearch68-data:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch68-data && make all-amd64 && make push-manifest && make publish'
-#  needs: [elasticsearch68-data_arm64]
-  when: manual
+  needs: [elasticsearch68-data_arm64]
+  when: on_success
 elasticsearch68-data_arm64:
   stage: level_3
   script: 'cd elasticsearch68-data && make all-arm64'
   tags: [arm]
-#  needs: ["elasticsearch68"]
-  when: manual
+  needs: ["elasticsearch68"]
+  when: on_success
 
 elasticsearch710-data:
   stage: level_3
@@ -250,14 +250,14 @@ elasticsearch710-data:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch710-data && make all-amd64 && make push-manifest && make publish'
-#  needs: [elasticsearch710-data_arm64]
-  when: manual
+  needs: [elasticsearch710-data_arm64]
+  when: on_success
 elasticsearch710-data_arm64:
   stage: level_3
   script: 'cd elasticsearch710-data && make all-arm64'
   tags: [arm]
-#  needs: ["elasticsearch710"]
-  when: manual
+  needs: ["elasticsearch710"]
+  when: on_success
 
 elasticsearch716-data:
   stage: level_3
@@ -266,14 +266,14 @@ elasticsearch716-data:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch716-data && make all-amd64 && make push-manifest && make publish'
-#  needs: [elasticsearch716-data_arm64]
-  when: manual
+  needs: [elasticsearch716-data_arm64]
+  when: on_success
 elasticsearch716-data_arm64:
   stage: level_3
   script: 'cd elasticsearch716-data && make all-arm64'
   tags: [arm]
-#  needs: ["elasticsearch716"]
-  when: manual
+  needs: ["elasticsearch716"]
+  when: on_success
 
 elasticsearch72-data:
   stage: level_3
@@ -282,14 +282,14 @@ elasticsearch72-data:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch72-data && make all-amd64 && make push-manifest && make publish'
-#  needs: [elasticsearch72-data_arm64]
-  when: manual
+  needs: [elasticsearch72-data_arm64]
+  when: on_success
 elasticsearch72-data_arm64:
   stage: level_3
   script: 'cd elasticsearch72-data && make all-arm64'
   tags: [arm]
-#  needs: ["elasticsearch72"]
-  when: manual
+  needs: ["elasticsearch72"]
+  when: on_success
 
 elasticsearch75-data:
   stage: level_3
@@ -298,14 +298,14 @@ elasticsearch75-data:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch75-data && make all-amd64 && make push-manifest && make publish'
-#  needs: [elasticsearch75-data_arm64]
-  when: manual
+  needs: [elasticsearch75-data_arm64]
+  when: on_success
 elasticsearch75-data_arm64:
   stage: level_3
   script: 'cd elasticsearch75-data && make all-arm64'
   tags: [arm]
-#  needs: ["elasticsearch75"]
-  when: manual
+  needs: ["elasticsearch75"]
+  when: on_success
 
 elasticsearch77-data:
   stage: level_3
@@ -314,14 +314,14 @@ elasticsearch77-data:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch77-data && make all-amd64 && make push-manifest && make publish'
-#  needs: [elasticsearch77-data_arm64]
-  when: manual
+  needs: [elasticsearch77-data_arm64]
+  when: on_success
 elasticsearch77-data_arm64:
   stage: level_3
   script: 'cd elasticsearch77-data && make all-arm64'
   tags: [arm]
-#  needs: ["elasticsearch77"]
-  when: manual
+  needs: ["elasticsearch77"]
+  when: on_success
 
 elasticsearch79-data:
   stage: level_3
@@ -330,134 +330,134 @@ elasticsearch79-data:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch79-data && make all-amd64 && make push-manifest && make publish'
-#  needs: [elasticsearch79-data_arm64]
-  when: manual
+  needs: [elasticsearch79-data_arm64]
+  when: on_success
 elasticsearch79-data_arm64:
   stage: level_3
   script: 'cd elasticsearch79-data && make all-arm64'
   tags: [arm]
-#  needs: ["elasticsearch79"]
-  when: manual
+  needs: ["elasticsearch79"]
+  when: on_success
 
 php71-cron:
   stage: level_3
   script: 'cd php71-cron && make all && make publish'
-#  needs: ["php71-cli"]
-  when: manual
+  needs: ["php71-cli"]
+  when: on_success
 
 php71-dev:
   stage: level_3
   script: 'cd php71-dev && make all && make publish'
-#  needs: ["php71-cli"]
-  when: manual
+  needs: ["php71-cli"]
+  when: on_success
 
 php71-fpm:
   stage: level_3
   script: 'cd php71-fpm && make all && make publish'
-#  needs: ["php71-cli"]
-  when: manual
+  needs: ["php71-cli"]
+  when: on_success
 
 php71-supervisor:
   stage: level_3
   script: 'cd php71-supervisor && make all && make publish'
-#  needs: ["php71-cli"]
-  when: manual
+  needs: ["php71-cli"]
+  when: on_success
 
 php72-cron:
   stage: level_3
   script: 'cd php72-cron && make all && make publish'
-#  needs: ["php72-cli"]
-  when: manual
+  needs: ["php72-cli"]
+  when: on_success
 
 php72-dev:
   stage: level_3
   script: 'cd php72-dev && make all && make publish'
-#  needs: ["php72-cli"]
-  when: manual
+  needs: ["php72-cli"]
+  when: on_success
 
 php72-fpm:
   stage: level_3
   script: 'cd php72-fpm && make all && make publish'
-#  needs: ["php72-cli"]
-  when: manual
+  needs: ["php72-cli"]
+  when: on_success
 
 php72-supervisor:
   stage: level_3
   script: 'cd php72-supervisor && make all && make publish'
-#  needs: ["php72-cli"]
-  when: manual
+  needs: ["php72-cli"]
+  when: on_success
 
 php73-cron:
   stage: level_3
   script: 'cd php73-cron && make all && make publish'
-#  needs: ["php73-cli"]
-  when: manual
+  needs: ["php73-cli"]
+  when: on_success
 
 php73-dev:
   stage: level_3
   script: 'cd php73-dev && make all && make publish'
-#  needs: ["php73-cli"]
-  when: manual
+  needs: ["php73-cli"]
+  when: on_success
 
 php73-fpm:
   stage: level_3
   script: 'cd php73-fpm && make all && make publish'
-#  needs: ["php73-cli"]
-  when: manual
+  needs: ["php73-cli"]
+  when: on_success
 
 php73-supervisor:
   stage: level_3
   script: 'cd php73-supervisor && make all && make publish'
-#  needs: ["php73-cli"]
-  when: manual
+  needs: ["php73-cli"]
+  when: on_success
 
 php74-cron:
   stage: level_3
   script: 'cd php74-cron && make all && make publish'
-#  needs: ["php74-cli"]
-  when: manual
+  needs: ["php74-cli"]
+  when: on_success
 
 php74-dev:
   stage: level_3
   script: 'cd php74-dev && make all && make publish'
-#  needs: ["php74-cli"]
-  when: manual
+  needs: ["php74-cli"]
+  when: on_success
 
 php74-fpm:
   stage: level_3
   script: 'cd php74-fpm && make all && make publish'
-#  needs: ["php74-cli"]
-  when: manual
+  needs: ["php74-cli"]
+  when: on_success
 
 php74-supervisor:
   stage: level_3
   script: 'cd php74-supervisor && make all && make publish'
-#  needs: ["php74-cli"]
-  when: manual
+  needs: ["php74-cli"]
+  when: on_success
 
 php80-cron:
   stage: level_3
   script: 'cd php80-cron && make all && make publish'
-#  needs: ["php80-cli"]
-  when: manual
+  needs: ["php80-cli"]
+  when: on_success
 
 php80-dev:
   stage: level_3
   script: 'cd php80-dev && make all && make publish'
-#  needs: ["php80-cli"]
-  when: manual
+  needs: ["php80-cli"]
+  when: on_success
 
 php80-fpm:
   stage: level_3
   script: 'cd php80-fpm && make all && make publish'
-#  needs: ["php80-cli"]
-  when: manual
+  needs: ["php80-cli"]
+  when: on_success
 
 php80-supervisor:
   stage: level_3
   script: 'cd php80-supervisor && make all && make publish'
-#  needs: ["php80-cli"]
-  when: manual
+  needs: ["php80-cli"]
+  when: on_success
 
 php81-cron:
   stage: level_3
@@ -466,14 +466,14 @@ php81-cron:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php81-cron && make all-amd64 && make push-manifest && make publish'
-#  needs: [php81-cron_arm64]
-  when: manual
+  needs: [php81-cron_arm64]
+  when: on_success
 php81-cron_arm64:
   stage: level_3
   script: 'cd php81-cron && make all-arm64'
   tags: [arm]
-#  needs: ["php81-cli"]
-  when: manual
+  needs: ["php81-cli"]
+  when: on_success
 
 php81-dev:
   stage: level_3
@@ -482,14 +482,14 @@ php81-dev:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php81-dev && make all-amd64 && make push-manifest && make publish'
-#  needs: [php81-dev_arm64]
-  when: manual
+  needs: [php81-dev_arm64]
+  when: on_success
 php81-dev_arm64:
   stage: level_3
   script: 'cd php81-dev && make all-arm64'
   tags: [arm]
-#  needs: ["php81-cli"]
-  when: manual
+  needs: ["php81-cli"]
+  when: on_success
 
 php81-fpm:
   stage: level_3
@@ -498,14 +498,14 @@ php81-fpm:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php81-fpm && make all-amd64 && make push-manifest && make publish'
-#  needs: [php81-fpm_arm64]
-  when: manual
+  needs: [php81-fpm_arm64]
+  when: on_success
 php81-fpm_arm64:
   stage: level_3
   script: 'cd php81-fpm && make all-arm64'
   tags: [arm]
-#  needs: ["php81-cli"]
-  when: manual
+  needs: ["php81-cli"]
+  when: on_success
 
 php81-supervisor:
   stage: level_3
@@ -514,14 +514,14 @@ php81-supervisor:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php81-supervisor && make all-amd64 && make push-manifest && make publish'
-#  needs: [php81-supervisor_arm64]
-  when: manual
+  needs: [php81-supervisor_arm64]
+  when: on_success
 php81-supervisor_arm64:
   stage: level_3
   script: 'cd php81-supervisor && make all-arm64'
   tags: [arm]
-#  needs: ["php81-cli"]
-  when: manual
+  needs: ["php81-cli"]
+  when: on_success
 
 php82-cron:
   stage: level_3
@@ -530,14 +530,14 @@ php82-cron:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php82-cron && make all-amd64 && make push-manifest && make publish'
-#  needs: [php82-cron_arm64]
-  when: manual
+  needs: [php82-cron_arm64]
+  when: on_success
 php82-cron_arm64:
   stage: level_3
   script: 'cd php82-cron && make all-arm64'
   tags: [arm]
-#  needs: ["php81-cli"]
-  when: manual
+  needs: ["php81-cli"]
+  when: on_success
 
 php82-dev:
   stage: level_3
@@ -546,14 +546,14 @@ php82-dev:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php82-dev && make all-amd64 && make push-manifest && make publish'
-#  needs: [php82-dev_arm64]
-  when: manual
+  needs: [php82-dev_arm64]
+  when: on_success
 php82-dev_arm64:
   stage: level_3
   script: 'cd php82-dev && make all-arm64'
   tags: [arm]
-#  needs: ["php82-cli"]
-  when: manual
+  needs: ["php82-cli"]
+  when: on_success
 
 php82-fpm:
   stage: level_3
@@ -562,14 +562,14 @@ php82-fpm:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php82-fpm && make all-amd64 && make push-manifest && make publish'
-#  needs: [php82-fpm_arm64]
-  when: manual
+  needs: [php82-fpm_arm64]
+  when: on_success
 php82-fpm_arm64:
   stage: level_3
   script: 'cd php82-fpm && make all-arm64'
   tags: [arm]
-#  needs: ["php82-cli"]
-  when: manual
+  needs: ["php82-cli"]
+  when: on_success
 
 php82-supervisor:
   stage: level_3
@@ -578,14 +578,14 @@ php82-supervisor:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php82-supervisor && make all-amd64 && make push-manifest && make publish'
-#  needs: [php82-supervisor_arm64]
-  when: manual
+  needs: [php82-supervisor_arm64]
+  when: on_success
 php82-supervisor_arm64:
   stage: level_3
   script: 'cd php82-supervisor && make all-arm64'
   tags: [arm]
-#  needs: ["php82-cli"]
-  when: manual
+  needs: ["php82-cli"]
+  when: on_success
 
 aws-tools:
   stage: level_3
@@ -594,32 +594,32 @@ aws-tools:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd aws-tools && make all-amd64 && make push-manifest && make publish'
-#  needs: [aws-tools_arm64]
-  when: manual
+  needs: [aws-tools_arm64]
+  when: on_success
 aws-tools_arm64:
   stage: level_3
   script: 'cd aws-tools && make all-arm64'
   tags: [arm]
-#  needs: ["toolbox-bullseye"]
-  when: manual
+  needs: ["toolbox-bullseye"]
+  when: on_success
 
 db-tools:
   stage: level_3
   script: 'cd db-tools && make all && make publish'
-#  needs: ["toolbox-bullseye"]
-  when: manual
+  needs: ["toolbox-bullseye"]
+  when: on_success
 
 node10:
   stage: level_3
   script: 'cd node10 && make all && make publish'
-#  needs: ["toolbox-bullseye"]
-  when: manual
+  needs: ["toolbox-bullseye"]
+  when: on_success
 
 node12:
   stage: level_3
   script: 'cd node12 && make all && make publish'
-#  needs: ["toolbox-bullseye"]
-  when: manual
+  needs: ["toolbox-bullseye"]
+  when: on_success
 
 node14:
   stage: level_3
@@ -628,14 +628,14 @@ node14:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd node14 && make all-amd64 && make push-manifest && make publish'
-#  needs: [node14_arm64]
-  when: manual
+  needs: [node14_arm64]
+  when: on_success
 node14_arm64:
   stage: level_3
   script: 'cd node14 && make all-arm64'
   tags: [arm]
-#  needs: ["toolbox-bullseye"]
-  when: manual
+  needs: ["toolbox-bullseye"]
+  when: on_success
 
 node16:
   stage: level_3
@@ -644,14 +644,14 @@ node16:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd node16 && make all-amd64 && make push-manifest && make publish'
-#  needs: [node16_arm64]
-  when: manual
+  needs: [node16_arm64]
+  when: on_success
 node16_arm64:
   stage: level_3
   script: 'cd node16 && make all-arm64'
   tags: [arm]
-#  needs: ["toolbox-bullseye"]
-  when: manual
+  needs: ["toolbox-bullseye"]
+  when: on_success
 
 node18:
   stage: level_3
@@ -660,14 +660,14 @@ node18:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd node18 && make all-amd64 && make push-manifest && make publish'
-#  needs: [node18_arm64]
-  when: manual
+  needs: [node18_arm64]
+  when: on_success
 node18_arm64:
   stage: level_3
   script: 'cd node18 && make all-arm64'
   tags: [arm]
-#  needs: ["toolbox-bullseye"]
-  when: manual
+  needs: ["toolbox-bullseye"]
+  when: on_success
 
 node19:
   stage: level_3
@@ -676,14 +676,14 @@ node19:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd node19 && make all-amd64 && make push-manifest && make publish'
-#  needs: [node19_arm64]
-  when: manual
+  needs: [node19_arm64]
+  when: on_success
 node19_arm64:
   stage: level_3
   script: 'cd node19 && make all-arm64'
   tags: [arm]
-#  needs: ["toolbox-bullseye"]
-  when: manual
+  needs: ["toolbox-bullseye"]
+  when: on_success
 
 wkhtmltopdf126-broken:
   stage: level_3
@@ -692,20 +692,20 @@ wkhtmltopdf126-broken:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd wkhtmltopdf126-broken && make all-amd64 && make push-manifest && make publish'
-#  needs: [wkhtmltopdf126-broken_arm64]
-  when: manual
+  needs: [wkhtmltopdf126-broken_arm64]
+  when: on_success
 wkhtmltopdf126-broken_arm64:
   stage: level_3
   script: 'cd wkhtmltopdf126-broken && make all-arm64'
   tags: [arm]
-#  needs: ["toolbox-bullseye"]
-  when: manual
+  needs: ["toolbox-bullseye"]
+  when: on_success
 
 wkhtmltopdf126:
   stage: level_3
   script: 'cd wkhtmltopdf126 && make all && make publish'
-#  needs: ["toolbox-bullseye"]
-  when: manual
+  needs: ["toolbox-bullseye"]
+  when: on_success
 
 aws-tools:
   stage: level_3
@@ -714,62 +714,62 @@ aws-tools:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd aws-tools && make all-amd64 && make push-manifest && make publish'
-#  needs: [aws-tools_arm64]
-  when: manual
+  needs: [aws-tools_arm64]
+  when: on_success
 aws-tools_arm64:
   stage: level_3
   script: 'cd aws-tools && make all-arm64'
   tags: [arm]
-#  needs: ["toolbox-bullseye"]
-  when: manual
+  needs: ["toolbox-bullseye"]
+  when: on_success
 
 chromium:
   stage: level_3
   script: 'cd chromium && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 db-tools:
   stage: level_3
   script: 'cd db-tools && make all && make publish'
-#  needs: ["toolbox-bullseye"]
-  when: manual
+  needs: ["toolbox-bullseye"]
+  when: on_success
 
 ffmpeg:
   stage: level_3
   script: 'cd ffmpeg && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 fontforge:
   stage: level_3
   script: 'cd fontforge && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 ghostscript:
   stage: level_3
   script: 'cd ghostscript && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 graphic-tools:
   stage: level_3
   script: 'cd graphic-tools && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 node10:
   stage: level_3
   script: 'cd node10 && make all && make publish'
-#  needs: ["toolbox-bullseye"]
-  when: manual
+  needs: ["toolbox-bullseye"]
+  when: on_success
 
 node12:
   stage: level_3
   script: 'cd node12 && make all && make publish'
-#  needs: ["toolbox-bullseye"]
-  when: manual
+  needs: ["toolbox-bullseye"]
+  when: on_success
 
 node14:
   stage: level_3
@@ -778,14 +778,14 @@ node14:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd node14 && make all-amd64 && make push-manifest && make publish'
-#  needs: [node14_arm64]
-  when: manual
+  needs: [node14_arm64]
+  when: on_success
 node14_arm64:
   stage: level_3
   script: 'cd node14 && make all-arm64'
   tags: [arm]
-#  needs: ["toolbox-bullseye"]
-  when: manual
+  needs: ["toolbox-bullseye"]
+  when: on_success
 
 node16:
   stage: level_3
@@ -794,14 +794,14 @@ node16:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd node16 && make all-amd64 && make push-manifest && make publish'
-#  needs: [node16_arm64]
-  when: manual
+  needs: [node16_arm64]
+  when: on_success
 node16_arm64:
   stage: level_3
   script: 'cd node16 && make all-arm64'
   tags: [arm]
-#  needs: ["toolbox-bullseye"]
-  when: manual
+  needs: ["toolbox-bullseye"]
+  when: on_success
 
 node18:
   stage: level_3
@@ -810,14 +810,14 @@ node18:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd node18 && make all-amd64 && make push-manifest && make publish'
-#  needs: [node18_arm64]
-  when: manual
+  needs: [node18_arm64]
+  when: on_success
 node18_arm64:
   stage: level_3
   script: 'cd node18 && make all-arm64'
   tags: [arm]
-#  needs: ["toolbox-bullseye"]
-  when: manual
+  needs: ["toolbox-bullseye"]
+  when: on_success
 
 node19:
   stage: level_3
@@ -826,92 +826,92 @@ node19:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd node19 && make all-amd64 && make push-manifest && make publish'
-#  needs: [node19_arm64]
-  when: manual
+  needs: [node19_arm64]
+  when: on_success
 node19_arm64:
   stage: level_3
   script: 'cd node19 && make all-arm64'
   tags: [arm]
-#  needs: ["toolbox-bullseye"]
-  when: manual
+  needs: ["toolbox-bullseye"]
+  when: on_success
 
 node4:
   stage: level_3
   script: 'cd node4 && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 node6:
   stage: level_3
   script: 'cd node6 && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 node8:
   stage: level_3
   script: 'cd node8 && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 packager:
   stage: level_3
   script: 'cd packager && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 pdftk:
   stage: level_3
   script: 'cd pdftk && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 phyaml:
   stage: level_3
   script: 'cd phyaml && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 ruby2:
   stage: level_3
   script: 'cd ruby2 && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 sonar-scanner-cli4:
   stage: level_3
   script: 'cd sonar-scanner-cli4 && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 thrift0110:
   stage: level_3
   script: 'cd thrift0110 && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 thrift091:
   stage: level_3
   script: 'cd thrift091 && make all && make publish'
-#  needs: ["toolbox"]
-  when: manual
+  needs: ["toolbox"]
+  when: on_success
 
 thrift093:
   stage: level_3
   script: 'cd thrift093 && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 wkhtmltopdf125-broken:
   stage: level_3
   script: 'cd wkhtmltopdf125-broken && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 wkhtmltopdf125:
   stage: level_3
   script: 'cd wkhtmltopdf125 && make all && make publish'
-#  needs: ["toolbox-buster"]
-  when: manual
+  needs: ["toolbox-buster"]
+  when: on_success
 
 wkhtmltopdf126-broken:
   stage: level_3
@@ -920,29 +920,29 @@ wkhtmltopdf126-broken:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd wkhtmltopdf126-broken && make all-amd64 && make push-manifest && make publish'
-#  needs: [wkhtmltopdf126-broken_arm64]
-  when: manual
+  needs: [wkhtmltopdf126-broken_arm64]
+  when: on_success
 wkhtmltopdf126-broken_arm64:
   stage: level_3
   script: 'cd wkhtmltopdf126-broken && make all-arm64'
   tags: [arm]
-#  needs: ["toolbox-bullseye"]
-  when: manual
+  needs: ["toolbox-bullseye"]
+  when: on_success
 
 wkhtmltopdf126:
   stage: level_3
   script: 'cd wkhtmltopdf126 && make all && make publish'
-#  needs: ["toolbox-bullseye"]
-  when: manual
+  needs: ["toolbox-bullseye"]
+  when: on_success
 
 wkhtmltopdf-broken:
   stage: level_3
   script: 'cd wkhtmltopdf-broken && make all && make publish'
-#  needs: ["toolbox"]
-  when: manual
+  needs: ["toolbox"]
+  when: on_success
 
 wkhtmltopdf:
   stage: level_3
   script: 'cd wkhtmltopdf && make all && make publish'
-#  needs: ["toolbox"]
-  when: manual
+  needs: ["toolbox"]
+  when: on_success

@@ -25,7 +25,7 @@ function ci_yml() {
 		parent='"'$parent'"'
 	fi
 
-	automation='manual'
+#	automation='manual'
 	buildfile="$(readlink $image/Makefile)"
 	# If this is NOT a multi arch build
 	if [ "$buildfile" == "../_tools/makefiles/base-image-amd64-Makefile" ]; then
@@ -33,7 +33,7 @@ function ci_yml() {
 ${image}:
   stage: $level
   script: 'cd $image && make all && make publish'
-#  needs: [$parent]
+  needs: [$parent]
   when: $automation
 "
 	else
@@ -45,13 +45,13 @@ ${image}:
     - docker login -u \$dockerhub_user -p \$dockerhub_token
     - docker login -u \$nfqhub_user -p \$nfqhub_token https://docker.nfq.lt
   script: 'cd $image && make all-amd64 && make push-manifest && make publish'
-#  needs: [${image}_arm64]
+  needs: [${image}_arm64]
   when: $automation
 ${image}_arm64:
   stage: $level
   script: 'cd $image && make all-arm64'
   tags: [arm]
-#  needs: [$parent]
+  needs: [$parent]
   when: $automation
 "
 	fi

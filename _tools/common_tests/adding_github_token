@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-docker run -it $1 bash -c "echo \"VM_GITHUB_TOKEN='aaabbbcccddd'\" >> /etc/environment-vm && run-parts /etc/rc.d" \
+docker run $1 bash -c "echo \"VM_GITHUB_TOKEN='aaabbbcccddd'\" >> /etc/environment-vm && run-parts /etc/rc.d" \
 | grep -i 'Adding github token' &> /dev/null \
 || (echo "Container did not reported appending github token using environment-vm file" && exit -1)
 
