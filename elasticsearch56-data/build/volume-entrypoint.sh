@@ -16,6 +16,6 @@ curl -XPUT -d '{"template":"*","settings":{"number_of_shards":2,"number_of_repli
 kill $esPid
 wait
 
-tar cf /volume/backup.tar /var/elasticsearch/data
+tar cf /backup.tar /var/elasticsearch/data
 sync
 
