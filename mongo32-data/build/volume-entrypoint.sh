@@ -11,6 +11,6 @@ done
 kill $mongoPid
 wait
 
-tar cf /volume/backup.tar /var/lib/mongodb
+tar cf /backup.tar /var/lib/mongodb
 sync
 
