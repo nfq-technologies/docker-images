@@ -34,5 +34,5 @@ echo -e 'FROM busybox\nADD backup.tar /\nADD build/entrypoint.sh /entrypoint.sh\
 echo -e 'CMD exec /entrypoint.sh\n' >> es-data-Dockerfile
 
 # build volume image
-docker build -t $1 -f es-data-Dockerfile ./
+docker build -t "$1" -f es-data-Dockerfile ./
 
