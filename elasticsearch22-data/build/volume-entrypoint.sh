@@ -12,6 +12,6 @@ wget "localhost:9200/" -O -
 kill $esPid
 wait
 
-tar cf /volume/backup.tar /var/elasticsearch/data
+tar cf /backup.tar /var/elasticsearch/data
 sync
 
