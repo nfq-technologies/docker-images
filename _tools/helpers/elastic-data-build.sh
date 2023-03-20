@@ -19,7 +19,7 @@ trap cleanup EXIT
 
 
 # temporary copy helpers
-cp -r ../../nfqlt/_tools/helpers/ build/helpers
+cp -r ../_tools/helpers/ build/helpers
 
 # prepate volume
 sed "s~FROM nfqlt~FROM ${2}nfqlt~" Dockerfile > .Dockerfile
