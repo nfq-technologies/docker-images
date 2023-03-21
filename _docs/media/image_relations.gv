@@ -16,7 +16,7 @@ digraph G {
     "nfqlt/aws-docker-tools" [fillcolor=orange label="aws-docker-tools"];
     "nfqlt/aws-tools"->"nfqlt/aws-docker-tools";
     "nfqlt/aws-mock" [fillcolor=orange label="aws-mock"];
-    "nfqlt/debian-buster"->"nfqlt/aws-mock";
+    "nfqlt/debian-bullseye"->"nfqlt/aws-mock";
     "nfqlt/aws-tools" [fillcolor=orange label="aws-tools"];
     "nfqlt/toolbox-bullseye"->"nfqlt/aws-tools";
     "nfqlt/birt45" [fillcolor=orange label="birt45"];
@@ -28,7 +28,7 @@ digraph G {
     "nfqlt/chromedriver83" [fillcolor=orange label="chromedriver83"];
     "nfqlt/debian-buster"->"nfqlt/chromedriver83";
     "nfqlt/chromedriver" [fillcolor=orange label="chromedriver"];
-    "nfqlt/debian-buster"->"nfqlt/chromedriver";
+    "nfqlt/debian-bullseye"->"nfqlt/chromedriver";
     "nfqlt/chromium" [fillcolor=orange label="chromium"];
     "nfqlt/toolbox-buster"->"nfqlt/chromium";
     "nfqlt/cypress4" [fillcolor=orange label="cypress4"];
@@ -54,7 +54,7 @@ digraph G {
     "nfqlt/dev" [fillcolor=orange label="dev"];
     "nfqlt/debian-bullseye"->"nfqlt/dev";
     "nfqlt/docker18ce" [fillcolor=orange label="docker18ce"];
-    "nfqlt/debian-buster"->"nfqlt/docker18ce";
+    "nfqlt/debian-bullseye"->"nfqlt/docker18ce";
     "nfqlt/elasticsearch22-data" [fillcolor=orange label="elasticsearch22-data"];
     "nfqlt/elasticsearch22"->"nfqlt/elasticsearch22-data";
     "nfqlt/elasticsearch22" [fillcolor=orange label="elasticsearch22"];
@@ -66,11 +66,15 @@ digraph G {
     "nfqlt/elasticsearch68-data" [fillcolor=orange label="elasticsearch68-data"];
     "nfqlt/elasticsearch68"->"nfqlt/elasticsearch68-data";
     "nfqlt/elasticsearch68" [fillcolor=orange label="elasticsearch68"];
-    "nfqlt/debian-buster"->"nfqlt/elasticsearch68";
+    "nfqlt/debian-bullseye"->"nfqlt/elasticsearch68";
     "nfqlt/elasticsearch710-data" [fillcolor=orange label="elasticsearch710-data"];
     "nfqlt/elasticsearch710"->"nfqlt/elasticsearch710-data";
     "nfqlt/elasticsearch710" [fillcolor=orange label="elasticsearch710"];
     "nfqlt/debian-bullseye"->"nfqlt/elasticsearch710";
+    "nfqlt/elasticsearch716-data" [fillcolor=orange label="elasticsearch716-data"];
+    "nfqlt/elasticsearch716"->"nfqlt/elasticsearch716-data";
+    "nfqlt/elasticsearch716" [fillcolor=orange label="elasticsearch716"];
+    "nfqlt/debian-bullseye"->"nfqlt/elasticsearch716";
     "nfqlt/elasticsearch72-data" [fillcolor=orange label="elasticsearch72-data"];
     "nfqlt/elasticsearch72"->"nfqlt/elasticsearch72-data";
     "nfqlt/elasticsearch72" [fillcolor=orange label="elasticsearch72"];
@@ -118,7 +122,9 @@ digraph G {
     "nfqlt/linker18ce" [fillcolor=orange label="linker18ce"];
     "nfqlt/docker18ce"->"nfqlt/linker18ce";
     "nfqlt/mailhog" [fillcolor=orange label="mailhog"];
-    "nfqlt/debian-buster"->"nfqlt/mailhog";
+    "nfqlt/debian-bullseye"->"nfqlt/mailhog";
+    "nfqlt/mariadb10" [fillcolor=orange label="mariadb10"];
+    "mariadb"->"nfqlt/mariadb10";
     "nfqlt/memcached1421" [fillcolor=orange label="memcached1421"];
     "nfqlt/debian-jessie"->"nfqlt/memcached1421";
     "nfqlt/memcached1433" [fillcolor=orange label="memcached1433"];
@@ -163,8 +169,6 @@ digraph G {
     "nfqlt/debian-buster"->"nfqlt/nginx114";
     "nfqlt/nginx118" [fillcolor=orange label="nginx118"];
     "nfqlt/debian-bullseye"->"nfqlt/nginx118";
-    "nfqlt/nginx16" [fillcolor=orange label="nginx16"];
-    "nfqlt/debian-jessie"->"nfqlt/nginx16";
     "nfqlt/node10" [fillcolor=orange label="node10"];
     "nfqlt/toolbox-bullseye"->"nfqlt/node10";
     "nfqlt/node12" [fillcolor=orange label="node12"];
@@ -296,7 +300,7 @@ digraph G {
     "nfqlt/php82-fpm" [fillcolor=orange label="php82-fpm"];
     "nfqlt/php82-cli"->"nfqlt/php82-fpm";
     "nfqlt/php82-supervisor" [fillcolor=orange label="php82-supervisor"];
-    "nfqlt/php81-cli"->"nfqlt/php82-supervisor";
+    "nfqlt/php82-cli"->"nfqlt/php82-supervisor";
     "nfqlt/phpmyadmin" [fillcolor=orange label="phpmyadmin"];
     "nfqlt/php70-cli"->"nfqlt/phpmyadmin";
     "nfqlt/phyaml" [fillcolor=orange label="phyaml"];
@@ -314,7 +318,7 @@ digraph G {
     "nfqlt/rabbitmq366" [fillcolor=orange label="rabbitmq366"];
     "nfqlt/debian-stretch"->"nfqlt/rabbitmq366";
     "nfqlt/rabbitmq378" [fillcolor=orange label="rabbitmq378"];
-    "nfqlt/debian-buster"->"nfqlt/rabbitmq378";
+    "nfqlt/debian-bullseye"->"nfqlt/rabbitmq378";
     "nfqlt/rabbitmq389" [fillcolor=orange label="rabbitmq389"];
     "nfqlt/debian-bullseye"->"nfqlt/rabbitmq389";
     "nfqlt/rabbitmq38" [fillcolor=orange label="rabbitmq38"];
@@ -348,7 +352,7 @@ digraph G {
     "nfqlt/toolbox-buster" [fillcolor=orange label="toolbox-buster"];
     "nfqlt/debian-buster"->"nfqlt/toolbox-buster";
     "nfqlt/toolbox" [fillcolor=orange label="toolbox"];
-    "nfqlt/debian-stretch"->"nfqlt/toolbox";
+    "nfqlt/debian-bullseye"->"nfqlt/toolbox";
     "nfqlt/varnish50" [fillcolor=orange label="varnish50"];
     "nfqlt/debian-stretch"->"nfqlt/varnish50";
     "nfqlt/varnish61" [fillcolor=orange label="varnish61"];
