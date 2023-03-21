@@ -19,7 +19,7 @@ trap cleanup EXIT
 
 
 # temporary copy helpers
-cp -r ../../nfqlt/_tools/helpers/ build/helpers
+cp -r ../_tools/helpers/ build/helpers
 
 # prepate volume
 sed "s~FROM nfqlt~FROM ${2}nfqlt~" Dockerfile > .Dockerfile
@@ -34,5 +34,5 @@ echo -e 'FROM busybox\nADD backup.tar /\nADD build/entrypoint.sh /entrypoint.sh\
 echo -e 'CMD exec /entrypoint.sh\n' >> es-data-Dockerfile
 
 # build volume image
-docker build -t $1 -f es-data-Dockerfile ./
+docker build -t "$1" -f es-data-Dockerfile ./
 

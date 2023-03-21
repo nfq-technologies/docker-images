@@ -1,1 +1,1 @@
-./_tools/helpers/elastic-data-build.sh
+../_tools/helpers/elastic-data-build.sh
