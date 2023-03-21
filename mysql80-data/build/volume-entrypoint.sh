@@ -15,6 +15,6 @@ mysql -uroot -proot -e "GRANT ALL PRIVILEGES ON \`project%\`.* TO 'project'@'%';
 kill $mysqlPid
 wait
 
-tar cf /volume/backup.tar /var/lib/mysql
+tar cf /backup.tar /var/lib/mysql
 sync
 
