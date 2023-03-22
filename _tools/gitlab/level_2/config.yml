@@ -7,65 +7,25 @@ postgres12-data:
 
 mysql80-data:
   stage: level_2
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mysql80-data && make all-amd64 && make push-manifest && make publish'
-  needs: [mysql80-data_arm64]
-  when: on_success
-mysql80-data_arm64:
-  stage: level_2
-  script: 'cd mysql80-data && make all-arm64'
-  tags: [arm]
+  script: 'cd mysql80-data && make all && make publish'
   needs: ["mysql80"]
   when: on_success
 
 mysql57-data:
   stage: level_2
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mysql57-data && make all-amd64 && make push-manifest && make publish'
-  needs: [mysql57-data_arm64]
-  when: on_success
-mysql57-data_arm64:
-  stage: level_2
-  script: 'cd mysql57-data && make all-arm64'
-  tags: [arm]
+  script: 'cd mysql57-data && make all && make publish'
   needs: ["mysql57"]
   when: on_success
 
 mysql56-data:
   stage: level_2
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mysql56-data && make all-amd64 && make push-manifest && make publish'
-  needs: [mysql56-data_arm64]
-  when: on_success
-mysql56-data_arm64:
-  stage: level_2
-  script: 'cd mysql56-data && make all-arm64'
-  tags: [arm]
+  script: 'cd mysql56-data && make all && make publish'
   needs: ["mysql56"]
   when: on_success
 
 mysql55-data:
   stage: level_2
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mysql55-data && make all-amd64 && make push-manifest && make publish'
-  needs: [mysql55-data_arm64]
-  when: on_success
-mysql55-data_arm64:
-  stage: level_2
-  script: 'cd mysql55-data && make all-arm64'
-  tags: [arm]
+  script: 'cd mysql55-data && make all && make publish'
   needs: ["mysql55"]
   when: on_success
 

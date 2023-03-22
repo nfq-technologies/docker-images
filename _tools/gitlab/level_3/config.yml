@@ -31,17 +31,7 @@ phpmyadmin:
 
 elasticsearch22-data:
   stage: level_3
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd elasticsearch22-data && make all-amd64 && make push-manifest && make publish'
-  needs: [elasticsearch22-data_arm64]
-  when: on_success
-elasticsearch22-data_arm64:
-  stage: level_3
-  script: 'cd elasticsearch22-data && make all-arm64'
-  tags: [arm]
+  script: 'cd elasticsearch22-data && make all && make publish'
   needs: ["elasticsearch22"]
   when: on_success
 
@@ -71,17 +61,7 @@ php56-supervisor:
 
 elasticsearch56-data:
   stage: level_3
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd elasticsearch56-data && make all-amd64 && make push-manifest && make publish'
-  needs: [elasticsearch56-data_arm64]
-  when: on_success
-elasticsearch56-data_arm64:
-  stage: level_3
-  script: 'cd elasticsearch56-data && make all-arm64'
-  tags: [arm]
+  script: 'cd elasticsearch56-data && make all && make publish'
   needs: ["elasticsearch56"]
   when: on_success
 
@@ -229,113 +209,43 @@ linker18ce_arm64:
 
 elasticsearch68-data:
   stage: level_3
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd elasticsearch68-data && make all-amd64 && make push-manifest && make publish'
-  needs: [elasticsearch68-data_arm64]
-  when: on_success
-elasticsearch68-data_arm64:
-  stage: level_3
-  script: 'cd elasticsearch68-data && make all-arm64'
-  tags: [arm]
+  script: 'cd elasticsearch68-data && make all && make publish'
   needs: ["elasticsearch68"]
   when: on_success
 
 elasticsearch710-data:
   stage: level_3
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd elasticsearch710-data && make all-amd64 && make push-manifest && make publish'
-  needs: [elasticsearch710-data_arm64]
-  when: on_success
-elasticsearch710-data_arm64:
-  stage: level_3
-  script: 'cd elasticsearch710-data && make all-arm64'
-  tags: [arm]
+  script: 'cd elasticsearch710-data && make all && make publish'
   needs: ["elasticsearch710"]
   when: on_success
 
 elasticsearch716-data:
   stage: level_3
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd elasticsearch716-data && make all-amd64 && make push-manifest && make publish'
-  needs: [elasticsearch716-data_arm64]
-  when: on_success
-elasticsearch716-data_arm64:
-  stage: level_3
-  script: 'cd elasticsearch716-data && make all-arm64'
-  tags: [arm]
+  script: 'cd elasticsearch716-data && make all && make publish'
   needs: ["elasticsearch716"]
   when: on_success
 
 elasticsearch72-data:
   stage: level_3
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd elasticsearch72-data && make all-amd64 && make push-manifest && make publish'
-  needs: [elasticsearch72-data_arm64]
-  when: on_success
-elasticsearch72-data_arm64:
-  stage: level_3
-  script: 'cd elasticsearch72-data && make all-arm64'
-  tags: [arm]
+  script: 'cd elasticsearch72-data && make all && make publish'
   needs: ["elasticsearch72"]
   when: on_success
 
 elasticsearch75-data:
   stage: level_3
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd elasticsearch75-data && make all-amd64 && make push-manifest && make publish'
-  needs: [elasticsearch75-data_arm64]
-  when: on_success
-elasticsearch75-data_arm64:
-  stage: level_3
-  script: 'cd elasticsearch75-data && make all-arm64'
-  tags: [arm]
+  script: 'cd elasticsearch75-data && make all && make publish'
   needs: ["elasticsearch75"]
   when: on_success
 
 elasticsearch77-data:
   stage: level_3
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd elasticsearch77-data && make all-amd64 && make push-manifest && make publish'
-  needs: [elasticsearch77-data_arm64]
-  when: on_success
-elasticsearch77-data_arm64:
-  stage: level_3
-  script: 'cd elasticsearch77-data && make all-arm64'
-  tags: [arm]
+  script: 'cd elasticsearch77-data && make all && make publish'
   needs: ["elasticsearch77"]
   when: on_success
 
 elasticsearch79-data:
   stage: level_3
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd elasticsearch79-data && make all-amd64 && make push-manifest && make publish'
-  needs: [elasticsearch79-data_arm64]
-  when: on_success
-elasticsearch79-data_arm64:
-  stage: level_3
-  script: 'cd elasticsearch79-data && make all-arm64'
-  tags: [arm]
+  script: 'cd elasticsearch79-data && make all && make publish'
   needs: ["elasticsearch79"]
   when: on_success
 

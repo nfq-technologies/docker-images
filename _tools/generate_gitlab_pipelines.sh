@@ -28,15 +28,7 @@ function ci_yml() {
 #	automation='manual'
 	buildfile="$(readlink $image/Makefile)"
 	# If this is NOT a multi arch build
-	if [ "$buildfile" == "../_tools/makefiles/base-image-amd64-Makefile" ]; then
-		echo "
-${image}:
-  stage: $level
-  script: 'cd $image && make all && make publish'
-  needs: [$parent]
-  when: $automation
-"
-	else
+	if [ "$buildfile" == "../_tools/makefiles/base-image-Makefile" ]; then
 		echo "
 ${image}:
   stage: $level
@@ -51,6 +43,14 @@ ${image}_arm64:
   stage: $level
   script: 'cd $image && make all-arm64'
   tags: [arm]
+  needs: [$parent]
+  when: $automation
+"
+	else
+		echo "
+${image}:
+  stage: $level
+  script: 'cd $image && make all && make publish'
   needs: [$parent]
   when: $automation
 "
