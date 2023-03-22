@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set -ex
 
 pid="$BASHPID"
 web_port="$pid"
