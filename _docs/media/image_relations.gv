@@ -169,10 +169,6 @@ digraph G {
     "nfqlt/debian-buster"->"nfqlt/nginx114";
     "nfqlt/nginx118" [fillcolor=orange label="nginx118"];
     "nfqlt/debian-bullseye"->"nfqlt/nginx118";
-    "nfqlt/node10" [fillcolor=orange label="node10"];
-    "nfqlt/toolbox-bullseye"->"nfqlt/node10";
-    "nfqlt/node12" [fillcolor=orange label="node12"];
-    "nfqlt/toolbox-bullseye"->"nfqlt/node12";
     "nfqlt/node14" [fillcolor=orange label="node14"];
     "nfqlt/toolbox-bullseye"->"nfqlt/node14";
     "nfqlt/node16" [fillcolor=orange label="node16"];
@@ -181,12 +177,6 @@ digraph G {
     "nfqlt/toolbox-bullseye"->"nfqlt/node18";
     "nfqlt/node19" [fillcolor=orange label="node19"];
     "nfqlt/toolbox-bullseye"->"nfqlt/node19";
-    "nfqlt/node4" [fillcolor=orange label="node4"];
-    "nfqlt/toolbox-buster"->"nfqlt/node4";
-    "nfqlt/node6" [fillcolor=orange label="node6"];
-    "nfqlt/toolbox-buster"->"nfqlt/node6";
-    "nfqlt/node8" [fillcolor=orange label="node8"];
-    "nfqlt/toolbox-buster"->"nfqlt/node8";
     "nfqlt/nodeserver10" [fillcolor=orange label="nodeserver10"];
     "nfqlt/debian-bullseye"->"nfqlt/nodeserver10";
     "nfqlt/nodeserver12" [fillcolor=orange label="nodeserver12"];
