@@ -2,8 +2,6 @@
 set -ex
 
 pid="$BASHPID"
-web_port="$pid"
-reload_port=$((web_port+1))
 cwd=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 # shellcheck source=../../_tools/helpers/common.sh
@@ -16,14 +14,15 @@ function cleanup() {
 trap cleanup EXIT
 
 docker run -d --name "test${pid}" \
-		-p ${web_port}:80 \
-		-p ${reload_port}:1024 \
 		"$1" > /dev/null
-wait_for_connection "localhost:${web_port}"
+
+container_ip="$(get_container_ip "test${pid}")"
+
+wait_for_connection "${container_ip}"
 
 function test_response () {
 	local expected="$1"
-	response="$(curl -s -o /dev/null -w "%{http_code}" http://localhost:${web_port}/)"
+	response="$(curl -s -o /dev/null -w "%{http_code}" http://${container_ip}/)"
 
 	if [[ "$response" == "$expected" ]]; then
 		echo OK
@@ -40,7 +39,7 @@ docker cp "./test/configurations/test_default" "test${pid}:/etc/nginx/sites-avai
 echo -n "Testing after config replace ... "
 test_response 403
 
-nc localhost $reload_port
+nc "$container_ip" 1024
 sleep 1
 echo -n "Testing after reload ... "
 test_response 200
