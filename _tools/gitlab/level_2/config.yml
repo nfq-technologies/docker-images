@@ -119,12 +119,6 @@ mongo24:
   needs: ["debian-jessie"]
   when: on_success
 
-nginx16:
-  stage: level_2
-  script: 'cd nginx16 && make all && make publish'
-  needs: ["debian-jessie"]
-  when: on_success
-
 php56-cli:
   stage: level_2
   script: 'cd php56-cli && make all && make publish'
@@ -203,6 +197,12 @@ nodeserver8:
   needs: ["debian-buster"]
   when: on_success
 
+rabbitmq378:
+  stage: level_2
+  script: 'cd rabbitmq378 && make all && make publish'
+  needs: ["debian-buster"]
+  when: on_success
+
 redis503:
   stage: level_2
   script: 'cd redis503 && make all && make publish'
@@ -235,15 +235,16 @@ apache2452-fastcgi:
 
 apache24:
   stage: level_2
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd apache24 && make all-amd64 && make push-manifest && make publish'
   needs: [apache24_arm64]
   when: on_success
 apache24_arm64:
   stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd apache24 && make all-arm64'
   tags: [arm]
   needs: ["debian-bullseye"]
@@ -251,15 +252,16 @@ apache24_arm64:
 
 aws-mock:
   stage: level_2
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd aws-mock && make all-amd64 && make push-manifest && make publish'
   needs: [aws-mock_arm64]
   when: on_success
 aws-mock_arm64:
   stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd aws-mock && make all-arm64'
   tags: [arm]
   needs: ["debian-bullseye"]
@@ -267,15 +269,16 @@ aws-mock_arm64:
 
 chromedriver:
   stage: level_2
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd chromedriver && make all-amd64 && make push-manifest && make publish'
   needs: [chromedriver_arm64]
   when: on_success
 chromedriver_arm64:
   stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd chromedriver && make all-arm64'
   tags: [arm]
   needs: ["debian-bullseye"]
@@ -283,15 +286,16 @@ chromedriver_arm64:
 
 dev:
   stage: level_2
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd dev && make all-amd64 && make push-manifest && make publish'
   needs: [dev_arm64]
   when: on_success
 dev_arm64:
   stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd dev && make all-arm64'
   tags: [arm]
   needs: ["debian-bullseye"]
@@ -299,15 +303,16 @@ dev_arm64:
 
 docker18ce:
   stage: level_2
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd docker18ce && make all-amd64 && make push-manifest && make publish'
   needs: [docker18ce_arm64]
   when: on_success
 docker18ce_arm64:
   stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd docker18ce && make all-arm64'
   tags: [arm]
   needs: ["debian-bullseye"]
@@ -315,15 +320,16 @@ docker18ce_arm64:
 
 elasticsearch68:
   stage: level_2
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch68 && make all-amd64 && make push-manifest && make publish'
   needs: [elasticsearch68_arm64]
   when: on_success
 elasticsearch68_arm64:
   stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch68 && make all-arm64'
   tags: [arm]
   needs: ["debian-bullseye"]
@@ -337,15 +343,16 @@ elasticsearch710:
 
 elasticsearch716:
   stage: level_2
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch716 && make all-amd64 && make push-manifest && make publish'
   needs: [elasticsearch716_arm64]
   when: on_success
 elasticsearch716_arm64:
   stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch716 && make all-arm64'
   tags: [arm]
   needs: ["debian-bullseye"]
@@ -377,15 +384,16 @@ elasticsearch79:
 
 mailhog:
   stage: level_2
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd mailhog && make all-amd64 && make push-manifest && make publish'
   needs: [mailhog_arm64]
   when: on_success
 mailhog_arm64:
   stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd mailhog && make all-arm64'
   tags: [arm]
   needs: ["debian-bullseye"]
@@ -393,15 +401,16 @@ mailhog_arm64:
 
 memcached169:
   stage: level_2
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd memcached169 && make all-amd64 && make push-manifest && make publish'
   needs: [memcached169_arm64]
   when: on_success
 memcached169_arm64:
   stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd memcached169 && make all-arm64'
   tags: [arm]
   needs: ["debian-bullseye"]
@@ -415,15 +424,16 @@ mongo50:
 
 nginx118:
   stage: level_2
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd nginx118 && make all-amd64 && make push-manifest && make publish'
   needs: [nginx118_arm64]
   when: on_success
 nginx118_arm64:
   stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd nginx118 && make all-arm64'
   tags: [arm]
   needs: ["debian-bullseye"]
@@ -509,15 +519,16 @@ php80-cli:
 
 php81-cli:
   stage: level_2
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php81-cli && make all-amd64 && make push-manifest && make publish'
   needs: [php81-cli_arm64]
   when: on_success
 php81-cli_arm64:
   stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php81-cli && make all-arm64'
   tags: [arm]
   needs: ["debian-bullseye"]
@@ -525,15 +536,16 @@ php81-cli_arm64:
 
 php82-cli:
   stage: level_2
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php82-cli && make all-amd64 && make push-manifest && make publish'
   needs: [php82-cli_arm64]
   when: on_success
 php82-cli_arm64:
   stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php82-cli && make all-arm64'
   tags: [arm]
   needs: ["debian-bullseye"]
@@ -541,37 +553,33 @@ php82-cli_arm64:
 
 rabbitmq310:
   stage: level_2
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd rabbitmq310 && make all-amd64 && make push-manifest && make publish'
   needs: [rabbitmq310_arm64]
   when: on_success
 rabbitmq310_arm64:
   stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd rabbitmq310 && make all-arm64'
   tags: [arm]
   needs: ["debian-bullseye"]
   when: on_success
 
-rabbitmq378:
-  stage: level_2
-  script: 'cd rabbitmq378 && make all && make publish'
-  needs: ["debian-bullseye"]
-  when: on_success
-
 rabbitmq389:
   stage: level_2
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd rabbitmq389 && make all-amd64 && make push-manifest && make publish'
   needs: [rabbitmq389_arm64]
   when: on_success
 rabbitmq389_arm64:
   stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd rabbitmq389 && make all-arm64'
   tags: [arm]
   needs: ["debian-bullseye"]
@@ -585,15 +593,16 @@ rabbitmq38:
 
 redis60:
   stage: level_2
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd redis60 && make all-amd64 && make push-manifest && make publish'
   needs: [redis60_arm64]
   when: on_success
 redis60_arm64:
   stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd redis60 && make all-arm64'
   tags: [arm]
   needs: ["debian-bullseye"]
@@ -601,15 +610,16 @@ redis60_arm64:
 
 toolbox-bullseye:
   stage: level_2
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd toolbox-bullseye && make all-amd64 && make push-manifest && make publish'
   needs: [toolbox-bullseye_arm64]
   when: on_success
 toolbox-bullseye_arm64:
   stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd toolbox-bullseye && make all-arm64'
   tags: [arm]
   needs: ["debian-bullseye"]

@@ -8,16 +8,17 @@ postgres12:
 
 mysql80:
   stage: level_1
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd mysql80 && make all-amd64 && make push-manifest && make publish'
   needs: [mysql80_arm64]
   when: manual
   allow_failure: false
 mysql80_arm64:
   stage: level_1
+  before_script:
+    # this ip has to go to host
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd mysql80 && make all-arm64'
   tags: [arm]
   needs: []
@@ -47,16 +48,17 @@ mysql55:
 
 mariadb10:
   stage: level_1
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd mariadb10 && make all-amd64 && make push-manifest && make publish'
   needs: [mariadb10_arm64]
   when: manual
   allow_failure: false
 mariadb10_arm64:
   stage: level_1
+  before_script:
+    # this ip has to go to host
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd mariadb10 && make all-arm64'
   tags: [arm]
   needs: []
@@ -98,6 +100,25 @@ lib-smartclient100:
   when: manual
   allow_failure: false
 
+dib:
+  stage: level_1
+  script: 'cd dib && make all-amd64 && make push-manifest && make publish'
+  needs: [dib_arm64]
+  when: manual
+  allow_failure: false
+dib_arm64:
+  stage: level_1
+  before_script:
+    # this ip has to go to host
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd dib && make all-arm64'
+  tags: [arm]
+  needs: []
+  when: manual
+  allow_failure: false
+
 debian-stretch:
   stage: level_1
   script: 'cd debian-stretch && make all && make publish'
@@ -121,16 +142,17 @@ debian-buster:
 
 debian-bullseye:
   stage: level_1
-  before_script:
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd debian-bullseye && make all-amd64 && make push-manifest && make publish'
   needs: [debian-bullseye_arm64]
   when: manual
   allow_failure: false
 debian-bullseye_arm64:
   stage: level_1
+  before_script:
+    # this ip has to go to host
+    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd debian-bullseye && make all-arm64'
   tags: [arm]
   needs: []
