@@ -31,7 +31,7 @@ docker run -d --name $name $1 >/dev/null
 t1=$(date +%s%N)
 box_ip=$(get_container_ip $name)
 
-until docker run nfqlt/debian-bullseye bash -c "netcat -nz -w1 $box_ip $port" > /dev/null
+until netcat -nz -w1 "$box_ip" "$port" > /dev/null
 do
 	t2=$(date +%s%N)
 	start_time_ms=$((($t2-$t1)/1000/1000))
