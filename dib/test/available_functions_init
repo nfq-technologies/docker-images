@@ -1,0 +1,24 @@
+#!/bin/bash
+set -e
+
+CMD="docker run --rm $1"
+EXIT_CODE=0
+
+function check_function {
+	echo -n "Checking function $1 ... "
+	{ $CMD bash -c "source /tools/functions_init.sh; type -t $1 2>&1 | grep ^function$ &> /dev/null" && echo "OK"; } \
+	|| { echo "MISSING" && EXIT_CODE='-1'; }
+}
+
+
+check_function init_use_startup_trigger
+check_function init_wait_for_a_dir
+check_function init_wait_for_a_not_empty_dir
+check_function init_wait_for_a_file
+check_function init_wait_for_a_not_empty_file
+check_function init_wait_for_connection
+
+
+
+exit $EXIT_CODE
+
