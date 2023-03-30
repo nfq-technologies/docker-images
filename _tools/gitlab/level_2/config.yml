@@ -189,7 +189,7 @@ apache24:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.18.1.71 >> /etc/hosts
+    - echo 172.18.1.171 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd apache24 && make all-amd64 && make push-manifest && make publish'
@@ -200,7 +200,7 @@ apache24_arm64:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - echo 172.30.20.101 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd apache24 && make all-arm64'
@@ -212,7 +212,7 @@ aws-mock:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.18.1.71 >> /etc/hosts
+    - echo 172.18.1.171 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd aws-mock && make all-amd64 && make push-manifest && make publish'
@@ -223,7 +223,7 @@ aws-mock_arm64:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - echo 172.30.20.101 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd aws-mock && make all-arm64'
@@ -235,7 +235,7 @@ chromedriver:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.18.1.71 >> /etc/hosts
+    - echo 172.18.1.171 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd chromedriver && make all-amd64 && make push-manifest && make publish'
@@ -246,7 +246,7 @@ chromedriver_arm64:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - echo 172.30.20.101 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd chromedriver && make all-arm64'
@@ -258,7 +258,7 @@ dev:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.18.1.71 >> /etc/hosts
+    - echo 172.18.1.171 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd dev && make all-amd64 && make push-manifest && make publish'
@@ -269,7 +269,7 @@ dev_arm64:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - echo 172.30.20.101 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd dev && make all-arm64'
@@ -281,7 +281,7 @@ docker18ce:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.18.1.71 >> /etc/hosts
+    - echo 172.18.1.171 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd docker18ce && make all-amd64 && make push-manifest && make publish'
@@ -292,7 +292,7 @@ docker18ce_arm64:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - echo 172.30.20.101 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd docker18ce && make all-arm64'
@@ -304,7 +304,7 @@ elasticsearch68:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.18.1.71 >> /etc/hosts
+    - echo 172.18.1.171 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch68 && make all-amd64 && make push-manifest && make publish'
@@ -315,7 +315,7 @@ elasticsearch68_arm64:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - echo 172.30.20.101 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch68 && make all-arm64'
@@ -333,7 +333,7 @@ elasticsearch716:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.18.1.71 >> /etc/hosts
+    - echo 172.18.1.171 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch716 && make all-amd64 && make push-manifest && make publish'
@@ -344,7 +344,7 @@ elasticsearch716_arm64:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - echo 172.30.20.101 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch716 && make all-arm64'
@@ -380,7 +380,7 @@ mailhog:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.18.1.71 >> /etc/hosts
+    - echo 172.18.1.171 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd mailhog && make all-amd64 && make push-manifest && make publish'
@@ -391,7 +391,7 @@ mailhog_arm64:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - echo 172.30.20.101 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd mailhog && make all-arm64'
@@ -403,7 +403,7 @@ memcached169:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.18.1.71 >> /etc/hosts
+    - echo 172.18.1.171 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd memcached169 && make all-amd64 && make push-manifest && make publish'
@@ -414,7 +414,7 @@ memcached169_arm64:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - echo 172.30.20.101 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd memcached169 && make all-arm64'
@@ -432,7 +432,7 @@ nginx118:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.18.1.71 >> /etc/hosts
+    - echo 172.18.1.171 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd nginx118 && make all-amd64 && make push-manifest && make publish'
@@ -443,7 +443,7 @@ nginx118_arm64:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - echo 172.30.20.101 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd nginx118 && make all-arm64'
@@ -533,7 +533,7 @@ php81-cli:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.18.1.71 >> /etc/hosts
+    - echo 172.18.1.171 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php81-cli && make all-amd64 && make push-manifest && make publish'
@@ -544,7 +544,7 @@ php81-cli_arm64:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - echo 172.30.20.101 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php81-cli && make all-arm64'
@@ -556,7 +556,7 @@ php82-cli:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.18.1.71 >> /etc/hosts
+    - echo 172.18.1.171 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php82-cli && make all-amd64 && make push-manifest && make publish'
@@ -567,7 +567,7 @@ php82-cli_arm64:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - echo 172.30.20.101 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php82-cli && make all-arm64'
@@ -579,7 +579,7 @@ rabbitmq310:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.18.1.71 >> /etc/hosts
+    - echo 172.18.1.171 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd rabbitmq310 && make all-amd64 && make push-manifest && make publish'
@@ -590,7 +590,7 @@ rabbitmq310_arm64:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - echo 172.30.20.101 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd rabbitmq310 && make all-arm64'
@@ -602,7 +602,7 @@ rabbitmq389:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.18.1.71 >> /etc/hosts
+    - echo 172.18.1.171 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd rabbitmq389 && make all-amd64 && make push-manifest && make publish'
@@ -613,7 +613,7 @@ rabbitmq389_arm64:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - echo 172.30.20.101 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd rabbitmq389 && make all-arm64'
@@ -631,7 +631,7 @@ redis60:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.18.1.71 >> /etc/hosts
+    - echo 172.18.1.171 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd redis60 && make all-amd64 && make push-manifest && make publish'
@@ -642,7 +642,7 @@ redis60_arm64:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - echo 172.30.20.101 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd redis60 && make all-arm64'
@@ -654,7 +654,7 @@ toolbox-bullseye:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.18.1.71 >> /etc/hosts
+    - echo 172.18.1.171 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd toolbox-bullseye && make all-amd64 && make push-manifest && make publish'
@@ -665,7 +665,7 @@ toolbox-bullseye_arm64:
   stage: level_2
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - echo 172.30.20.101 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd toolbox-bullseye && make all-arm64'

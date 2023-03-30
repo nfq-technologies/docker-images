@@ -10,7 +10,7 @@ mysql80:
   stage: level_1
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.18.1.71 >> /etc/hosts
+    - echo 172.18.1.171 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd mysql80 && make all-amd64 && make push-manifest && make publish'
@@ -22,7 +22,7 @@ mysql80_arm64:
   stage: level_1
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - echo 172.30.20.101 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd mysql80 && make all-arm64'
@@ -56,7 +56,7 @@ mariadb10:
   stage: level_1
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.18.1.71 >> /etc/hosts
+    - echo 172.18.1.171 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd mariadb10 && make all-amd64 && make push-manifest && make publish'
@@ -68,7 +68,7 @@ mariadb10_arm64:
   stage: level_1
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - echo 172.30.20.101 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd mariadb10 && make all-arm64'
@@ -116,7 +116,7 @@ dib:
   stage: level_1
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.18.1.71 >> /etc/hosts
+    - echo 172.18.1.171 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd dib && make all-amd64 && make push-manifest && make publish'
@@ -128,7 +128,7 @@ dib_arm64:
   stage: level_1
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - echo 172.30.20.101 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd dib && make all-arm64'
@@ -162,7 +162,7 @@ debian-bullseye:
   stage: level_1
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.18.1.71 >> /etc/hosts
+    - echo 172.18.1.171 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd debian-bullseye && make all-amd64 && make push-manifest && make publish'
@@ -174,7 +174,7 @@ debian-bullseye_arm64:
   stage: level_1
   before_script:
     # this ip has to go to host
-    - echo docker.nfq.lt 172.30.20.101 >> /etc/hosts
+    - echo 172.30.20.101 docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd debian-bullseye && make all-arm64'
