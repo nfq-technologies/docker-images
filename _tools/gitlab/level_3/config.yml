@@ -77,18 +77,6 @@ https-dev:
   needs: ["nginx114"]
   when: on_success
 
-mobile-proxy:
-  stage: level_3
-  script: 'cd mobile-proxy && make all && make publish'
-  needs: ["nginx114"]
-  when: on_success
-
-proxy:
-  stage: level_3
-  script: 'cd proxy && make all && make publish'
-  needs: ["nginx114"]
-  when: on_success
-
 chromium:
   stage: level_3
   script: 'cd chromium && make all && make publish'

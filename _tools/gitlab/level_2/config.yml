@@ -47,12 +47,6 @@ gearman:
   needs: ["debian-stretch"]
   when: on_success
 
-memcached1433:
-  stage: level_2
-  script: 'cd memcached1433 && make all && make publish'
-  needs: ["debian-stretch"]
-  when: on_success
-
 mongo32:
   stage: level_2
   script: 'cd mongo32 && make all && make publish'
@@ -89,12 +83,6 @@ varnish50:
   needs: ["debian-stretch"]
   when: on_success
 
-apache24-fastcgi:
-  stage: level_2
-  script: 'cd apache24-fastcgi && make all && make publish'
-  needs: ["debian-jessie"]
-  when: on_success
-
 elasticsearch22:
   stage: level_2
   script: 'cd elasticsearch22 && make all && make publish'
@@ -104,12 +92,6 @@ elasticsearch22:
 graylog20:
   stage: level_2
   script: 'cd graylog20 && make all && make publish'
-  needs: ["debian-jessie"]
-  when: on_success
-
-memcached1421:
-  stage: level_2
-  script: 'cd memcached1421 && make all && make publish'
   needs: ["debian-jessie"]
   when: on_success
 
@@ -135,24 +117,6 @@ redis2817:
   stage: level_2
   script: 'cd redis2817 && make all && make publish'
   needs: ["debian-jessie"]
-  when: on_success
-
-solr36:
-  stage: level_2
-  script: 'cd solr36 && make all && make publish'
-  needs: ["debian-jessie"]
-  when: on_success
-
-sphinxsearch:
-  stage: level_2
-  script: 'cd sphinxsearch && make all && make publish'
-  needs: ["debian-jessie"]
-  when: on_success
-
-apache2438-fastcgi:
-  stage: level_2
-  script: 'cd apache2438-fastcgi && make all && make publish'
-  needs: ["debian-buster"]
   when: on_success
 
 certbot:
@@ -219,18 +183,6 @@ toolbox-buster:
   stage: level_2
   script: 'cd toolbox-buster && make all && make publish'
   needs: ["debian-buster"]
-  when: on_success
-
-varnish61:
-  stage: level_2
-  script: 'cd varnish61 && make all && make publish'
-  needs: ["debian-buster"]
-  when: on_success
-
-apache2452-fastcgi:
-  stage: level_2
-  script: 'cd apache2452-fastcgi && make all && make publish'
-  needs: ["debian-bullseye"]
   when: on_success
 
 apache24:
