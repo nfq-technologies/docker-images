@@ -32,9 +32,15 @@ function ci_yml() {
 		echo "
 ${image}:
   stage: $level
+  before_script:
+    # this ip has to go to host
+    - echo "docker.nfq.lt 172.18.1.71" >> /etc/hosts
+    - docker login -u \$dockerhub_user -p \$dockerhub_token
+    - docker login -u \$nfqhub_user -p \$nfqhub_token https://docker.nfq.lt
   script: 'cd $image && make all-amd64 && make push-manifest && make publish'
   needs: [${image}_arm64]
   when: $automation
+  tags: [nfq_ip]
 ${image}_arm64:
   stage: $level
   before_script:
