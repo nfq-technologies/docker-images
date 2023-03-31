@@ -13,7 +13,7 @@ apt-get install -y --no-install-recommends tomcat8
 
 # Birt manual war
 mkdir -p /tmp/birt
-wget http://ftp.fau.de/eclipse/birt/downloads/drops/R-R1-4_5_0-201506092134/birt-runtime-4.5.0-20150609.zip -O /tmp/birt/birt.zip
+wget https://archive.eclipse.org/birt/downloads/drops/R-R1-4_5_0-201506092134/birt-runtime-4.5.0-20150609.zip -O /tmp/birt/birt.zip
 cd /tmp/birt
 unzip birt.zip
 mv birt-runtime-4_5_0/birt.war /var/lib/tomcat8/webapps
