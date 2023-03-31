@@ -22,13 +22,13 @@ trap cleanup EXIT
 
 # helper method to run actuall tests
 testQuery() {
-    user="$1"
-    password="$2"
-    query="$3"
+    mysql_ip="$1"
+    user="$2"
+    password="$3"
+    query="$4"
 
     echo -n "Testing query: '$query' .... "
-
-    if ! mysql -h 127.0.0.1 -P ${pid} -u ${user} -p${password} -e "${query}" >/dev/null; then
+    if ! docker exec "test${pid}_mysql_1" bash -c "mysql -h ${mysql_ip} -u ${user} -p${password} -e \"${query}\"" >/dev/null; then
 		echo "ERROR"
         exit 1
     fi
@@ -38,18 +38,18 @@ testQuery() {
 
 # start mysql server container with data volume from the tested image
 cat $tpl | sed \
--e "s#__MYSQL_PORT__#${pid}#" \
 -e "s#__MYSQL_IMAGE__#${mysqlImage}#" \
 -e "s#__MYSQL_DATA_IMAGE__#${mysqlDataImage}#" \
 > "${cwd}/docker-compose-${pid}.yml"
 
 docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" up -d &>/dev/null
 
-wait_for_connection "localhost:${pid}"
+ip_address="$(get_container_ip test${pid}_mysql_1)"
+wait_for_connection "${ip_address}:3306"
 
 # actual tests
-testQuery project project "use project"
-testQuery project project "show databases"
-testQuery project project "create database project_test"
-testQuery project project "use project_test"
+testQuery "$ip_address" project project "use project"
+testQuery "$ip_address" project project "show databases"
+testQuery "$ip_address" project project "create database project_test"
+testQuery "$ip_address" project project "use project_test"
 
