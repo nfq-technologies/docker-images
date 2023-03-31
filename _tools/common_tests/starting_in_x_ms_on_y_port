@@ -31,7 +31,11 @@ docker run -d --name $name $1 >/dev/null
 t1=$(date +%s%N)
 box_ip=$(get_container_ip $name)
 
-until netcat -nz -w1 "$box_ip" "$port" > /dev/null
+
+context="$(docker context inspect | jq -r ".[].Endpoints.docker.Host")"
+cmd_context="$([ "$context" = "unix:///var/run/docker.sock" ] && echo "" || echo "ssh $context")"
+
+until $cmd_context netcat -nz -w1 "$box_ip" "$port" > /dev/null
 do
 	t2=$(date +%s%N)
 	start_time_ms=$((($t2-$t1)/1000/1000))
@@ -55,4 +59,3 @@ fi
 echo "INFO: container started in $start_time_ms ms."
 
 exit 0
-
