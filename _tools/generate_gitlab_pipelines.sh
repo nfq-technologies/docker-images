@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -e
 
 levels="level_1 level_2 level_3 level_4 level_5"
@@ -25,6 +24,8 @@ function ci_yml() {
 		parent='"'$parent'"'
 	fi
 
+#	Overwrite here, to make EVERYTHING manual, good for re-running a single image
+#	Gitlab ci does not yet support flags for dependency
 #	automation='manual'
 	buildfile="$(readlink $image/Makefile)"
 	# If this is NOT a multi arch build
@@ -34,7 +35,7 @@ ${image}:
   stage: $level
   before_script:
     # this ip has to go to host
-    - echo "172.18.1.171 docker.nfq.lt" >> /etc/hosts
+    - echo "\$nfqhub_ip_os docker.nfq.lt" >> /etc/hosts
     - docker login -u \$dockerhub_user -p \$dockerhub_token
     - docker login -u \$nfqhub_user -p \$nfqhub_token https://docker.nfq.lt
   script: 'cd $image && make all-amd64 && make push-manifest && make publish'
@@ -45,7 +46,7 @@ ${image}_arm64:
   stage: $level
   before_script:
     # this ip has to go to host
-    - echo "172.30.20.101 docker.nfq.lt" >> /etc/hosts
+    - echo "\$nfqhub_ip_aws docker.nfq.lt" >> /etc/hosts
     - docker login -u \$dockerhub_user -p \$dockerhub_token
     - docker login -u \$nfqhub_user -p \$nfqhub_token https://docker.nfq.lt
   script: 'cd $image && make all-arm64'
