@@ -1,7 +1,7 @@
 
 postgres12:
   stage: level_1
-  script: 'cd postgres12 && make all && make publish'
+  script: 'cd postgres12 && make all && make publish && make clean'
   needs: []
   when: manual
   allow_failure: false
@@ -13,7 +13,7 @@ mysql80:
     - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mysql80 && make all-amd64 && make push-manifest && make publish'
+  script: 'cd mysql80 && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [mysql80_arm64]
   when: manual
   allow_failure: false
@@ -25,7 +25,7 @@ mysql80_arm64:
     - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mysql80 && make all-arm64'
+  script: 'cd mysql80 && make all-arm64 && make clean'
   tags: [arm]
   needs: []
   when: manual
@@ -33,21 +33,21 @@ mysql80_arm64:
 
 mysql57:
   stage: level_1
-  script: 'cd mysql57 && make all && make publish'
+  script: 'cd mysql57 && make all && make publish && make clean'
   needs: []
   when: manual
   allow_failure: false
 
 mysql56:
   stage: level_1
-  script: 'cd mysql56 && make all && make publish'
+  script: 'cd mysql56 && make all && make publish && make clean'
   needs: []
   when: manual
   allow_failure: false
 
 mysql55:
   stage: level_1
-  script: 'cd mysql55 && make all && make publish'
+  script: 'cd mysql55 && make all && make publish && make clean'
   needs: []
   when: manual
   allow_failure: false
@@ -59,7 +59,7 @@ mariadb10:
     - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mariadb10 && make all-amd64 && make push-manifest && make publish'
+  script: 'cd mariadb10 && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [mariadb10_arm64]
   when: manual
   allow_failure: false
@@ -71,7 +71,7 @@ mariadb10_arm64:
     - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mariadb10 && make all-arm64'
+  script: 'cd mariadb10 && make all-arm64 && make clean'
   tags: [arm]
   needs: []
   when: manual
@@ -79,35 +79,35 @@ mariadb10_arm64:
 
 lib-smartclient130:
   stage: level_1
-  script: 'cd lib-smartclient130 && make all && make publish'
+  script: 'cd lib-smartclient130 && make all && make publish && make clean'
   needs: []
   when: manual
   allow_failure: false
 
 lib-smartclient121:
   stage: level_1
-  script: 'cd lib-smartclient121 && make all && make publish'
+  script: 'cd lib-smartclient121 && make all && make publish && make clean'
   needs: []
   when: manual
   allow_failure: false
 
 lib-smartclient120:
   stage: level_1
-  script: 'cd lib-smartclient120 && make all && make publish'
+  script: 'cd lib-smartclient120 && make all && make publish && make clean'
   needs: []
   when: manual
   allow_failure: false
 
 lib-smartclient111:
   stage: level_1
-  script: 'cd lib-smartclient111 && make all && make publish'
+  script: 'cd lib-smartclient111 && make all && make publish && make clean'
   needs: []
   when: manual
   allow_failure: false
 
 lib-smartclient100:
   stage: level_1
-  script: 'cd lib-smartclient100 && make all && make publish'
+  script: 'cd lib-smartclient100 && make all && make publish && make clean'
   needs: []
   when: manual
   allow_failure: false
@@ -119,7 +119,7 @@ dib:
     - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd dib && make all-amd64 && make push-manifest && make publish'
+  script: 'cd dib && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [dib_arm64]
   when: manual
   allow_failure: false
@@ -131,7 +131,7 @@ dib_arm64:
     - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd dib && make all-arm64'
+  script: 'cd dib && make all-arm64 && make clean'
   tags: [arm]
   needs: []
   when: manual
@@ -139,21 +139,21 @@ dib_arm64:
 
 debian-stretch:
   stage: level_1
-  script: 'cd debian-stretch && make all && make publish'
+  script: 'cd debian-stretch && make all && make publish && make clean'
   needs: []
   when: manual
   allow_failure: false
 
 debian-jessie:
   stage: level_1
-  script: 'cd debian-jessie && make all && make publish'
+  script: 'cd debian-jessie && make all && make publish && make clean'
   needs: []
   when: manual
   allow_failure: false
 
 debian-buster:
   stage: level_1
-  script: 'cd debian-buster && make all && make publish'
+  script: 'cd debian-buster && make all && make publish && make clean'
   needs: []
   when: manual
   allow_failure: false
@@ -165,7 +165,7 @@ debian-bullseye:
     - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd debian-bullseye && make all-amd64 && make push-manifest && make publish'
+  script: 'cd debian-bullseye && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [debian-bullseye_arm64]
   when: manual
   allow_failure: false
@@ -177,7 +177,7 @@ debian-bullseye_arm64:
     - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd debian-bullseye && make all-arm64'
+  script: 'cd debian-bullseye && make all-arm64 && make clean'
   tags: [arm]
   needs: []
   when: manual

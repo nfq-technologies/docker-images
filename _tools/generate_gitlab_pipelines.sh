@@ -38,7 +38,7 @@ ${image}:
     - echo "\$nfqhub_ip_os docker.nfq.lt" >> /etc/hosts
     - docker login -u \$dockerhub_user -p \$dockerhub_token
     - docker login -u \$nfqhub_user -p \$nfqhub_token https://docker.nfq.lt
-  script: 'cd $image && make all-amd64 && make push-manifest && make publish'
+  script: 'cd $image && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [${image}_arm64]
   when: $automation
   tags: [nfq_ip]
@@ -49,7 +49,7 @@ ${image}_arm64:
     - echo "\$nfqhub_ip_aws docker.nfq.lt" >> /etc/hosts
     - docker login -u \$dockerhub_user -p \$dockerhub_token
     - docker login -u \$nfqhub_user -p \$nfqhub_token https://docker.nfq.lt
-  script: 'cd $image && make all-arm64'
+  script: 'cd $image && make all-arm64 && make clean'
   tags: [arm]
   needs: [$parent]
   when: $automation
@@ -58,7 +58,7 @@ ${image}_arm64:
 		echo "
 ${image}:
   stage: $level
-  script: 'cd $image && make all && make publish'
+  script: 'cd $image && make all && make publish && make clean'
   needs: [$parent]
   when: $automation
 "
