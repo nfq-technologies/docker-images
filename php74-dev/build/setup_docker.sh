@@ -66,7 +66,7 @@ phpEnableModule curl
 
 
 curl -sSL 'https://getcomposer.org/download/latest-1.x/composer.phar' > /usr/local/bin/composer_v1.phar
-curl -sSL 'https://getcomposer.org/download/latest-2.2.x/composer.phar' > /usr/local/bin/composer_v2.phar
+curl -sSL 'https://getcomposer.org/download/latest-2.x/composer.phar' > /usr/local/bin/composer_v2.phar
 chmod a+x /usr/local/bin/composer*.phar
 ln -sf /usr/local/bin/composer_v1.phar /usr/local/bin/composer
 
