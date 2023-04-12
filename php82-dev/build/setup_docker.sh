@@ -64,7 +64,7 @@ phpEnableModule phar
 phpEnableModule iconv
 phpEnableModule mbstring
 
-curl -sSL 'https://getcomposer.org/download/latest-2.2.x/composer.phar' > /usr/local/bin/composer
+curl -sSL 'https://getcomposer.org/download/latest-2.x/composer.phar' > /usr/local/bin/composer
 chmod a+x /usr/local/bin/composer
 
 
