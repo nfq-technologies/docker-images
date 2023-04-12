@@ -1,18 +1,17 @@
 # base-image-Makefile
 
 IMAGE_BASE_NAME = $(shell basename $(shell pwd))
-IMAGE_TYPE = $(shell basename $(shell dirname $(shell pwd)))
-IMAGE_REGISTRY = $(shell ../_tools/makefiles/get_default_registry.sh)
+IMAGE_TYPE = nfqlt
+IMAGE_REGISTRY = docker.nfq.lt/
 IMAGE_FULL_NAME = $(IMAGE_REGISTRY)$(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
-CHILDREN = $(shell ../_tools/relational_sorting.php)
+CHILDREN = $(shell ../_tools/sorting.sh)
+IMAGE_PUBLISH_NAME = $(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
 
 ARM64_CONTEXT = $(shell [ "`uname -m`" = "x86_64" ] && echo "arm" || echo "default" )
 AMD64_CONTEXT = "default"
 
 COMMANDS = all all-arm64 all-amd64 build build-arm64 build-amd64 test test-arm64 test-amd64 push push-arm64 push-amd64 pull clean branch-all branch-build run run-bash publish publish-amd64 publish-arm64
 SILENT_COMMANDS = help status calc-start calc-stop get-image-name
-
--include ../../tools/makefiles/base-image-custom.Makefile
 
 .PHONY: $(COMMANDS) $(SILENT_COMMANDS)
 .SILENT: $(SILENT_COMMANDS)
@@ -66,17 +65,8 @@ build-arch:
 	@echo "# Building context $(CONTEXT)..."
 	@echo
 	sed 's~FROM nfqlt~FROM ${IMAGE_REGISTRY}nfqlt~' Dockerfile > .Dockerfile_$(ARCH)
-	DOCKER_CONTEXT=$(CONTEXT) docker build --no-cache -f .Dockerfile_$(ARCH) -t $(IMAGE_FULL_NAME):$(ARCH) ./
+	DOCKER_CONTEXT=$(CONTEXT) docker build --pull --no-cache -f .Dockerfile_$(ARCH) -t $(IMAGE_FULL_NAME):$(ARCH) ./
 	rm -f .Dockerfile_$(ARCH)
-	make status
-
-manifest:
-	@echo
-	@echo "# Building manifest..."
-	echo
-	docker manifest rm $(IMAGE_FULL_NAME) || true
-	docker manifest create $(IMAGE_FULL_NAME) --amend $(IMAGE_FULL_NAME):amd64 --amend $(IMAGE_FULL_NAME):arm64
-	docker manifest push $(IMAGE_FULL_NAME):latest
 	make status
 
 test:
@@ -100,7 +90,16 @@ test-arch:
 	@echo
 
 push:
-	make -j2 push-amd64 push-arm64
+	@echo
+	@echo "# Pushing images to docker registry..."
+	@echo
+	$(MAKE) -j2 push-amd64 push-arm64
+	$(MAKE) push-manifest
+
+push-manifest:
+	@echo
+	@echo "# Creating manifest of multiarch image..."
+	@echo
 	docker manifest rm $(IMAGE_FULL_NAME):latest || true
 	docker manifest create $(IMAGE_FULL_NAME):latest $(IMAGE_FULL_NAME):amd64 $(IMAGE_FULL_NAME):arm64
 	docker manifest push $(IMAGE_FULL_NAME):latest
@@ -116,11 +115,6 @@ push-arm64:
 	@echo "# Pushing arm image to registry..."
 	@echo
 	DOCKER_CONTEXT=$(ARM64_CONTEXT) docker push $(IMAGE_FULL_NAME):arm64
-
-manifest:
-	docker manifest rm $(IMAGE_FULL_NAME):latest
-	docker manifest create $(IMAGE_FULL_NAME):latest $(IMAGE_FULL_NAME):amd64 $(IMAGE_FULL_NAME):arm64
-	docker manifest push $(IMAGE_FULL_NAME):latest
 
 pull:
 	@echo
@@ -139,15 +133,15 @@ clean:
 	docker rm -f $(shell docker ps -a | grep ' $(IMAGE_FULL_NAME):' | cut -d' ' -f1) 2>/dev/null || true
 	docker rm -f $(shell docker ps -a | grep ' $(IMAGE_FULL_NAME) ' | cut -d' ' -f1) 2>/dev/null || true
 	bash -c "docker images |\
-		 grep '^$(IMAGE_FULL_NAME) ' |\
-		 tr -s ' ' ':' |\
-		 cut -d: -f2 |\
-		 xargs -n1 -IT docker rmi $(IMAGE_FULL_NAME):T 2>/dev/null || true"
+		grep '^$(IMAGE_FULL_NAME) ' |\
+		tr -s ' ' ':' |\
+		cut -d: -f2 |\
+		xargs -n1 -IT docker rmi $(IMAGE_FULL_NAME):T 2>/dev/null || true"
 	bash -c "docker images |\
-		 grep '^$(IMAGE_TYPE)/$(IMAGE_BASE_NAME) ' |\
-		 tr -s ' ' ':' |\
-		 cut -d: -f2 |\
-		 xargs -n1 -IT docker rmi $(IMAGE_TYPE)/$(IMAGE_BASE_NAME):T 2>/dev/null || true"
+		grep '^$(IMAGE_TYPE)/$(IMAGE_BASE_NAME) ' |\
+		tr -s ' ' ':' |\
+		cut -d: -f2 |\
+		xargs -n1 -IT docker rmi $(IMAGE_TYPE)/$(IMAGE_BASE_NAME):T 2>/dev/null || true"
 	make status
 
 
@@ -176,21 +170,28 @@ get-image-name:
 
 publish:
 	@echo
-	@echo "# Publishing image to docker hub..."
+	@echo "# Publishing images to docker hub..."
 	@echo
 	$(MAKE) -j2 publish-amd64 publish-arm64
+	$(MAKE) publish-manifest
+
+publish-manifest:
+	@echo
+	@echo "# Publishing manifest of multiarch image..."
+	@echo
 	docker manifest rm $(IMAGE_PUBLISH_NAME):latest || true
 	docker manifest create $(IMAGE_PUBLISH_NAME):latest $(IMAGE_PUBLISH_NAME):amd64 $(IMAGE_PUBLISH_NAME):arm64
 	docker manifest push $(IMAGE_PUBLISH_NAME):latest
 
 publish-arm64:
-	$(MAKE) CONTEXT=$(ARM64_CONTEXT) ARCH=arm64 publish-arch
+	$(MAKE) ARCH=arm64 publish-arch
+
 publish-amd64:
-	$(MAKE) CONTEXT=$(AMD64_CONTEXT) ARCH=amd64 publish-arch
+	$(MAKE) ARCH=amd64 publish-arch
 
 publish-arch:
-	DOCKER_CONTEXT=$(CONTEXT) docker pull ${IMAGE_FULL_NAME}:$(ARCH)
-	DOCKER_CONTEXT=$(CONTEXT) docker tag ${IMAGE_FULL_NAME}:$(ARCH) ${IMAGE_PUBLISH_NAME}:$(ARCH)
-	DOCKER_CONTEXT=$(CONTEXT) docker push ${IMAGE_PUBLISH_NAME}:$(ARCH)
-	DOCKER_CONTEXT=$(CONTEXT) docker rmi ${IMAGE_PUBLISH_NAME}:$(ARCH)
+	docker pull ${IMAGE_FULL_NAME}:$(ARCH)
+	docker tag ${IMAGE_FULL_NAME}:$(ARCH) ${IMAGE_PUBLISH_NAME}:$(ARCH)
+	docker push ${IMAGE_PUBLISH_NAME}:$(ARCH)
+	docker rmi ${IMAGE_PUBLISH_NAME}:$(ARCH)
 

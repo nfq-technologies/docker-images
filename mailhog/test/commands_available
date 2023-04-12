@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-CMD="docker run -it --rm $1"
+CMD="docker run --rm $1"
 
 function check_command {
 	echo -n "Checking command $1 ... "

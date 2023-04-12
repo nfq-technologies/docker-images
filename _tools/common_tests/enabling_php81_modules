@@ -1,7 +1,7 @@
 #!/bin/bash
 
 IMAGE=$1
-CMD="docker run -it -e NFQ_ENABLE_PHP_MODULES $IMAGE run-parts /etc/rc.d"
+CMD="docker run -e NFQ_ENABLE_PHP_MODULES $IMAGE run-parts /etc/rc.d"
 
 
 # test enabling some modules
@@ -20,7 +20,7 @@ $CMD | grep -i 'Enabling.*php.*modules.*apcu_bc apcu bcmath bz2 calendar ctype c
 # test every module load status
 
 test_modules_load() {
-	local cmd="docker run -it -e NFQ_ENABLE_PHP_MODULES $IMAGE"
+	local cmd="docker run -e NFQ_ENABLE_PHP_MODULES $IMAGE"
 	local modules=$@
 
 	## perform test

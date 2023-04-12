@@ -1,5 +1,5 @@
 
-CHILDREN = $(shell _tools/relational_sorting.php)
+CHILDREN = $(shell _tools/sorting.sh)
 
 # group children by level into CHILDREN<level_number>LEVEL vars
 LEVELS = 1 2 3 4 5

@@ -3,6 +3,8 @@
 set -x
 set -e
 
+arch="$([ "`uname -m`" = "aarch64" ] && echo "aarch64" || echo "x86_64")"
+
 # Update apt repos
 apt-get update
 
@@ -16,7 +18,7 @@ python3 -m pip install -U pip
 pip install awsebcli
 
 # Install awscli v2
-curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+curl "https://awscli.amazonaws.com/awscli-exe-linux-$arch.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
 ./aws/install
 rm -rf awscliv2.zip ./aws

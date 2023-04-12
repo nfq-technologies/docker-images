@@ -1,0 +1,17 @@
+include: _tools/gitlab/*/*.yml
+stages:
+  - level_1
+  - level_2
+  - level_3
+  - level_4
+  - level_5
+
+default:
+  image: nfqlt/aws-docker-tools
+  tags: [nfq_ip]
+  before_script:
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  after_script:
+    - docker logout
+    - docker logout docker.nfq.lt

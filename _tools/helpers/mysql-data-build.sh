@@ -5,7 +5,7 @@ TARGET_IMAGE="$(basename $(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd))"
 
 # prepate volume
 docker build -t "tmp_build_image_$TARGET_IMAGE" ./
-docker run --name "tmp_build_$TARGET_IMAGE tmp_build_image_$TARGET_IMAGE"
+docker run --name "tmp_build_$TARGET_IMAGE" "tmp_build_image_$TARGET_IMAGE"
 docker cp "tmp_build_$TARGET_IMAGE:/backup.tar" ./
 
 # create temp dockerfile

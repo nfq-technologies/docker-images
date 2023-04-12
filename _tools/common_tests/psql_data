@@ -42,7 +42,8 @@ cat $tpl | sed \
 docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" up -d &>/dev/null
 
 
-wait_for_psql_connection "localhost:${pid}"
+ip_address="$(get_container_ip test${pid}_psql_1)"
+wait_for_psql_connection "${ip_address}:${pid}"
 
 
 # actual tests

@@ -1,16 +1,14 @@
 # base-image-amd64-Makefile
 
 IMAGE_BASE_NAME = $(shell basename $(shell pwd))
-IMAGE_TYPE = $(shell basename $(shell dirname $(shell pwd)))
-IMAGE_REGISTRY = $(shell ../_tools/makefiles/get_default_registry.sh)
+IMAGE_TYPE = nfqlt
+IMAGE_REGISTRY = docker.nfq.lt/
 IMAGE_FULL_NAME = $(IMAGE_REGISTRY)$(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
-CHILDREN = $(shell ../_tools/relational_sorting.php)
+CHILDREN = $(shell ../_tools/sorting.sh)
 
 
 COMMANDS = all build test push pull clean branch-all branch-build run run-bash
 SILENT_COMMANDS = help status calc-start calc-stop get-image-name
-
--include ../../tools/makefiles/base-image-custom.Makefile
 
 .PHONY: $(COMMANDS) $(SILENT_COMMANDS)
 .SILENT: $(SILENT_COMMANDS)
@@ -47,7 +45,7 @@ build:
 	@echo "# Building image..."
 	@echo
 	sed 's~FROM nfqlt~FROM ${IMAGE_REGISTRY}nfqlt~' Dockerfile > .Dockerfile
-	docker build --no-cache -f .Dockerfile -t $(IMAGE_FULL_NAME) ./
+	docker build --pull --no-cache -f .Dockerfile -t $(IMAGE_FULL_NAME) ./
 	rm .Dockerfile
 	make status
 
@@ -99,6 +97,14 @@ clean:
 		 xargs -n1 -IT docker rmi $(IMAGE_TYPE)/$(IMAGE_BASE_NAME):T 2>/dev/null || true"
 	make status
 
+publish:
+	@echo
+	@echo "# Publishing image to docker hub..."
+	@echo
+	docker pull ${IMAGE_FULL_NAME}
+	docker tag ${IMAGE_FULL_NAME} $(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
+	docker push $(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
+	docker rmi $(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
 
 status:
 	echo

@@ -1,0 +1,663 @@
+
+postgres12-data:
+  stage: level_2
+  script: 'cd postgres12-data && make all && make publish && make clean'
+  needs: ["postgres12"]
+  when: on_success
+
+mysql80-data:
+  stage: level_2
+  script: 'cd mysql80-data && make all && make publish && make clean'
+  needs: ["mysql80"]
+  when: on_success
+
+mysql57-data:
+  stage: level_2
+  script: 'cd mysql57-data && make all && make publish && make clean'
+  needs: ["mysql57"]
+  when: on_success
+
+mysql56-data:
+  stage: level_2
+  script: 'cd mysql56-data && make all && make publish && make clean'
+  needs: ["mysql56"]
+  when: on_success
+
+mysql55-data:
+  stage: level_2
+  script: 'cd mysql55-data && make all && make publish && make clean'
+  needs: ["mysql55"]
+  when: on_success
+
+birt45:
+  stage: level_2
+  script: 'cd birt45 && make all && make publish && make clean'
+  needs: ["debian-stretch"]
+  when: on_success
+
+chromedriver73:
+  stage: level_2
+  script: 'cd chromedriver73 && make all && make publish && make clean'
+  needs: ["debian-stretch"]
+  when: on_success
+
+gearman:
+  stage: level_2
+  script: 'cd gearman && make all && make publish && make clean'
+  needs: ["debian-stretch"]
+  when: on_success
+
+mongo32:
+  stage: level_2
+  script: 'cd mongo32 && make all && make publish && make clean'
+  needs: ["debian-stretch"]
+  when: on_success
+
+nginx110:
+  stage: level_2
+  script: 'cd nginx110 && make all && make publish && make clean'
+  needs: ["debian-stretch"]
+  when: on_success
+
+php70-cli:
+  stage: level_2
+  script: 'cd php70-cli && make all && make publish && make clean'
+  needs: ["debian-stretch"]
+  when: on_success
+
+rabbitmq366:
+  stage: level_2
+  script: 'cd rabbitmq366 && make all && make publish && make clean'
+  needs: ["debian-stretch"]
+  when: on_success
+
+redis326:
+  stage: level_2
+  script: 'cd redis326 && make all && make publish && make clean'
+  needs: ["debian-stretch"]
+  when: on_success
+
+varnish50:
+  stage: level_2
+  script: 'cd varnish50 && make all && make publish && make clean'
+  needs: ["debian-stretch"]
+  when: on_success
+
+elasticsearch22:
+  stage: level_2
+  script: 'cd elasticsearch22 && make all && make publish && make clean'
+  needs: ["debian-jessie"]
+  when: on_success
+
+graylog20:
+  stage: level_2
+  script: 'cd graylog20 && make all && make publish && make clean'
+  needs: ["debian-jessie"]
+  when: on_success
+
+mongo24:
+  stage: level_2
+  script: 'cd mongo24 && make all && make publish && make clean'
+  needs: ["debian-jessie"]
+  when: on_success
+
+php56-cli:
+  stage: level_2
+  script: 'cd php56-cli && make all && make publish && make clean'
+  needs: ["debian-jessie"]
+  when: on_success
+
+rabbitmq335:
+  stage: level_2
+  script: 'cd rabbitmq335 && make all && make publish && make clean'
+  needs: ["debian-jessie"]
+  when: on_success
+
+redis2817:
+  stage: level_2
+  script: 'cd redis2817 && make all && make publish && make clean'
+  needs: ["debian-jessie"]
+  when: on_success
+
+certbot:
+  stage: level_2
+  script: 'cd certbot && make all && make publish && make clean'
+  needs: ["debian-buster"]
+  when: on_success
+
+chromedriver83:
+  stage: level_2
+  script: 'cd chromedriver83 && make all && make publish && make clean'
+  needs: ["debian-buster"]
+  when: on_success
+
+elasticsearch56:
+  stage: level_2
+  script: 'cd elasticsearch56 && make all && make publish && make clean'
+  needs: ["debian-buster"]
+  when: on_success
+
+gitsync:
+  stage: level_2
+  script: 'cd gitsync && make all && make publish && make clean'
+  needs: ["debian-buster"]
+  when: on_success
+
+memcached156:
+  stage: level_2
+  script: 'cd memcached156 && make all && make publish && make clean'
+  needs: ["debian-buster"]
+  when: on_success
+
+nginx114:
+  stage: level_2
+  script: 'cd nginx114 && make all && make publish && make clean'
+  needs: ["debian-buster"]
+  when: on_success
+
+nodeserver8:
+  stage: level_2
+  script: 'cd nodeserver8 && make all && make publish && make clean'
+  needs: ["debian-buster"]
+  when: on_success
+
+rabbitmq378:
+  stage: level_2
+  script: 'cd rabbitmq378 && make all && make publish && make clean'
+  needs: ["debian-buster"]
+  when: on_success
+
+redis503:
+  stage: level_2
+  script: 'cd redis503 && make all && make publish && make clean'
+  needs: ["debian-buster"]
+  when: on_success
+
+router:
+  stage: level_2
+  script: 'cd router && make all && make publish && make clean'
+  needs: ["debian-buster"]
+  when: on_success
+
+toolbox-buster:
+  stage: level_2
+  script: 'cd toolbox-buster && make all && make publish && make clean'
+  needs: ["debian-buster"]
+  when: on_success
+
+apache24:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd apache24 && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [apache24_arm64]
+  when: on_success
+  tags: [nfq_ip]
+apache24_arm64:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd apache24 && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["debian-bullseye"]
+  when: on_success
+
+aws-mock:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd aws-mock && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [aws-mock_arm64]
+  when: on_success
+  tags: [nfq_ip]
+aws-mock_arm64:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd aws-mock && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["debian-bullseye"]
+  when: on_success
+
+chromedriver:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd chromedriver && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [chromedriver_arm64]
+  when: on_success
+  tags: [nfq_ip]
+chromedriver_arm64:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd chromedriver && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["debian-bullseye"]
+  when: on_success
+
+dev:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd dev && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [dev_arm64]
+  when: on_success
+  tags: [nfq_ip]
+dev_arm64:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd dev && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["debian-bullseye"]
+  when: on_success
+
+docker18ce:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd docker18ce && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [docker18ce_arm64]
+  when: on_success
+  tags: [nfq_ip]
+docker18ce_arm64:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd docker18ce && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["debian-bullseye"]
+  when: on_success
+
+elasticsearch68:
+  stage: level_2
+  script: 'cd elasticsearch68 && make all && make publish && make clean'
+  needs: ["debian-bullseye"]
+  when: on_success
+
+elasticsearch710:
+  stage: level_2
+  script: 'cd elasticsearch710 && make all && make publish && make clean'
+  needs: ["debian-bullseye"]
+  when: on_success
+
+elasticsearch716:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd elasticsearch716 && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [elasticsearch716_arm64]
+  when: on_success
+  tags: [nfq_ip]
+elasticsearch716_arm64:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd elasticsearch716 && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["debian-bullseye"]
+  when: on_success
+
+elasticsearch72:
+  stage: level_2
+  script: 'cd elasticsearch72 && make all && make publish && make clean'
+  needs: ["debian-bullseye"]
+  when: on_success
+
+elasticsearch75:
+  stage: level_2
+  script: 'cd elasticsearch75 && make all && make publish && make clean'
+  needs: ["debian-bullseye"]
+  when: on_success
+
+elasticsearch77:
+  stage: level_2
+  script: 'cd elasticsearch77 && make all && make publish && make clean'
+  needs: ["debian-bullseye"]
+  when: on_success
+
+elasticsearch79:
+  stage: level_2
+  script: 'cd elasticsearch79 && make all && make publish && make clean'
+  needs: ["debian-bullseye"]
+  when: on_success
+
+mailhog:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd mailhog && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [mailhog_arm64]
+  when: on_success
+  tags: [nfq_ip]
+mailhog_arm64:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd mailhog && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["debian-bullseye"]
+  when: on_success
+
+memcached169:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd memcached169 && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [memcached169_arm64]
+  when: on_success
+  tags: [nfq_ip]
+memcached169_arm64:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd memcached169 && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["debian-bullseye"]
+  when: on_success
+
+mongo50:
+  stage: level_2
+  script: 'cd mongo50 && make all && make publish && make clean'
+  needs: ["debian-bullseye"]
+  when: on_success
+
+nginx118:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd nginx118 && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [nginx118_arm64]
+  when: on_success
+  tags: [nfq_ip]
+nginx118_arm64:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd nginx118 && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["debian-bullseye"]
+  when: on_success
+
+nodeserver10:
+  stage: level_2
+  script: 'cd nodeserver10 && make all && make publish && make clean'
+  needs: ["debian-bullseye"]
+  when: on_success
+
+nodeserver12:
+  stage: level_2
+  script: 'cd nodeserver12 && make all && make publish && make clean'
+  needs: ["debian-bullseye"]
+  when: on_success
+
+nodeserver14:
+  stage: level_2
+  script: 'cd nodeserver14 && make all && make publish && make clean'
+  needs: ["debian-bullseye"]
+  when: on_success
+
+nodeserver16:
+  stage: level_2
+  script: 'cd nodeserver16 && make all && make publish && make clean'
+  needs: ["debian-bullseye"]
+  when: on_success
+
+nodeserver18:
+  stage: level_2
+  script: 'cd nodeserver18 && make all && make publish && make clean'
+  needs: ["debian-bullseye"]
+  when: on_success
+
+nodeserver19:
+  stage: level_2
+  script: 'cd nodeserver19 && make all && make publish && make clean'
+  needs: ["debian-bullseye"]
+  when: on_success
+
+phantomjs19:
+  stage: level_2
+  script: 'cd phantomjs19 && make all && make publish && make clean'
+  needs: ["debian-bullseye"]
+  when: on_success
+
+phantomjs21:
+  stage: level_2
+  script: 'cd phantomjs21 && make all && make publish && make clean'
+  needs: ["debian-bullseye"]
+  when: on_success
+
+php71-cli:
+  stage: level_2
+  script: 'cd php71-cli && make all && make publish && make clean'
+  needs: ["debian-bullseye"]
+  when: on_success
+
+php72-cli:
+  stage: level_2
+  script: 'cd php72-cli && make all && make publish && make clean'
+  needs: ["debian-bullseye"]
+  when: on_success
+
+php73-cli:
+  stage: level_2
+  script: 'cd php73-cli && make all && make publish && make clean'
+  needs: ["debian-bullseye"]
+  when: on_success
+
+php74-cli:
+  stage: level_2
+  script: 'cd php74-cli && make all && make publish && make clean'
+  needs: ["debian-bullseye"]
+  when: on_success
+
+php80-cli:
+  stage: level_2
+  script: 'cd php80-cli && make all && make publish && make clean'
+  needs: ["debian-bullseye"]
+  when: on_success
+
+php81-cli:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php81-cli && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [php81-cli_arm64]
+  when: on_success
+  tags: [nfq_ip]
+php81-cli_arm64:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php81-cli && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["debian-bullseye"]
+  when: on_success
+
+php82-cli:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php82-cli && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [php82-cli_arm64]
+  when: on_success
+  tags: [nfq_ip]
+php82-cli_arm64:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php82-cli && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["debian-bullseye"]
+  when: on_success
+
+rabbitmq310:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd rabbitmq310 && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [rabbitmq310_arm64]
+  when: on_success
+  tags: [nfq_ip]
+rabbitmq310_arm64:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd rabbitmq310 && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["debian-bullseye"]
+  when: on_success
+
+rabbitmq389:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd rabbitmq389 && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [rabbitmq389_arm64]
+  when: on_success
+  tags: [nfq_ip]
+rabbitmq389_arm64:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd rabbitmq389 && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["debian-bullseye"]
+  when: on_success
+
+rabbitmq38:
+  stage: level_2
+  script: 'cd rabbitmq38 && make all && make publish && make clean'
+  needs: ["debian-bullseye"]
+  when: on_success
+
+redis60:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd redis60 && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [redis60_arm64]
+  when: on_success
+  tags: [nfq_ip]
+redis60_arm64:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd redis60 && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["debian-bullseye"]
+  when: on_success
+
+toolbox-bullseye:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd toolbox-bullseye && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [toolbox-bullseye_arm64]
+  when: on_success
+  tags: [nfq_ip]
+toolbox-bullseye_arm64:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd toolbox-bullseye && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["debian-bullseye"]
+  when: on_success
+
+toolbox:
+  stage: level_2
+  script: 'cd toolbox && make all && make publish && make clean'
+  needs: ["debian-bullseye"]
+  when: on_success
