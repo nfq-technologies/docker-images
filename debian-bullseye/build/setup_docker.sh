@@ -82,6 +82,13 @@ wget ftp.lt.debian.org/debian/pool/main/g/gojq/gojq_0.12.11-1_$arch.deb -O ./goj
 apt install ./gojq.deb
 rm ./gojq.deb
 
+# Preforming git safe.directory for all users
+# Docs: https://git-scm.com/docs/git-config/2.35.2#Documentation/git-config.txt-safedirectory
+# Reason: Git not fails, if a repositry has files by owned by a different user,
+# 	  than the command being executed.
+git config --global --add safe.directory '*'
+sudo -u project git config --global --add safe.directory '*'
+
 # Generate locales
 echo en_US.UTF-8 UTF-8 > /etc/locale.gen
 dpkg-reconfigure locales
