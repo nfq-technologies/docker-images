@@ -61,21 +61,12 @@ apt-get install -y --no-install-recommends mariadb-client
 
 # install composer
 phpEnableModule phar
-phpEnableModule zip
 phpEnableModule iconv
 phpEnableModule mbstring
-phpEnableModule curl
-
-curl -sSL 'https://getcomposer.org/download/latest-2.x/composer.phar' > /usr/local/bin/composer.phar
-chmod a+x /usr/local/bin/composer*.phar
-ln -sf /usr/local/bin/composer.phar /usr/local/bin/composer
 
 
-# disable enabled modules
-phpDisableModule zip
-phpDisableModule iconv
-phpDisableModule mbstring
-phpDisableModule curl
+curl -sSL 'https://getcomposer.org/download/latest-2.x/composer.phar' > /usr/local/bin/composer
+chmod a+x /usr/local/bin/composer
 
 
 cp -frv /build/files/* / || true
