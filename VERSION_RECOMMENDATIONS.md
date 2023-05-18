@@ -4,7 +4,7 @@
 | [nginx](https://packages.debian.org/search?keywords=nginx&searchon=names&suite=all&section=all) | nginx118 | nginx114 |
 | [mysql](https://en.wikipedia.org/wiki/MySQL#Release_history) | mysql80 | mysql57 |
 | [php](https://www.php.net/supported-versions.php) | php82 | php81 |
-| [node](https://nodejs.org/en/download/releases) | node18 | node19 |
+| [node](https://nodejs.org/en/download/releases) | node20 | node19 |
 | [rabbitmq](https://packages.debian.org/search?suite=all&section=all&arch=any&searchon=names&keywords=rabbitmq-server) | rabbitmq310 | rabbitmq38 |
 | [redis](https://packages.debian.org/search?suite=all&section=all&arch=any&searchon=names&keywords=redis) | redis60 | redis503 |
 | [elasticsearch](https://www.elastic.co/support/eol) | elasticsearch716 | elasticsearch710 |
