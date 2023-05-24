@@ -25,6 +25,8 @@ digraph G {
     "nfqlt/debian-bullseye"->"nfqlt/chromedriver";
     "nfqlt/chromium" [fillcolor=orange label="chromium"];
     "nfqlt/toolbox-buster"->"nfqlt/chromium";
+    "nfqlt/cypress12" [fillcolor=orange label="cypress12"];
+    "nfqlt/node20"->"nfqlt/cypress12";
     "nfqlt/cypress4" [fillcolor=orange label="cypress4"];
     "nfqlt/node12"->"nfqlt/cypress4";
     "nfqlt/cypress5" [fillcolor=orange label="cypress5"];
