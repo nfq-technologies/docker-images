@@ -1,4 +1,4 @@
-FROM nfqlt/debian-bullseye
+FROM nfqlt/debian-bookworm
 
 ENV APACHE_DOCUMENTROOT /var/www
 ENV APACHE_RUN_DIR /var/run/apache2

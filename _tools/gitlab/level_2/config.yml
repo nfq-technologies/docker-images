@@ -185,29 +185,6 @@ toolbox-buster:
   needs: ["debian-buster"]
   when: on_success
 
-apache24:
-  stage: level_2
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd apache24 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [apache24_arm64]
-  when: on_success
-  tags: [nfq_ip]
-apache24_arm64:
-  stage: level_2
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd apache24 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bullseye"]
-  when: on_success
-
 aws-mock:
   stage: level_2
   before_script:
@@ -683,4 +660,27 @@ toolbox:
   stage: level_2
   script: 'cd toolbox && make all && make publish && make clean'
   needs: ["debian-bullseye"]
+  when: on_success
+
+apache24:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd apache24 && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [apache24_arm64]
+  when: on_success
+  tags: [nfq_ip]
+apache24_arm64:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd apache24 && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["debian-bookworm"]
   when: on_success
