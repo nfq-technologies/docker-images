@@ -6,7 +6,7 @@ digraph G {
     rankdir="LR";
 	
     "nfqlt/apache24" [fillcolor=orange label="apache24"];
-    "nfqlt/debian-bullseye"->"nfqlt/apache24";
+    "nfqlt/debian-bookworm"->"nfqlt/apache24";
     "nfqlt/aws-docker-tools" [fillcolor=orange label="aws-docker-tools"];
     "nfqlt/aws-tools"->"nfqlt/aws-docker-tools";
     "nfqlt/aws-mock" [fillcolor=orange label="aws-mock"];
