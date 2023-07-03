@@ -1,0 +1,52 @@
+#!/bin/bash -e
+
+# If DEV_URL is declared, then show that URL
+# Show project url based by git path
+if [ -z "$DEV_URL" ] && [ -d "$NFQ_PROJECT_ROOT" ]; then
+	DEV_URL="$(
+		cd "$NFQ_PROJECT_ROOT" && \
+		sudo -u project git remote -v 2>/dev/null \
+		| grep 'origin\s.*\.' \
+		| head -n 1 | cut -d: -f2 \
+		| awk -F"/" '{slashes=$0; gsub("[^/]", "", slashes); project=substr($NF, 0, index($NF, ".git")); if(length(slashes)>1){ subgroups=$(NF-1)"."$(NF-2)}else{subgroups=$(NF-1)}; print project subgroups ".test" }'
+	)"
+fi
+
+cat - <<'EOF'
+
+   .______   .______        ______          __   _______   ______ .___________.
+   |   _  \  |   _  \      /  __  \        |  | |   ____| /      ||           |
+   |  |_)  | |  |_)  |    |  |  |  |       |  | |  |__   |  ,----'`---|  |----`
+   |   ___/  |      /     |  |  |  | .--.  |  | |   __|  |  |         |  |
+   |  |      |  |\  \----.|  `--'  | |  `--'  | |  |____ |  `----.    |  |
+   | _|      | _| `._____| \______/   \______/  |_______| \______|    |__|
+
+     _______.___________.    ___      .______     .___________. _______  _______
+    /       |           |   /   \     |   _  \    |           ||   ____||       \
+   |   (----`---|  |----`  /  ^  \    |  |_)  |   `---|  |----`|  |__   |  .--.  |
+    \   \       |  |      /  /_\  \   |      /        |  |     |   __|  |  |  |  |
+.----)   |      |  |     /  _____  \  |  |\  \----.   |  |     |  |____ |  '--'  |
+|_______/       |__|    /__/     \__\ | _| `._____|   |__|     |_______||_______/
+
+
+Now you can connect via http or ssh.
+EOF
+
+# Retrieve container IP address
+DEV_IP="$(ip r | grep '^default ' | awk '{print $3}')"
+
+# Check if DEV_URL responds to appropriate IP address
+if ! ping -qc 1 "$DEV_URL" 2>&1 | grep -q "($DEV_IP)"; then
+	# Show error message if DEV_URL is set but not resolvable,
+	# otherwise it is intended behavior, so no error
+	if [ -n "$DEV_URL" ]; then
+		echo "Development URL $DEV_URL is not resolvable, using fallback IP address:"
+	fi
+	DEV_URL="$DEV_IP"
+fi
+
+echo
+echo -e "\e[1m http://$DEV_URL/ \e[0m"
+echo " ssh project@$DEV_URL"
+echo
+echo

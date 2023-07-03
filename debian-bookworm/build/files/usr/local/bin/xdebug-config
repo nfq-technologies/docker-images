@@ -1,0 +1,131 @@
+#!/bin/bash
+
+
+function print_help() {
+	cat <<EOF
+# common configurations:
+#
+#
+# for backwards compatible way for use with IDE on host
+#
+# xdebug-config enable
+# or
+# xdebug-config default
+# or
+# xdebug-config host
+#
+#
+# to disable xdebug in all containers
+#
+# xdebug-config disable
+#
+#
+# for use with vscode in dev container (hostname may differ)
+#
+# xdebug-config dev
+#
+#
+EOF
+}
+
+# === client ===================================
+
+function get_hosts() {
+	grep -o "[^ _]*_[^ _]*_[0-9]" /etc/hosts
+}
+function send_config() {
+	echo "$1" \
+	| nc -w1 $host 4096 2>/dev/null \
+	| sed "s/^/$host\t | /"
+}
+function client() {
+	for host in $(get_hosts); do
+		send_config $1 &
+	done
+	wait
+}
+
+# === deamon ===================================
+
+ini="$(echo /etc/php/*/mods-available/xdebug.ini)"
+
+function reload_fpm() {
+	if [ -f /run/php-fpm.pid ]; then
+		echo "++ Reloading fpm"
+		kill -SIGHUP "$(cat /run/php-fpm.pid)"
+	fi
+}
+function xdebug_enable() {
+	phpenmod -v ALL -s ALL xdebug
+	reload_fpm
+}
+function xdebug_disable() {
+	phpdismod -v ALL -s ALL xdebug
+	reload_fpm
+}
+function configure_xdebug_for_host() {
+	if grep -q '^#xdebug.client_host=' "$ini" ; then
+		#echo remove current configuration
+		sed -i '/^xdebug.client_host=.*$/d' "$ini"
+		#echo uncomment old one
+		sed -i 's/^#xdebug.client_host=/xdebug.client_host=/' "$ini"
+	fi
+}
+function configure_xdebug_for_container() {
+	if grep -q '^#xdebug.client_host=' "$ini" ; then
+		#echo remove current configuration
+		sed -i '/^xdebug.client_host=.*$/d' "$ini"
+		#echo add new one
+		echo "xdebug.client_host=$host" >> "$ini"
+	else
+		#echo comment current configuration
+		sed -i 's/^xdebug.client_host=/#xdebug.client_host=/' "$ini"
+		#echo add new one
+		echo "xdebug.client_host=$host" >> "$ini"
+	fi
+
+}
+function configure_xdebug() {
+	read -r host
+	case "$host" in
+		disable)
+			echo "-- xdebug disabled"
+			xdebug_disable
+			;;
+		enable|default|host)
+			echo "++ xdebug enabled for use with host IDE"
+			configure_xdebug_for_host
+			xdebug_enable
+			;;
+		*)
+			echo "++ xdebug enabled for use with container [$host]"
+			configure_xdebug_for_container "$host"
+			xdebug_enable
+			;;
+	esac
+}
+function deamon() {
+	pipe="/dev/shm/$(basename "$0")"
+	rm -f "$pipe"
+	mkfifo "$pipe"
+	while true
+	do
+		cat "$pipe" \
+		| nc -lp 4096 \
+		| configure_xdebug \
+		| tee "$pipe"
+		sleep 0.3
+	done
+}
+
+# === main =====================================
+
+case $1 in
+	deamon)
+		deamon ;;
+	''|-h|--help)
+		print_help ;;
+	*)
+		client "$1" ;;
+esac
+
