@@ -1,0 +1,17 @@
+
+server {
+	listen 80 default;
+
+	root {NFQ_DOCUMENT_ROOT};
+	index index.html index.htm;
+
+	location ~ /\.php$ {
+		deny all;
+	}
+
+	location ~ /\.ht {
+		deny all;
+	}
+
+}
+
