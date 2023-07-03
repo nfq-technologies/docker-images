@@ -39,6 +39,8 @@ digraph G {
     "nfqlt/toolbox-bullseye"->"nfqlt/db-tools";
     "nfqlt/deb-dev" [fillcolor=orange label="deb-dev"];
     "nfqlt/php70-dev"->"nfqlt/deb-dev";
+    "nfqlt/debian-bookworm" [fillcolor=orange label="debian-bookworm"];
+    "debian"->"nfqlt/debian-bookworm";
     "nfqlt/debian-bullseye" [fillcolor=orange label="debian-bullseye"];
     "debian"->"nfqlt/debian-bullseye";
     "nfqlt/debian-buster" [fillcolor=orange label="debian-buster"];
