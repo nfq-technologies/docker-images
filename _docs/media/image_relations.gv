@@ -294,7 +294,7 @@ digraph G {
     "nfqlt/php82-cli" [fillcolor=orange label="php82-cli"];
     "nfqlt/debian-bookworm"->"nfqlt/php82-cli";
     "nfqlt/php82-cron" [fillcolor=orange label="php82-cron"];
-    "nfqlt/php81-cli"->"nfqlt/php82-cron";
+    "nfqlt/php82-cli"->"nfqlt/php82-cron";
     "nfqlt/php82-dev" [fillcolor=orange label="php82-dev"];
     "nfqlt/php82-cli"->"nfqlt/php82-dev";
     "nfqlt/php82-fpm" [fillcolor=orange label="php82-fpm"];

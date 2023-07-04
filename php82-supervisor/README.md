@@ -46,6 +46,6 @@ default value: false
 
 ## php
 
-Inherited features are described in [parent readme](../php81-cli/README.md)
+Inherited features are described in [parent readme](../php82-cli/README.md)
 
 
