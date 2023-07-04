@@ -1,4 +1,4 @@
-FROM nfqlt/php81-cli
+FROM nfqlt/php82-cli
 
 
 CMD exec /entrypoint.sh
