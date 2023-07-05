@@ -11,148 +11,148 @@ php74-vscode:
   needs: ["php74-dev"]
   when: on_success
 
+aws-docker-tools:
+  stage: level_4
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd aws-docker-tools && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [aws-docker-tools_arm64]
+  when: on_success
+  tags: [nfq_ip]
+aws-docker-tools_arm64:
+  stage: level_4
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd aws-docker-tools && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["aws-tools"]
+  when: on_success
+
+cypress4:
+  stage: level_4
+  script: 'cd cypress4 && make all && make publish && make clean'
+  needs: ["node12"]
+  when: on_success
+
+cypress5:
+  stage: level_4
+  script: 'cd cypress5 && make all && make publish && make clean'
+  needs: ["node12"]
+  when: on_success
+
+cypress7:
+  stage: level_4
+  script: 'cd cypress7 && make all && make publish && make clean'
+  needs: ["node16"]
+  when: on_success
+
+cypress9:
+  stage: level_4
+  script: 'cd cypress9 && make all && make publish && make clean'
+  needs: ["node16"]
+  when: on_success
+
+cypress12:
+  stage: level_4
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd cypress12 && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [cypress12_arm64]
+  when: on_success
+  tags: [nfq_ip]
+cypress12_arm64:
+  stage: level_4
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd cypress12 && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["node20"]
+  when: on_success
+
+aws-docker-tools:
+  stage: level_4
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd aws-docker-tools && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [aws-docker-tools_arm64]
+  when: on_success
+  tags: [nfq_ip]
+aws-docker-tools_arm64:
+  stage: level_4
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd aws-docker-tools && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["aws-tools"]
+  when: on_success
+
+cypress4:
+  stage: level_4
+  script: 'cd cypress4 && make all && make publish && make clean'
+  needs: ["node12"]
+  when: on_success
+
+cypress5:
+  stage: level_4
+  script: 'cd cypress5 && make all && make publish && make clean'
+  needs: ["node12"]
+  when: on_success
+
+cypress7:
+  stage: level_4
+  script: 'cd cypress7 && make all && make publish && make clean'
+  needs: ["node16"]
+  when: on_success
+
+cypress9:
+  stage: level_4
+  script: 'cd cypress9 && make all && make publish && make clean'
+  needs: ["node16"]
+  when: on_success
+
+cypress12:
+  stage: level_4
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd cypress12 && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [cypress12_arm64]
+  when: on_success
+  tags: [nfq_ip]
+cypress12_arm64:
+  stage: level_4
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd cypress12 && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["node20"]
+  when: on_success
+
 xhgui:
   stage: level_4
   script: 'cd xhgui && make all && make publish && make clean'
   needs: ["php81-dev"]
-  when: on_success
-
-aws-docker-tools:
-  stage: level_4
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd aws-docker-tools && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [aws-docker-tools_arm64]
-  when: on_success
-  tags: [nfq_ip]
-aws-docker-tools_arm64:
-  stage: level_4
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd aws-docker-tools && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["aws-tools"]
-  when: on_success
-
-cypress4:
-  stage: level_4
-  script: 'cd cypress4 && make all && make publish && make clean'
-  needs: ["node12"]
-  when: on_success
-
-cypress5:
-  stage: level_4
-  script: 'cd cypress5 && make all && make publish && make clean'
-  needs: ["node12"]
-  when: on_success
-
-cypress7:
-  stage: level_4
-  script: 'cd cypress7 && make all && make publish && make clean'
-  needs: ["node16"]
-  when: on_success
-
-cypress9:
-  stage: level_4
-  script: 'cd cypress9 && make all && make publish && make clean'
-  needs: ["node16"]
-  when: on_success
-
-cypress12:
-  stage: level_4
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd cypress12 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [cypress12_arm64]
-  when: on_success
-  tags: [nfq_ip]
-cypress12_arm64:
-  stage: level_4
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd cypress12 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["node20"]
-  when: on_success
-
-aws-docker-tools:
-  stage: level_4
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd aws-docker-tools && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [aws-docker-tools_arm64]
-  when: on_success
-  tags: [nfq_ip]
-aws-docker-tools_arm64:
-  stage: level_4
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd aws-docker-tools && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["aws-tools"]
-  when: on_success
-
-cypress4:
-  stage: level_4
-  script: 'cd cypress4 && make all && make publish && make clean'
-  needs: ["node12"]
-  when: on_success
-
-cypress5:
-  stage: level_4
-  script: 'cd cypress5 && make all && make publish && make clean'
-  needs: ["node12"]
-  when: on_success
-
-cypress7:
-  stage: level_4
-  script: 'cd cypress7 && make all && make publish && make clean'
-  needs: ["node16"]
-  when: on_success
-
-cypress9:
-  stage: level_4
-  script: 'cd cypress9 && make all && make publish && make clean'
-  needs: ["node16"]
-  when: on_success
-
-cypress12:
-  stage: level_4
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd cypress12 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [cypress12_arm64]
-  when: on_success
-  tags: [nfq_ip]
-cypress12_arm64:
-  stage: level_4
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd cypress12 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["node20"]
   when: on_success
