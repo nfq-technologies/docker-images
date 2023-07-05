@@ -495,6 +495,29 @@ php80-cli:
   needs: ["debian-bullseye"]
   when: on_success
 
+php81-cli:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php81-cli && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [php81-cli_arm64]
+  when: on_success
+  tags: [nfq_ip]
+php81-cli_arm64:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php81-cli && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["debian-bullseye"]
+  when: on_success
+
 rabbitmq310:
   stage: level_2
   before_script:
@@ -658,29 +681,6 @@ nginx122_arm64:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd nginx122 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bookworm"]
-  when: on_success
-
-php81-cli:
-  stage: level_2
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php81-cli && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php81-cli_arm64]
-  when: on_success
-  tags: [nfq_ip]
-php81-cli_arm64:
-  stage: level_2
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php81-cli && make all-arm64 && make clean'
   tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success

@@ -1,4 +1,4 @@
-FROM nfqlt/debian-bookworm
+FROM nfqlt/debian-bullseye
 
 CMD run-parts -v /etc/rc.d
 
