@@ -3,8 +3,8 @@
 set -x
 set -e
 
-echo "deb https://packages.sury.org/php bookworm main" > /etc/apt/sources.list.d/sury.list
-echo "deb-src https://packages.sury.org/php bookworm main" >> /etc/apt/sources.list.d/sury.list
+echo "deb https://packages.sury.org/php bullseye main" > /etc/apt/sources.list.d/sury.list
+echo "deb-src https://packages.sury.org/php bullseye main" >> /etc/apt/sources.list.d/sury.list
 
 wget --quiet https://packages.sury.org/php/apt.gpg
 apt-key add apt.gpg
@@ -90,6 +90,11 @@ rm -rf /etc/php/{5.6,7.0,7.1,7.2,7.3,7.4,8.0}
 
 # backup original php.ini
 mv /etc/php/8.1/cli/php.ini{,_orig}
+
+
+# install custom php modules
+apt-get install -y --no-install-recommends phyaml
+
 
 # install dma (dragonfly mailer simple relay)
 debconf-set-selections <<< "dma dma/mailname string"
