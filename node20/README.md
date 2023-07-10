@@ -35,7 +35,7 @@ Available binary paths for export:
 version: '2.4'
 services:
   node:
-    image: nfqlt/node18
+    image: nfqlt/node20
     volumes:
       - './src:/home/project/src'
       - /tmp
