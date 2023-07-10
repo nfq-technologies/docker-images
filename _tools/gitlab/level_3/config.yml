@@ -560,29 +560,6 @@ node18_arm64:
   needs: ["toolbox-bullseye"]
   when: on_success
 
-node19:
-  stage: level_3
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node19 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [node19_arm64]
-  when: on_success
-  tags: [nfq_ip]
-node19_arm64:
-  stage: level_3
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node19 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["toolbox-bullseye"]
-  when: on_success
-
 ruby2:
   stage: level_3
   script: 'cd ruby2 && make all && make publish && make clean'
@@ -778,7 +755,7 @@ node19_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd node19 && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["toolbox-bullseye"]
+  needs: ["toolbox-bookworm"]
   when: on_success
 
 node20:
@@ -1013,6 +990,29 @@ php82-supervisor_arm64:
   script: 'cd php82-supervisor && make all-arm64 && make clean'
   tags: [arm]
   needs: ["php82-cli"]
+  when: on_success
+
+node19:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd node19 && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [node19_arm64]
+  when: on_success
+  tags: [nfq_ip]
+node19_arm64:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd node19 && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["toolbox-bookworm"]
   when: on_success
 
 node20:

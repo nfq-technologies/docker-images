@@ -176,7 +176,7 @@ digraph G {
     "nfqlt/node18" [fillcolor=orange label="node18"];
     "nfqlt/toolbox-bullseye"->"nfqlt/node18";
     "nfqlt/node19" [fillcolor=orange label="node19"];
-    "nfqlt/toolbox-bullseye"->"nfqlt/node19";
+    "nfqlt/toolbox-bookworm"->"nfqlt/node19";
     "nfqlt/node20" [fillcolor=orange label="node20"];
     "nfqlt/toolbox-bookworm"->"nfqlt/node20";
     "nfqlt/node4" [fillcolor=orange label="node4"];
