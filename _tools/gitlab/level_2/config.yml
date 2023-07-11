@@ -441,12 +441,6 @@ nodeserver18:
   needs: ["debian-bullseye"]
   when: on_success
 
-nodeserver19:
-  stage: level_2
-  script: 'cd nodeserver19 && make all && make publish && make clean'
-  needs: ["debian-bullseye"]
-  when: on_success
-
 phantomjs19:
   stage: level_2
   script: 'cd phantomjs19 && make all && make publish && make clean'
@@ -676,6 +670,12 @@ nginx122_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd nginx122 && make all-arm64 && make clean'
   tags: [arm]
+  needs: ["debian-bookworm"]
+  when: on_success
+
+nodeserver19:
+  stage: level_2
+  script: 'cd nodeserver19 && make all && make publish && make clean'
   needs: ["debian-bookworm"]
   when: on_success
 
