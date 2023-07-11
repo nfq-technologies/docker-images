@@ -5,7 +5,7 @@
 | [mysql](https://en.wikipedia.org/wiki/MySQL#Release_history) | mysql80 | mysql57 |
 | [php](https://www.php.net/supported-versions.php) | php82 | php81 |
 | [node](https://nodejs.org/en/download/releases) | node20 | node19 |
-| [rabbitmq](https://packages.debian.org/search?suite=all&section=all&arch=any&searchon=names&keywords=rabbitmq-server) | rabbitmq310 | rabbitmq38 |
+| [rabbitmq](https://packages.debian.org/search?suite=all&section=all&arch=any&searchon=names&keywords=rabbitmq-server) | rabbitmq312 | rabbitmq310 |
 | [redis](https://packages.debian.org/search?suite=all&section=all&arch=any&searchon=names&keywords=redis) | redis60 | redis503 |
 | [elasticsearch](https://www.elastic.co/support/eol) | elasticsearch716 | elasticsearch710 |
 | [wkhtmltopdf](https://packages.debian.org/search?suite=all&section=all&arch=any&searchon=names&keywords=wkhtmltopdf) | wkhtmltopdf126 | wkhtmltopdf125 | wkhtmltopdf126\-broken wkhtmltopdf125\-broken | wkhtmltopdf wkhtmltopdf\-broken |
