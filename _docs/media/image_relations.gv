@@ -331,6 +331,8 @@ digraph G {
     "nfqlt/debian-buster"->"nfqlt/redis503";
     "nfqlt/redis60" [fillcolor=orange label="redis60"];
     "nfqlt/debian-bullseye"->"nfqlt/redis60";
+    "nfqlt/redis70" [fillcolor=orange label="redis70"];
+    "nfqlt/debian-bookworm"->"nfqlt/redis70";
     "nfqlt/router" [fillcolor=orange label="router"];
     "nfqlt/debian-buster"->"nfqlt/router";
     "nfqlt/ruby2" [fillcolor=orange label="ruby2"];
