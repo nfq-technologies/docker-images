@@ -4,11 +4,7 @@ set -ex
 
 apt-get update
 
-wget https://packagecloud.io/rabbitmq/rabbitmq-server/packages/debian/bullseye/rabbitmq-server_3.10.6-1_all.deb/download.deb
-
-apt -y install erlang-base erlang-crypto erlang-eldap erlang-inets erlang-mnesia erlang-os-mon erlang-parsetools erlang-public-key erlang-runtime-tools erlang-ssl erlang-syntax-tools erlang-tools erlang-xmerl ./download.deb
-
-rm ./download.deb
+apt-get install -y --no-install-recommends rabbitmq-server
 
 cp -frv /build/files/* / || true
 
