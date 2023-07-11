@@ -310,7 +310,7 @@ digraph G {
     "nfqlt/postgres12" [fillcolor=orange label="postgres12"];
     "postgres"->"nfqlt/postgres12";
     "nfqlt/rabbitmq310" [fillcolor=orange label="rabbitmq310"];
-    "nfqlt/debian-bullseye"->"nfqlt/rabbitmq310";
+    "nfqlt/debian-bookworm"->"nfqlt/rabbitmq310";
     "nfqlt/rabbitmq335" [fillcolor=orange label="rabbitmq335"];
     "nfqlt/debian-jessie"->"nfqlt/rabbitmq335";
     "nfqlt/rabbitmq366" [fillcolor=orange label="rabbitmq366"];
