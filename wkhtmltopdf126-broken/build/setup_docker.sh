@@ -15,7 +15,7 @@ apt-get install -y --no-install-recommends fonts-liberation
 
 
 cd /tmp
-wget -O wk.deb https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.bullseye_$arch.deb
+wget -O wk.deb https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-3/wkhtmltox_0.12.6.1-3.bookworm_$arch.deb
 dpkg -i wk.deb
 ln -s ../local/bin/wkhtmltopdf /usr/bin/wkhtmltopdf
 
