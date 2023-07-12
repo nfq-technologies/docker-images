@@ -360,9 +360,9 @@ digraph G {
     "nfqlt/wkhtmltopdf125" [fillcolor=orange label="wkhtmltopdf125"];
     "nfqlt/toolbox-buster"->"nfqlt/wkhtmltopdf125";
     "nfqlt/wkhtmltopdf126-broken" [fillcolor=orange label="wkhtmltopdf126-broken"];
-    "nfqlt/toolbox-bullseye"->"nfqlt/wkhtmltopdf126-broken";
+    "nfqlt/toolbox-bookworm"->"nfqlt/wkhtmltopdf126-broken";
     "nfqlt/wkhtmltopdf126" [fillcolor=orange label="wkhtmltopdf126"];
-    "nfqlt/toolbox-bullseye"->"nfqlt/wkhtmltopdf126";
+    "nfqlt/toolbox-bookworm"->"nfqlt/wkhtmltopdf126";
     "nfqlt/wkhtmltopdf-broken" [fillcolor=orange label="wkhtmltopdf-broken"];
     "nfqlt/toolbox"->"nfqlt/wkhtmltopdf-broken";
     "nfqlt/wkhtmltopdf" [fillcolor=orange label="wkhtmltopdf"];
