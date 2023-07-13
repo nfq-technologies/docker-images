@@ -22,7 +22,7 @@ digraph G {
     "nfqlt/chromedriver83" [fillcolor=orange label="chromedriver83"];
     "nfqlt/debian-buster"->"nfqlt/chromedriver83";
     "nfqlt/chromedriver" [fillcolor=orange label="chromedriver"];
-    "nfqlt/debian-bullseye"->"nfqlt/chromedriver";
+    "nfqlt/debian-bookworm"->"nfqlt/chromedriver";
     "nfqlt/chromium" [fillcolor=orange label="chromium"];
     "nfqlt/toolbox-buster"->"nfqlt/chromium";
     "nfqlt/cypress12" [fillcolor=orange label="cypress12"];
