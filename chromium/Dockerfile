@@ -1,4 +1,4 @@
-FROM nfqlt/toolbox-buster
+FROM nfqlt/toolbox-bookworm
 
 EXPOSE 9222
 
