@@ -11,7 +11,7 @@
 | [wkhtmltopdf](https://packages.debian.org/search?suite=all&section=all&arch=any&searchon=names&keywords=wkhtmltopdf) | wkhtmltopdf126 | wkhtmltopdf125 | wkhtmltopdf126\-broken wkhtmltopdf125\-broken | wkhtmltopdf wkhtmltopdf\-broken |
 | phantomjs | - | phantomjs21 phantomjs19 |
 | thrift | - | thrift0110 thrift093 |
-| [memcached](https://packages.debian.org/search?suite=all&section=all&arch=any&searchon=names&keywords=memcached) | memcached169 | memcached156 |
+| [memcached](https://packages.debian.org/search?suite=all&section=all&arch=any&searchon=names&keywords=memcached) | memcached16 | memcached169 |
 | [chromium](https://packages.debian.org/search?suite=all&section=all&arch=any&searchon=names&keywords=chromium-driver) | chromedriver | chromedriver83 | - | chromedriver73 |
 | [mongo](https://www.mongodb.com/support-policy/lifecycles) | mongo50 | mongo32 mongo24 |
 | lib\-smartclient | lib\-smartclient130 | lib\-smartclient121 lib\-smartclient120 |

@@ -129,6 +129,8 @@ digraph G {
     "nfqlt/debian-buster"->"nfqlt/memcached156";
     "nfqlt/memcached169" [fillcolor=orange label="memcached169"];
     "nfqlt/debian-bullseye"->"nfqlt/memcached169";
+    "nfqlt/memcached16" [fillcolor=orange label="memcached16"];
+    "nfqlt/debian-bookworm"->"nfqlt/memcached16";
     "nfqlt/mongo24-data" [fillcolor=orange label="mongo24-data"];
     "nfqlt/mongo24"->"nfqlt/mongo24-data";
     "nfqlt/mongo24" [fillcolor=orange label="mongo24"];
