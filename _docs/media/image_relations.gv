@@ -173,8 +173,6 @@ digraph G {
     "nfqlt/toolbox-bookworm"->"nfqlt/node20";
     "nfqlt/nodeserver10" [fillcolor=orange label="nodeserver10"];
     "nfqlt/debian-bullseye"->"nfqlt/nodeserver10";
-    "nfqlt/nodeserver12" [fillcolor=orange label="nodeserver12"];
-    "nfqlt/debian-bullseye"->"nfqlt/nodeserver12";
     "nfqlt/nodeserver14" [fillcolor=orange label="nodeserver14"];
     "nfqlt/debian-bookworm"->"nfqlt/nodeserver14";
     "nfqlt/nodeserver16" [fillcolor=orange label="nodeserver16"];

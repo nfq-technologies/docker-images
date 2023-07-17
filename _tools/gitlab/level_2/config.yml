@@ -394,12 +394,6 @@ nodeserver10:
   needs: ["debian-bullseye"]
   when: on_success
 
-nodeserver12:
-  stage: level_2
-  script: 'cd nodeserver12 && make all && make publish && make clean'
-  needs: ["debian-bullseye"]
-  when: on_success
-
 phantomjs19:
   stage: level_2
   script: 'cd phantomjs19 && make all && make publish && make clean'
