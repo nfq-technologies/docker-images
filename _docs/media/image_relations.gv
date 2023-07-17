@@ -192,11 +192,11 @@ digraph G {
     "nfqlt/nodeserver12" [fillcolor=orange label="nodeserver12"];
     "nfqlt/debian-bullseye"->"nfqlt/nodeserver12";
     "nfqlt/nodeserver14" [fillcolor=orange label="nodeserver14"];
-    "nfqlt/debian-bullseye"->"nfqlt/nodeserver14";
+    "nfqlt/debian-bookworm"->"nfqlt/nodeserver14";
     "nfqlt/nodeserver16" [fillcolor=orange label="nodeserver16"];
-    "nfqlt/debian-bullseye"->"nfqlt/nodeserver16";
+    "nfqlt/debian-bookworm"->"nfqlt/nodeserver16";
     "nfqlt/nodeserver18" [fillcolor=orange label="nodeserver18"];
-    "nfqlt/debian-bullseye"->"nfqlt/nodeserver18";
+    "nfqlt/debian-bookworm"->"nfqlt/nodeserver18";
     "nfqlt/nodeserver19" [fillcolor=orange label="nodeserver19"];
     "nfqlt/debian-bookworm"->"nfqlt/nodeserver19";
     "nfqlt/nodeserver20" [fillcolor=orange label="nodeserver20"];
