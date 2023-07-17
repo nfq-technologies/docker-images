@@ -107,12 +107,6 @@ node4:
   needs: ["toolbox-buster"]
   when: on_success
 
-node8:
-  stage: level_3
-  script: 'cd node8 && make all && make publish && make clean'
-  needs: ["toolbox-buster"]
-  when: on_success
-
 packager:
   stage: level_3
   script: 'cd packager && make all && make publish && make clean'
@@ -650,12 +644,6 @@ node20_arm64:
 node4:
   stage: level_3
   script: 'cd node4 && make all && make publish && make clean'
-  needs: ["toolbox-buster"]
-  when: on_success
-
-node8:
-  stage: level_3
-  script: 'cd node8 && make all && make publish && make clean'
   needs: ["toolbox-buster"]
   when: on_success
 
