@@ -161,8 +161,6 @@ digraph G {
     "nfqlt/debian-bullseye"->"nfqlt/nginx118";
     "nfqlt/nginx122" [fillcolor=orange label="nginx122"];
     "nfqlt/debian-bookworm"->"nfqlt/nginx122";
-    "nfqlt/node10" [fillcolor=orange label="node10"];
-    "nfqlt/toolbox-bullseye"->"nfqlt/node10";
     "nfqlt/node14" [fillcolor=orange label="node14"];
     "nfqlt/toolbox-bookworm"->"nfqlt/node14";
     "nfqlt/node16" [fillcolor=orange label="node16"];
