@@ -181,8 +181,6 @@ digraph G {
     "nfqlt/debian-bookworm"->"nfqlt/nodeserver19";
     "nfqlt/nodeserver20" [fillcolor=orange label="nodeserver20"];
     "nfqlt/debian-bookworm"->"nfqlt/nodeserver20";
-    "nfqlt/nodeserver8" [fillcolor=orange label="nodeserver8"];
-    "nfqlt/debian-buster"->"nfqlt/nodeserver8";
     "nfqlt/packager" [fillcolor=orange label="packager"];
     "nfqlt/toolbox-buster"->"nfqlt/packager";
     "nfqlt/pdftk" [fillcolor=orange label="pdftk"];
