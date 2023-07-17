@@ -172,11 +172,11 @@ digraph G {
     "nfqlt/node12" [fillcolor=orange label="node12"];
     "nfqlt/toolbox-bullseye"->"nfqlt/node12";
     "nfqlt/node14" [fillcolor=orange label="node14"];
-    "nfqlt/toolbox-bullseye"->"nfqlt/node14";
+    "nfqlt/toolbox-bookworm"->"nfqlt/node14";
     "nfqlt/node16" [fillcolor=orange label="node16"];
-    "nfqlt/toolbox-bullseye"->"nfqlt/node16";
+    "nfqlt/toolbox-bookworm"->"nfqlt/node16";
     "nfqlt/node18" [fillcolor=orange label="node18"];
-    "nfqlt/toolbox-bullseye"->"nfqlt/node18";
+    "nfqlt/toolbox-bookworm"->"nfqlt/node18";
     "nfqlt/node19" [fillcolor=orange label="node19"];
     "nfqlt/toolbox-bookworm"->"nfqlt/node19";
     "nfqlt/node20" [fillcolor=orange label="node20"];
