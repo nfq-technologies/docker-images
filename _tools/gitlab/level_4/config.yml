@@ -40,12 +40,6 @@ aws-docker-tools_arm64:
   needs: ["aws-tools"]
   when: on_success
 
-cypress5:
-  stage: level_4
-  script: 'cd cypress5 && make all && make publish && make clean'
-  needs: ["node12"]
-  when: on_success
-
 aws-docker-tools:
   stage: level_4
   before_script:
@@ -67,12 +61,6 @@ aws-docker-tools_arm64:
   script: 'cd aws-docker-tools && make all-arm64 && make clean'
   tags: [arm]
   needs: ["aws-tools"]
-  when: on_success
-
-cypress5:
-  stage: level_4
-  script: 'cd cypress5 && make all && make publish && make clean'
-  needs: ["node12"]
   when: on_success
 
 cypress7:

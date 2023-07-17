@@ -27,8 +27,6 @@ digraph G {
     "nfqlt/toolbox-bookworm"->"nfqlt/chromium";
     "nfqlt/cypress12" [fillcolor=orange label="cypress12"];
     "nfqlt/node20"->"nfqlt/cypress12";
-    "nfqlt/cypress5" [fillcolor=orange label="cypress5"];
-    "nfqlt/node12"->"nfqlt/cypress5";
     "nfqlt/cypress7" [fillcolor=orange label="cypress7"];
     "nfqlt/node16"->"nfqlt/cypress7";
     "nfqlt/cypress9" [fillcolor=orange label="cypress9"];
