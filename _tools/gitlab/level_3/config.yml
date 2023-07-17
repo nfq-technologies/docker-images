@@ -473,12 +473,6 @@ db-tools:
   needs: ["toolbox-bullseye"]
   when: on_success
 
-node10:
-  stage: level_3
-  script: 'cd node10 && make all && make publish && make clean'
-  needs: ["toolbox-bullseye"]
-  when: on_success
-
 ruby2:
   stage: level_3
   script: 'cd ruby2 && make all && make publish && make clean'
@@ -542,12 +536,6 @@ graphic-tools:
   stage: level_3
   script: 'cd graphic-tools && make all && make publish && make clean'
   needs: ["toolbox-buster"]
-  when: on_success
-
-node10:
-  stage: level_3
-  script: 'cd node10 && make all && make publish && make clean'
-  needs: ["toolbox-bullseye"]
   when: on_success
 
 node14:
