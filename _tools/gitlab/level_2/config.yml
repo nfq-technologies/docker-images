@@ -155,12 +155,6 @@ nginx114:
   needs: ["debian-buster"]
   when: on_success
 
-nodeserver8:
-  stage: level_2
-  script: 'cd nodeserver8 && make all && make publish && make clean'
-  needs: ["debian-buster"]
-  when: on_success
-
 rabbitmq378:
   stage: level_2
   script: 'cd rabbitmq378 && make all && make publish && make clean'
