@@ -23,12 +23,6 @@ php70-supervisor:
   needs: ["php70-cli"]
   when: on_success
 
-phpmyadmin:
-  stage: level_3
-  script: 'cd phpmyadmin && make all && make publish && make clean'
-  needs: ["php70-cli"]
-  when: on_success
-
 elasticsearch22-data:
   stage: level_3
   script: 'cd elasticsearch22-data && make all && make publish && make clean'
@@ -802,6 +796,12 @@ php82-supervisor_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php82-supervisor && make all-arm64 && make clean'
   tags: [arm]
+  needs: ["php82-cli"]
+  when: on_success
+
+phpmyadmin:
+  stage: level_3
+  script: 'cd phpmyadmin && make all && make publish && make clean'
   needs: ["php82-cli"]
   when: on_success
 
