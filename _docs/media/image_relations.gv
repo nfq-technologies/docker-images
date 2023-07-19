@@ -12,7 +12,7 @@ digraph G {
     "nfqlt/aws-mock" [fillcolor=orange label="aws-mock"];
     "nfqlt/debian-bullseye"->"nfqlt/aws-mock";
     "nfqlt/aws-tools" [fillcolor=orange label="aws-tools"];
-    "nfqlt/toolbox-bullseye"->"nfqlt/aws-tools";
+    "nfqlt/toolbox-bookworm"->"nfqlt/aws-tools";
     "nfqlt/birt45" [fillcolor=orange label="birt45"];
     "nfqlt/debian-stretch"->"nfqlt/birt45";
     "nfqlt/certbot" [fillcolor=orange label="certbot"];

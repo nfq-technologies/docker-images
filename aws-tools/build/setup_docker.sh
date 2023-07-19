@@ -8,14 +8,17 @@ arch="$([ "`uname -m`" = "aarch64" ] && echo "aarch64" || echo "x86_64")"
 # Update apt repos
 apt-get update
 
-# Install python dependencies
-apt-get install --no-install-recommends -y python3-pip python3-setuptools
+# Install python
+apt-get install --no-install-recommends -y python3-venv
+
+# Creating and activating virtual environment
+python3 -m venv /python; source /python/bin/activate
 
 # Install installer dependencies
-python3 -m pip install -U pip
+pip install -U pip
 
 # The actual install
-pip install awsebcli
+pip install PyYAML==5.3.1 awsebcli
 
 # Install awscli v2
 curl "https://awscli.amazonaws.com/awscli-exe-linux-$arch.zip" -o "awscliv2.zip"
