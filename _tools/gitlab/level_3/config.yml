@@ -396,12 +396,6 @@ db-tools:
   needs: ["toolbox-bullseye"]
   when: on_success
 
-ruby2:
-  stage: level_3
-  script: 'cd ruby2 && make all && make publish && make clean'
-  needs: ["toolbox-bullseye"]
-  when: on_success
-
 aws-tools:
   stage: level_3
   before_script:
@@ -597,7 +591,7 @@ phyaml:
 ruby2:
   stage: level_3
   script: 'cd ruby2 && make all && make publish && make clean'
-  needs: ["toolbox-bullseye"]
+  needs: ["toolbox-bookworm"]
   when: on_success
 
 sonar-scanner-cli4:
@@ -916,6 +910,12 @@ node20_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd node20 && make all-arm64 && make clean'
   tags: [arm]
+  needs: ["toolbox-bookworm"]
+  when: on_success
+
+ruby2:
+  stage: level_3
+  script: 'cd ruby2 && make all && make publish && make clean'
   needs: ["toolbox-bookworm"]
   when: on_success
 

@@ -286,7 +286,7 @@ digraph G {
     "nfqlt/router" [fillcolor=orange label="router"];
     "nfqlt/debian-buster"->"nfqlt/router";
     "nfqlt/ruby2" [fillcolor=orange label="ruby2"];
-    "nfqlt/toolbox-bullseye"->"nfqlt/ruby2";
+    "nfqlt/toolbox-bookworm"->"nfqlt/ruby2";
     "nfqlt/sonar-scanner-cli4" [fillcolor=orange label="sonar-scanner-cli4"];
     "nfqlt/toolbox-buster"->"nfqlt/sonar-scanner-cli4";
     "nfqlt/thrift0110" [fillcolor=orange label="thrift0110"];
