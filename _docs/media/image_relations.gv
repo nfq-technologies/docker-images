@@ -42,7 +42,7 @@ digraph G {
     "nfqlt/debian-stretch" [fillcolor=orange label="debian-stretch"];
     "debian"->"nfqlt/debian-stretch";
     "nfqlt/dev" [fillcolor=orange label="dev"];
-    "nfqlt/debian-bullseye"->"nfqlt/dev";
+    "nfqlt/debian-bookworm"->"nfqlt/dev";
     "nfqlt/dib" [fillcolor=orange label="dib"];
     "debian"->"nfqlt/dib";
     "nfqlt/docker18ce" [fillcolor=orange label="docker18ce"];
