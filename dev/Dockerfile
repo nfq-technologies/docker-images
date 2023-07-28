@@ -1,4 +1,4 @@
-FROM nfqlt/debian-bullseye
+FROM nfqlt/debian-bookworm
 
 EXPOSE 22
 CMD exec bash -lc 'run-parts -v /etc/rc.d && exec /usr/sbin/sshd -De'
