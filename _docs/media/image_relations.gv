@@ -125,10 +125,6 @@ digraph G {
     "nfqlt/debian-bullseye"->"nfqlt/memcached169";
     "nfqlt/memcached16" [fillcolor=orange label="memcached16"];
     "nfqlt/debian-bookworm"->"nfqlt/memcached16";
-    "nfqlt/mongo32-data" [fillcolor=orange label="mongo32-data"];
-    "nfqlt/mongo32"->"nfqlt/mongo32-data";
-    "nfqlt/mongo32" [fillcolor=orange label="mongo32"];
-    "nfqlt/debian-stretch"->"nfqlt/mongo32";
     "nfqlt/mongo50-data" [fillcolor=orange label="mongo50-data"];
     "nfqlt/mongo50"->"nfqlt/mongo50-data";
     "nfqlt/mongo50" [fillcolor=orange label="mongo50"];
