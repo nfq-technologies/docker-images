@@ -1,4 +1,4 @@
-FROM nfqlt/debian-bullseye
+FROM nfqlt/debian-bookworm
 
 EXPOSE 25 80
 

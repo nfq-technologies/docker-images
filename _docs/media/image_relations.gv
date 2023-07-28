@@ -108,7 +108,7 @@ digraph G {
     "nfqlt/linker18ce" [fillcolor=orange label="linker18ce"];
     "nfqlt/docker18ce"->"nfqlt/linker18ce";
     "nfqlt/mailhog" [fillcolor=orange label="mailhog"];
-    "nfqlt/debian-bullseye"->"nfqlt/mailhog";
+    "nfqlt/debian-bookworm"->"nfqlt/mailhog";
     "nfqlt/mariadb10" [fillcolor=orange label="mariadb10"];
     "mariadb"->"nfqlt/mariadb10";
     "nfqlt/memcached156" [fillcolor=orange label="memcached156"];
