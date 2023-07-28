@@ -23,36 +23,6 @@ php70-supervisor:
   needs: ["php70-cli"]
   when: on_success
 
-elasticsearch22-data:
-  stage: level_3
-  script: 'cd elasticsearch22-data && make all && make publish && make clean'
-  needs: ["elasticsearch22"]
-  when: on_success
-
-php56-cron:
-  stage: level_3
-  script: 'cd php56-cron && make all && make publish && make clean'
-  needs: ["php56-cli"]
-  when: on_success
-
-php56-dev:
-  stage: level_3
-  script: 'cd php56-dev && make all && make publish && make clean'
-  needs: ["php56-cli"]
-  when: on_success
-
-php56-fpm:
-  stage: level_3
-  script: 'cd php56-fpm && make all && make publish && make clean'
-  needs: ["php56-cli"]
-  when: on_success
-
-php56-supervisor:
-  stage: level_3
-  script: 'cd php56-supervisor && make all && make publish && make clean'
-  needs: ["php56-cli"]
-  when: on_success
-
 elasticsearch56-data:
   stage: level_3
   script: 'cd elasticsearch56-data && make all && make publish && make clean'

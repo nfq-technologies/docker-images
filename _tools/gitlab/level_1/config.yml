@@ -144,13 +144,6 @@ debian-stretch:
   when: manual
   allow_failure: false
 
-debian-jessie:
-  stage: level_1
-  script: 'cd debian-jessie && make all && make publish && make clean'
-  needs: []
-  when: manual
-  allow_failure: false
-
 debian-buster:
   stage: level_1
   script: 'cd debian-buster && make all && make publish && make clean'
