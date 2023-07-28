@@ -294,12 +294,6 @@ nginx118_arm64:
   needs: ["debian-bullseye"]
   when: on_success
 
-phantomjs19:
-  stage: level_2
-  script: 'cd phantomjs19 && make all && make publish && make clean'
-  needs: ["debian-bullseye"]
-  when: on_success
-
 phantomjs21:
   stage: level_2
   script: 'cd phantomjs21 && make all && make publish && make clean'
@@ -622,6 +616,12 @@ nodeserver19:
 nodeserver20:
   stage: level_2
   script: 'cd nodeserver20 && make all && make publish && make clean'
+  needs: ["debian-bookworm"]
+  when: on_success
+
+phantomjs19:
+  stage: level_2
+  script: 'cd phantomjs19 && make all && make publish && make clean'
   needs: ["debian-bookworm"]
   when: on_success
 

@@ -170,7 +170,7 @@ digraph G {
     "nfqlt/pdftk" [fillcolor=orange label="pdftk"];
     "nfqlt/toolbox-buster"->"nfqlt/pdftk";
     "nfqlt/phantomjs19" [fillcolor=orange label="phantomjs19"];
-    "nfqlt/debian-bullseye"->"nfqlt/phantomjs19";
+    "nfqlt/debian-bookworm"->"nfqlt/phantomjs19";
     "nfqlt/phantomjs21" [fillcolor=orange label="phantomjs21"];
     "nfqlt/debian-bullseye"->"nfqlt/phantomjs21";
     "nfqlt/php70-cli" [fillcolor=orange label="php70-cli"];
