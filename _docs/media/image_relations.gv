@@ -10,7 +10,7 @@ digraph G {
     "nfqlt/aws-docker-tools" [fillcolor=orange label="aws-docker-tools"];
     "nfqlt/aws-tools"->"nfqlt/aws-docker-tools";
     "nfqlt/aws-mock" [fillcolor=orange label="aws-mock"];
-    "nfqlt/debian-bullseye"->"nfqlt/aws-mock";
+    "nfqlt/debian-bookworm"->"nfqlt/aws-mock";
     "nfqlt/aws-tools" [fillcolor=orange label="aws-tools"];
     "nfqlt/toolbox-bookworm"->"nfqlt/aws-tools";
     "nfqlt/birt45" [fillcolor=orange label="birt45"];
