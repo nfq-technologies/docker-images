@@ -95,12 +95,6 @@ graylog20:
   needs: ["debian-jessie"]
   when: on_success
 
-mongo24:
-  stage: level_2
-  script: 'cd mongo24 && make all && make publish && make clean'
-  needs: ["debian-jessie"]
-  when: on_success
-
 php56-cli:
   stage: level_2
   script: 'cd php56-cli && make all && make publish && make clean'
