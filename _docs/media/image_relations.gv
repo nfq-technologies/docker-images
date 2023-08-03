@@ -113,8 +113,6 @@ digraph G {
     "mariadb"->"nfqlt/mariadb10";
     "nfqlt/memcached156" [fillcolor=orange label="memcached156"];
     "nfqlt/debian-buster"->"nfqlt/memcached156";
-    "nfqlt/memcached169" [fillcolor=orange label="memcached169"];
-    "nfqlt/debian-bullseye"->"nfqlt/memcached169";
     "nfqlt/memcached16" [fillcolor=orange label="memcached16"];
     "nfqlt/debian-bookworm"->"nfqlt/memcached16";
     "nfqlt/mongo50-data" [fillcolor=orange label="mongo50-data"];
