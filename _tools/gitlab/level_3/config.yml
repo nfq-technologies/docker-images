@@ -41,12 +41,6 @@ https-dev:
   needs: ["nginx114"]
   when: on_success
 
-ghostscript:
-  stage: level_3
-  script: 'cd ghostscript && make all && make publish && make clean'
-  needs: ["toolbox-buster"]
-  when: on_success
-
 graphic-tools:
   stage: level_3
   script: 'cd graphic-tools && make all && make publish && make clean'
@@ -434,7 +428,7 @@ fontforge:
 ghostscript:
   stage: level_3
   script: 'cd ghostscript && make all && make publish && make clean'
-  needs: ["toolbox-buster"]
+  needs: ["toolbox-bookworm"]
   when: on_success
 
 graphic-tools:
@@ -795,6 +789,12 @@ ffmpeg:
 fontforge:
   stage: level_3
   script: 'cd fontforge && make all && make publish && make clean'
+  needs: ["toolbox-bookworm"]
+  when: on_success
+
+ghostscript:
+  stage: level_3
+  script: 'cd ghostscript && make all && make publish && make clean'
   needs: ["toolbox-bookworm"]
   when: on_success
 
