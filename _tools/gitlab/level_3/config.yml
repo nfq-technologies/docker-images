@@ -41,12 +41,6 @@ https-dev:
   needs: ["nginx114"]
   when: on_success
 
-packager:
-  stage: level_3
-  script: 'cd packager && make all && make publish && make clean'
-  needs: ["toolbox-buster"]
-  when: on_success
-
 pdftk:
   stage: level_3
   script: 'cd pdftk && make all && make publish && make clean'
@@ -549,7 +543,7 @@ node20_arm64:
 packager:
   stage: level_3
   script: 'cd packager && make all && make publish && make clean'
-  needs: ["toolbox-buster"]
+  needs: ["toolbox-bookworm"]
   when: on_success
 
 pdftk:
@@ -910,6 +904,12 @@ node20_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd node20 && make all-arm64 && make clean'
   tags: [arm]
+  needs: ["toolbox-bookworm"]
+  when: on_success
+
+packager:
+  stage: level_3
+  script: 'cd packager && make all && make publish && make clean'
   needs: ["toolbox-bookworm"]
   when: on_success
 
