@@ -92,7 +92,7 @@ digraph G {
     "nfqlt/gitsync" [fillcolor=orange label="gitsync"];
     "nfqlt/debian-buster"->"nfqlt/gitsync";
     "nfqlt/graphic-tools" [fillcolor=orange label="graphic-tools"];
-    "nfqlt/toolbox-buster"->"nfqlt/graphic-tools";
+    "nfqlt/toolbox-bookworm"->"nfqlt/graphic-tools";
     "nfqlt/https-dev" [fillcolor=orange label="https-dev"];
     "nfqlt/nginx114"->"nfqlt/https-dev";
     "nfqlt/lib-smartclient100" [fillcolor=orange label="lib-smartclient100"];
