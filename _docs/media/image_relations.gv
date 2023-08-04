@@ -82,7 +82,7 @@ digraph G {
     "nfqlt/elasticsearch-tools" [fillcolor=orange label="elasticsearch-tools"];
     "nfqlt/nginx114"->"nfqlt/elasticsearch-tools";
     "nfqlt/ffmpeg" [fillcolor=orange label="ffmpeg"];
-    "nfqlt/toolbox-buster"->"nfqlt/ffmpeg";
+    "nfqlt/toolbox-bookworm"->"nfqlt/ffmpeg";
     "nfqlt/fontforge" [fillcolor=orange label="fontforge"];
     "nfqlt/toolbox-buster"->"nfqlt/fontforge";
     "nfqlt/gearman" [fillcolor=orange label="gearman"];
