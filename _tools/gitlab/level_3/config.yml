@@ -41,12 +41,6 @@ https-dev:
   needs: ["nginx114"]
   when: on_success
 
-ffmpeg:
-  stage: level_3
-  script: 'cd ffmpeg && make all && make publish && make clean'
-  needs: ["toolbox-buster"]
-  when: on_success
-
 fontforge:
   stage: level_3
   script: 'cd fontforge && make all && make publish && make clean'
@@ -434,7 +428,7 @@ db-tools:
 ffmpeg:
   stage: level_3
   script: 'cd ffmpeg && make all && make publish && make clean'
-  needs: ["toolbox-buster"]
+  needs: ["toolbox-bookworm"]
   when: on_success
 
 fontforge:
@@ -795,6 +789,12 @@ aws-tools_arm64:
 chromium:
   stage: level_3
   script: 'cd chromium && make all && make publish && make clean'
+  needs: ["toolbox-bookworm"]
+  when: on_success
+
+ffmpeg:
+  stage: level_3
+  script: 'cd ffmpeg && make all && make publish && make clean'
   needs: ["toolbox-bookworm"]
   when: on_success
 
