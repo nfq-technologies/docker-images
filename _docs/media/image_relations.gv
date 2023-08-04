@@ -84,7 +84,7 @@ digraph G {
     "nfqlt/ffmpeg" [fillcolor=orange label="ffmpeg"];
     "nfqlt/toolbox-bookworm"->"nfqlt/ffmpeg";
     "nfqlt/fontforge" [fillcolor=orange label="fontforge"];
-    "nfqlt/toolbox-buster"->"nfqlt/fontforge";
+    "nfqlt/toolbox-bookworm"->"nfqlt/fontforge";
     "nfqlt/gearman" [fillcolor=orange label="gearman"];
     "nfqlt/debian-stretch"->"nfqlt/gearman";
     "nfqlt/ghostscript" [fillcolor=orange label="ghostscript"];
