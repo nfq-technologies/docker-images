@@ -288,7 +288,7 @@ digraph G {
     "nfqlt/thrift091" [fillcolor=orange label="thrift091"];
     "nfqlt/toolbox"->"nfqlt/thrift091";
     "nfqlt/thrift093" [fillcolor=orange label="thrift093"];
-    "nfqlt/toolbox-buster"->"nfqlt/thrift093";
+    "nfqlt/toolbox-bookworm"->"nfqlt/thrift093";
     "nfqlt/toolbox-bookworm" [fillcolor=orange label="toolbox-bookworm"];
     "nfqlt/debian-bookworm"->"nfqlt/toolbox-bookworm";
     "nfqlt/toolbox-bullseye" [fillcolor=orange label="toolbox-bullseye"];
