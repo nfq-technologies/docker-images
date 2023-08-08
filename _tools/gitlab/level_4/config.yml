@@ -1,10 +1,4 @@
 
-deb-dev:
-  stage: level_4
-  script: 'cd deb-dev && make all && make publish && make clean'
-  needs: ["php70-dev"]
-  when: on_success
-
 php74-vscode:
   stage: level_4
   script: 'cd php74-vscode && make all && make publish && make clean'
