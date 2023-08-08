@@ -47,12 +47,6 @@ pdftk:
   needs: ["toolbox-buster"]
   when: on_success
 
-phyaml:
-  stage: level_3
-  script: 'cd phyaml && make all && make publish && make clean'
-  needs: ["toolbox-buster"]
-  when: on_success
-
 sonar-scanner-cli4:
   stage: level_3
   script: 'cd sonar-scanner-cli4 && make all && make publish && make clean'
@@ -537,12 +531,6 @@ packager:
 pdftk:
   stage: level_3
   script: 'cd pdftk && make all && make publish && make clean'
-  needs: ["toolbox-buster"]
-  when: on_success
-
-phyaml:
-  stage: level_3
-  script: 'cd phyaml && make all && make publish && make clean'
   needs: ["toolbox-buster"]
   when: on_success
 
