@@ -59,12 +59,6 @@ sonar-scanner-cli4:
   needs: ["toolbox-buster"]
   when: on_success
 
-thrift0110:
-  stage: level_3
-  script: 'cd thrift0110 && make all && make publish && make clean'
-  needs: ["toolbox-buster"]
-  when: on_success
-
 wkhtmltopdf125-broken:
   stage: level_3
   script: 'cd wkhtmltopdf125-broken && make all && make publish && make clean'
@@ -567,7 +561,7 @@ sonar-scanner-cli4:
 thrift0110:
   stage: level_3
   script: 'cd thrift0110 && make all && make publish && make clean'
-  needs: ["toolbox-buster"]
+  needs: ["toolbox-bookworm"]
   when: on_success
 
 thrift091:
@@ -910,6 +904,12 @@ packager:
 ruby2:
   stage: level_3
   script: 'cd ruby2 && make all && make publish && make clean'
+  needs: ["toolbox-bookworm"]
+  when: on_success
+
+thrift0110:
+  stage: level_3
+  script: 'cd thrift0110 && make all && make publish && make clean'
   needs: ["toolbox-bookworm"]
   when: on_success
 

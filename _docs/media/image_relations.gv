@@ -284,7 +284,7 @@ digraph G {
     "nfqlt/sonar-scanner-cli4" [fillcolor=orange label="sonar-scanner-cli4"];
     "nfqlt/toolbox-buster"->"nfqlt/sonar-scanner-cli4";
     "nfqlt/thrift0110" [fillcolor=orange label="thrift0110"];
-    "nfqlt/toolbox-buster"->"nfqlt/thrift0110";
+    "nfqlt/toolbox-bookworm"->"nfqlt/thrift0110";
     "nfqlt/thrift091" [fillcolor=orange label="thrift091"];
     "nfqlt/toolbox"->"nfqlt/thrift091";
     "nfqlt/thrift093" [fillcolor=orange label="thrift093"];
