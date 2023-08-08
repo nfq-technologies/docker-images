@@ -65,12 +65,6 @@ thrift0110:
   needs: ["toolbox-buster"]
   when: on_success
 
-thrift093:
-  stage: level_3
-  script: 'cd thrift093 && make all && make publish && make clean'
-  needs: ["toolbox-buster"]
-  when: on_success
-
 wkhtmltopdf125-broken:
   stage: level_3
   script: 'cd wkhtmltopdf125-broken && make all && make publish && make clean'
@@ -585,7 +579,7 @@ thrift091:
 thrift093:
   stage: level_3
   script: 'cd thrift093 && make all && make publish && make clean'
-  needs: ["toolbox-buster"]
+  needs: ["toolbox-bookworm"]
   when: on_success
 
 wkhtmltopdf125-broken:
@@ -916,6 +910,12 @@ packager:
 ruby2:
   stage: level_3
   script: 'cd ruby2 && make all && make publish && make clean'
+  needs: ["toolbox-bookworm"]
+  when: on_success
+
+thrift093:
+  stage: level_3
+  script: 'cd thrift093 && make all && make publish && make clean'
   needs: ["toolbox-bookworm"]
   when: on_success
 
