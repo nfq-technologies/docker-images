@@ -19,8 +19,6 @@ digraph G {
     "nfqlt/debian-buster"->"nfqlt/certbot";
     "nfqlt/chromedriver73" [fillcolor=orange label="chromedriver73"];
     "nfqlt/debian-stretch"->"nfqlt/chromedriver73";
-    "nfqlt/chromedriver83" [fillcolor=orange label="chromedriver83"];
-    "nfqlt/debian-buster"->"nfqlt/chromedriver83";
     "nfqlt/chromedriver" [fillcolor=orange label="chromedriver"];
     "nfqlt/debian-bookworm"->"nfqlt/chromedriver";
     "nfqlt/chromium" [fillcolor=orange label="chromium"];

@@ -83,12 +83,6 @@ certbot:
   needs: ["debian-buster"]
   when: on_success
 
-chromedriver83:
-  stage: level_2
-  script: 'cd chromedriver83 && make all && make publish && make clean'
-  needs: ["debian-buster"]
-  when: on_success
-
 elasticsearch56:
   stage: level_2
   script: 'cd elasticsearch56 && make all && make publish && make clean'
