@@ -253,8 +253,6 @@ digraph G {
     "nfqlt/php82-cli"->"nfqlt/php82-supervisor";
     "nfqlt/phpmyadmin" [fillcolor=orange label="phpmyadmin"];
     "nfqlt/php82-cli"->"nfqlt/phpmyadmin";
-    "nfqlt/phyaml" [fillcolor=orange label="phyaml"];
-    "nfqlt/toolbox-buster"->"nfqlt/phyaml";
     "nfqlt/postgres12-data" [fillcolor=orange label="postgres12-data"];
     "nfqlt/postgres12"->"nfqlt/postgres12-data";
     "nfqlt/postgres12" [fillcolor=orange label="postgres12"];
