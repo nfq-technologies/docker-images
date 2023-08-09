@@ -35,12 +35,6 @@ birt45:
   needs: ["debian-stretch"]
   when: on_success
 
-chromedriver73:
-  stage: level_2
-  script: 'cd chromedriver73 && make all && make publish && make clean'
-  needs: ["debian-stretch"]
-  when: on_success
-
 nginx110:
   stage: level_2
   script: 'cd nginx110 && make all && make publish && make clean'
