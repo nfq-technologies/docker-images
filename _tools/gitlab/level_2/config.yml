@@ -53,12 +53,6 @@ nginx110:
   needs: ["debian-stretch"]
   when: on_success
 
-php70-cli:
-  stage: level_2
-  script: 'cd php70-cli && make all && make publish && make clean'
-  needs: ["debian-stretch"]
-  when: on_success
-
 rabbitmq366:
   stage: level_2
   script: 'cd rabbitmq366 && make all && make publish && make clean'

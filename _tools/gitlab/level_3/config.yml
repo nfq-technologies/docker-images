@@ -1,28 +1,4 @@
 
-php70-cron:
-  stage: level_3
-  script: 'cd php70-cron && make all && make publish && make clean'
-  needs: ["php70-cli"]
-  when: on_success
-
-php70-dev:
-  stage: level_3
-  script: 'cd php70-dev && make all && make publish && make clean'
-  needs: ["php70-cli"]
-  when: on_success
-
-php70-fpm:
-  stage: level_3
-  script: 'cd php70-fpm && make all && make publish && make clean'
-  needs: ["php70-cli"]
-  when: on_success
-
-php70-supervisor:
-  stage: level_3
-  script: 'cd php70-supervisor && make all && make publish && make clean'
-  needs: ["php70-cli"]
-  when: on_success
-
 elasticsearch56-data:
   stage: level_3
   script: 'cd elasticsearch56-data && make all && make publish && make clean'
