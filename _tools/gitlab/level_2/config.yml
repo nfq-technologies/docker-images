@@ -41,12 +41,6 @@ chromedriver73:
   needs: ["debian-stretch"]
   when: on_success
 
-gearman:
-  stage: level_2
-  script: 'cd gearman && make all && make publish && make clean'
-  needs: ["debian-stretch"]
-  when: on_success
-
 nginx110:
   stage: level_2
   script: 'cd nginx110 && make all && make publish && make clean'
