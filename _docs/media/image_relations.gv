@@ -167,16 +167,6 @@ digraph G {
     "nfqlt/debian-bookworm"->"nfqlt/phantomjs19";
     "nfqlt/phantomjs21" [fillcolor=orange label="phantomjs21"];
     "nfqlt/debian-bookworm"->"nfqlt/phantomjs21";
-    "nfqlt/php70-cli" [fillcolor=orange label="php70-cli"];
-    "nfqlt/debian-stretch"->"nfqlt/php70-cli";
-    "nfqlt/php70-cron" [fillcolor=orange label="php70-cron"];
-    "nfqlt/php70-cli"->"nfqlt/php70-cron";
-    "nfqlt/php70-dev" [fillcolor=orange label="php70-dev"];
-    "nfqlt/php70-cli"->"nfqlt/php70-dev";
-    "nfqlt/php70-fpm" [fillcolor=orange label="php70-fpm"];
-    "nfqlt/php70-cli"->"nfqlt/php70-fpm";
-    "nfqlt/php70-supervisor" [fillcolor=orange label="php70-supervisor"];
-    "nfqlt/php70-cli"->"nfqlt/php70-supervisor";
     "nfqlt/php71-cli" [fillcolor=orange label="php71-cli"];
     "nfqlt/debian-bullseye"->"nfqlt/php71-cli";
     "nfqlt/php71-cron" [fillcolor=orange label="php71-cron"];
