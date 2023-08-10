@@ -14,4 +14,3 @@
 | [memcached](https://packages.debian.org/search?suite=all&section=all&arch=any&searchon=names&keywords=memcached) | memcached16 | |
 | [mongo](https://www.mongodb.com/support-policy/lifecycles) | mongo50 | mongo32 mongo24 |
 | lib\-smartclient | lib\-smartclient130 | lib\-smartclient121 lib\-smartclient120 |
-| birt | - | birt45 |
