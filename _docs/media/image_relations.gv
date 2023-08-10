@@ -31,8 +31,6 @@ digraph G {
     "debian"->"nfqlt/debian-bullseye";
     "nfqlt/debian-buster" [fillcolor=orange label="debian-buster"];
     "debian"->"nfqlt/debian-buster";
-    "nfqlt/debian-stretch" [fillcolor=orange label="debian-stretch"];
-    "debian"->"nfqlt/debian-stretch";
     "nfqlt/dev" [fillcolor=orange label="dev"];
     "nfqlt/debian-bookworm"->"nfqlt/dev";
     "nfqlt/dib" [fillcolor=orange label="dib"];

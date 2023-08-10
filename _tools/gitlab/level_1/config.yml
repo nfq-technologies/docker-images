@@ -137,13 +137,6 @@ dib_arm64:
   when: manual
   allow_failure: false
 
-debian-stretch:
-  stage: level_1
-  script: 'cd debian-stretch && make all && make publish && make clean'
-  needs: []
-  when: manual
-  allow_failure: false
-
 debian-buster:
   stage: level_1
   script: 'cd debian-buster && make all && make publish && make clean'
