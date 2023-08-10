@@ -13,8 +13,6 @@ digraph G {
     "nfqlt/debian-bookworm"->"nfqlt/aws-mock";
     "nfqlt/aws-tools" [fillcolor=orange label="aws-tools"];
     "nfqlt/toolbox-bookworm"->"nfqlt/aws-tools";
-    "nfqlt/birt45" [fillcolor=orange label="birt45"];
-    "nfqlt/debian-stretch"->"nfqlt/birt45";
     "nfqlt/certbot" [fillcolor=orange label="certbot"];
     "nfqlt/debian-buster"->"nfqlt/certbot";
     "nfqlt/chromedriver" [fillcolor=orange label="chromedriver"];
@@ -127,8 +125,6 @@ digraph G {
     "nfqlt/mysql80"->"nfqlt/mysql80-data";
     "nfqlt/mysql80" [fillcolor=orange label="mysql80"];
     "mysql"->"nfqlt/mysql80";
-    "nfqlt/nginx110" [fillcolor=orange label="nginx110"];
-    "nfqlt/debian-stretch"->"nfqlt/nginx110";
     "nfqlt/nginx114" [fillcolor=orange label="nginx114"];
     "nfqlt/debian-buster"->"nfqlt/nginx114";
     "nfqlt/nginx118" [fillcolor=orange label="nginx118"];
@@ -245,14 +241,10 @@ digraph G {
     "nfqlt/debian-bookworm"->"nfqlt/rabbitmq310";
     "nfqlt/rabbitmq312" [fillcolor=orange label="rabbitmq312"];
     "nfqlt/debian-bookworm"->"nfqlt/rabbitmq312";
-    "nfqlt/rabbitmq366" [fillcolor=orange label="rabbitmq366"];
-    "nfqlt/debian-stretch"->"nfqlt/rabbitmq366";
     "nfqlt/rabbitmq378" [fillcolor=orange label="rabbitmq378"];
     "nfqlt/debian-buster"->"nfqlt/rabbitmq378";
     "nfqlt/rabbitmq38" [fillcolor=orange label="rabbitmq38"];
     "nfqlt/debian-bullseye"->"nfqlt/rabbitmq38";
-    "nfqlt/redis326" [fillcolor=orange label="redis326"];
-    "nfqlt/debian-stretch"->"nfqlt/redis326";
     "nfqlt/redis503" [fillcolor=orange label="redis503"];
     "nfqlt/debian-buster"->"nfqlt/redis503";
     "nfqlt/redis60" [fillcolor=orange label="redis60"];
@@ -279,8 +271,6 @@ digraph G {
     "nfqlt/debian-buster"->"nfqlt/toolbox-buster";
     "nfqlt/toolbox" [fillcolor=orange label="toolbox"];
     "nfqlt/debian-bullseye"->"nfqlt/toolbox";
-    "nfqlt/varnish50" [fillcolor=orange label="varnish50"];
-    "nfqlt/debian-stretch"->"nfqlt/varnish50";
     "nfqlt/wkhtmltopdf125-broken" [fillcolor=orange label="wkhtmltopdf125-broken"];
     "nfqlt/toolbox-buster"->"nfqlt/wkhtmltopdf125-broken";
     "nfqlt/wkhtmltopdf125" [fillcolor=orange label="wkhtmltopdf125"];

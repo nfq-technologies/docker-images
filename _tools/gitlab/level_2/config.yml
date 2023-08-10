@@ -29,36 +29,6 @@ mysql55-data:
   needs: ["mysql55"]
   when: on_success
 
-birt45:
-  stage: level_2
-  script: 'cd birt45 && make all && make publish && make clean'
-  needs: ["debian-stretch"]
-  when: on_success
-
-nginx110:
-  stage: level_2
-  script: 'cd nginx110 && make all && make publish && make clean'
-  needs: ["debian-stretch"]
-  when: on_success
-
-rabbitmq366:
-  stage: level_2
-  script: 'cd rabbitmq366 && make all && make publish && make clean'
-  needs: ["debian-stretch"]
-  when: on_success
-
-redis326:
-  stage: level_2
-  script: 'cd redis326 && make all && make publish && make clean'
-  needs: ["debian-stretch"]
-  when: on_success
-
-varnish50:
-  stage: level_2
-  script: 'cd varnish50 && make all && make publish && make clean'
-  needs: ["debian-stretch"]
-  when: on_success
-
 certbot:
   stage: level_2
   script: 'cd certbot && make all && make publish && make clean'
