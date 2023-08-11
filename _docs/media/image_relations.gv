@@ -239,8 +239,6 @@ digraph G {
     "nfqlt/debian-bookworm"->"nfqlt/rabbitmq310";
     "nfqlt/rabbitmq312" [fillcolor=orange label="rabbitmq312"];
     "nfqlt/debian-bookworm"->"nfqlt/rabbitmq312";
-    "nfqlt/rabbitmq378" [fillcolor=orange label="rabbitmq378"];
-    "nfqlt/debian-buster"->"nfqlt/rabbitmq378";
     "nfqlt/rabbitmq38" [fillcolor=orange label="rabbitmq38"];
     "nfqlt/debian-bullseye"->"nfqlt/rabbitmq38";
     "nfqlt/redis503" [fillcolor=orange label="redis503"];
