@@ -1,4 +1,4 @@
-FROM busybox
+FROM alpine
 
 CMD exec /entrypoint.sh
 
