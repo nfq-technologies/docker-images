@@ -59,12 +59,6 @@ nginx114:
   needs: ["debian-buster"]
   when: on_success
 
-rabbitmq378:
-  stage: level_2
-  script: 'cd rabbitmq378 && make all && make publish && make clean'
-  needs: ["debian-buster"]
-  when: on_success
-
 redis503:
   stage: level_2
   script: 'cd redis503 && make all && make publish && make clean'
