@@ -107,7 +107,7 @@ apt-get install -y --no-install-recommends \
 cd /tmp
 XDEBUG_DEB="php7.3-xdebug_*debian11*_amd64.deb"
 
-rsync "rsync://rsync.sury.org/repositories/php/pool/main/x/xdebug/$XDEBUG_DEB" .
+rsync "rsync://rsync.sury.org/repositories/php/pool/main/x/xdebug-3-1/$XDEBUG_DEB" .
 dpkg -i $XDEBUG_DEB
 rm -f $XDEBUG_DEB
 
