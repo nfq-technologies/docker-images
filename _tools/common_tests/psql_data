@@ -34,7 +34,6 @@ testQuery() {
 
 # start psql server container with data volume from the tested image
 cat $tpl | sed \
--e "s#__PSQL_PORT__#${pid}#" \
 -e "s#__PSQL_IMAGE__#${psqlImage}#" \
 -e "s#__PSQL_DATA_IMAGE__#${psqlDataImage}#" \
 > "${cwd}/docker-compose-${pid}.yml"
@@ -43,7 +42,7 @@ docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" up -d &>/de
 
 
 ip_address="$(get_container_ip test${pid}_psql_1)"
-wait_for_psql_connection "${ip_address}:${pid}"
+wait_for_psql_connection "${ip_address}:5432"
 
 
 # actual tests
