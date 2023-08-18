@@ -34,7 +34,6 @@ testQuery() {
 
 # start psql server container with data volume from the tested image
 cat $tpl | sed \
--e "s#__PSQL_PORT__#${pid}#" \
 -e "s#__PSQL_IMAGE__#${psqlImage}#" \
 -e "s#__PSQL_DATA_IMAGE__#${psqlDataImage}#" \
 > "${cwd}/docker-compose-${pid}.yml"
