@@ -1,10 +1,4 @@
 
-postgres12-data:
-  stage: level_2
-  script: 'cd postgres12-data && make all && make publish && make clean'
-  needs: ["postgres12"]
-  when: on_success
-
 mysql80-data:
   stage: level_2
   script: 'cd mysql80-data && make all && make publish && make clean'
