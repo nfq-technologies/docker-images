@@ -6,7 +6,6 @@ cwd=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 imageDir=$(dirname $cwd)
 psqlImage=$(cat ${imageDir}/Dockerfile | grep FROM | sed 's/FROM //')
 psqlDataImage="$1"
-pid=${BASHPID}
 source "${cwd}/../../_tools/helpers/common.sh"
 
 # destroy containers and remove trash
