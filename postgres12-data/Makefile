@@ -1,1 +1,1 @@
-../_tools/makefiles/base-image-amd64-Makefile
+../_tools/makefiles/base-data-image-Makefile
