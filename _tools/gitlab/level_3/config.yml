@@ -528,12 +528,6 @@ thrift0110:
   needs: ["toolbox-bookworm"]
   when: on_success
 
-thrift091:
-  stage: level_3
-  script: 'cd thrift091 && make all && make publish && make clean'
-  needs: ["toolbox"]
-  when: on_success
-
 thrift093:
   stage: level_3
   script: 'cd thrift093 && make all && make publish && make clean'

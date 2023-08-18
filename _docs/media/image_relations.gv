@@ -253,8 +253,6 @@ digraph G {
     "nfqlt/toolbox-buster"->"nfqlt/sonar-scanner-cli4";
     "nfqlt/thrift0110" [fillcolor=orange label="thrift0110"];
     "nfqlt/toolbox-bookworm"->"nfqlt/thrift0110";
-    "nfqlt/thrift091" [fillcolor=orange label="thrift091"];
-    "nfqlt/toolbox"->"nfqlt/thrift091";
     "nfqlt/thrift093" [fillcolor=orange label="thrift093"];
     "nfqlt/toolbox-bookworm"->"nfqlt/thrift093";
     "nfqlt/toolbox-bookworm" [fillcolor=orange label="toolbox-bookworm"];
