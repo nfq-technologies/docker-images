@@ -304,12 +304,6 @@ toolbox-bullseye_arm64:
   needs: ["debian-bullseye"]
   when: on_success
 
-toolbox:
-  stage: level_2
-  script: 'cd toolbox && make all && make publish && make clean'
-  needs: ["debian-bullseye"]
-  when: on_success
-
 apache24:
   stage: level_2
   before_script:

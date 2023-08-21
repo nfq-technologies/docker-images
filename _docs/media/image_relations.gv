@@ -261,8 +261,6 @@ digraph G {
     "nfqlt/debian-bullseye"->"nfqlt/toolbox-bullseye";
     "nfqlt/toolbox-buster" [fillcolor=orange label="toolbox-buster"];
     "nfqlt/debian-buster"->"nfqlt/toolbox-buster";
-    "nfqlt/toolbox" [fillcolor=orange label="toolbox"];
-    "nfqlt/debian-bullseye"->"nfqlt/toolbox";
     "nfqlt/wkhtmltopdf125-broken" [fillcolor=orange label="wkhtmltopdf125-broken"];
     "nfqlt/toolbox-buster"->"nfqlt/wkhtmltopdf125-broken";
     "nfqlt/wkhtmltopdf125" [fillcolor=orange label="wkhtmltopdf125"];
