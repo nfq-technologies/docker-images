@@ -271,8 +271,6 @@ digraph G {
     "nfqlt/toolbox-bookworm"->"nfqlt/wkhtmltopdf126-broken";
     "nfqlt/wkhtmltopdf126" [fillcolor=orange label="wkhtmltopdf126"];
     "nfqlt/toolbox-bookworm"->"nfqlt/wkhtmltopdf126";
-    "nfqlt/wkhtmltopdf-broken" [fillcolor=orange label="wkhtmltopdf-broken"];
-    "nfqlt/toolbox"->"nfqlt/wkhtmltopdf-broken";
     "nfqlt/wkhtmltopdf" [fillcolor=orange label="wkhtmltopdf"];
     "nfqlt/toolbox"->"nfqlt/wkhtmltopdf";
     "nfqlt/xhgui" [fillcolor=orange label="xhgui"];
