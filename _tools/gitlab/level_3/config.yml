@@ -575,12 +575,6 @@ wkhtmltopdf126:
   needs: ["toolbox-bookworm"]
   when: on_success
 
-wkhtmltopdf-broken:
-  stage: level_3
-  script: 'cd wkhtmltopdf-broken && make all && make publish && make clean'
-  needs: ["toolbox"]
-  when: on_success
-
 wkhtmltopdf:
   stage: level_3
   script: 'cd wkhtmltopdf && make all && make publish && make clean'
