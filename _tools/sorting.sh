@@ -11,7 +11,7 @@ function parse_children() {
 
 	for parent in ${!parents}; do
 		# Print to stdout the output
-		grep "FROM $parent" ./*/Dockerfile | cut -d"/" -f2 | xargs -I {} echo "nfqlt/"{}
+		grep "FROM $parent\$" ./*/Dockerfile | cut -d"/" -f2 | xargs -I {} echo "nfqlt/"{}
 	done
 }
 
