@@ -1,0 +1,26 @@
+#!/bin/bash -ex
+
+
+config_types="fpm cli"
+
+for config_type in ${config_types}; do
+
+	var_prefix="PHP_${config_type^^}_"
+	env_vars="$(printenv | grep "$var_prefix" | sed "s/$var_prefix//g" || true)"
+
+	# If no environment variables are present - early quit
+	if [ -z "$env_vars" ]; then
+		exit 0
+	fi
+
+	# Detect PHP version
+	php_version="$(ls -1 /etc/php | head -n 1)"
+	
+	# Add PHP section
+	echo "[PHP]" >> "/etc/php/$php_version/$config_type/conf.d/90-environment.ini"
+	# If new section is needed, add them in format:
+	# PHP_FPMmysqli_ and section and for loop logic
+	echo "Injecting php configuration into file:  /etc/php/$php_version/$config_type/conf.d/90-environment.ini"
+
+	echo "$env_vars" | tee "/etc/php/$php_version/$config_type/conf.d/90-environment.ini"
+done
