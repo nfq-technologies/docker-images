@@ -1,6 +1,6 @@
 #!/bin/sh -ex
 
-env_vars="$(printenv | grep PHP_FPM_)"
+env_vars="$(printenv | grep "PHP_FPM_" || true)"
 
 # If no environment variables are present - early quit
 if [ -z "$env_vars" ]; then
@@ -14,7 +14,8 @@ php_version="$(ls -1 /etc/php | head -n 1)"
 echo "[PHP]" >> /etc/php/$php_version/fpm/conf.d/90-environment.ini
 # If new section is needed, add them in format:
 # PHP_FPMmysqli_ and section and for loop logic
+echo "Injecting php configuration into file:  /etc/php/$php_version/fpm/conf.d/90-environment.ini"
 
 for item in $env_vars; do
-        echo "$item" >> /etc/php/$php_version/fpm/conf.d/90-environment.ini
+        echo "$item" | tee /etc/php/$php_version/fpm/conf.d/90-environment.ini
 done;

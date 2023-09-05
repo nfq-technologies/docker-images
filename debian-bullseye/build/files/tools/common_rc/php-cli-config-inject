@@ -1,6 +1,6 @@
-#!/bin/sh -ex
+#!/bin/sh -e
 
-env_vars="$(printenv | grep PHP_CLI_)"
+env_vars="$(printenv | grep "PHP_CLI_" || true)"
 
 # If no environment variables are present - early quit
 if [ -z "$env_vars" ]; then
@@ -15,6 +15,8 @@ echo "[PHP]" >> /etc/php/$php_version/cli/conf.d/90-environment.ini
 # If new section is needed, add them in format:
 # PHP_CLImysqli_ and section and for loop logic
 
+echo "Injecting php configuration into file:  /etc/php/$php_version/cli/conf.d/90-environment.ini"
+
 for item in $env_vars; do
-        echo "$item" >> /etc/php/$php_version/cli/conf.d/90-environment.ini
+        echo "$item" | tee /etc/php/$php_version/cli/conf.d/90-environment.ini
 done;
