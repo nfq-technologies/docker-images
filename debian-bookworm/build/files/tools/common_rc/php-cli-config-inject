@@ -18,5 +18,5 @@ echo "[PHP]" >> /etc/php/$php_version/cli/conf.d/90-environment.ini
 echo "Injecting php configuration into file:  /etc/php/$php_version/cli/conf.d/90-environment.ini"
 
 for item in $env_vars; do
-        echo "$item" | tee /etc/php/$php_version/cli/conf.d/90-environment.ini
+        echo "${item#PHP_CLI_}" | tee /etc/php/$php_version/cli/conf.d/90-environment.ini
 done;

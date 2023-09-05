@@ -17,5 +17,5 @@ echo "[PHP]" >> /etc/php/$php_version/fpm/conf.d/90-environment.ini
 echo "Injecting php configuration into file:  /etc/php/$php_version/fpm/conf.d/90-environment.ini"
 
 for item in $env_vars; do
-        echo "$item" | tee /etc/php/$php_version/fpm/conf.d/90-environment.ini
+        echo "${item#PHP_FPM_}" | tee /etc/php/$php_version/fpm/conf.d/90-environment.ini
 done;
