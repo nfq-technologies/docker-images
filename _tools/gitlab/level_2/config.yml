@@ -465,12 +465,6 @@ nginx122_arm64:
   needs: ["debian-bookworm"]
   when: on_success
 
-nodeserver14:
-  stage: level_2
-  script: 'cd nodeserver14 && make all && make publish && make clean'
-  needs: ["debian-bookworm"]
-  when: on_success
-
 nodeserver16:
   stage: level_2
   script: 'cd nodeserver16 && make all && make publish && make clean'
@@ -480,12 +474,6 @@ nodeserver16:
 nodeserver18:
   stage: level_2
   script: 'cd nodeserver18 && make all && make publish && make clean'
-  needs: ["debian-bookworm"]
-  when: on_success
-
-nodeserver19:
-  stage: level_2
-  script: 'cd nodeserver19 && make all && make publish && make clean'
   needs: ["debian-bookworm"]
   when: on_success
 
