@@ -3,16 +3,11 @@
 set -x
 set -e
 
-# Manually download and install node deb
-file="$(wget -qO - https://deb.nodesource.com/node_18.x/pool/main/n/nodejs/ \
-	| sed 's/href="\([^"]*\)">/\n\1\n/g' \
-	| grep -i '^nodejs_[0-9\.\-]*deb-1nodesource._amd64\.deb$' \
-	| sort --version-sort \
-	| tail -n1)"
-
-wget -qO nodejs.deb https://deb.nodesource.com/node_18.x/pool/main/n/nodejs/$file
-dpkg -i nodejs.deb
-rm nodejs.deb
+# install node
+ver=18
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$ver.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list
+apt-get update && apt-get install -t nodistro nodejs -y
 
 # install nodemon
 npm install -g nodemon
