@@ -92,10 +92,6 @@ rm -rf /etc/php/{5.6,7.0,7.1,7.2,7.3,7.4,8.0}
 mv /etc/php/8.1/cli/php.ini{,_orig}
 
 
-# install custom php modules
-apt-get install -y --no-install-recommends phyaml
-
-
 # install dma (dragonfly mailer simple relay)
 debconf-set-selections <<< "dma dma/mailname string"
 debconf-set-selections <<< "dma dma/relayhost string mail"
