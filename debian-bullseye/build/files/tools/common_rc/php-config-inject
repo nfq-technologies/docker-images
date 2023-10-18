@@ -12,13 +12,13 @@ for config_type in fpm cli; do
 	fi
 
 	# Detect PHP version
-	php_version="$(find /etc/php/* | head -n 1)"
+	php_config_path="$(find /etc/php/* | head -n 1)"
 
 	# Add PHP section
-	echo "[PHP]" >> "/etc/php/$php_version/$config_type/conf.d/90-environment.ini"
+	echo "[PHP]" >> "$php_config_path/$config_type/conf.d/90-environment.ini"
 	# If new section is needed, add them in format:
 	# PHP_FPMmysqli_ and section and for loop logic
-	echo "Injecting php configuration into file:  /etc/php/$php_version/$config_type/conf.d/90-environment.ini"
+	echo "Injecting php configuration into file:  $php_config_path/$config_type/conf.d/90-environment.ini"
 
-	echo "$env_vars" | tee "/etc/php/$php_version/$config_type/conf.d/90-environment.ini"
+	echo "$env_vars" | tee "$php_config_path/$config_type/conf.d/90-environment.ini"
 done
