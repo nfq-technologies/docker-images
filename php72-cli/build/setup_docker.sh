@@ -93,9 +93,7 @@ rm -rf /etc/php/{5.6,7.0,7.1,7.3,7.4}
 
 # install custom php modules
 apt-get install -y --no-install-recommends \
-	nfq-php-tideways \
-	phyaml \
-
+	nfq-php-tideways
 
 # install dma (dragonfly mailer simple relay)
 debconf-set-selections <<< "dma dma/mailname string"
