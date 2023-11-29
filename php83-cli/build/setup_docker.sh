@@ -18,7 +18,6 @@ EOF
 
 
 apt-get update
-
 apt-get install -y --no-install-recommends \
         php8.3-amqp \
         php8.3-apcu \
@@ -42,7 +41,6 @@ apt-get install -y --no-install-recommends \
         php8.3-mailparse \
         php8.3-mbstring \
         php8.3-memcache \
-        php8.3-memcached \
         php8.3-mongodb \
         php8.3-msgpack \
         php8.3-mysql \
@@ -67,7 +65,6 @@ apt-get install -y --no-install-recommends \
         php8.3-solr \
         php8.3-tidy \
         php8.3-uuid \
-        php8.3-xdebug \
         php8.3-xml \
         php8.3-xmlrpc \
         php8.3-xsl \
@@ -75,6 +72,9 @@ apt-get install -y --no-install-recommends \
         php8.3-zip \
         php8.3-zip \
         php8.3-zmq
+
+#        php8.3-xdebug \
+#        php8.3-memcached \
 
 
 # disable all php modules
