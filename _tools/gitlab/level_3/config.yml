@@ -422,6 +422,98 @@ phpmyadmin:
   needs: ["php82-cli"]
   when: on_success
 
+php83-cron:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php83-cron && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [php83-cron_arm64]
+  when: on_success
+  tags: [nfq_ip]
+php83-cron_arm64:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php83-cron && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["php83-cli"]
+  when: on_success
+
+php83-dev:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php83-dev && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [php83-dev_arm64]
+  when: on_success
+  tags: [nfq_ip]
+php83-dev_arm64:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php83-dev && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["php83-cli"]
+  when: on_success
+
+php83-fpm:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php83-fpm && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [php83-fpm_arm64]
+  when: on_success
+  tags: [nfq_ip]
+php83-fpm_arm64:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php83-fpm && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["php83-cli"]
+  when: on_success
+
+php83-supervisor:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php83-supervisor && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [php83-supervisor_arm64]
+  when: on_success
+  tags: [nfq_ip]
+php83-supervisor_arm64:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php83-supervisor && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["php83-cli"]
+  when: on_success
+
 aws-tools:
   stage: level_3
   before_script:
