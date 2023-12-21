@@ -21,8 +21,7 @@ test_modules_load() {
 	local modules=$@
 
 	## perform test
-	for mod in $modules
-	do
+	for mod in $modules; do
 		printf "%-15s ... " "$mod"
 
 		export NFQ_ENABLE_PHP_MODULES=$modules
@@ -37,8 +36,7 @@ test_modules_load() {
 	done
 
 	## handle failure
-	if [ $FAILED ]
-	then
+	if [ $FAILED ];	then
 		exit 1
 	fi
 }

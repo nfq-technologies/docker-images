@@ -23,16 +23,15 @@ watch_cron_files() {
 	local DR="$1"
 	local c1=""
 	local c2=""
-	while [[ true ]]
-	do
-        sleep 5
+	while true; do
+        	sleep 5
 		c2="$(md5sum $DR/*)"
-        if [[ $c1 != $c2 ]] ; then
+        	if [[ "$c1" != "$c2" ]] ; then
 			echo "~~ Changes detected, updating crontab."
-            cat ${DR}/* > /etc/crontab
-            c1=$c2
-        fi
-    done
+			cat "${DR}"/* > /etc/crontab
+			c1=$c2
+		fi
+	done
 }
 crond_dir() {
 	local DR="${NFQ_CRON_D_PATH}"
@@ -49,10 +48,5 @@ crond_dir() {
 
 crond_dir
 
-
-
-
 cron -n -L 1 &
 syslogd -n -O /dev/stdout | stdbuf -i0 -oL -eL fgrep -v ' authpriv.'
-
-
