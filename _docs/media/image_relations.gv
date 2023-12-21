@@ -221,6 +221,16 @@ digraph G {
     "nfqlt/php82-cli"->"nfqlt/php82-fpm";
     "nfqlt/php82-supervisor" [fillcolor=orange label="php82-supervisor"];
     "nfqlt/php82-cli"->"nfqlt/php82-supervisor";
+    "nfqlt/php83-cli" [fillcolor=orange label="php83-cli"];
+    "nfqlt/debian-bookworm"->"nfqlt/php83-cli";
+    "nfqlt/php83-cron" [fillcolor=orange label="php83-cron"];
+    "nfqlt/php83-cli"->"nfqlt/php83-cron";
+    "nfqlt/php83-dev" [fillcolor=orange label="php83-dev"];
+    "nfqlt/php83-cli"->"nfqlt/php83-dev";
+    "nfqlt/php83-fpm" [fillcolor=orange label="php83-fpm"];
+    "nfqlt/php83-cli"->"nfqlt/php83-fpm";
+    "nfqlt/php83-supervisor" [fillcolor=orange label="php83-supervisor"];
+    "nfqlt/php83-cli"->"nfqlt/php83-supervisor";
     "nfqlt/phpmyadmin" [fillcolor=orange label="phpmyadmin"];
     "nfqlt/php82-cli"->"nfqlt/phpmyadmin";
     "nfqlt/postgres12" [fillcolor=orange label="postgres12"];

@@ -26,7 +26,7 @@ watch_cron_files() {
 	while true; do
         	sleep 5
 		c2="$(md5sum $DR/*)"
-        	if [[ "$c1" != "$c2" ]] ; then
+        	if [[ "$c1" != "$c2" ]]; then
 			echo "~~ Changes detected, updating crontab."
 			cat "${DR}"/* > /etc/crontab
 			c1=$c2
@@ -37,8 +37,7 @@ crond_dir() {
 	local DR="${NFQ_CRON_D_PATH}"
 	init_wait_for_a_not_empty_dir "$DR"
 
-	if [ "x$DR" != "x" ]
-	then
+	if [ "$DR" != "" ]; then
 		echo "++ Using $DR as a cron.d dir."
 		watch_cron_files "$DR" &
 	else
