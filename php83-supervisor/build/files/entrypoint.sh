@@ -11,7 +11,7 @@ DR="${NFQ_SUPERVISOR_CONF_DIR}"
 if [ "${DR}" != "" ]; then
 	echo "++ Waiting for config dir at $DR"
 	while [ ! -d "$DR" ]; do
-	    sleep 1
+		sleep 1
 	done
 	echo "++ config dir at $DR found"
 

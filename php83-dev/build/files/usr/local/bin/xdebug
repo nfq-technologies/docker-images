@@ -3,16 +3,16 @@
 project_root=${NFQ_PROJECT_ROOT}
 
 get_project_group_and_name() {
-        git_config="${project_root}/.git/config"
-        if [ -f "$git_config" ]; then
-                cat "$git_config" \
-                | grep -A10 '^\[remote.*origin' \
-                | grep '^\s*url' \
-                | head -n1 \
-                | sed -r 's@^.*\:([^/]*/[^.]*)\.git.*$@\1@g'
-        else
-                echo "ERROR: Can't find git config in projects root. ${git_config}" >&2
-        fi
+	git_config="${project_root}/.git/config"
+	if [ -f "$git_config" ]; then
+		cat "$git_config" \
+			| grep -A10 '^\[remote.*origin' \
+			| grep '^\s*url' \
+			| head -n1 \
+			| sed -r 's@^.*\:([^/]*/[^.]*)\.git.*$@\1@g'
+	else
+		echo "ERROR: Can't find git config in projects root. ${git_config}" >&2
+	fi
 }
 
 prepare_dir() {
@@ -37,13 +37,15 @@ export REQUEST_URI=/
 
 
 if basename "$0" | fgrep -q debug; then
-    PHP_PARAMS="-d xdebug.mode=debug -d xdebug.start_with_request=yes"
+	PHP_PARAMS="-d xdebug.mode=debug -d xdebug.start_with_request=yes"
 fi
+
 if basename "$0" | fgrep -q profile; then
-    PHP_PARAMS="-d xdebug.profiler_enable=1"
+	PHP_PARAMS="-d xdebug.profiler_enable=1"
 fi
+
 if basename "$0" | fgrep -q trace; then
-    PHP_PARAMS="-d xdebug.auto_trace=1"
+	PHP_PARAMS="-d xdebug.auto_trace=1"
 fi
 
 
