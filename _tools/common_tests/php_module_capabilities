@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+IMAGE=$1
+
+# test if imagick supports svg files
+echo -n "Imagick supports SVG files ... "
+docker run --rm -e NFQ_ENABLE_PHP_MODULES="imagick" $IMAGE bash -c "run-parts /etc/rc.d && php -r '\$i=new Imagick();\$s=file_get_contents(\"/usr/share/icons/hicolor/scalable/apps/mc.svg\"); \$i->readImageBlob(\$s);'" && echo OK || (echo FAIL; exit 1)
+
+
