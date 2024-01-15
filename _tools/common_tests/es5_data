@@ -2,7 +2,7 @@
 set -e
 
 name=test_box_$(date +%s%N)
-dataPath="/var/elasticsearch/data/nodes"
+dataPath="/var/elasticsearch/data"
 
 cleanup () {
 	docker rm -v -f $name >/dev/null
