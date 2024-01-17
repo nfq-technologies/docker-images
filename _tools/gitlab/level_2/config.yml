@@ -396,6 +396,29 @@ dev_arm64:
   needs: ["debian-bookworm"]
   when: on_success
 
+elasticsearch84:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd elasticsearch84 && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [elasticsearch84_arm64]
+  when: on_success
+  tags: [nfq_ip]
+elasticsearch84_arm64:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd elasticsearch84 && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["debian-bookworm"]
+  when: on_success
+
 mailhog:
   stage: level_2
   before_script:
