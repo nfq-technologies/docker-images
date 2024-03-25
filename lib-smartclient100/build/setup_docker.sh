@@ -11,7 +11,7 @@ URL="$URL/$DATE/SmartClient_v100p_${DATE}_LGPL.zip"
 DDIR=/home/project/lib/smartclient
 cd /tmp
 wget -O sc.zip $URL
-unzip sc.zip
+unzip -q sc.zip
 rm -fr sc.zip
 mkdir -p $DDIR/smartclientSDK/isomorphic
 mv SmartClient_*/smartclientSDK/isomorphic $DDIR/smartclientSDK/
