@@ -7,7 +7,7 @@ set -e
 apt-get update
 
 # Install docker dependencies
-apt-get install --no-install-recommends -y docker.io make
+apt-get install --no-install-recommends -y docker.io docker-compose make
 
 # Copy runtime files
 cp -frv /build/files/* / || true
