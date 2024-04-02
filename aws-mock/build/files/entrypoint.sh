@@ -27,7 +27,7 @@ for service in $NFQ_AWS_SERVICES; do
 	fi
 	
 	echo "Starting $service_name on port $service_port ..."
-	moto_server $service_name -H 0.0.0.0 -p $service_port &
+	moto_server -H 0.0.0.0 -p $service_port &
 done
 
 
