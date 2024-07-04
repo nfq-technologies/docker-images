@@ -490,19 +490,70 @@ nginx122_arm64:
 
 nodeserver16:
   stage: level_2
-  script: 'cd nodeserver16 && make all && make publish && make clean'
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd nodeserver16 && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [nodeserver16_arm64]
+  when: on_success
+  tags: [nfq_ip]
+nodeserver16_arm64:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd nodeserver16 && make all-arm64 && make clean'
+  tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success
 
 nodeserver18:
   stage: level_2
-  script: 'cd nodeserver18 && make all && make publish && make clean'
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd nodeserver18 && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [nodeserver18_arm64]
+  when: on_success
+  tags: [nfq_ip]
+nodeserver18_arm64:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd nodeserver18 && make all-arm64 && make clean'
+  tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success
 
 nodeserver20:
   stage: level_2
-  script: 'cd nodeserver20 && make all && make publish && make clean'
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd nodeserver20 && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [nodeserver20_arm64]
+  when: on_success
+  tags: [nfq_ip]
+nodeserver20_arm64:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd nodeserver20 && make all-arm64 && make clean'
+  tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success
 
