@@ -1,7 +1,7 @@
 ## Node.js toolbox
 
 ### Info
-This is an image of Node.js 20.x version  in toolbox format
+This is an image of Node.js 21.x version  in toolbox format
 
 ### Global npm packages
 This image has pre-installed npm global packages
@@ -35,7 +35,7 @@ Available binary paths for export:
 version: '2.4'
 services:
   node:
-    image: nfqlt/node20
+    image: nfqlt/node21
     volumes:
       - './src:/home/project/src'
       - /tmp

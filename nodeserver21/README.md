@@ -1,4 +1,4 @@
-## Node server 20.x
+## Node server 21.x
 
 ### Description
 A simple docker image containing node and npm, used to run npm targets. Like frontend servers
