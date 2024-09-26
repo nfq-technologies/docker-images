@@ -137,12 +137,16 @@ digraph G {
     "nfqlt/toolbox-bookworm"->"nfqlt/node18";
     "nfqlt/node20" [fillcolor=orange label="node20"];
     "nfqlt/toolbox-bookworm"->"nfqlt/node20";
+    "nfqlt/node21" [fillcolor=orange label="node21"];
+    "nfqlt/toolbox-bookworm"->"nfqlt/node21";
     "nfqlt/nodeserver16" [fillcolor=orange label="nodeserver16"];
     "nfqlt/debian-bookworm"->"nfqlt/nodeserver16";
     "nfqlt/nodeserver18" [fillcolor=orange label="nodeserver18"];
     "nfqlt/debian-bookworm"->"nfqlt/nodeserver18";
     "nfqlt/nodeserver20" [fillcolor=orange label="nodeserver20"];
     "nfqlt/debian-bookworm"->"nfqlt/nodeserver20";
+    "nfqlt/nodeserver21" [fillcolor=orange label="nodeserver21"];
+    "nfqlt/debian-bookworm"->"nfqlt/nodeserver21";
     "nfqlt/packager" [fillcolor=orange label="packager"];
     "nfqlt/toolbox-bookworm"->"nfqlt/packager";
     "nfqlt/pdftk" [fillcolor=orange label="pdftk"];
