@@ -4,11 +4,9 @@ set -e
 source /tools/functions_init.sh
 
 # for tests when container does not have a link to fastcgi
-if [ ! -d "/builds/" ]; then
-    if ! fgrep -q fastcgi /etc/hosts && ! host fastcgi; then
-        echo "No fastcgi host found, injecting localhost"
-        echo "127.0.0.1 fastcgi" >> /etc/hosts
-    fi
+if [ ! -d "/builds/" ] && ! fgrep -q fastcgi /etc/hosts && ! host fastcgi; then
+    echo "No fastcgi host found, injecting localhost"
+    echo "127.0.0.1 fastcgi" >> /etc/hosts
 fi
 
 run-parts -v /etc/rc.d
