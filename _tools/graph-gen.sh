@@ -16,7 +16,7 @@ cd "$work_dir"
 } > $gv_file
 
 for docker_file in ./*/Dockerfile; do
-  parent_image="$(grep '^FROM ' "$docker_file" | awk '{print $2}' | sed 's/^nfqlt\///')"
+  parent_image=$(grep '^FROM ' "$docker_file" | awk '{print $2}' | sed 's/^nfqlt\///')
   image=$(basename "$(dirname "$docker_file")")
   echo "  \"$parent_image\" -> \"$image\";" >> $gv_file
   echo "  \"$image\" [fillcolor=orange];" >> $gv_file
