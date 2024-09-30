@@ -10,7 +10,7 @@ cd "$work_dir"
 
 {
   echo "digraph $result_file_name {"
-  echo '  graph [fontname=sans];'
+  echo '  graph [fontname=sans pad="0" nodesep="0.2" ranksep="0.3"];'
   echo '  rankdir="LR";'
   echo '  node [style=filled shape=box fontname=sans fillcolor=white];'
 } > $gv_file
