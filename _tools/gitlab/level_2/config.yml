@@ -1,4 +1,10 @@
 
+mysql84-data:
+  stage: level_2
+  script: 'cd mysql84-data && make all && make publish && make clean'
+  needs: ["mysql84"]
+  when: on_success
+
 mysql80-data:
   stage: level_2
   script: 'cd mysql80-data && make all && make publish && make clean'
