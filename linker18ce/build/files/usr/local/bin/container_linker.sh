@@ -6,7 +6,7 @@ function get_project_name {
 }
 
 function get_project_containers {
-	docker ps --format "{{.Names}}"
+	docker ps --format "{{.Names}}" | sort -u
 }
 
 function generate_container_hosts {
