@@ -1,0 +1,11 @@
+mysql:
+  image: nfqlt/mysql84
+  volumes_from:
+    - mysqlVol
+
+
+mysqlVol:
+  image: docker.nfq.lt/nfqlt/mysql84-data
+  volumes:
+     - /var/lib/mysql
+

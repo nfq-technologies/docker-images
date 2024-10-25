@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
+SCRIPT_DIR="$(dirname "${BASH_SOURCE[0]}")"
 
-/entrypoint.sh mysqld &
+"${SCRIPT_DIR}/entrypoint.sh" mysqld &
 mysqlPid=$!
 
 while ! mysql -uroot -p${MYSQL_ROOT_PASSWORD} -e 'show databases' &> /dev/null; do
