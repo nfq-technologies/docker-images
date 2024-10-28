@@ -65,7 +65,7 @@ build-arch:
 	@echo "# Building context $(CONTEXT)..."
 	@echo
 	sed 's~FROM nfqlt~FROM ${IMAGE_REGISTRY}nfqlt~' Dockerfile > .Dockerfile_$(ARCH)
-	DOCKER_CONTEXT=$(CONTEXT) docker build --pull --no-cache -f .Dockerfile_$(ARCH) -t $(IMAGE_FULL_NAME):$(ARCH) ./
+	DOCKER_CONTEXT=$(CONTEXT) docker buildx build --platform linux/$(ARCH) --pull --no-cache -f .Dockerfile_$(ARCH) -t $(IMAGE_FULL_NAME):$(ARCH) ./
 	rm -f .Dockerfile_$(ARCH)
 	make status
 
