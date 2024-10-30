@@ -6,6 +6,31 @@ postgres12:
   when: manual
   allow_failure: false
 
+mysql84:
+  stage: level_1
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd mysql84 && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [mysql84_arm64]
+  when: manual
+  allow_failure: false
+  tags: [nfq_ip]
+mysql84_arm64:
+  stage: level_1
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd mysql84 && make all-arm64 && make clean'
+  tags: [arm]
+  needs: []
+  when: manual
+  allow_failure: false
+
 mysql80:
   stage: level_1
   before_script:
