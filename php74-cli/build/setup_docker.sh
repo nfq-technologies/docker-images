@@ -86,19 +86,11 @@ ls -1 /etc/php/7.4/mods-available/ | sed 's/\.ini$//g' | xargs -I{} -n1 phpdismo
 # backup original php.ini
 mv /etc/php/7.4/cli/php.ini{,_orig}
 
-
-# install custom php modules
-apt-get install -y --no-install-recommends \
-	nfq-php-tideways
-
-
 # install dma (dragonfly mailer simple relay)
 debconf-set-selections <<< "dma dma/mailname string"
 debconf-set-selections <<< "dma dma/relayhost string mail"
 apt-get install -y --no-install-recommends dma
 echo '*: @' > /etc/aliases # force local mails to smarthost
-
-
 
 cp -frv /build/files/* / || true
 

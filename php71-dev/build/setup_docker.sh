@@ -84,14 +84,9 @@ phpDisableModule json
 phpDisableModule phar
 phpDisableModule zip
 
-
-# install phpunit
-apt-get install -y --no-install-recommends phpunit65
 phpenmod phar
 
-
 cp -frv /build/files/* /
-
 
 # Clean up APT when done.
 source /usr/local/build_scripts/cleanup_apt.sh
