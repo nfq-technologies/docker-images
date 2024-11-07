@@ -17,6 +17,5 @@ check_command 'git lfs' version
 check_command ssh -V
 check_command mysql --version
 
-check_command phpunit --version
 check_command composer --version
 
