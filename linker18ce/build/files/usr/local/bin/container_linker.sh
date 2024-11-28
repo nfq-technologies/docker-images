@@ -6,7 +6,7 @@ function get_project_name {
 }
 
 function get_project_containers {
-	docker ps --format "{{.Names}}"
+	docker ps --filter "label=com.docker.compose.project=$1" --format "{{.Names}}"
 }
 
 function generate_container_hosts {
