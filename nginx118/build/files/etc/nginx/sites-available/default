@@ -1,9 +1,12 @@
-
 server {
 	listen 80 default;
 
 	root {NFQ_DOCUMENT_ROOT};
 	index index.html index.php;
+
+	location / {
+        try_files $uri /index.php$is_args$args;
+        }
 
 	location ~* \.php$ {
 	    fastcgi_index   index.php;
@@ -19,4 +22,3 @@ server {
 	}
 
 }
-
