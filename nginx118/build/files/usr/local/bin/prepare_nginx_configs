@@ -1,17 +1,23 @@
 #!/bin/bash
-set -e
+set -ex
 
 CONFIGS="$(find /etc/nginx/ -type f)"
-ENV_VARS="$(env | cut -d= -f1 | grep -v '^.$')"
+ENV_VARS="$(env | cut -d= -f1 | grep -E '^[a-zA-Z_][a-zA-Z0-9_]*$')"
+
+function get_env_var() {
+  local var_name="$1"
+  printenv "$var_name"
+}
 
 for FILE_NAME in $CONFIGS; do
   for VAR_NAME in $ENV_VARS; do
-    VAR_VALUE=$(printenv "$VAR_NAME")
-    if [[ -n "$VAR_VALUE" ]]; then
-      ESCAPED_VAR_VALUE=$(printf '%s' "$VAR_VALUE" | sed -e 's/[\/&]/\\&/g' -e "s/'/'\\\\''/g")
-      PATTERN="s|\\{$VAR_NAME\\}|$ESCAPED_VAR_VALUE|g"
-      sed -ri "$PATTERN" "$FILE_NAME" 2>/dev/null || true
-    fi
+    VAR_VALUE=$(get_env_var "$VAR_NAME")
+    
+    ESCAPED_VAR_VALUE=$(printf '%s' "$VAR_VALUE" | sed -e 's/[\/&]/\\&/g' -e "s/'/\'\\\\''/g")
+
+    PATTERN="s/\{$VAR_NAME\}/$ESCAPED_VAR_VALUE/g"
+
+    sed -ri "${PATTERN}" "${FILE_NAME}" 2>/dev/null || true
   done
 done
 
