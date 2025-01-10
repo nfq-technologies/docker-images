@@ -236,6 +236,16 @@ digraph image_relations {
   "php83-fpm" [fillcolor=orange];
   "php83-cli" -> "php83-supervisor";
   "php83-supervisor" [fillcolor=orange];
+  "debian-bookworm" -> "php84-cli";
+  "php84-cli" [fillcolor=orange];
+  "php84-cli" -> "php84-cron";
+  "php84-cron" [fillcolor=orange];
+  "php84-cli" -> "php84-dev";
+  "php84-dev" [fillcolor=orange];
+  "php84-cli" -> "php84-fpm";
+  "php84-fpm" [fillcolor=orange];
+  "php84-cli" -> "php84-supervisor";
+  "php84-supervisor" [fillcolor=orange];
   "php82-cli" -> "phpmyadmin";
   "phpmyadmin" [fillcolor=orange];
   "postgres:12" -> "postgres12";

@@ -3,7 +3,7 @@
 | [apache](https://packages.debian.org/search?suite=all&section=all&arch=any&searchon=names&keywords=apache2) | apache24 | |
 | [nginx](https://packages.debian.org/search?keywords=nginx&searchon=names&suite=all&section=all) | nginx122 | nginx118 |
 | [mysql](https://en.wikipedia.org/wiki/MySQL#Release_history) | mysql84 | mysql80 |
-| [php](https://www.php.net/supported-versions.php) | php83 | php82 |
+| [php](https://www.php.net/supported-versions.php) | php83 | php84 |
 | [node](https://nodejs.dev/en/about/releases) | node20 | node21 |
 | [rabbitmq](https://packages.debian.org/search?suite=all&section=all&arch=any&searchon=names&keywords=rabbitmq-server) | rabbitmq312 | rabbitmq310 |
 | [redis](https://packages.debian.org/search?suite=all&section=all&arch=any&searchon=names&keywords=redis) | redis70 | redis60 |
