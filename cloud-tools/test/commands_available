@@ -20,6 +20,6 @@ check_command eb --version
 check_command ebp --version
 check_command docker --version
 check_command az --version
-check_command kubectl --version
+check_command kubectl "version --client"
 
 
