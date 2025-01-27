@@ -16,6 +16,8 @@ digraph image_relations {
   "chromedriver" [fillcolor=orange];
   "toolbox-bookworm" -> "chromium";
   "chromium" [fillcolor=orange];
+  "toolbox-bookworm" -> "cloud-tools";
+  "cloud-tools" [fillcolor=orange];
   "node20" -> "cypress12";
   "cypress12" [fillcolor=orange];
   "node16" -> "cypress9";
