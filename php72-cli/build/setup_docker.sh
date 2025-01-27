@@ -90,20 +90,13 @@ ls -1 /etc/php/7.2/mods-available/ | sed 's/\.ini$//g' | xargs -I{} -n1 phpdismo
 
 rm -rf /etc/php/{5.6,7.0,7.1,7.3,7.4}
 
-
-# install custom php modules
-apt-get install -y --no-install-recommends \
-	nfq-php-tideways
-
 # install dma (dragonfly mailer simple relay)
 debconf-set-selections <<< "dma dma/mailname string"
 debconf-set-selections <<< "dma dma/relayhost string mail"
 apt-get install -y --no-install-recommends dma
 echo '*: @' > /etc/aliases # force local mails to smarthost
 
-
 cp -frv /build/files/* / || true
-
 
 # Clean up APT when done.
 source /usr/local/build_scripts/cleanup_apt.sh

@@ -1,6 +1,9 @@
 #!/bin/bash
 set -e
 
+work_dir=$(dirname "$(dirname "$(realpath "$0")")")
+cd "$work_dir"
+
 levels="level_1 level_2 level_3 level_4 level_5"
 level_1="$(_tools/sorting.sh 1)"
 level_2="$(_tools/sorting.sh 2)"

@@ -31,7 +31,7 @@ EOF
 # === client ===================================
 
 function get_hosts() {
-	grep -o "[^ _]*_[^ _]*_[0-9]" /etc/hosts
+	grep -o "[^ ]*_[^ ]*_[^ ]*_[^ ]*_[0-9]" /etc/hosts
 }
 function send_config() {
 	echo "$1" \

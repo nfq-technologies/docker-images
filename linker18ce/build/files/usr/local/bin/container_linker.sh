@@ -6,7 +6,7 @@ function get_project_name {
 }
 
 function get_project_containers {
-	docker ps | sed "s/^.*\(${1}_[^_ ]*_[0-9]*\)[^0-9]*$/\1/" | grep ^${1}_ |sort | uniq
+	docker ps --filter "label=com.docker.compose.project=$1" --format "{{.Names}}"
 }
 
 function generate_container_hosts {
@@ -15,10 +15,10 @@ function generate_container_hosts {
 	docker inspect $CHILD > $file
 	full_id=$(jq '.[0].Id?' $file | tr -d '"')
 	short_id=$(echo $full_id | head -c12)
-	ip_address=$(jq '.[0].NetworkSettings.IPAddress?' $file | tr -d '"')
-	project=$(jq '.[0].Config.Labels."com.docker.compose.project"?' $file | tr -d '"')
-	service=$(jq '.[0].Config.Labels."com.docker.compose.service"?' $file | tr -d '"')
-	number=$(jq '.[0].Config.Labels."com.docker.compose.container-number"?' $file | tr -d '"')
+	ip_address=$(jq -r '.[0].NetworkSettings.Networks[].IPAddress' $file)
+	project=$(jq -r '.[0].Config.Labels."com.docker.compose.project"?' $file)
+	service=$(jq -r '.[0].Config.Labels."com.docker.compose.service"?' $file)
+	number=$(jq -r '.[0].Config.Labels."com.docker.compose.container-number"?' $file)
 	echo "$ip_address	${project}_${service}_${number} ${service}_${number} ${service} $short_id"
 }
 

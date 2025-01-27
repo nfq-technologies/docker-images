@@ -1,0 +1,9 @@
+version: '2.1'
+services:
+  mysql:
+    image: docker.nfq.lt/nfqlt/mysql84
+    network_mode: bridge
+    environment:
+            MYSQL_ROOT_PASSWORD: root
+volumes: {}
+networks: {}
