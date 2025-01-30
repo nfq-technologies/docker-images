@@ -1,3 +1,10 @@
+## Built-in commands
+
+This command allows you to start container without xdebug for faster installation and startup, then turn it on when needed.
+
+To disable or enable xdebug, based on linked containers (linker required) xdebug-config turns xdebug off or on: 
+`xdebug-config enable`
+`xdebug-config enable`
 
 
 ## supported env vars

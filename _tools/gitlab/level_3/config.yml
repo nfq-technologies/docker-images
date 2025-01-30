@@ -646,6 +646,29 @@ chromium:
   needs: ["toolbox-bookworm"]
   when: on_success
 
+cloud-tools:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd cloud-tools && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [cloud-tools_arm64]
+  when: on_success
+  tags: [nfq_ip]
+cloud-tools_arm64:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd cloud-tools && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["toolbox-bookworm"]
+  when: on_success
+
 ffmpeg:
   stage: level_3
   script: 'cd ffmpeg && make all && make publish && make clean'
