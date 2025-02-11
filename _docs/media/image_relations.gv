@@ -140,6 +140,8 @@ digraph image_relations {
   "node20" [fillcolor=orange];
   "toolbox-bookworm" -> "node21";
   "node21" [fillcolor=orange];
+  "toolbox-bookworm" -> "node22";
+  "node22" [fillcolor=orange];
   "debian-bookworm" -> "nodeserver16";
   "nodeserver16" [fillcolor=orange];
   "debian-bookworm" -> "nodeserver18";
@@ -148,6 +150,8 @@ digraph image_relations {
   "nodeserver20" [fillcolor=orange];
   "debian-bookworm" -> "nodeserver21";
   "nodeserver21" [fillcolor=orange];
+  "debian-bookworm" -> "nodeserver22";
+  "nodeserver22" [fillcolor=orange];
   "toolbox-bookworm" -> "packager";
   "packager" [fillcolor=orange];
   "toolbox-bookworm" -> "pdftk";
