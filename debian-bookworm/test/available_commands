@@ -14,6 +14,7 @@ function check_command {
 check_command 'bzip2' -h
 check_command 'dig' -h
 check_command 'less' --version
+check_command 'make' --version
 check_command 'nc' -h
 check_command 'socat' -h
 check_command 'patch' --help

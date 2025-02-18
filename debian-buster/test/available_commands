@@ -26,6 +26,7 @@ check_command 'curl' --version
 check_command 'wget' --version
 check_command 'whiptail' --version
 check_command 'ps' --version
+check_command 'make' --version
 #check_command 'netstat' --version
 
 check_command 'vim' --version

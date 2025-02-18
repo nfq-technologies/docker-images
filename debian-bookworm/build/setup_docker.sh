@@ -15,6 +15,7 @@ apt-get install -y --no-install-recommends \
 	bash-completion \
 	bzip2 dnsutils \
 	curl \
+	make \
 	iputils-ping \
 	less \
 	netcat-traditional \

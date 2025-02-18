@@ -19,6 +19,7 @@ apt-get install -y --no-install-recommends \
 	less \
 	netcat-traditional \
 	net-tools \
+	make \
 	patch \
 	procps \
 	telnet \
