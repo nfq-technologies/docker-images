@@ -27,6 +27,7 @@ apt-get install -y --no-install-recommends \
 	procps \
 	net-tools \
 	zip \
+	make \
 
 
 # install various helper tools
