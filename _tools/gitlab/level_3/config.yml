@@ -860,6 +860,12 @@ ruby2:
   needs: ["toolbox-bookworm"]
   when: on_success
 
+sonar-scanner-cli7:
+  stage: level_3
+  script: 'cd sonar-scanner-cli7 && make all && make publish && make clean'
+  needs: ["toolbox-bookworm"]
+  when: on_success
+
 thrift0110:
   stage: level_3
   before_script:
