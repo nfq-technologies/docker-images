@@ -274,6 +274,8 @@ digraph image_relations {
   "ruby2" [fillcolor=orange];
   "toolbox-buster" -> "sonar-scanner-cli4";
   "sonar-scanner-cli4" [fillcolor=orange];
+  "toolbox-bookworm" -> "sonar-scanner-cli7";
+  "sonar-scanner-cli7" [fillcolor=orange];
   "toolbox-bookworm" -> "thrift0110";
   "thrift0110" [fillcolor=orange];
   "toolbox-bookworm" -> "thrift093";
