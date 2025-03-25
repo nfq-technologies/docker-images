@@ -256,12 +256,16 @@ digraph image_relations {
   "phpmyadmin" [fillcolor=orange];
   "postgres:12" -> "postgres12";
   "postgres12" [fillcolor=orange];
+  "toolbox-bookworm" -> "qpdf";
+  "qpdf" [fillcolor=orange];
   "debian-bookworm" -> "rabbitmq310";
   "rabbitmq310" [fillcolor=orange];
   "debian-bookworm" -> "rabbitmq312";
   "rabbitmq312" [fillcolor=orange];
   "debian-bullseye" -> "rabbitmq38";
   "rabbitmq38" [fillcolor=orange];
+  "debian-bookworm" -> "rabbitmq4";
+  "rabbitmq4" [fillcolor=orange];
   "debian-buster" -> "redis503";
   "redis503" [fillcolor=orange];
   "debian-bullseye" -> "redis60";

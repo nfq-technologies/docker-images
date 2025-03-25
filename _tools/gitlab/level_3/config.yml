@@ -854,6 +854,12 @@ pdftk_arm64:
   needs: ["toolbox-bookworm"]
   when: on_success
 
+qpdf:
+  stage: level_3
+  script: 'cd qpdf && make all && make publish && make clean'
+  needs: ["toolbox-bookworm"]
+  when: on_success
+
 ruby2:
   stage: level_3
   script: 'cd ruby2 && make all && make publish && make clean'
