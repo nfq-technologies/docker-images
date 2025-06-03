@@ -44,4 +44,4 @@ fi
 
 /docker-entrypoint.sh --load --serve
 
-##Note: init.sh must be executable.
+## Note: init.sh must be executable.
