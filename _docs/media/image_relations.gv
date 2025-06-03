@@ -152,6 +152,8 @@ digraph image_relations {
   "nodeserver21" [fillcolor=orange];
   "debian-bookworm" -> "nodeserver22";
   "nodeserver22" [fillcolor=orange];
+  "docker.io/opentripplanner/opentripplanner" -> "opentripplanner";
+  "opentripplanner" [fillcolor=orange];
   "toolbox-bookworm" -> "packager";
   "packager" [fillcolor=orange];
   "toolbox-bookworm" -> "pdftk";
