@@ -279,3 +279,10 @@ debian-bookworm_arm64:
   needs: []
   when: manual
   allow_failure: false
+
+nominatim:
+  stage: level_1
+  script: 'cd nominatim && make all && make publish && make clean'
+  needs: []
+  when: manual
+  allow_failure: false
