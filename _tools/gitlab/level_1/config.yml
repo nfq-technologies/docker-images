@@ -6,6 +6,13 @@ postgres12:
   when: manual
   allow_failure: false
 
+postgres17:
+  stage: level_1
+  script: 'cd postgres17 && make all && make publish && make clean'
+  needs: []
+  when: manual
+  allow_failure: false
+
 opentripplanner:
   stage: level_1
   before_script:
