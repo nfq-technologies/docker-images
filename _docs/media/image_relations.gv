@@ -258,6 +258,8 @@ digraph image_relations {
   "phpmyadmin" [fillcolor=orange];
   "postgres:12" -> "postgres12";
   "postgres12" [fillcolor=orange];
+  "postgres:17" -> "postgres17";
+  "postgres17" [fillcolor=orange];
   "toolbox-bookworm" -> "qpdf";
   "qpdf" [fillcolor=orange];
   "debian-bookworm" -> "rabbitmq310";
