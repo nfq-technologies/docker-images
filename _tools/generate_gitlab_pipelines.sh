@@ -16,11 +16,17 @@ function ci_yml() {
 	local level="$2"
 	local parent="$3"
 
-	automation='manual
-  allow_failure: false'
-
 	if [ "$level" != "level_1" ]; then
-		automation='on_success'
+		automation='when: on_success'
+	else
+		automation='rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $CI_PIPELINE_SOURCE == "web"
+      when: manual
+      allow_failure: false
+    - when: manual
+      allow_failure: false'
 	fi
 
 	if [ -n "$parent" ]; then
@@ -43,7 +49,7 @@ ${image}:
     - docker login -u \$nfqhub_user -p \$nfqhub_token https://docker.nfq.lt
   script: 'cd $image && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [${image}_arm64]
-  when: $automation
+  $automation
   tags: [nfq_ip]
 ${image}_arm64:
   stage: $level
@@ -55,7 +61,7 @@ ${image}_arm64:
   script: 'cd $image && make all-arm64 && make clean'
   tags: [arm]
   needs: [$parent]
-  when: $automation
+  $automation
 "
 	else
 		echo "
@@ -63,7 +69,7 @@ ${image}:
   stage: $level
   script: 'cd $image && make all && make publish && make clean'
   needs: [$parent]
-  when: $automation
+  $automation
 "
 	fi
 }
