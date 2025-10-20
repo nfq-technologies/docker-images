@@ -67,9 +67,7 @@ ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
 composer self-update --1
 
 
-# installl hiroku/prestissimo
 phpEnableModule curl
-sudo -u project composer --no-interaction global require "hirak/prestissimo:^0.3"
 
 
 # disable enabled modules

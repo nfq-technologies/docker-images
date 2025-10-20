@@ -29,12 +29,6 @@ certbot:
   needs: ["debian-buster"]
   when: on_success
 
-elasticsearch56:
-  stage: level_2
-  script: 'cd elasticsearch56 && make all && make publish && make clean'
-  needs: ["debian-buster"]
-  when: on_success
-
 gitsync:
   stage: level_2
   script: 'cd gitsync && make all && make publish && make clean'
@@ -108,12 +102,6 @@ docker18ce_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd docker18ce && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bullseye"]
-  when: on_success
-
-elasticsearch68:
-  stage: level_2
-  script: 'cd elasticsearch68 && make all && make publish && make clean'
   needs: ["debian-bullseye"]
   when: on_success
 
