@@ -15,3 +15,4 @@ default:
   after_script:
     - docker logout
     - docker logout docker.nfq.lt
+  retry: 2
