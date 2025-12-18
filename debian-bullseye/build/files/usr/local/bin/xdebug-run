@@ -1,0 +1,106 @@
+#!/bin/bash
+
+function print_help() {
+    cat <<EOF
+Usage: xdebug-run [OPTIONS] -- <command>
+
+Wrapper to run PHP commands with Xdebug configured
+
+Options:
+  -d, --debug          Enable debug mode (default)
+  -p, --profile        Enable profile mode
+  -t, --trace          Enable trace mode
+  -k, --idekey <key>   Set IDE key (default: phpstorm)
+  -h, --help           Show this help
+
+Examples:
+  xdebug-run -- bin/console messenger:consume
+  xdebug-run --profile -- bin/console messenger:consume lupasearch_export --limit=1
+  xdebug-run --idekey=vscode -- bin/console cache:clear
+  xdebug-run --trace -- php script.php
+
+EOF
+}
+
+# Default values
+MODE="debug"
+IDEKEY="phpstorm"
+PHP_OPTS=""
+
+# Parse options
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -d|--debug)
+            MODE="debug"
+            shift
+            ;;
+        -p|--profile)
+            MODE="profile"
+            shift
+            ;;
+        -t|--trace)
+            MODE="trace"
+            shift
+            ;;
+        -k|--idekey)
+            IDEKEY="$2"
+            shift 2
+            ;;
+        --idekey=*)
+            IDEKEY="${1#*=}"
+            shift
+            ;;
+        -h|--help)
+            print_help
+            exit 0
+            ;;
+        --)
+            shift
+            break
+            ;;
+        *)
+            echo "Unknown option: $1"
+            print_help
+            exit 1
+            ;;
+    esac
+done
+
+# Check if command provided
+if [ $# -eq 0 ]; then
+    echo "Error: No command specified"
+    print_help
+    exit 1
+fi
+
+# Set up environment based on mode
+case "$MODE" in
+    profile)
+        export XDEBUG_PROFILE=1
+        PHP_OPTS="-d xdebug.mode=profile"
+        echo "Running with Xdebug PROFILE mode"
+        ;;
+    trace)
+        PHP_OPTS="-d xdebug.mode=trace"
+        export XDEBUG_CONFIG="idekey=$IDEKEY"
+        echo "Running with Xdebug TRACE mode (idekey=$IDEKEY)"
+        ;;
+    debug)
+        export XDEBUG_CONFIG="idekey=$IDEKEY"
+        echo "Running with Xdebug DEBUG mode (idekey=$IDEKEY)"
+        ;;
+esac
+
+# Execute the command
+# If first argument is 'php', add options to it
+if [ "$1" = "php" ]; then
+    shift
+    exec php $PHP_OPTS "$@"
+else
+    # Otherwise, prepend 'php' with options if needed
+    if [ -n "$PHP_OPTS" ]; then
+        exec php $PHP_OPTS "$@"
+    else
+        exec "$@"
+    fi
+fi

@@ -94,7 +94,10 @@ if [[ "$DVM_MODE" == "modern" ]]; then
 	fi
 	echo
 	echo -e "\e[33mTraefik Dashboard:\e[0m"
-	echo -e "  https://traefik.dvm.nfq.lt/"
+	echo -e "  https://traefik.dvm.nfq.com/"
+	echo
+	echo -e "\e[33mLogs Dashboard:\e[0m"
+	echo -e "  https://logs.dvm.nfq.com/"
 	echo
 else
 	# Legacy Mode (or old DVM setup without /etc/dvm-config)
