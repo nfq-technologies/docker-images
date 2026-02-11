@@ -136,32 +136,6 @@ mysql57:
     - when: manual
       allow_failure: false
 
-mysql56:
-  stage: level_1
-  script: 'cd mysql56 && make all && make publish && make clean'
-  needs: []
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-      allow_failure: false
-    - when: manual
-      allow_failure: false
-
-mysql55:
-  stage: level_1
-  script: 'cd mysql55 && make all && make publish && make clean'
-  needs: []
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-      allow_failure: false
-    - when: manual
-      allow_failure: false
-
 mariadb10:
   stage: level_1
   before_script:

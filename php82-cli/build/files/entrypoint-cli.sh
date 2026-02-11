@@ -1,5 +1,4 @@
 #!/bin/bash
 
-
-/usr/local/bin/xdebug-config deamon &
-
+# xdebug-config daemon removed - no longer needed
+# xdebug-config now uses Docker API directly

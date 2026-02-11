@@ -1,131 +1,227 @@
 #!/bin/bash
+#
+# xdebug-config - Configure xdebug across Docker Compose project containers
+#
+# Modern version that uses Docker API directly - no linker dependency.
+#
+# Usage:
+#   xdebug-config enable    # Enable xdebug for host IDE
+#   xdebug-config disable   # Disable xdebug
+#   xdebug-config <host>    # Enable xdebug pointing to specific host
+#
+# Requirements:
+#   - Docker socket access (/var/run/docker.sock)
+#   - Can run from host OR from container with mounted socket
+#
 
+
+# === Configuration ===
+DOCKER_SOCKET="${DOCKER_SOCKET:-/var/run/docker.sock}"
+
+# === Helper Functions ===
 
 function print_help() {
-	cat <<EOF
-# common configurations:
-#
-#
-# for backwards compatible way for use with IDE on host
-#
-# xdebug-config enable
-# or
-# xdebug-config default
-# or
-# xdebug-config host
-#
-#
-# to disable xdebug in all containers
-#
-# xdebug-config disable
-#
-#
-# for use with vscode in dev container (hostname may differ)
-#
-# xdebug-config dev
-#
-#
+	cat <<'EOF'
+xdebug-config - Configure xdebug across Docker Compose project containers
+
+Usage:
+    xdebug-config enable|default|host   Enable xdebug for host IDE
+    xdebug-config disable               Disable xdebug in all containers
+    xdebug-config <hostname>            Enable xdebug pointing to container
+
+Examples:
+    xdebug-config enable                # For IDE on host machine
+    xdebug-config disable               # Turn off xdebug
+    xdebug-config dev                   # Point to 'dev' container
+
+Note: Requires Docker socket access. No linker container needed.
 EOF
 }
 
-# === client ===================================
+function check_docker_socket() {
+	if [ ! -S "$DOCKER_SOCKET" ]; then
+		echo "ERROR: Docker socket not found at $DOCKER_SOCKET" >&2
+		echo "Mount it with: -v /var/run/docker.sock:/var/run/docker.sock" >&2
+		exit 1
+	fi
+}
 
-function get_hosts() {
-	grep -o "[^ ]*_[^ ]*_[^ ]*_[^ ]*_[0-9]" /etc/hosts
+function get_project_name() {
+	# Try to get project name from current container's labels
+	if [ -f /.dockerenv ]; then
+		local cgroup_file="/proc/self/cgroup"
+		local mountinfo_file="/proc/self/mountinfo"
+		local container_id=""
+
+		# Try cgroup first (works on cgroup v1)
+		if [ -f "$cgroup_file" ]; then
+			container_id=$(grep -oE '[0-9a-f]{64}' "$cgroup_file" 2>/dev/null | head -1)
+		fi
+
+		# Try mountinfo (works on cgroup v2 / Docker Desktop)
+		if [ -z "$container_id" ] && [ -f "$mountinfo_file" ]; then
+			container_id=$(grep -oE '/docker/containers/[0-9a-f]{64}' "$mountinfo_file" 2>/dev/null | head -1 | grep -oE '[0-9a-f]{64}')
+		fi
+
+		# Try hostname as container ID (common in Docker)
+		if [ -z "$container_id" ]; then
+			container_id=$(hostname)
+		fi
+
+		if [ -n "$container_id" ]; then
+			local project
+			project=$(docker inspect --format '{{index .Config.Labels "com.docker.compose.project"}}' "$container_id" 2>/dev/null)
+			if [ -n "$project" ] && [ "$project" != "<no value>" ]; then
+				echo "$project"
+				return
+			fi
+		fi
+	fi
+
+	# Fallback: use COMPOSE_PROJECT_NAME env var
+	if [ -n "$COMPOSE_PROJECT_NAME" ]; then
+		echo "$COMPOSE_PROJECT_NAME"
+		return
+	fi
+
+	# Cannot determine project name
+	echo ""
 }
-function send_config() {
-	echo "$1" \
-	| nc -w1 $host 4096 2>/dev/null \
-	| sed "s/^/$host\t | /"
-}
-function client() {
-	for host in $(get_hosts); do
-		send_config $1 &
+
+function get_php_containers() {
+	local project="$1"
+
+	# Get all containers in the project
+	docker ps -q --filter "label=com.docker.compose.project=$project" | while read -r container_id; do
+		# Check if container has xdebug.ini (is a PHP container)
+		if docker exec "$container_id" sh -c 'test -f /etc/php/*/mods-available/xdebug.ini' 2>/dev/null; then
+			echo "$container_id"
+		fi
 	done
-	wait
 }
 
-# === deamon ===================================
+function get_container_name() {
+	docker inspect --format '{{.Name}}' "$1" 2>/dev/null | sed 's/^\///'
+}
 
-ini="$(echo /etc/php/*/mods-available/xdebug.ini)"
+# === Xdebug Configuration Functions ===
 
-function reload_fpm() {
-	if [ -f /run/php-fpm.pid ]; then
-		echo "++ Reloading fpm"
-		kill -SIGHUP "$(cat /run/php-fpm.pid)"
-	fi
-}
-function xdebug_enable() {
-	phpenmod -v ALL -s ALL xdebug
-	reload_fpm
-}
-function xdebug_disable() {
-	phpdismod -v ALL -s ALL xdebug
-	reload_fpm
-}
-function configure_xdebug_for_host() {
-	if grep -q '^#xdebug.client_host=' "$ini" ; then
-		#echo remove current configuration
-		sed -i '/^xdebug.client_host=.*$/d' "$ini"
-		#echo uncomment old one
-		sed -i 's/^#xdebug.client_host=/xdebug.client_host=/' "$ini"
-	fi
-}
-function configure_xdebug_for_container() {
-	if grep -q '^#xdebug.client_host=' "$ini" ; then
-		#echo remove current configuration
-		sed -i '/^xdebug.client_host=.*$/d' "$ini"
-		#echo add new one
-		echo "xdebug.client_host=$host" >> "$ini"
-	else
-		#echo comment current configuration
-		sed -i 's/^xdebug.client_host=/#xdebug.client_host=/' "$ini"
-		#echo add new one
-		echo "xdebug.client_host=$host" >> "$ini"
-	fi
+function configure_container() {
+	local container_id="$1"
+	local action="$2"
+	local target_host="$3"
+	local container_name
+	container_name=$(get_container_name "$container_id")
 
-}
-function configure_xdebug() {
-	read -r host
-	case "$host" in
+	case "$action" in
 		disable)
-			echo "-- xdebug disabled"
-			xdebug_disable
+			echo -n "$container_name: "
+			docker exec "$container_id" phpdismod -v ALL -s ALL xdebug 2>/dev/null || true
+			reload_fpm_in_container "$container_id"
+			echo "xdebug disabled"
 			;;
-		enable|default|host)
-			echo "++ xdebug enabled for use with host IDE"
-			configure_xdebug_for_host
-			xdebug_enable
+		enable)
+			echo -n "$container_name: "
+			# Reset to default host configuration
+			docker exec "$container_id" sh -c '
+				ini=$(ls /etc/php/*/mods-available/xdebug.ini 2>/dev/null | head -1)
+				if [ -f "$ini" ]; then
+					sed -i "/^xdebug.client_host=.*$/d" "$ini"
+					sed -i "s/^#xdebug.client_host=/xdebug.client_host=/" "$ini"
+				fi
+			' 2>/dev/null || true
+			docker exec "$container_id" phpenmod -v ALL -s ALL xdebug 2>/dev/null || true
+			reload_fpm_in_container "$container_id"
+			echo "xdebug enabled (host)"
 			;;
-		*)
-			echo "++ xdebug enabled for use with container [$host]"
-			configure_xdebug_for_container "$host"
-			xdebug_enable
+		custom)
+			echo -n "$container_name: "
+			docker exec "$container_id" sh -c "
+				ini=\$(ls /etc/php/*/mods-available/xdebug.ini 2>/dev/null | head -1)
+				if [ -f \"\$ini\" ]; then
+					sed -i 's/^xdebug.client_host=/#xdebug.client_host=/' \"\$ini\"
+					sed -i '/^xdebug.client_host=$target_host\$/d' \"\$ini\"
+					echo 'xdebug.client_host=$target_host' >> \"\$ini\"
+				fi
+			" 2>/dev/null || true
+			docker exec "$container_id" phpenmod -v ALL -s ALL xdebug 2>/dev/null || true
+			reload_fpm_in_container "$container_id"
+			echo "xdebug enabled -> $target_host"
 			;;
 	esac
 }
-function deamon() {
-	pipe="/dev/shm/$(basename "$0")"
-	rm -f "$pipe"
-	mkfifo "$pipe"
-	while true
-	do
-		cat "$pipe" \
-		| nc -lp 4096 \
-		| configure_xdebug \
-		| tee "$pipe"
-		sleep 0.3
-	done
+
+function reload_fpm_in_container() {
+	local container_id="$1"
+	docker exec "$container_id" sh -c '
+		if [ -f /run/php-fpm.pid ]; then
+			kill -HUP $(cat /run/php-fpm.pid) 2>/dev/null || true
+		fi
+	' 2>/dev/null || true
 }
 
-# === main =====================================
+# === Main Logic ===
 
-case $1 in
-	deamon)
-		deamon ;;
-	''|-h|--help)
-		print_help ;;
-	*)
-		client "$1" ;;
-esac
+function main() {
+	local action="$1"
 
+	case "$action" in
+		''|-h|--help|help)
+			print_help
+			exit 0
+			;;
+		daemon|deamon)
+			echo "NOTE: daemon mode is deprecated and no longer needed."
+			echo "The new xdebug-config uses Docker API directly."
+			exit 0
+			;;
+	esac
+
+	check_docker_socket
+
+	local project
+	project=$(get_project_name)
+
+	if [ -z "$project" ]; then
+		echo "ERROR: Could not determine Docker Compose project name." >&2
+		echo "Set COMPOSE_PROJECT_NAME or run from within a compose container." >&2
+		exit 1
+	fi
+
+	echo "Project: $project"
+	echo "---"
+
+	local containers
+	containers=$(get_php_containers "$project")
+
+	if [ -z "$containers" ]; then
+		echo "No PHP containers found in project '$project'"
+		exit 0
+	fi
+
+	# Determine action type
+	local action_type target_host
+	case "$action" in
+		disable)
+			action_type="disable"
+			;;
+		enable|default|host)
+			action_type="enable"
+			;;
+		*)
+			action_type="custom"
+			target_host="$action"
+			;;
+	esac
+
+	# Configure all PHP containers in parallel
+	for container_id in $containers; do
+		configure_container "$container_id" "$action_type" "$target_host" &
+	done
+	wait
+
+	echo "---"
+	echo "Done."
+}
+
+main "$@"
