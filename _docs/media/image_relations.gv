@@ -1,6 +1,6 @@
 digraph image_relations {
-  graph [fontname="Helvetica" pad="0.5" nodesep="0.2" ranksep="0.4" compound=true splines=ortho];
-  rankdir="TB";
+  graph [fontname="Helvetica" pad="0.5" nodesep="0.2" ranksep="0.3" compound=true];
+  rankdir="LR";
   node [style="filled,rounded" shape=box fontname="Helvetica" fontsize=9];
   edge [color="#888888" arrowsize=0.7];
 

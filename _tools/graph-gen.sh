@@ -134,8 +134,8 @@ fi
 
 {
 	echo "digraph $result_file_name {"
-	echo '  graph [fontname="Helvetica" pad="0.5" nodesep="0.2" ranksep="0.4" compound=true splines=ortho];'
-	echo '  rankdir="TB";'
+	echo '  graph [fontname="Helvetica" pad="0.5" nodesep="0.2" ranksep="0.3" compound=true];'
+	echo '  rankdir="LR";'
 	echo '  node [style="filled,rounded" shape=box fontname="Helvetica" fontsize=9];'
 	echo '  edge [color="#888888" arrowsize=0.7];'
 	echo ''
