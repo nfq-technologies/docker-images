@@ -29,11 +29,9 @@ digraph image_relations {
     fontsize=11;
     "debian-bookworm" [fillcolor="#ccffcc"];
     "debian-bullseye" [fillcolor="#ffffcc"];
-    "debian-buster" [fillcolor="#ffcccc"];
     "dib" [fillcolor="#ccffcc"];
     "toolbox-bookworm" [fillcolor="#ccffcc"];
     "toolbox-bullseye" [fillcolor="#ffffcc"];
-    "toolbox-buster" [fillcolor="#ffcccc"];
   }
 
   subgraph cluster_database {
@@ -103,7 +101,6 @@ digraph image_relations {
     color="#cccccc";
     fontname="Helvetica-Bold";
     fontsize=11;
-    "elasticsearch-tools" [fillcolor="#ccffcc"];
     "elasticsearch68-data" [fillcolor="#ccffcc"];
     "elasticsearch68" [fillcolor="#ccffcc"];
     "elasticsearch710-data" [fillcolor="#ccffcc"];
@@ -152,8 +149,6 @@ digraph image_relations {
     fontname="Helvetica-Bold";
     fontsize=11;
     "apache24" [fillcolor="#ccffcc"];
-    "https-dev" [fillcolor="#ccffcc"];
-    "nginx114" [fillcolor="#ccffcc"];
     "nginx118" [fillcolor="#ccffcc"];
     "nginx122" [fillcolor="#ccffcc"];
   }
@@ -166,7 +161,6 @@ digraph image_relations {
     color="#cccccc";
     fontname="Helvetica-Bold";
     fontsize=11;
-    "memcached156" [fillcolor="#ccffcc"];
     "memcached16" [fillcolor="#ccffcc"];
     "mongo50-data" [fillcolor="#ccffcc"];
     "mongo50" [fillcolor="#ccffcc"];
@@ -174,7 +168,6 @@ digraph image_relations {
     "rabbitmq312" [fillcolor="#ccffcc"];
     "rabbitmq38" [fillcolor="#ccffcc"];
     "rabbitmq4" [fillcolor="#ccffcc"];
-    "redis503" [fillcolor="#ccffcc"];
     "redis60" [fillcolor="#ccffcc"];
     "redis70" [fillcolor="#ccffcc"];
   }
@@ -201,7 +194,6 @@ digraph image_relations {
     "aws-docker-tools" [fillcolor="#ccffcc"];
     "aws-mock" [fillcolor="#ccffcc"];
     "aws-tools" [fillcolor="#ccffcc"];
-    "certbot" [fillcolor="#ccffcc"];
     "chromedriver" [fillcolor="#ccffcc"];
     "chromium" [fillcolor="#ccffcc"];
     "cloud-tools" [fillcolor="#ccffcc"];
@@ -210,7 +202,6 @@ digraph image_relations {
     "ffmpeg" [fillcolor="#ccffcc"];
     "fontforge" [fillcolor="#ccffcc"];
     "ghostscript" [fillcolor="#ccffcc"];
-    "gitsync" [fillcolor="#ccffcc"];
     "graphic-tools" [fillcolor="#ccffcc"];
     "lib-smartclient100" [fillcolor="#ccffcc"];
     "lib-smartclient111" [fillcolor="#ccffcc"];
@@ -224,14 +215,10 @@ digraph image_relations {
     "phantomjs19" [fillcolor="#ccffcc"];
     "phantomjs21" [fillcolor="#ccffcc"];
     "qpdf" [fillcolor="#ccffcc"];
-    "router" [fillcolor="#ccffcc"];
     "ruby2" [fillcolor="#ccffcc"];
-    "sonar-scanner-cli4" [fillcolor="#ccffcc"];
     "sonar-scanner-cli7" [fillcolor="#ccffcc"];
     "thrift0110" [fillcolor="#ccffcc"];
     "thrift093" [fillcolor="#ccffcc"];
-    "wkhtmltopdf125-broken" [fillcolor="#ccffcc"];
-    "wkhtmltopdf125" [fillcolor="#ccffcc"];
     "wkhtmltopdf126-broken" [fillcolor="#ccffcc"];
     "wkhtmltopdf126" [fillcolor="#ccffcc"];
     "xhgui" [fillcolor="#ccffcc"];
@@ -242,7 +229,6 @@ digraph image_relations {
   "aws-tools" -> "aws-docker-tools";
   "debian-bookworm" -> "aws-mock";
   "toolbox-bookworm" -> "aws-tools";
-  "debian-buster" -> "certbot";
   "debian-bookworm" -> "chromedriver";
   "toolbox-bookworm" -> "chromium";
   "toolbox-bookworm" -> "cloud-tools";
@@ -251,11 +237,9 @@ digraph image_relations {
   "toolbox-bullseye" -> "db-tools";
   "debian:bookworm" -> "debian-bookworm";
   "debian:bullseye" -> "debian-bullseye";
-  "debian:buster" -> "debian-buster";
   "debian-bookworm" -> "dev";
   "debian:bullseye" -> "dib";
   "debian-bullseye" -> "docker18ce";
-  "nginx114" -> "elasticsearch-tools";
   "elasticsearch68" -> "elasticsearch68-data";
   "debian-bullseye" -> "elasticsearch68";
   "elasticsearch710" -> "elasticsearch710-data";
@@ -274,9 +258,7 @@ digraph image_relations {
   "toolbox-bookworm" -> "ffmpeg";
   "toolbox-bookworm" -> "fontforge";
   "toolbox-bookworm" -> "ghostscript";
-  "debian-buster" -> "gitsync";
   "toolbox-bookworm" -> "graphic-tools";
-  "nginx114" -> "https-dev";
   "alpine" -> "lib-smartclient100";
   "alpine" -> "lib-smartclient111";
   "alpine" -> "lib-smartclient120";
@@ -284,7 +266,6 @@ digraph image_relations {
   "alpine" -> "lib-smartclient130";
   "debian-bookworm" -> "mailhog";
   "mariadb:10" -> "mariadb10";
-  "debian-buster" -> "memcached156";
   "debian-bookworm" -> "memcached16";
   "mongo50" -> "mongo50-data";
   "debian-bullseye" -> "mongo50";
@@ -293,7 +274,6 @@ digraph image_relations {
   "mysql80" -> "mysql80-data";
   "mysql:8.0" -> "mysql80";
   "mysql:8.4" -> "mysql84";
-  "debian-buster" -> "nginx114";
   "debian-bullseye" -> "nginx118";
   "debian-bookworm" -> "nginx122";
   "toolbox-bookworm" -> "node16";
@@ -349,20 +329,14 @@ digraph image_relations {
   "debian-bookworm" -> "rabbitmq312";
   "debian-bullseye" -> "rabbitmq38";
   "debian-bookworm" -> "rabbitmq4";
-  "debian-buster" -> "redis503";
   "debian-bullseye" -> "redis60";
   "debian-bookworm" -> "redis70";
-  "debian-buster" -> "router";
   "toolbox-bookworm" -> "ruby2";
-  "toolbox-buster" -> "sonar-scanner-cli4";
   "toolbox-bookworm" -> "sonar-scanner-cli7";
   "toolbox-bookworm" -> "thrift0110";
   "toolbox-bookworm" -> "thrift093";
   "debian-bookworm" -> "toolbox-bookworm";
   "debian-bullseye" -> "toolbox-bullseye";
-  "debian-buster" -> "toolbox-buster";
-  "toolbox-buster" -> "wkhtmltopdf125-broken";
-  "toolbox-buster" -> "wkhtmltopdf125";
   "toolbox-bookworm" -> "wkhtmltopdf126-broken";
   "toolbox-bookworm" -> "wkhtmltopdf126";
   "php81-dev" -> "xhgui";
@@ -371,7 +345,6 @@ digraph image_relations {
   "alpine" [fillcolor=white style="filled,rounded,dashed"];
   "debian:bookworm" [fillcolor=white style="filled,rounded,dashed"];
   "debian:bullseye" [fillcolor=white style="filled,rounded,dashed"];
-  "debian:buster" [fillcolor=white style="filled,rounded,dashed"];
   "mariadb:10" [fillcolor=white style="filled,rounded,dashed"];
   "mysql:5.7-debian" [fillcolor=white style="filled,rounded,dashed"];
   "mysql:8.0" [fillcolor=white style="filled,rounded,dashed"];
