@@ -1,4 +1,3 @@
-
 apache24:
   stage: level_2
   before_script:
@@ -21,7 +20,6 @@ apache24_arm64:
   tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success
-
 aws-mock:
   stage: level_2
   before_script:
@@ -44,7 +42,6 @@ aws-mock_arm64:
   tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success
-
 chromedriver:
   stage: level_2
   before_script:
@@ -67,7 +64,6 @@ chromedriver_arm64:
   tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success
-
 dev:
   stage: level_2
   before_script:
@@ -90,7 +86,6 @@ dev_arm64:
   tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success
-
 docker18ce:
   stage: level_2
   before_script:
@@ -113,19 +108,16 @@ docker18ce_arm64:
   tags: [arm]
   needs: ["debian-bullseye"]
   when: on_success
-
 elasticsearch68:
   stage: level_2
   script: 'cd elasticsearch68 && make all && make publish && make clean'
   needs: ["debian-bullseye"]
   when: on_success
-
 elasticsearch710:
   stage: level_2
   script: 'cd elasticsearch710 && make all && make publish && make clean'
   needs: ["debian-bullseye"]
   when: on_success
-
 elasticsearch716:
   stage: level_2
   before_script:
@@ -148,31 +140,26 @@ elasticsearch716_arm64:
   tags: [arm]
   needs: ["debian-bullseye"]
   when: on_success
-
 elasticsearch72:
   stage: level_2
   script: 'cd elasticsearch72 && make all && make publish && make clean'
   needs: ["debian-bullseye"]
   when: on_success
-
 elasticsearch75:
   stage: level_2
   script: 'cd elasticsearch75 && make all && make publish && make clean'
   needs: ["debian-bullseye"]
   when: on_success
-
 elasticsearch77:
   stage: level_2
   script: 'cd elasticsearch77 && make all && make publish && make clean'
   needs: ["debian-bullseye"]
   when: on_success
-
 elasticsearch79:
   stage: level_2
   script: 'cd elasticsearch79 && make all && make publish && make clean'
   needs: ["debian-bullseye"]
   when: on_success
-
 elasticsearch84:
   stage: level_2
   before_script:
@@ -195,13 +182,11 @@ elasticsearch84_arm64:
   tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success
-
 mailhog:
   stage: level_2
   script: 'cd mailhog && make all && make publish && make clean'
   needs: ["debian-bookworm"]
   when: on_success
-
 memcached16:
   stage: level_2
   before_script:
@@ -224,25 +209,21 @@ memcached16_arm64:
   tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success
-
 mongo50:
   stage: level_2
   script: 'cd mongo50 && make all && make publish && make clean'
   needs: ["debian-bullseye"]
   when: on_success
-
 mysql57-data:
   stage: level_2
   script: 'cd mysql57-data && make all && make publish && make clean'
   needs: ["mysql57"]
   when: on_success
-
 mysql80-data:
   stage: level_2
   script: 'cd mysql80-data && make all && make publish && make clean'
   needs: ["mysql80"]
   when: on_success
-
 nginx118:
   stage: level_2
   before_script:
@@ -265,7 +246,6 @@ nginx118_arm64:
   tags: [arm]
   needs: ["debian-bullseye"]
   when: on_success
-
 nginx122:
   stage: level_2
   before_script:
@@ -288,7 +268,6 @@ nginx122_arm64:
   tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success
-
 nodeserver16:
   stage: level_2
   before_script:
@@ -311,7 +290,6 @@ nodeserver16_arm64:
   tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success
-
 nodeserver18:
   stage: level_2
   before_script:
@@ -334,7 +312,6 @@ nodeserver18_arm64:
   tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success
-
 nodeserver20:
   stage: level_2
   before_script:
@@ -357,7 +334,6 @@ nodeserver20_arm64:
   tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success
-
 nodeserver21:
   stage: level_2
   before_script:
@@ -380,7 +356,6 @@ nodeserver21_arm64:
   tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success
-
 nodeserver22:
   stage: level_2
   before_script:
@@ -403,31 +378,26 @@ nodeserver22_arm64:
   tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success
-
 phantomjs19:
   stage: level_2
   script: 'cd phantomjs19 && make all && make publish && make clean'
   needs: ["debian-bookworm"]
   when: on_success
-
 phantomjs21:
   stage: level_2
   script: 'cd phantomjs21 && make all && make publish && make clean'
   needs: ["debian-bookworm"]
   when: on_success
-
 php74-cli:
   stage: level_2
   script: 'cd php74-cli && make all && make publish && make clean'
   needs: ["debian-bullseye"]
   when: on_success
-
 php80-cli:
   stage: level_2
   script: 'cd php80-cli && make all && make publish && make clean'
   needs: ["debian-bullseye"]
   when: on_success
-
 php81-cli:
   stage: level_2
   before_script:
@@ -450,7 +420,6 @@ php81-cli_arm64:
   tags: [arm]
   needs: ["debian-bullseye"]
   when: on_success
-
 php82-cli:
   stage: level_2
   before_script:
@@ -473,7 +442,6 @@ php82-cli_arm64:
   tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success
-
 php83-cli:
   stage: level_2
   before_script:
@@ -496,7 +464,6 @@ php83-cli_arm64:
   tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success
-
 php84-cli:
   stage: level_2
   before_script:
@@ -519,7 +486,6 @@ php84-cli_arm64:
   tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success
-
 rabbitmq310:
   stage: level_2
   before_script:
@@ -542,7 +508,6 @@ rabbitmq310_arm64:
   tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success
-
 rabbitmq312:
   stage: level_2
   before_script:
@@ -565,7 +530,6 @@ rabbitmq312_arm64:
   tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success
-
 rabbitmq38:
   stage: level_2
   before_script:
@@ -588,7 +552,6 @@ rabbitmq38_arm64:
   tags: [arm]
   needs: ["debian-bullseye"]
   when: on_success
-
 rabbitmq4:
   stage: level_2
   before_script:
@@ -611,7 +574,6 @@ rabbitmq4_arm64:
   tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success
-
 redis60:
   stage: level_2
   before_script:
@@ -634,7 +596,6 @@ redis60_arm64:
   tags: [arm]
   needs: ["debian-bullseye"]
   when: on_success
-
 redis70:
   stage: level_2
   before_script:
@@ -657,7 +618,6 @@ redis70_arm64:
   tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success
-
 toolbox-bookworm:
   stage: level_2
   before_script:
@@ -680,7 +640,6 @@ toolbox-bookworm_arm64:
   tags: [arm]
   needs: ["debian-bookworm"]
   when: on_success
-
 toolbox-bullseye:
   stage: level_2
   before_script:

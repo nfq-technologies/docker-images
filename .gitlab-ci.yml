@@ -1,8 +1,4 @@
-include:
-  - local: _tools/gitlab/level_1/config.yml
-  - local: _tools/gitlab/level_2/config.yml
-  - local: _tools/gitlab/level_3/config.yml
-  - local: _tools/gitlab/level_4/config.yml
+include: _tools/gitlab/*/*.yml
 stages:
   - validate
   - level_1

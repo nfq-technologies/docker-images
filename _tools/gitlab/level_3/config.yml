@@ -1,4 +1,3 @@
-
 aws-tools:
   stage: level_3
   before_script:
@@ -21,13 +20,11 @@ aws-tools_arm64:
   tags: [arm]
   needs: ["toolbox-bookworm"]
   when: on_success
-
 chromium:
   stage: level_3
   script: 'cd chromium && make all && make publish && make clean'
   needs: ["toolbox-bookworm"]
   when: on_success
-
 cloud-tools:
   stage: level_3
   before_script:
@@ -50,67 +47,56 @@ cloud-tools_arm64:
   tags: [arm]
   needs: ["toolbox-bookworm"]
   when: on_success
-
 db-tools:
   stage: level_3
   script: 'cd db-tools && make all && make publish && make clean'
   needs: ["toolbox-bullseye"]
   when: on_success
-
 elasticsearch68-data:
   stage: level_3
   script: 'cd elasticsearch68-data && make all && make publish && make clean'
   needs: ["elasticsearch68"]
   when: on_success
-
 elasticsearch710-data:
   stage: level_3
   script: 'cd elasticsearch710-data && make all && make publish && make clean'
   needs: ["elasticsearch710"]
   when: on_success
-
 elasticsearch716-data:
   stage: level_3
   script: 'cd elasticsearch716-data && make all && make publish && make clean'
   needs: ["elasticsearch716"]
   when: on_success
-
 elasticsearch72-data:
   stage: level_3
   script: 'cd elasticsearch72-data && make all && make publish && make clean'
   needs: ["elasticsearch72"]
   when: on_success
-
 elasticsearch75-data:
   stage: level_3
   script: 'cd elasticsearch75-data && make all && make publish && make clean'
   needs: ["elasticsearch75"]
   when: on_success
-
 elasticsearch77-data:
   stage: level_3
   script: 'cd elasticsearch77-data && make all && make publish && make clean'
   needs: ["elasticsearch77"]
   when: on_success
-
 elasticsearch79-data:
   stage: level_3
   script: 'cd elasticsearch79-data && make all && make publish && make clean'
   needs: ["elasticsearch79"]
   when: on_success
-
 ffmpeg:
   stage: level_3
   script: 'cd ffmpeg && make all && make publish && make clean'
   needs: ["toolbox-bookworm"]
   when: on_success
-
 fontforge:
   stage: level_3
   script: 'cd fontforge && make all && make publish && make clean'
   needs: ["toolbox-bookworm"]
   when: on_success
-
 ghostscript:
   stage: level_3
   before_script:
@@ -133,13 +119,11 @@ ghostscript_arm64:
   tags: [arm]
   needs: ["toolbox-bookworm"]
   when: on_success
-
 graphic-tools:
   stage: level_3
   script: 'cd graphic-tools && make all && make publish && make clean'
   needs: ["toolbox-bookworm"]
   when: on_success
-
 node16:
   stage: level_3
   before_script:
@@ -162,7 +146,6 @@ node16_arm64:
   tags: [arm]
   needs: ["toolbox-bookworm"]
   when: on_success
-
 node18:
   stage: level_3
   before_script:
@@ -185,7 +168,6 @@ node18_arm64:
   tags: [arm]
   needs: ["toolbox-bookworm"]
   when: on_success
-
 node20:
   stage: level_3
   before_script:
@@ -208,7 +190,6 @@ node20_arm64:
   tags: [arm]
   needs: ["toolbox-bookworm"]
   when: on_success
-
 node21:
   stage: level_3
   before_script:
@@ -231,7 +212,6 @@ node21_arm64:
   tags: [arm]
   needs: ["toolbox-bookworm"]
   when: on_success
-
 node22:
   stage: level_3
   before_script:
@@ -254,13 +234,11 @@ node22_arm64:
   tags: [arm]
   needs: ["toolbox-bookworm"]
   when: on_success
-
 packager:
   stage: level_3
   script: 'cd packager && make all && make publish && make clean'
   needs: ["toolbox-bookworm"]
   when: on_success
-
 pdftk:
   stage: level_3
   before_script:
@@ -283,55 +261,46 @@ pdftk_arm64:
   tags: [arm]
   needs: ["toolbox-bookworm"]
   when: on_success
-
 php74-cron:
   stage: level_3
   script: 'cd php74-cron && make all && make publish && make clean'
   needs: ["php74-cli"]
   when: on_success
-
 php74-dev:
   stage: level_3
   script: 'cd php74-dev && make all && make publish && make clean'
   needs: ["php74-cli"]
   when: on_success
-
 php74-fpm:
   stage: level_3
   script: 'cd php74-fpm && make all && make publish && make clean'
   needs: ["php74-cli"]
   when: on_success
-
 php74-supervisor:
   stage: level_3
   script: 'cd php74-supervisor && make all && make publish && make clean'
   needs: ["php74-cli"]
   when: on_success
-
 php80-cron:
   stage: level_3
   script: 'cd php80-cron && make all && make publish && make clean'
   needs: ["php80-cli"]
   when: on_success
-
 php80-dev:
   stage: level_3
   script: 'cd php80-dev && make all && make publish && make clean'
   needs: ["php80-cli"]
   when: on_success
-
 php80-fpm:
   stage: level_3
   script: 'cd php80-fpm && make all && make publish && make clean'
   needs: ["php80-cli"]
   when: on_success
-
 php80-supervisor:
   stage: level_3
   script: 'cd php80-supervisor && make all && make publish && make clean'
   needs: ["php80-cli"]
   when: on_success
-
 php81-cron:
   stage: level_3
   before_script:
@@ -354,7 +323,6 @@ php81-cron_arm64:
   tags: [arm]
   needs: ["php81-cli"]
   when: on_success
-
 php81-dev:
   stage: level_3
   before_script:
@@ -377,7 +345,6 @@ php81-dev_arm64:
   tags: [arm]
   needs: ["php81-cli"]
   when: on_success
-
 php81-fpm:
   stage: level_3
   before_script:
@@ -400,7 +367,6 @@ php81-fpm_arm64:
   tags: [arm]
   needs: ["php81-cli"]
   when: on_success
-
 php81-supervisor:
   stage: level_3
   before_script:
@@ -423,7 +389,6 @@ php81-supervisor_arm64:
   tags: [arm]
   needs: ["php81-cli"]
   when: on_success
-
 php82-cron:
   stage: level_3
   before_script:
@@ -446,7 +411,6 @@ php82-cron_arm64:
   tags: [arm]
   needs: ["php82-cli"]
   when: on_success
-
 php82-dev:
   stage: level_3
   before_script:
@@ -469,7 +433,6 @@ php82-dev_arm64:
   tags: [arm]
   needs: ["php82-cli"]
   when: on_success
-
 php82-fpm:
   stage: level_3
   before_script:
@@ -492,7 +455,6 @@ php82-fpm_arm64:
   tags: [arm]
   needs: ["php82-cli"]
   when: on_success
-
 php82-supervisor:
   stage: level_3
   before_script:
@@ -515,7 +477,6 @@ php82-supervisor_arm64:
   tags: [arm]
   needs: ["php82-cli"]
   when: on_success
-
 php83-cron:
   stage: level_3
   before_script:
@@ -538,7 +499,6 @@ php83-cron_arm64:
   tags: [arm]
   needs: ["php83-cli"]
   when: on_success
-
 php83-dev:
   stage: level_3
   before_script:
@@ -561,7 +521,6 @@ php83-dev_arm64:
   tags: [arm]
   needs: ["php83-cli"]
   when: on_success
-
 php83-fpm:
   stage: level_3
   before_script:
@@ -584,7 +543,6 @@ php83-fpm_arm64:
   tags: [arm]
   needs: ["php83-cli"]
   when: on_success
-
 php83-supervisor:
   stage: level_3
   before_script:
@@ -607,7 +565,6 @@ php83-supervisor_arm64:
   tags: [arm]
   needs: ["php83-cli"]
   when: on_success
-
 php84-cron:
   stage: level_3
   before_script:
@@ -630,7 +587,6 @@ php84-cron_arm64:
   tags: [arm]
   needs: ["php84-cli"]
   when: on_success
-
 php84-dev:
   stage: level_3
   before_script:
@@ -653,7 +609,6 @@ php84-dev_arm64:
   tags: [arm]
   needs: ["php84-cli"]
   when: on_success
-
 php84-fpm:
   stage: level_3
   before_script:
@@ -676,7 +631,6 @@ php84-fpm_arm64:
   tags: [arm]
   needs: ["php84-cli"]
   when: on_success
-
 php84-supervisor:
   stage: level_3
   before_script:
@@ -699,31 +653,26 @@ php84-supervisor_arm64:
   tags: [arm]
   needs: ["php84-cli"]
   when: on_success
-
 phpmyadmin:
   stage: level_3
   script: 'cd phpmyadmin && make all && make publish && make clean'
   needs: ["php82-cli"]
   when: on_success
-
 qpdf:
   stage: level_3
   script: 'cd qpdf && make all && make publish && make clean'
   needs: ["toolbox-bookworm"]
   when: on_success
-
 ruby2:
   stage: level_3
   script: 'cd ruby2 && make all && make publish && make clean'
   needs: ["toolbox-bookworm"]
   when: on_success
-
 sonar-scanner-cli7:
   stage: level_3
   script: 'cd sonar-scanner-cli7 && make all && make publish && make clean'
   needs: ["toolbox-bookworm"]
   when: on_success
-
 thrift0110:
   stage: level_3
   before_script:
@@ -746,19 +695,16 @@ thrift0110_arm64:
   tags: [arm]
   needs: ["toolbox-bookworm"]
   when: on_success
-
 thrift093:
   stage: level_3
   script: 'cd thrift093 && make all && make publish && make clean'
   needs: ["toolbox-bookworm"]
   when: on_success
-
 wkhtmltopdf126:
   stage: level_3
   script: 'cd wkhtmltopdf126 && make all && make publish && make clean'
   needs: ["toolbox-bookworm"]
   when: on_success
-
 wkhtmltopdf126-broken:
   stage: level_3
   before_script:

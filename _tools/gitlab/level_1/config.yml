@@ -1,4 +1,3 @@
-
 debian-bookworm:
   stage: level_1
   before_script:
@@ -35,7 +34,6 @@ debian-bookworm_arm64:
       allow_failure: false
     - when: manual
       allow_failure: false
-
 debian-bullseye:
   stage: level_1
   before_script:
@@ -72,7 +70,6 @@ debian-bullseye_arm64:
       allow_failure: false
     - when: manual
       allow_failure: false
-
 dib:
   stage: level_1
   before_script:
@@ -109,7 +106,6 @@ dib_arm64:
       allow_failure: false
     - when: manual
       allow_failure: false
-
 lib-smartclient100:
   stage: level_1
   before_script:
@@ -146,7 +142,6 @@ lib-smartclient100_arm64:
       allow_failure: false
     - when: manual
       allow_failure: false
-
 lib-smartclient111:
   stage: level_1
   script: 'cd lib-smartclient111 && make all && make publish && make clean'
@@ -159,7 +154,6 @@ lib-smartclient111:
       allow_failure: false
     - when: manual
       allow_failure: false
-
 lib-smartclient120:
   stage: level_1
   script: 'cd lib-smartclient120 && make all && make publish && make clean'
@@ -172,7 +166,6 @@ lib-smartclient120:
       allow_failure: false
     - when: manual
       allow_failure: false
-
 lib-smartclient121:
   stage: level_1
   script: 'cd lib-smartclient121 && make all && make publish && make clean'
@@ -185,7 +178,6 @@ lib-smartclient121:
       allow_failure: false
     - when: manual
       allow_failure: false
-
 lib-smartclient130:
   stage: level_1
   script: 'cd lib-smartclient130 && make all && make publish && make clean'
@@ -198,7 +190,6 @@ lib-smartclient130:
       allow_failure: false
     - when: manual
       allow_failure: false
-
 mariadb10:
   stage: level_1
   before_script:
@@ -235,7 +226,6 @@ mariadb10_arm64:
       allow_failure: false
     - when: manual
       allow_failure: false
-
 mysql57:
   stage: level_1
   script: 'cd mysql57 && make all && make publish && make clean'
@@ -248,7 +238,6 @@ mysql57:
       allow_failure: false
     - when: manual
       allow_failure: false
-
 mysql80:
   stage: level_1
   before_script:
@@ -285,7 +274,6 @@ mysql80_arm64:
       allow_failure: false
     - when: manual
       allow_failure: false
-
 mysql84:
   stage: level_1
   before_script:
@@ -322,7 +310,6 @@ mysql84_arm64:
       allow_failure: false
     - when: manual
       allow_failure: false
-
 opentripplanner:
   stage: level_1
   before_script:
@@ -359,7 +346,6 @@ opentripplanner_arm64:
       allow_failure: false
     - when: manual
       allow_failure: false
-
 postgres12:
   stage: level_1
   script: 'cd postgres12 && make all && make publish && make clean'

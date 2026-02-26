@@ -39,8 +39,7 @@ function ci_yml() {
 	buildfile="$(readlink $image/Makefile)"
 	# If this is NOT a multi arch build
 	if [ "$buildfile" == "../_tools/makefiles/base-image-Makefile" ]; then
-		echo "
-${image}:
+		echo "${image}:
   stage: $level
   before_script:
     # this ip has to go to host
@@ -64,8 +63,7 @@ ${image}_arm64:
   $automation
 "
 	else
-		echo "
-${image}:
+		echo "${image}:
   stage: $level
   script: 'cd $image && make all && make publish && make clean'
   needs: [$parent]

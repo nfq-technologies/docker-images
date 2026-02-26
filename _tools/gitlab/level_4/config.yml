@@ -1,4 +1,3 @@
-
 aws-docker-tools:
   stage: level_4
   before_script:
@@ -21,7 +20,6 @@ aws-docker-tools_arm64:
   tags: [arm]
   needs: ["aws-tools"]
   when: on_success
-
 cypress12:
   stage: level_4
   before_script:
@@ -44,19 +42,16 @@ cypress12_arm64:
   tags: [arm]
   needs: ["node20"]
   when: on_success
-
 cypress9:
   stage: level_4
   script: 'cd cypress9 && make all && make publish && make clean'
   needs: ["node16"]
   when: on_success
-
 php74-vscode:
   stage: level_4
   script: 'cd php74-vscode && make all && make publish && make clean'
   needs: ["php74-dev"]
   when: on_success
-
 xhgui:
   stage: level_4
   script: 'cd xhgui && make all && make publish && make clean'
