@@ -1,0 +1,22 @@
+#!/bin/sh -e
+
+composer_link() {
+	composer_path="$1"
+	if [ ! -f "$composer_path" ]; then
+		echo "-- This image version does not support composer version requested"
+		exit 0
+	else
+		echo "++ Selected composer: $composer_path"
+		ln -sf "$composer_path" /usr/local/bin/composer
+	fi
+}
+
+case "$COMPOSER_VERSION" in
+"1")
+	composer_link /usr/local/bin/composer_v1.phar
+	;;
+"2")
+	phpenmod iconv mbstring
+	composer_link /usr/local/bin/composer_v2.phar
+	;;
+esac

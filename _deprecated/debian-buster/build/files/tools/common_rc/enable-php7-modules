@@ -1,0 +1,12 @@
+#!/bin/sh -e
+
+if [ "x${NFQ_ENABLE_PHP_MODULES}" != "x" ]
+then
+	echo "++ Enabling php modules: ${NFQ_ENABLE_PHP_MODULES}"
+	phpenmod -v ALL -s ALL ${NFQ_ENABLE_PHP_MODULES}
+else
+	echo "-- No php modules selected via env variable, nothing to enable."
+fi
+
+exit 0
+
