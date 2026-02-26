@@ -1,7 +1,8 @@
 #!/bin/bash
 set -e
 
-dockerfiles="$(grep "FROM " ./*/Dockerfile | tr ' ' '_' )"
+# Exclude deprecated images from pipeline generation
+dockerfiles="$(grep "FROM " ./*/Dockerfile | grep -v './_deprecated/' | tr ' ' '_' )"
 root_dockerfiles="$(echo "$dockerfiles" | grep -v 'nfqlt' | tr ' ' '_' )"
 
 levels="level_1 level_2 level_3 level_4 level_5"

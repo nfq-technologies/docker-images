@@ -1,5 +1,6 @@
 include: _tools/gitlab/*/*.yml
 stages:
+  - validate
   - level_1
   - level_2
   - level_3
@@ -16,3 +17,16 @@ default:
     - docker logout
     - docker logout docker.nfq.lt
   retry: 2
+
+# Validate that generated configs are up to date
+validate:generated-configs:
+  stage: validate
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache bash git graphviz
+  script:
+    - bash _tools/validate-generated.sh
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH == "master"'
+  tags: [nfq_ip]
