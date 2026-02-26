@@ -106,8 +106,8 @@ edges_file="$tmp_dir/edges.txt"
 external_file="$tmp_dir/external.txt"
 
 # First pass: collect all our images and edges (exclude _deprecated)
-# Sort Dockerfiles for deterministic output
-for docker_file in $(ls -d ./*/Dockerfile | sort); do
+# Sort Dockerfiles for deterministic output using find
+while IFS= read -r docker_file; do
 	# Skip deprecated images
 	[[ "$docker_file" == "./_deprecated/"* ]] && continue
 
@@ -123,7 +123,7 @@ for docker_file in $(ls -d ./*/Dockerfile | sort); do
 	if ! grep -q "^${parent_image}$" "$all_images_file" 2>/dev/null; then
 		echo "$parent_image" >> "$external_file"
 	fi
-done
+done < <(find . -maxdepth 2 -name "Dockerfile" -path "./*/Dockerfile" | sort)
 
 # Deduplicate external images
 if [ -f "$external_file" ]; then
