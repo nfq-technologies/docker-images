@@ -41,8 +41,12 @@ if [ -n "$changes" ]; then
 		echo "  - $file"
 	done
 	echo ""
-	echo "Showing first 50 lines of diff for debugging:"
-	git diff $changes | head -50
+	echo "Showing diff samples for debugging:"
+	for file in $changes; do
+		echo "=== $file (first 20 lines) ==="
+		git diff "$file" | head -20
+		echo ""
+	done
 	echo ""
 	echo "Please run locally:"
 	echo "  bash _tools/regenerate-all.sh"
