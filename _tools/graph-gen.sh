@@ -106,7 +106,8 @@ edges_file="$tmp_dir/edges.txt"
 external_file="$tmp_dir/external.txt"
 
 # First pass: collect all our images and edges (exclude _deprecated)
-for docker_file in ./*/Dockerfile; do
+# Sort Dockerfiles for deterministic output
+for docker_file in $(ls -d ./*/Dockerfile | sort); do
 	# Skip deprecated images
 	[[ "$docker_file" == "./_deprecated/"* ]] && continue
 
