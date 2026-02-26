@@ -16,12 +16,30 @@ bash _tools/graph-gen.sh
 echo ""
 echo "==> Checking for differences..."
 
-if ! git diff --exit-code _tools/gitlab/ _docs/media/ >/dev/null 2>&1; then
+# Check only the files we actually generate
+# Note: Only check files that exist (some levels may be empty)
+generated_patterns="_tools/gitlab/level_*/config.yml \
+_docs/media/image_relations.gv \
+_docs/media/image_relations.png \
+_docs/media/image_relations.svg"
+
+changes=""
+for pattern in $generated_patterns; do
+	for file in $pattern; do
+		if [ -f "$file" ] && ! git diff --exit-code "$file" >/dev/null 2>&1; then
+			changes="$changes $file"
+		fi
+	done
+done
+
+if [ -n "$changes" ]; then
 	echo ""
 	echo "❌ ERROR: Generated configs are out of sync!"
 	echo ""
-	echo "The following files have changes:"
-	git diff --name-only _tools/gitlab/ _docs/media/
+	echo "The following generated files have changes:"
+	for file in $changes; do
+		echo "  - $file"
+	done
 	echo ""
 	echo "Please run locally:"
 	echo "  bash _tools/regenerate-all.sh"

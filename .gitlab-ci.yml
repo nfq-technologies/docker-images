@@ -26,6 +26,7 @@ validate:generated-configs:
     - apk add --no-cache bash git graphviz
   script:
     - bash _tools/validate-generated.sh
+  after_script: []  # Override default after_script (no docker needed)
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
     - if: '$CI_COMMIT_BRANCH == "master"'
