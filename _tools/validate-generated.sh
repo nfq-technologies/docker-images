@@ -18,9 +18,9 @@ echo "==> Checking for differences..."
 
 # Check only the files we actually generate
 # Note: Only check files that exist (some levels may be empty)
+# Skip PNG - graphviz produces different binary output across environments
 generated_patterns="_tools/gitlab/level_*/config.yml \
 _docs/media/image_relations.gv \
-_docs/media/image_relations.png \
 _docs/media/image_relations.svg"
 
 changes=""
