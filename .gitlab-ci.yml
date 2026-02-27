@@ -1,4 +1,13 @@
 include: _tools/gitlab/*/*.yml
+
+# Control pipeline creation to avoid detached MR pipeline issues
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS'
+      when: never  # Avoid duplicate pipelines for MR branches
+    - if: '$CI_COMMIT_BRANCH'
+
 stages:
   - validate
   - level_1

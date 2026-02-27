@@ -22,6 +22,9 @@ function ci_yml() {
 		automation='rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+      when: manual
+      allow_failure: false
     - if: $CI_PIPELINE_SOURCE == "web"
       when: manual
       allow_failure: false
