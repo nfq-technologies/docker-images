@@ -1,0 +1,41 @@
+#!/bin/bash -e
+
+# ============================================================================
+# Configure Xdebug client_host dynamically based on container's network
+# This allows xdebug to connect back to the IDE on the host machine
+# in modern (Traefik) mode where the hardcoded 10.24.0.1 is not routable
+# ============================================================================
+
+# Skip in legacy mode - the hardcoded 10.24.0.1 works correctly there
+# via the special subnet route: Mac -> VM -> Container
+if [ "$DVM_MODE" = "legacy" ]; then
+	exit 0
+fi
+
+# Find xdebug.ini - skip if xdebug is not installed
+ini="$(echo /etc/php/*/mods-available/xdebug.ini 2>/dev/null)"
+if [ ! -f "$ini" ]; then
+	exit 0
+fi
+
+# Get host IP from environment or detect from default route
+# DEV_IP may be set in docker-compose.yml, otherwise detect automatically
+if [ -z "$DEV_IP" ]; then
+	DEV_IP="$(ip r | grep '^default ' | awk '{print $3}')"
+fi
+
+if [ -z "$DEV_IP" ]; then
+	echo "-- Xdebug: Could not detect host IP, keeping default configuration"
+	exit 0
+fi
+
+echo "++ Xdebug: Configuring client_host=$DEV_IP"
+
+# Update xdebug.ini with correct host IP
+sed -i "s/^xdebug.client_host=.*/xdebug.client_host=$DEV_IP/" "$ini"
+sed -i "s/^#xdebug.client_host=.*/xdebug.client_host=$DEV_IP/" "$ini"
+
+# Update port to 9003 (modern xdebug 3.x default, PHPStorm default)
+sed -i "s/^xdebug.client_port=9000/xdebug.client_port=9003/" "$ini"
+
+exit 0
