@@ -1,0 +1,59 @@
+#!/bin/bash
+
+# Test: configure-xdebug rc.d script
+# Verifies that xdebug.client_host is configured correctly based on DVM_MODE
+
+IMAGE=$1
+
+echo "Testing xdebug configuration script..."
+
+# Helper to get xdebug.client_host from container
+get_client_host() {
+	docker run --rm -e DVM_MODE="$1" -e NFQ_ENABLE_PHP_MODULES="xdebug" "$IMAGE" \
+		bash -c "run-parts /etc/rc.d >/dev/null 2>&1 && php -i 2>/dev/null | grep '^xdebug.client_host =>' | awk '{print \$3}'"
+}
+
+# Test 1: Legacy mode should keep default 10.24.0.1
+echo -n "Legacy mode keeps 10.24.0.1 ... "
+HOST=$(get_client_host "legacy")
+if [ "$HOST" = "10.24.0.1" ]; then
+	echo "OK"
+else
+	echo "FAIL (got: $HOST)"
+	exit 1
+fi
+
+# Test 2: Modern mode should use detected IP (not 10.24.0.1)
+echo -n "Modern mode updates client_host ... "
+HOST=$(get_client_host "modern")
+if [ "$HOST" != "10.24.0.1" ] && [ -n "$HOST" ]; then
+	echo "OK (got: $HOST)"
+else
+	echo "FAIL (got: $HOST, expected non-10.24.0.1)"
+	exit 1
+fi
+
+# Test 3: Empty DVM_MODE (default) should also update (modern behavior)
+echo -n "Default mode (no DVM_MODE) updates client_host ... "
+HOST=$(docker run --rm -e NFQ_ENABLE_PHP_MODULES="xdebug" "$IMAGE" \
+	bash -c "run-parts /etc/rc.d >/dev/null 2>&1 && php -i 2>/dev/null | grep '^xdebug.client_host =>' | awk '{print \$3}'")
+if [ "$HOST" != "10.24.0.1" ] && [ -n "$HOST" ]; then
+	echo "OK (got: $HOST)"
+else
+	echo "FAIL (got: $HOST, expected non-10.24.0.1)"
+	exit 1
+fi
+
+# Test 4: Port should be 9003
+echo -n "Port is 9003 ... "
+PORT=$(docker run --rm -e DVM_MODE="modern" -e NFQ_ENABLE_PHP_MODULES="xdebug" "$IMAGE" \
+	bash -c "run-parts /etc/rc.d >/dev/null 2>&1 && php -i 2>/dev/null | grep '^xdebug.client_port =>' | awk '{print \$3}'")
+if [ "$PORT" = "9003" ]; then
+	echo "OK"
+else
+	echo "FAIL (got: $PORT)"
+	exit 1
+fi
+
+echo "All xdebug configuration tests passed!"
+exit 0
