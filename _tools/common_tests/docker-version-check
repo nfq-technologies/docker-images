@@ -6,8 +6,8 @@ CMD="docker run --rm $1"
 
 echo -n "Checking Docker CLI version >= 24.x ... "
 
-VERSION=$($CMD docker version --format '{{.Client.Version}}' 2>/dev/null || $CMD docker --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
-MAJOR=$(echo "$VERSION" | cut -d. -f1)
+VERSION=$($CMD docker version --format '{{.Client.Version}}' 2>/dev/null || $CMD docker --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' | head -1)
+MAJOR=$(echo "$VERSION" | head -1 | cut -d. -f1)
 
 if [ "$MAJOR" -ge 24 ]; then
     echo "OK ($VERSION)"
