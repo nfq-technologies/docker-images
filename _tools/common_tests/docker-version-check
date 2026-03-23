@@ -1,0 +1,17 @@
+#!/bin/bash
+# Test that Docker CLI version is 24.x or higher (API 1.44+)
+set -e
+
+CMD="docker run --rm $1"
+
+echo -n "Checking Docker CLI version >= 24.x ... "
+
+VERSION=$($CMD docker version --format '{{.Client.Version}}' 2>/dev/null || $CMD docker --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+MAJOR=$(echo "$VERSION" | cut -d. -f1)
+
+if [ "$MAJOR" -ge 24 ]; then
+    echo "OK ($VERSION)"
+else
+    echo "FAILED (got $VERSION, need >= 24.x)"
+    exit 1
+fi
