@@ -1,59 +1,111 @@
+---
 aws-docker-tools:
   stage: level_4
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd aws-docker-tools && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [aws-docker-tools_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd aws-docker-tools && make all-amd64 && make push-manifest && make publish
+    && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - aws-docker-tools_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 aws-docker-tools_arm64:
   stage: level_4
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd aws-docker-tools && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["aws-tools"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd aws-docker-tools && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - aws-tools
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 cypress12:
   stage: level_4
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd cypress12 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [cypress12_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd cypress12 && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - cypress12_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 cypress12_arm64:
   stage: level_4
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd cypress12 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["node20"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd cypress12 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - node20
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 cypress9:
   stage: level_4
-  script: 'cd cypress9 && make all && make publish && make clean'
-  needs: ["node16"]
-  when: on_success
+  script: cd cypress9 && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - node16
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php74-vscode:
   stage: level_4
-  script: 'cd php74-vscode && make all && make publish && make clean'
-  needs: ["php74-dev"]
-  when: on_success
+  script: cd php74-vscode && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php74-dev
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 xhgui:
   stage: level_4
-  script: 'cd xhgui && make all && make publish && make clean'
-  needs: ["php81-dev"]
-  when: on_success
+  script: cd xhgui && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php81-dev
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false

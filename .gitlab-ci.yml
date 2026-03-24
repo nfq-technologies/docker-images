@@ -10,11 +10,28 @@ workflow:
 
 stages:
   - validate
+  - mode
   - level_1
   - level_2
   - level_3
   - level_4
   - level_5
+
+# Cascade mode selector - click this FIRST to enable automatic cascade builds
+# Without this, all jobs are manual and you click only what you need
+enable-cascade:
+  stage: mode
+  image: alpine:latest
+  before_script: []
+  script: echo "CASCADE=true" >> cascade.env
+  artifacts:
+    reports:
+      dotenv: cascade.env
+  after_script: []
+  rules:
+    - when: manual
+      allow_failure: true
+  tags: [nfq_ip]
 
 default:
   image: nfqlt/aws-docker-tools

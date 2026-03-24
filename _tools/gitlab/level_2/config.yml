@@ -1,664 +1,1167 @@
+---
 apache24:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd apache24 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [apache24_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd apache24 && make all-amd64 && make push-manifest && make publish && make
+    clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - apache24_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 apache24_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd apache24 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd apache24 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 aws-mock:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd aws-mock && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [aws-mock_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd aws-mock && make all-amd64 && make push-manifest && make publish && make
+    clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - aws-mock_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 aws-mock_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd aws-mock && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd aws-mock && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 chromedriver:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd chromedriver && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [chromedriver_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd chromedriver && make all-amd64 && make push-manifest && make publish
+    && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - chromedriver_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 chromedriver_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd chromedriver && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd chromedriver && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 dev:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd dev && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [dev_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd dev && make all-amd64 && make push-manifest && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - dev_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 dev_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd dev && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd dev && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 docker18ce:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd docker18ce && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [docker18ce_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd docker18ce && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - docker18ce_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 docker18ce_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd docker18ce && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bullseye"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd docker18ce && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bullseye
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 elasticsearch68:
   stage: level_2
-  script: 'cd elasticsearch68 && make all && make publish && make clean'
-  needs: ["debian-bullseye"]
-  when: on_success
+  script: cd elasticsearch68 && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bullseye
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 elasticsearch710:
   stage: level_2
-  script: 'cd elasticsearch710 && make all && make publish && make clean'
-  needs: ["debian-bullseye"]
-  when: on_success
+  script: cd elasticsearch710 && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bullseye
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 elasticsearch716:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd elasticsearch716 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [elasticsearch716_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd elasticsearch716 && make all-amd64 && make push-manifest && make publish
+    && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - elasticsearch716_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 elasticsearch716_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd elasticsearch716 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bullseye"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd elasticsearch716 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bullseye
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 elasticsearch72:
   stage: level_2
-  script: 'cd elasticsearch72 && make all && make publish && make clean'
-  needs: ["debian-bullseye"]
-  when: on_success
+  script: cd elasticsearch72 && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bullseye
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 elasticsearch75:
   stage: level_2
-  script: 'cd elasticsearch75 && make all && make publish && make clean'
-  needs: ["debian-bullseye"]
-  when: on_success
+  script: cd elasticsearch75 && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bullseye
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 elasticsearch77:
   stage: level_2
-  script: 'cd elasticsearch77 && make all && make publish && make clean'
-  needs: ["debian-bullseye"]
-  when: on_success
+  script: cd elasticsearch77 && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bullseye
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 elasticsearch79:
   stage: level_2
-  script: 'cd elasticsearch79 && make all && make publish && make clean'
-  needs: ["debian-bullseye"]
-  when: on_success
+  script: cd elasticsearch79 && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bullseye
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 elasticsearch84:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd elasticsearch84 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [elasticsearch84_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd elasticsearch84 && make all-amd64 && make push-manifest && make publish
+    && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - elasticsearch84_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 elasticsearch84_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd elasticsearch84 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd elasticsearch84 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 mailhog:
   stage: level_2
-  script: 'cd mailhog && make all && make publish && make clean'
-  needs: ["debian-bookworm"]
-  when: on_success
+  script: cd mailhog && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 memcached16:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd memcached16 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [memcached16_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd memcached16 && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - memcached16_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 memcached16_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd memcached16 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd memcached16 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 mongo50:
   stage: level_2
-  script: 'cd mongo50 && make all && make publish && make clean'
-  needs: ["debian-bullseye"]
-  when: on_success
+  script: cd mongo50 && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bullseye
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 mysql57-data:
   stage: level_2
-  script: 'cd mysql57-data && make all && make publish && make clean'
-  needs: ["mysql57"]
-  when: on_success
+  script: cd mysql57-data && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - mysql57
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 mysql80-data:
   stage: level_2
-  script: 'cd mysql80-data && make all && make publish && make clean'
-  needs: ["mysql80"]
-  when: on_success
+  script: cd mysql80-data && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - mysql80
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 nginx118:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd nginx118 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [nginx118_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd nginx118 && make all-amd64 && make push-manifest && make publish && make
+    clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - nginx118_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 nginx118_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd nginx118 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bullseye"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd nginx118 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bullseye
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 nginx122:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd nginx122 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [nginx122_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd nginx122 && make all-amd64 && make push-manifest && make publish && make
+    clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - nginx122_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 nginx122_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd nginx122 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd nginx122 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 nodeserver16:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd nodeserver16 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [nodeserver16_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd nodeserver16 && make all-amd64 && make push-manifest && make publish
+    && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - nodeserver16_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 nodeserver16_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd nodeserver16 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd nodeserver16 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 nodeserver18:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd nodeserver18 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [nodeserver18_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd nodeserver18 && make all-amd64 && make push-manifest && make publish
+    && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - nodeserver18_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 nodeserver18_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd nodeserver18 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd nodeserver18 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 nodeserver20:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd nodeserver20 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [nodeserver20_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd nodeserver20 && make all-amd64 && make push-manifest && make publish
+    && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - nodeserver20_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 nodeserver20_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd nodeserver20 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd nodeserver20 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 nodeserver21:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd nodeserver21 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [nodeserver21_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd nodeserver21 && make all-amd64 && make push-manifest && make publish
+    && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - nodeserver21_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 nodeserver21_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd nodeserver21 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd nodeserver21 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 nodeserver22:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd nodeserver22 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [nodeserver22_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd nodeserver22 && make all-amd64 && make push-manifest && make publish
+    && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - nodeserver22_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 nodeserver22_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd nodeserver22 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd nodeserver22 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 phantomjs19:
   stage: level_2
-  script: 'cd phantomjs19 && make all && make publish && make clean'
-  needs: ["debian-bookworm"]
-  when: on_success
+  script: cd phantomjs19 && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 phantomjs21:
   stage: level_2
-  script: 'cd phantomjs21 && make all && make publish && make clean'
-  needs: ["debian-bookworm"]
-  when: on_success
+  script: cd phantomjs21 && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php74-cli:
   stage: level_2
-  script: 'cd php74-cli && make all && make publish && make clean'
-  needs: ["debian-bullseye"]
-  when: on_success
+  script: cd php74-cli && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bullseye
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php80-cli:
   stage: level_2
-  script: 'cd php80-cli && make all && make publish && make clean'
-  needs: ["debian-bullseye"]
-  when: on_success
+  script: cd php80-cli && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bullseye
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php81-cli:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php81-cli && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php81-cli_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php81-cli && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php81-cli_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php81-cli_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php81-cli && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bullseye"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php81-cli && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bullseye
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php82-cli:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php82-cli && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php82-cli_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php82-cli && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php82-cli_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php82-cli_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php82-cli && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php82-cli && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php83-cli:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php83-cli && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php83-cli_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php83-cli && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php83-cli_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php83-cli_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php83-cli && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php83-cli && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php84-cli:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php84-cli && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php84-cli_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php84-cli && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php84-cli_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php84-cli_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php84-cli && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php84-cli && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 rabbitmq310:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd rabbitmq310 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [rabbitmq310_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd rabbitmq310 && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - rabbitmq310_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 rabbitmq310_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd rabbitmq310 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd rabbitmq310 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 rabbitmq312:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd rabbitmq312 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [rabbitmq312_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd rabbitmq312 && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - rabbitmq312_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 rabbitmq312_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd rabbitmq312 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd rabbitmq312 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 rabbitmq38:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd rabbitmq38 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [rabbitmq38_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd rabbitmq38 && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - rabbitmq38_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 rabbitmq38_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd rabbitmq38 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bullseye"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd rabbitmq38 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bullseye
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 rabbitmq4:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd rabbitmq4 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [rabbitmq4_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd rabbitmq4 && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - rabbitmq4_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 rabbitmq4_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd rabbitmq4 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd rabbitmq4 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 redis60:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd redis60 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [redis60_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd redis60 && make all-amd64 && make push-manifest && make publish && make
+    clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - redis60_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 redis60_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd redis60 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bullseye"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd redis60 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bullseye
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 redis70:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd redis70 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [redis70_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd redis70 && make all-amd64 && make push-manifest && make publish && make
+    clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - redis70_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 redis70_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd redis70 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd redis70 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 toolbox-bookworm:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd toolbox-bookworm && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [toolbox-bookworm_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd toolbox-bookworm && make all-amd64 && make push-manifest && make publish
+    && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bookworm_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 toolbox-bookworm_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd toolbox-bookworm && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd toolbox-bookworm && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 toolbox-bullseye:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd toolbox-bullseye && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [toolbox-bullseye_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd toolbox-bullseye && make all-amd64 && make push-manifest && make publish
+    && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bullseye_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 toolbox-bullseye_arm64:
   stage: level_2
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd toolbox-bullseye && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["debian-bullseye"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd toolbox-bullseye && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - debian-bullseye
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false

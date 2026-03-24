@@ -1,729 +1,1324 @@
+---
 aws-tools:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd aws-tools && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [aws-tools_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd aws-tools && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - aws-tools_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 aws-tools_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd aws-tools && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["toolbox-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd aws-tools && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 chromium:
   stage: level_3
-  script: 'cd chromium && make all && make publish && make clean'
-  needs: ["toolbox-bookworm"]
-  when: on_success
+  script: cd chromium && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 cloud-tools:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd cloud-tools && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [cloud-tools_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd cloud-tools && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - cloud-tools_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 cloud-tools_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd cloud-tools && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["toolbox-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd cloud-tools && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 db-tools:
   stage: level_3
-  script: 'cd db-tools && make all && make publish && make clean'
-  needs: ["toolbox-bullseye"]
-  when: on_success
+  script: cd db-tools && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bullseye
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 elasticsearch68-data:
   stage: level_3
-  script: 'cd elasticsearch68-data && make all && make publish && make clean'
-  needs: ["elasticsearch68"]
-  when: on_success
+  script: cd elasticsearch68-data && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - elasticsearch68
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 elasticsearch710-data:
   stage: level_3
-  script: 'cd elasticsearch710-data && make all && make publish && make clean'
-  needs: ["elasticsearch710"]
-  when: on_success
+  script: cd elasticsearch710-data && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - elasticsearch710
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 elasticsearch716-data:
   stage: level_3
-  script: 'cd elasticsearch716-data && make all && make publish && make clean'
-  needs: ["elasticsearch716"]
-  when: on_success
+  script: cd elasticsearch716-data && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - elasticsearch716
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 elasticsearch72-data:
   stage: level_3
-  script: 'cd elasticsearch72-data && make all && make publish && make clean'
-  needs: ["elasticsearch72"]
-  when: on_success
+  script: cd elasticsearch72-data && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - elasticsearch72
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 elasticsearch75-data:
   stage: level_3
-  script: 'cd elasticsearch75-data && make all && make publish && make clean'
-  needs: ["elasticsearch75"]
-  when: on_success
+  script: cd elasticsearch75-data && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - elasticsearch75
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 elasticsearch77-data:
   stage: level_3
-  script: 'cd elasticsearch77-data && make all && make publish && make clean'
-  needs: ["elasticsearch77"]
-  when: on_success
+  script: cd elasticsearch77-data && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - elasticsearch77
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 elasticsearch79-data:
   stage: level_3
-  script: 'cd elasticsearch79-data && make all && make publish && make clean'
-  needs: ["elasticsearch79"]
-  when: on_success
+  script: cd elasticsearch79-data && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - elasticsearch79
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 ffmpeg:
   stage: level_3
-  script: 'cd ffmpeg && make all && make publish && make clean'
-  needs: ["toolbox-bookworm"]
-  when: on_success
+  script: cd ffmpeg && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 fontforge:
   stage: level_3
-  script: 'cd fontforge && make all && make publish && make clean'
-  needs: ["toolbox-bookworm"]
-  when: on_success
+  script: cd fontforge && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 ghostscript:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd ghostscript && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [ghostscript_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd ghostscript && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - ghostscript_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 ghostscript_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd ghostscript && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["toolbox-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd ghostscript && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 graphic-tools:
   stage: level_3
-  script: 'cd graphic-tools && make all && make publish && make clean'
-  needs: ["toolbox-bookworm"]
-  when: on_success
+  script: cd graphic-tools && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 node16:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node16 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [node16_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd node16 && make all-amd64 && make push-manifest && make publish && make
+    clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - node16_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 node16_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node16 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["toolbox-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd node16 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 node18:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node18 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [node18_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd node18 && make all-amd64 && make push-manifest && make publish && make
+    clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - node18_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 node18_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node18 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["toolbox-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd node18 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 node20:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node20 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [node20_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd node20 && make all-amd64 && make push-manifest && make publish && make
+    clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - node20_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 node20_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node20 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["toolbox-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd node20 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 node21:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node21 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [node21_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd node21 && make all-amd64 && make push-manifest && make publish && make
+    clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - node21_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 node21_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node21 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["toolbox-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd node21 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 node22:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node22 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [node22_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd node22 && make all-amd64 && make push-manifest && make publish && make
+    clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - node22_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 node22_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node22 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["toolbox-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd node22 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 packager:
   stage: level_3
-  script: 'cd packager && make all && make publish && make clean'
-  needs: ["toolbox-bookworm"]
-  when: on_success
+  script: cd packager && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 pdftk:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd pdftk && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [pdftk_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd pdftk && make all-amd64 && make push-manifest && make publish && make
+    clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - pdftk_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 pdftk_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd pdftk && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["toolbox-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd pdftk && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php74-cron:
   stage: level_3
-  script: 'cd php74-cron && make all && make publish && make clean'
-  needs: ["php74-cli"]
-  when: on_success
+  script: cd php74-cron && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php74-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php74-dev:
   stage: level_3
-  script: 'cd php74-dev && make all && make publish && make clean'
-  needs: ["php74-cli"]
-  when: on_success
+  script: cd php74-dev && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php74-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php74-fpm:
   stage: level_3
-  script: 'cd php74-fpm && make all && make publish && make clean'
-  needs: ["php74-cli"]
-  when: on_success
+  script: cd php74-fpm && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php74-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php74-supervisor:
   stage: level_3
-  script: 'cd php74-supervisor && make all && make publish && make clean'
-  needs: ["php74-cli"]
-  when: on_success
+  script: cd php74-supervisor && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php74-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php80-cron:
   stage: level_3
-  script: 'cd php80-cron && make all && make publish && make clean'
-  needs: ["php80-cli"]
-  when: on_success
+  script: cd php80-cron && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php80-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php80-dev:
   stage: level_3
-  script: 'cd php80-dev && make all && make publish && make clean'
-  needs: ["php80-cli"]
-  when: on_success
+  script: cd php80-dev && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php80-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php80-fpm:
   stage: level_3
-  script: 'cd php80-fpm && make all && make publish && make clean'
-  needs: ["php80-cli"]
-  when: on_success
+  script: cd php80-fpm && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php80-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php80-supervisor:
   stage: level_3
-  script: 'cd php80-supervisor && make all && make publish && make clean'
-  needs: ["php80-cli"]
-  when: on_success
+  script: cd php80-supervisor && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php80-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php81-cron:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php81-cron && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php81-cron_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php81-cron && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php81-cron_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php81-cron_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php81-cron && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["php81-cli"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php81-cron && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php81-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php81-dev:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php81-dev && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php81-dev_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php81-dev && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php81-dev_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php81-dev_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php81-dev && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["php81-cli"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php81-dev && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php81-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php81-fpm:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php81-fpm && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php81-fpm_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php81-fpm && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php81-fpm_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php81-fpm_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php81-fpm && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["php81-cli"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php81-fpm && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php81-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php81-supervisor:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php81-supervisor && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php81-supervisor_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php81-supervisor && make all-amd64 && make push-manifest && make publish
+    && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php81-supervisor_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php81-supervisor_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php81-supervisor && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["php81-cli"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php81-supervisor && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php81-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php82-cron:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php82-cron && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php82-cron_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php82-cron && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php82-cron_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php82-cron_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php82-cron && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["php82-cli"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php82-cron && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php82-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php82-dev:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php82-dev && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php82-dev_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php82-dev && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php82-dev_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php82-dev_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php82-dev && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["php82-cli"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php82-dev && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php82-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php82-fpm:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php82-fpm && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php82-fpm_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php82-fpm && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php82-fpm_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php82-fpm_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php82-fpm && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["php82-cli"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php82-fpm && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php82-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php82-supervisor:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php82-supervisor && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php82-supervisor_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php82-supervisor && make all-amd64 && make push-manifest && make publish
+    && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php82-supervisor_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php82-supervisor_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php82-supervisor && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["php82-cli"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php82-supervisor && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php82-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php83-cron:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php83-cron && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php83-cron_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php83-cron && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php83-cron_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php83-cron_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php83-cron && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["php83-cli"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php83-cron && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php83-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php83-dev:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php83-dev && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php83-dev_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php83-dev && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php83-dev_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php83-dev_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php83-dev && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["php83-cli"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php83-dev && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php83-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php83-fpm:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php83-fpm && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php83-fpm_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php83-fpm && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php83-fpm_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php83-fpm_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php83-fpm && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["php83-cli"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php83-fpm && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php83-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php83-supervisor:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php83-supervisor && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php83-supervisor_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php83-supervisor && make all-amd64 && make push-manifest && make publish
+    && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php83-supervisor_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php83-supervisor_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php83-supervisor && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["php83-cli"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php83-supervisor && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php83-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php84-cron:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php84-cron && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php84-cron_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php84-cron && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php84-cron_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php84-cron_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php84-cron && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["php84-cli"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php84-cron && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php84-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php84-dev:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php84-dev && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php84-dev_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php84-dev && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php84-dev_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php84-dev_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php84-dev && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["php84-cli"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php84-dev && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php84-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php84-fpm:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php84-fpm && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php84-fpm_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php84-fpm && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php84-fpm_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php84-fpm_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php84-fpm && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["php84-cli"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php84-fpm && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php84-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php84-supervisor:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php84-supervisor && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php84-supervisor_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php84-supervisor && make all-amd64 && make push-manifest && make publish
+    && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php84-supervisor_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 php84-supervisor_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php84-supervisor && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["php84-cli"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd php84-supervisor && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php84-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 phpmyadmin:
   stage: level_3
-  script: 'cd phpmyadmin && make all && make publish && make clean'
-  needs: ["php82-cli"]
-  when: on_success
+  script: cd phpmyadmin && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - php82-cli
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 qpdf:
   stage: level_3
-  script: 'cd qpdf && make all && make publish && make clean'
-  needs: ["toolbox-bookworm"]
-  when: on_success
+  script: cd qpdf && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 ruby2:
   stage: level_3
-  script: 'cd ruby2 && make all && make publish && make clean'
-  needs: ["toolbox-bookworm"]
-  when: on_success
+  script: cd ruby2 && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 sonar-scanner-cli7:
   stage: level_3
-  script: 'cd sonar-scanner-cli7 && make all && make publish && make clean'
-  needs: ["toolbox-bookworm"]
-  when: on_success
+  script: cd sonar-scanner-cli7 && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 thrift0110:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd thrift0110 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [thrift0110_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd thrift0110 && make all-amd64 && make push-manifest && make publish &&
+    make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - thrift0110_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 thrift0110_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd thrift0110 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["toolbox-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd thrift0110 && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 thrift093:
   stage: level_3
-  script: 'cd thrift093 && make all && make publish && make clean'
-  needs: ["toolbox-bookworm"]
-  when: on_success
+  script: cd thrift093 && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 wkhtmltopdf126:
   stage: level_3
-  script: 'cd wkhtmltopdf126 && make all && make publish && make clean'
-  needs: ["toolbox-bookworm"]
-  when: on_success
+  script: cd wkhtmltopdf126 && make all && make publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 wkhtmltopdf126-broken:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd wkhtmltopdf126-broken && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [wkhtmltopdf126-broken_arm64]
-  when: on_success
-  tags: [nfq_ip]
+  - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd wkhtmltopdf126-broken && make all-amd64 && make push-manifest && make
+    publish && make clean
+  needs:
+  - job: enable-cascade
+    optional: true
+  - wkhtmltopdf126-broken_arm64
+  tags:
+  - nfq_ip
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false
 wkhtmltopdf126-broken_arm64:
   stage: level_3
   before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd wkhtmltopdf126-broken && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["toolbox-bookworm"]
-  when: on_success
+  - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+  - docker login -u $dockerhub_user -p $dockerhub_token
+  - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: cd wkhtmltopdf126-broken && make all-arm64 && make clean
+  tags:
+  - arm
+  needs:
+  - job: enable-cascade
+    optional: true
+  - toolbox-bookworm
+  rules:
+  - if: $CASCADE == "true"
+    when: on_success
+  - when: manual
+    allow_failure: false

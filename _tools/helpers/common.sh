@@ -62,8 +62,9 @@ get_container_ip() {
 	fi
 
 	local container="$1"
-	# Try new format first (for custom networks), fallback to old format
-	local IP=$(docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$container" 2>/dev/null)
+	# Try new format first (for custom networks), use println to separate multiple IPs
+	# and take only the first one (in case container is on multiple networks)
+	local IP=$(docker inspect --format '{{range .NetworkSettings.Networks}}{{println .IPAddress}}{{end}}' "$container" 2>/dev/null | grep -v '^$' | head -1)
 
 	# Fallback to old format for bridge network
 	if [ -z "$IP" ]; then
