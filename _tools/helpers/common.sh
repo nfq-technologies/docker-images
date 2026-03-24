@@ -62,7 +62,13 @@ get_container_ip() {
 	fi
 
 	local container="$1"
-	local IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$container")
+	# Try new format first (for custom networks), fallback to old format
+	local IP=$(docker inspect --format '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' "$container" 2>/dev/null)
+
+	# Fallback to old format for bridge network
+	if [ -z "$IP" ]; then
+		IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$container" 2>/dev/null)
+	fi
 
 	if [ -z "$IP" ]; then
 		error "Failed to get container: '$container' ip address"
