@@ -1,9 +1,5 @@
 include: _tools/gitlab/*/*.yml
 
-# Add the environment variable globally right here at the top
-variables:
-  DOCKER_API_VERSION: "1.44"
-
 # Control pipeline creation to avoid detached MR pipeline issues
 workflow:
   rules:
@@ -24,12 +20,6 @@ default:
   image: nfqlt/aws-docker-tools
   tags: [nfq_ip]
   before_script:
-    # 1. Bump the downloaded CLI version to 25.0.3 (which supports API 1.44)
-    - curl -fsSL https://download.docker.com/linux/static/stable/x86_64/docker-25.0.3.tgz -o /tmp/docker.tgz
-    - tar xz -C /tmp -f /tmp/docker.tgz
-    - sudo mv -f /tmp/docker/docker /usr/bin/docker
-    
-    # 2. Fix the insecure password warnings by piping the token into --password-stdin
     - echo "$dockerhub_token" | docker login -u $dockerhub_user --password-stdin
     - echo "$nfqhub_token" | docker login -u $nfqhub_user --password-stdin https://docker.nfq.lt
   after_script:
