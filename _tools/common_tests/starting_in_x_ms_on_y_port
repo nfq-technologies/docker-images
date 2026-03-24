@@ -4,8 +4,13 @@ set -e
 name=test_box_$(date +%s%N)
 cwd=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 timeout_ms=$(basename $0 | sed 's/^.*_\([0-9]*\)_ms.*$/\1/g')
-timeout_hard_ms=$(($timeout_ms+3000))
 port=$(basename $0 | sed 's/^.*_\([0-9]*\)_port.*$/\1/g')
+
+# Apply 3x multiplier for arm64 images (they're slower)
+if [[ "$1" == *":arm64"* ]]; then
+	timeout_ms=$(($timeout_ms * 3))
+fi
+timeout_hard_ms=$(($timeout_ms+3000))
 
 
 if [[ -r "${cwd}/../../_tools/helpers/common.sh" ]]; then
