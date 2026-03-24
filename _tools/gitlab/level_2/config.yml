@@ -16,8 +16,7 @@ apache24:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 apache24_arm64:
   stage: level_2
   before_script:
@@ -53,8 +52,7 @@ aws-mock:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 aws-mock_arm64:
   stage: level_2
   before_script:
@@ -90,8 +88,7 @@ chromedriver:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 chromedriver_arm64:
   stage: level_2
   before_script:
@@ -126,8 +123,7 @@ dev:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 dev_arm64:
   stage: level_2
   before_script:
@@ -163,8 +159,7 @@ docker18ce:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 docker18ce_arm64:
   stage: level_2
   before_script:
@@ -224,8 +219,7 @@ elasticsearch716:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 elasticsearch716_arm64:
   stage: level_2
   before_script:
@@ -309,8 +303,7 @@ elasticsearch84:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 elasticsearch84_arm64:
   stage: level_2
   before_script:
@@ -358,8 +351,7 @@ memcached16:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 memcached16_arm64:
   stage: level_2
   before_script:
@@ -431,8 +423,7 @@ nginx118:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 nginx118_arm64:
   stage: level_2
   before_script:
@@ -468,8 +459,7 @@ nginx122:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 nginx122_arm64:
   stage: level_2
   before_script:
@@ -505,8 +495,7 @@ nodeserver16:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 nodeserver16_arm64:
   stage: level_2
   before_script:
@@ -542,8 +531,7 @@ nodeserver18:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 nodeserver18_arm64:
   stage: level_2
   before_script:
@@ -579,8 +567,7 @@ nodeserver20:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 nodeserver20_arm64:
   stage: level_2
   before_script:
@@ -616,8 +603,7 @@ nodeserver21:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 nodeserver21_arm64:
   stage: level_2
   before_script:
@@ -653,8 +639,7 @@ nodeserver22:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 nodeserver22_arm64:
   stage: level_2
   before_script:
@@ -738,8 +723,7 @@ php81-cli:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 php81-cli_arm64:
   stage: level_2
   before_script:
@@ -775,8 +759,7 @@ php82-cli:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 php82-cli_arm64:
   stage: level_2
   before_script:
@@ -812,8 +795,7 @@ php83-cli:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 php83-cli_arm64:
   stage: level_2
   before_script:
@@ -849,8 +831,7 @@ php84-cli:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 php84-cli_arm64:
   stage: level_2
   before_script:
@@ -886,8 +867,7 @@ rabbitmq310:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 rabbitmq310_arm64:
   stage: level_2
   before_script:
@@ -923,8 +903,7 @@ rabbitmq312:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 rabbitmq312_arm64:
   stage: level_2
   before_script:
@@ -960,8 +939,7 @@ rabbitmq38:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 rabbitmq38_arm64:
   stage: level_2
   before_script:
@@ -997,8 +975,7 @@ rabbitmq4:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 rabbitmq4_arm64:
   stage: level_2
   before_script:
@@ -1034,8 +1011,7 @@ redis60:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 redis60_arm64:
   stage: level_2
   before_script:
@@ -1071,8 +1047,7 @@ redis70:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 redis70_arm64:
   stage: level_2
   before_script:
@@ -1108,8 +1083,7 @@ toolbox-bookworm:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 toolbox-bookworm_arm64:
   stage: level_2
   before_script:
@@ -1145,8 +1119,7 @@ toolbox-bullseye:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 toolbox-bullseye_arm64:
   stage: level_2
   before_script:

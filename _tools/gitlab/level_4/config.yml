@@ -16,8 +16,7 @@ aws-docker-tools:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 aws-docker-tools_arm64:
   stage: level_4
   before_script:
@@ -53,8 +52,7 @@ cypress12:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 cypress12_arm64:
   stage: level_4
   before_script:

@@ -16,8 +16,7 @@ aws-tools:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 aws-tools_arm64:
   stage: level_3
   before_script:
@@ -65,8 +64,7 @@ cloud-tools:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 cloud-tools_arm64:
   stage: level_3
   before_script:
@@ -222,8 +220,7 @@ ghostscript:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 ghostscript_arm64:
   stage: level_3
   before_script:
@@ -271,8 +268,7 @@ node16:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 node16_arm64:
   stage: level_3
   before_script:
@@ -308,8 +304,7 @@ node18:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 node18_arm64:
   stage: level_3
   before_script:
@@ -345,8 +340,7 @@ node20:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 node20_arm64:
   stage: level_3
   before_script:
@@ -382,8 +376,7 @@ node21:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 node21_arm64:
   stage: level_3
   before_script:
@@ -419,8 +412,7 @@ node22:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 node22_arm64:
   stage: level_3
   before_script:
@@ -468,8 +460,7 @@ pdftk:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 pdftk_arm64:
   stage: level_3
   before_script:
@@ -601,8 +592,7 @@ php81-cron:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 php81-cron_arm64:
   stage: level_3
   before_script:
@@ -638,8 +628,7 @@ php81-dev:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 php81-dev_arm64:
   stage: level_3
   before_script:
@@ -675,8 +664,7 @@ php81-fpm:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 php81-fpm_arm64:
   stage: level_3
   before_script:
@@ -712,8 +700,7 @@ php81-supervisor:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 php81-supervisor_arm64:
   stage: level_3
   before_script:
@@ -749,8 +736,7 @@ php82-cron:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 php82-cron_arm64:
   stage: level_3
   before_script:
@@ -786,8 +772,7 @@ php82-dev:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 php82-dev_arm64:
   stage: level_3
   before_script:
@@ -823,8 +808,7 @@ php82-fpm:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 php82-fpm_arm64:
   stage: level_3
   before_script:
@@ -860,8 +844,7 @@ php82-supervisor:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 php82-supervisor_arm64:
   stage: level_3
   before_script:
@@ -897,8 +880,7 @@ php83-cron:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 php83-cron_arm64:
   stage: level_3
   before_script:
@@ -934,8 +916,7 @@ php83-dev:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 php83-dev_arm64:
   stage: level_3
   before_script:
@@ -971,8 +952,7 @@ php83-fpm:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 php83-fpm_arm64:
   stage: level_3
   before_script:
@@ -1008,8 +988,7 @@ php83-supervisor:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 php83-supervisor_arm64:
   stage: level_3
   before_script:
@@ -1045,8 +1024,7 @@ php84-cron:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 php84-cron_arm64:
   stage: level_3
   before_script:
@@ -1082,8 +1060,7 @@ php84-dev:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 php84-dev_arm64:
   stage: level_3
   before_script:
@@ -1119,8 +1096,7 @@ php84-fpm:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 php84-fpm_arm64:
   stage: level_3
   before_script:
@@ -1156,8 +1132,7 @@ php84-supervisor:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 php84-supervisor_arm64:
   stage: level_3
   before_script:
@@ -1241,8 +1216,7 @@ thrift0110:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 thrift0110_arm64:
   stage: level_3
   before_script:
@@ -1302,8 +1276,7 @@ wkhtmltopdf126-broken:
   rules:
   - if: $CASCADE == "true"
     when: on_success
-  - when: manual
-    allow_failure: false
+  - when: on_success
 wkhtmltopdf126-broken_arm64:
   stage: level_3
   before_script:
