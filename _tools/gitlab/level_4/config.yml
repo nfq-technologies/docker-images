@@ -8,8 +8,6 @@ aws-docker-tools:
   script: cd aws-docker-tools && make all-amd64 && make push-manifest && make publish
     && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - aws-docker-tools_arm64
   tags:
   - nfq_ip
@@ -27,8 +25,6 @@ aws-docker-tools_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - aws-tools
   rules:
   - if: $CASCADE == "true"
@@ -44,8 +40,6 @@ cypress12:
   script: cd cypress12 && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - cypress12_arm64
   tags:
   - nfq_ip
@@ -63,8 +57,6 @@ cypress12_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - node20
   rules:
   - if: $CASCADE == "true"
@@ -75,8 +67,6 @@ cypress9:
   stage: level_4
   script: cd cypress9 && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - node16
   rules:
   - if: $CASCADE == "true"
@@ -87,8 +77,6 @@ php74-vscode:
   stage: level_4
   script: cd php74-vscode && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php74-dev
   rules:
   - if: $CASCADE == "true"
@@ -99,8 +87,6 @@ xhgui:
   stage: level_4
   script: cd xhgui && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php81-dev
   rules:
   - if: $CASCADE == "true"

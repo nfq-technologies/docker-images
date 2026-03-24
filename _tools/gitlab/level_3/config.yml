@@ -8,8 +8,6 @@ aws-tools:
   script: cd aws-tools && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - aws-tools_arm64
   tags:
   - nfq_ip
@@ -27,8 +25,6 @@ aws-tools_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -39,8 +35,6 @@ chromium:
   stage: level_3
   script: cd chromium && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -56,8 +50,6 @@ cloud-tools:
   script: cd cloud-tools && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - cloud-tools_arm64
   tags:
   - nfq_ip
@@ -75,8 +67,6 @@ cloud-tools_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -87,8 +77,6 @@ db-tools:
   stage: level_3
   script: cd db-tools && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bullseye
   rules:
   - if: $CASCADE == "true"
@@ -99,8 +87,6 @@ elasticsearch68-data:
   stage: level_3
   script: cd elasticsearch68-data && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - elasticsearch68
   rules:
   - if: $CASCADE == "true"
@@ -111,8 +97,6 @@ elasticsearch710-data:
   stage: level_3
   script: cd elasticsearch710-data && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - elasticsearch710
   rules:
   - if: $CASCADE == "true"
@@ -123,8 +107,6 @@ elasticsearch716-data:
   stage: level_3
   script: cd elasticsearch716-data && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - elasticsearch716
   rules:
   - if: $CASCADE == "true"
@@ -135,8 +117,6 @@ elasticsearch72-data:
   stage: level_3
   script: cd elasticsearch72-data && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - elasticsearch72
   rules:
   - if: $CASCADE == "true"
@@ -147,8 +127,6 @@ elasticsearch75-data:
   stage: level_3
   script: cd elasticsearch75-data && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - elasticsearch75
   rules:
   - if: $CASCADE == "true"
@@ -159,8 +137,6 @@ elasticsearch77-data:
   stage: level_3
   script: cd elasticsearch77-data && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - elasticsearch77
   rules:
   - if: $CASCADE == "true"
@@ -171,8 +147,6 @@ elasticsearch79-data:
   stage: level_3
   script: cd elasticsearch79-data && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - elasticsearch79
   rules:
   - if: $CASCADE == "true"
@@ -183,8 +157,6 @@ ffmpeg:
   stage: level_3
   script: cd ffmpeg && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -195,8 +167,6 @@ fontforge:
   stage: level_3
   script: cd fontforge && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -212,8 +182,6 @@ ghostscript:
   script: cd ghostscript && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - ghostscript_arm64
   tags:
   - nfq_ip
@@ -231,8 +199,6 @@ ghostscript_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -243,8 +209,6 @@ graphic-tools:
   stage: level_3
   script: cd graphic-tools && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -260,8 +224,6 @@ node16:
   script: cd node16 && make all-amd64 && make push-manifest && make publish && make
     clean
   needs:
-  - job: enable-cascade
-    optional: true
   - node16_arm64
   tags:
   - nfq_ip
@@ -279,8 +241,6 @@ node16_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -296,8 +256,6 @@ node18:
   script: cd node18 && make all-amd64 && make push-manifest && make publish && make
     clean
   needs:
-  - job: enable-cascade
-    optional: true
   - node18_arm64
   tags:
   - nfq_ip
@@ -315,8 +273,6 @@ node18_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -332,8 +288,6 @@ node20:
   script: cd node20 && make all-amd64 && make push-manifest && make publish && make
     clean
   needs:
-  - job: enable-cascade
-    optional: true
   - node20_arm64
   tags:
   - nfq_ip
@@ -351,8 +305,6 @@ node20_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -368,8 +320,6 @@ node21:
   script: cd node21 && make all-amd64 && make push-manifest && make publish && make
     clean
   needs:
-  - job: enable-cascade
-    optional: true
   - node21_arm64
   tags:
   - nfq_ip
@@ -387,8 +337,6 @@ node21_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -404,8 +352,6 @@ node22:
   script: cd node22 && make all-amd64 && make push-manifest && make publish && make
     clean
   needs:
-  - job: enable-cascade
-    optional: true
   - node22_arm64
   tags:
   - nfq_ip
@@ -423,8 +369,6 @@ node22_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -435,8 +379,6 @@ packager:
   stage: level_3
   script: cd packager && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -452,8 +394,6 @@ pdftk:
   script: cd pdftk && make all-amd64 && make push-manifest && make publish && make
     clean
   needs:
-  - job: enable-cascade
-    optional: true
   - pdftk_arm64
   tags:
   - nfq_ip
@@ -471,8 +411,6 @@ pdftk_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -483,8 +421,6 @@ php74-cron:
   stage: level_3
   script: cd php74-cron && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php74-cli
   rules:
   - if: $CASCADE == "true"
@@ -495,8 +431,6 @@ php74-dev:
   stage: level_3
   script: cd php74-dev && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php74-cli
   rules:
   - if: $CASCADE == "true"
@@ -507,8 +441,6 @@ php74-fpm:
   stage: level_3
   script: cd php74-fpm && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php74-cli
   rules:
   - if: $CASCADE == "true"
@@ -519,8 +451,6 @@ php74-supervisor:
   stage: level_3
   script: cd php74-supervisor && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php74-cli
   rules:
   - if: $CASCADE == "true"
@@ -531,8 +461,6 @@ php80-cron:
   stage: level_3
   script: cd php80-cron && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php80-cli
   rules:
   - if: $CASCADE == "true"
@@ -543,8 +471,6 @@ php80-dev:
   stage: level_3
   script: cd php80-dev && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php80-cli
   rules:
   - if: $CASCADE == "true"
@@ -555,8 +481,6 @@ php80-fpm:
   stage: level_3
   script: cd php80-fpm && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php80-cli
   rules:
   - if: $CASCADE == "true"
@@ -567,8 +491,6 @@ php80-supervisor:
   stage: level_3
   script: cd php80-supervisor && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php80-cli
   rules:
   - if: $CASCADE == "true"
@@ -584,8 +506,6 @@ php81-cron:
   script: cd php81-cron && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php81-cron_arm64
   tags:
   - nfq_ip
@@ -603,8 +523,6 @@ php81-cron_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - php81-cli
   rules:
   - if: $CASCADE == "true"
@@ -620,8 +538,6 @@ php81-dev:
   script: cd php81-dev && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php81-dev_arm64
   tags:
   - nfq_ip
@@ -639,8 +555,6 @@ php81-dev_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - php81-cli
   rules:
   - if: $CASCADE == "true"
@@ -656,8 +570,6 @@ php81-fpm:
   script: cd php81-fpm && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php81-fpm_arm64
   tags:
   - nfq_ip
@@ -675,8 +587,6 @@ php81-fpm_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - php81-cli
   rules:
   - if: $CASCADE == "true"
@@ -692,8 +602,6 @@ php81-supervisor:
   script: cd php81-supervisor && make all-amd64 && make push-manifest && make publish
     && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php81-supervisor_arm64
   tags:
   - nfq_ip
@@ -711,8 +619,6 @@ php81-supervisor_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - php81-cli
   rules:
   - if: $CASCADE == "true"
@@ -728,8 +634,6 @@ php82-cron:
   script: cd php82-cron && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php82-cron_arm64
   tags:
   - nfq_ip
@@ -747,8 +651,6 @@ php82-cron_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - php82-cli
   rules:
   - if: $CASCADE == "true"
@@ -764,8 +666,6 @@ php82-dev:
   script: cd php82-dev && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php82-dev_arm64
   tags:
   - nfq_ip
@@ -783,8 +683,6 @@ php82-dev_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - php82-cli
   rules:
   - if: $CASCADE == "true"
@@ -800,8 +698,6 @@ php82-fpm:
   script: cd php82-fpm && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php82-fpm_arm64
   tags:
   - nfq_ip
@@ -819,8 +715,6 @@ php82-fpm_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - php82-cli
   rules:
   - if: $CASCADE == "true"
@@ -836,8 +730,6 @@ php82-supervisor:
   script: cd php82-supervisor && make all-amd64 && make push-manifest && make publish
     && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php82-supervisor_arm64
   tags:
   - nfq_ip
@@ -855,8 +747,6 @@ php82-supervisor_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - php82-cli
   rules:
   - if: $CASCADE == "true"
@@ -872,8 +762,6 @@ php83-cron:
   script: cd php83-cron && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php83-cron_arm64
   tags:
   - nfq_ip
@@ -891,8 +779,6 @@ php83-cron_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - php83-cli
   rules:
   - if: $CASCADE == "true"
@@ -908,8 +794,6 @@ php83-dev:
   script: cd php83-dev && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php83-dev_arm64
   tags:
   - nfq_ip
@@ -927,8 +811,6 @@ php83-dev_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - php83-cli
   rules:
   - if: $CASCADE == "true"
@@ -944,8 +826,6 @@ php83-fpm:
   script: cd php83-fpm && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php83-fpm_arm64
   tags:
   - nfq_ip
@@ -963,8 +843,6 @@ php83-fpm_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - php83-cli
   rules:
   - if: $CASCADE == "true"
@@ -980,8 +858,6 @@ php83-supervisor:
   script: cd php83-supervisor && make all-amd64 && make push-manifest && make publish
     && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php83-supervisor_arm64
   tags:
   - nfq_ip
@@ -999,8 +875,6 @@ php83-supervisor_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - php83-cli
   rules:
   - if: $CASCADE == "true"
@@ -1016,8 +890,6 @@ php84-cron:
   script: cd php84-cron && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php84-cron_arm64
   tags:
   - nfq_ip
@@ -1035,8 +907,6 @@ php84-cron_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - php84-cli
   rules:
   - if: $CASCADE == "true"
@@ -1052,8 +922,6 @@ php84-dev:
   script: cd php84-dev && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php84-dev_arm64
   tags:
   - nfq_ip
@@ -1071,8 +939,6 @@ php84-dev_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - php84-cli
   rules:
   - if: $CASCADE == "true"
@@ -1088,8 +954,6 @@ php84-fpm:
   script: cd php84-fpm && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php84-fpm_arm64
   tags:
   - nfq_ip
@@ -1107,8 +971,6 @@ php84-fpm_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - php84-cli
   rules:
   - if: $CASCADE == "true"
@@ -1124,8 +986,6 @@ php84-supervisor:
   script: cd php84-supervisor && make all-amd64 && make push-manifest && make publish
     && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php84-supervisor_arm64
   tags:
   - nfq_ip
@@ -1143,8 +1003,6 @@ php84-supervisor_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - php84-cli
   rules:
   - if: $CASCADE == "true"
@@ -1155,8 +1013,6 @@ phpmyadmin:
   stage: level_3
   script: cd phpmyadmin && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php82-cli
   rules:
   - if: $CASCADE == "true"
@@ -1167,8 +1023,6 @@ qpdf:
   stage: level_3
   script: cd qpdf && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -1179,8 +1033,6 @@ ruby2:
   stage: level_3
   script: cd ruby2 && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -1191,8 +1043,6 @@ sonar-scanner-cli7:
   stage: level_3
   script: cd sonar-scanner-cli7 && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -1208,8 +1058,6 @@ thrift0110:
   script: cd thrift0110 && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - thrift0110_arm64
   tags:
   - nfq_ip
@@ -1227,8 +1075,6 @@ thrift0110_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -1239,8 +1085,6 @@ thrift093:
   stage: level_3
   script: cd thrift093 && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -1251,8 +1095,6 @@ wkhtmltopdf126:
   stage: level_3
   script: cd wkhtmltopdf126 && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -1268,8 +1110,6 @@ wkhtmltopdf126-broken:
   script: cd wkhtmltopdf126-broken && make all-amd64 && make push-manifest && make
     publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - wkhtmltopdf126-broken_arm64
   tags:
   - nfq_ip
@@ -1287,8 +1127,6 @@ wkhtmltopdf126-broken_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bookworm
   rules:
   - if: $CASCADE == "true"

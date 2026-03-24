@@ -8,8 +8,6 @@ apache24:
   script: cd apache24 && make all-amd64 && make push-manifest && make publish && make
     clean
   needs:
-  - job: enable-cascade
-    optional: true
   - apache24_arm64
   tags:
   - nfq_ip
@@ -27,8 +25,6 @@ apache24_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -44,8 +40,6 @@ aws-mock:
   script: cd aws-mock && make all-amd64 && make push-manifest && make publish && make
     clean
   needs:
-  - job: enable-cascade
-    optional: true
   - aws-mock_arm64
   tags:
   - nfq_ip
@@ -63,8 +57,6 @@ aws-mock_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -80,8 +72,6 @@ chromedriver:
   script: cd chromedriver && make all-amd64 && make push-manifest && make publish
     && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - chromedriver_arm64
   tags:
   - nfq_ip
@@ -99,8 +89,6 @@ chromedriver_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -115,8 +103,6 @@ dev:
   - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: cd dev && make all-amd64 && make push-manifest && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - dev_arm64
   tags:
   - nfq_ip
@@ -134,8 +120,6 @@ dev_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -151,8 +135,6 @@ docker18ce:
   script: cd docker18ce && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - docker18ce_arm64
   tags:
   - nfq_ip
@@ -170,8 +152,6 @@ docker18ce_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bullseye
   rules:
   - if: $CASCADE == "true"
@@ -182,8 +162,6 @@ elasticsearch68:
   stage: level_2
   script: cd elasticsearch68 && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bullseye
   rules:
   - if: $CASCADE == "true"
@@ -194,8 +172,6 @@ elasticsearch710:
   stage: level_2
   script: cd elasticsearch710 && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bullseye
   rules:
   - if: $CASCADE == "true"
@@ -211,8 +187,6 @@ elasticsearch716:
   script: cd elasticsearch716 && make all-amd64 && make push-manifest && make publish
     && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - elasticsearch716_arm64
   tags:
   - nfq_ip
@@ -230,8 +204,6 @@ elasticsearch716_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bullseye
   rules:
   - if: $CASCADE == "true"
@@ -242,8 +214,6 @@ elasticsearch72:
   stage: level_2
   script: cd elasticsearch72 && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bullseye
   rules:
   - if: $CASCADE == "true"
@@ -254,8 +224,6 @@ elasticsearch75:
   stage: level_2
   script: cd elasticsearch75 && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bullseye
   rules:
   - if: $CASCADE == "true"
@@ -266,8 +234,6 @@ elasticsearch77:
   stage: level_2
   script: cd elasticsearch77 && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bullseye
   rules:
   - if: $CASCADE == "true"
@@ -278,8 +244,6 @@ elasticsearch79:
   stage: level_2
   script: cd elasticsearch79 && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bullseye
   rules:
   - if: $CASCADE == "true"
@@ -295,8 +259,6 @@ elasticsearch84:
   script: cd elasticsearch84 && make all-amd64 && make push-manifest && make publish
     && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - elasticsearch84_arm64
   tags:
   - nfq_ip
@@ -314,8 +276,6 @@ elasticsearch84_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -326,8 +286,6 @@ mailhog:
   stage: level_2
   script: cd mailhog && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -343,8 +301,6 @@ memcached16:
   script: cd memcached16 && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - memcached16_arm64
   tags:
   - nfq_ip
@@ -362,8 +318,6 @@ memcached16_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -374,8 +328,6 @@ mongo50:
   stage: level_2
   script: cd mongo50 && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bullseye
   rules:
   - if: $CASCADE == "true"
@@ -386,8 +338,6 @@ mysql57-data:
   stage: level_2
   script: cd mysql57-data && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - mysql57
   rules:
   - if: $CASCADE == "true"
@@ -398,8 +348,6 @@ mysql80-data:
   stage: level_2
   script: cd mysql80-data && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - mysql80
   rules:
   - if: $CASCADE == "true"
@@ -415,8 +363,6 @@ nginx118:
   script: cd nginx118 && make all-amd64 && make push-manifest && make publish && make
     clean
   needs:
-  - job: enable-cascade
-    optional: true
   - nginx118_arm64
   tags:
   - nfq_ip
@@ -434,8 +380,6 @@ nginx118_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bullseye
   rules:
   - if: $CASCADE == "true"
@@ -451,8 +395,6 @@ nginx122:
   script: cd nginx122 && make all-amd64 && make push-manifest && make publish && make
     clean
   needs:
-  - job: enable-cascade
-    optional: true
   - nginx122_arm64
   tags:
   - nfq_ip
@@ -470,8 +412,6 @@ nginx122_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -487,8 +427,6 @@ nodeserver16:
   script: cd nodeserver16 && make all-amd64 && make push-manifest && make publish
     && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - nodeserver16_arm64
   tags:
   - nfq_ip
@@ -506,8 +444,6 @@ nodeserver16_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -523,8 +459,6 @@ nodeserver18:
   script: cd nodeserver18 && make all-amd64 && make push-manifest && make publish
     && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - nodeserver18_arm64
   tags:
   - nfq_ip
@@ -542,8 +476,6 @@ nodeserver18_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -559,8 +491,6 @@ nodeserver20:
   script: cd nodeserver20 && make all-amd64 && make push-manifest && make publish
     && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - nodeserver20_arm64
   tags:
   - nfq_ip
@@ -578,8 +508,6 @@ nodeserver20_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -595,8 +523,6 @@ nodeserver21:
   script: cd nodeserver21 && make all-amd64 && make push-manifest && make publish
     && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - nodeserver21_arm64
   tags:
   - nfq_ip
@@ -614,8 +540,6 @@ nodeserver21_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -631,8 +555,6 @@ nodeserver22:
   script: cd nodeserver22 && make all-amd64 && make push-manifest && make publish
     && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - nodeserver22_arm64
   tags:
   - nfq_ip
@@ -650,8 +572,6 @@ nodeserver22_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -662,8 +582,6 @@ phantomjs19:
   stage: level_2
   script: cd phantomjs19 && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -674,8 +592,6 @@ phantomjs21:
   stage: level_2
   script: cd phantomjs21 && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -686,8 +602,6 @@ php74-cli:
   stage: level_2
   script: cd php74-cli && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bullseye
   rules:
   - if: $CASCADE == "true"
@@ -698,8 +612,6 @@ php80-cli:
   stage: level_2
   script: cd php80-cli && make all && make publish && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bullseye
   rules:
   - if: $CASCADE == "true"
@@ -715,8 +627,6 @@ php81-cli:
   script: cd php81-cli && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php81-cli_arm64
   tags:
   - nfq_ip
@@ -734,8 +644,6 @@ php81-cli_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bullseye
   rules:
   - if: $CASCADE == "true"
@@ -751,8 +659,6 @@ php82-cli:
   script: cd php82-cli && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php82-cli_arm64
   tags:
   - nfq_ip
@@ -770,8 +676,6 @@ php82-cli_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -787,8 +691,6 @@ php83-cli:
   script: cd php83-cli && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php83-cli_arm64
   tags:
   - nfq_ip
@@ -806,8 +708,6 @@ php83-cli_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -823,8 +723,6 @@ php84-cli:
   script: cd php84-cli && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - php84-cli_arm64
   tags:
   - nfq_ip
@@ -842,8 +740,6 @@ php84-cli_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -859,8 +755,6 @@ rabbitmq310:
   script: cd rabbitmq310 && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - rabbitmq310_arm64
   tags:
   - nfq_ip
@@ -878,8 +772,6 @@ rabbitmq310_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -895,8 +787,6 @@ rabbitmq312:
   script: cd rabbitmq312 && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - rabbitmq312_arm64
   tags:
   - nfq_ip
@@ -914,8 +804,6 @@ rabbitmq312_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -931,8 +819,6 @@ rabbitmq38:
   script: cd rabbitmq38 && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - rabbitmq38_arm64
   tags:
   - nfq_ip
@@ -950,8 +836,6 @@ rabbitmq38_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bullseye
   rules:
   - if: $CASCADE == "true"
@@ -967,8 +851,6 @@ rabbitmq4:
   script: cd rabbitmq4 && make all-amd64 && make push-manifest && make publish &&
     make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - rabbitmq4_arm64
   tags:
   - nfq_ip
@@ -986,8 +868,6 @@ rabbitmq4_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -1003,8 +883,6 @@ redis60:
   script: cd redis60 && make all-amd64 && make push-manifest && make publish && make
     clean
   needs:
-  - job: enable-cascade
-    optional: true
   - redis60_arm64
   tags:
   - nfq_ip
@@ -1022,8 +900,6 @@ redis60_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bullseye
   rules:
   - if: $CASCADE == "true"
@@ -1039,8 +915,6 @@ redis70:
   script: cd redis70 && make all-amd64 && make push-manifest && make publish && make
     clean
   needs:
-  - job: enable-cascade
-    optional: true
   - redis70_arm64
   tags:
   - nfq_ip
@@ -1058,8 +932,6 @@ redis70_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -1075,8 +947,6 @@ toolbox-bookworm:
   script: cd toolbox-bookworm && make all-amd64 && make push-manifest && make publish
     && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bookworm_arm64
   tags:
   - nfq_ip
@@ -1094,8 +964,6 @@ toolbox-bookworm_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bookworm
   rules:
   - if: $CASCADE == "true"
@@ -1111,8 +979,6 @@ toolbox-bullseye:
   script: cd toolbox-bullseye && make all-amd64 && make push-manifest && make publish
     && make clean
   needs:
-  - job: enable-cascade
-    optional: true
   - toolbox-bullseye_arm64
   tags:
   - nfq_ip
@@ -1130,8 +996,6 @@ toolbox-bullseye_arm64:
   tags:
   - arm
   needs:
-  - job: enable-cascade
-    optional: true
   - debian-bullseye
   rules:
   - if: $CASCADE == "true"
