@@ -28,7 +28,7 @@ testQuery() {
     query="$4"
 
     echo -n "Testing query: '$query' .... "
-    if ! docker exec "test${pid}_mysql_1" bash -c "mysql -h ${mysql_ip} -u ${user} -p${password} -e \"${query}\"" >/dev/null; then
+    if ! docker exec "test${pid}-mysql-1" bash -c "mysql -h ${mysql_ip} -u ${user} -p${password} -e \"${query}\"" >/dev/null; then
 		echo "ERROR"
         exit 1
     fi
@@ -44,7 +44,7 @@ cat $tpl | sed \
 
 docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" up -d &>/dev/null
 
-ip_address="$(get_container_ip test${pid}_mysql_1)"
+ip_address="$(get_container_ip test${pid}-mysql-1)"
 wait_for_connection "${ip_address}:3306"
 
 # actual tests
