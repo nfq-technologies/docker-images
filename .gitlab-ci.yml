@@ -16,8 +16,9 @@ stages:
   - level_4
   - level_5
 
-# To enable cascade mode: Run Pipeline -> Add variable CASCADE=true -> Run
-# Without CASCADE=true, only _arm64 jobs are manual, manifest jobs auto-follow
+# Default: All jobs cascade automatically (like before)
+# For selective builds: Run Pipeline -> Add variable MANUAL=true -> Run
+# With MANUAL=true, only _arm64 entry points are manual, manifest jobs auto-follow
 
 default:
   image: nfqlt/aws-docker-tools

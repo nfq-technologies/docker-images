@@ -64,4 +64,31 @@ Every particular image must be symlinked to exactly one Makefile which in turn
 states image type. Every single image must be buildable with command
 `make build && make test && make push` executed in particular images directory.
 
+## CI/CD Pipeline
+
+### Pipeline Modes
+
+**Default (Cascade Mode):**
+All jobs cascade automatically. When you trigger level 1 jobs, all downstream
+dependencies build in sequence.
+
+**Manual Mode (`MANUAL=true`):**
+For selective builds when you only need specific images:
+1. Go to CI/CD → Pipelines → Run Pipeline
+2. Add variable: `MANUAL` = `true`
+3. Click "Run Pipeline"
+4. Only `_arm64` entry point jobs are manual - click the ones you need
+5. Manifest jobs auto-trigger when their `_arm64` counterpart completes
+
+**Scheduled Pipelines:**
+Always run in cascade mode regardless of variables.
+
+### Regenerating Pipeline Configs
+
+If you add new images or change dependencies, regenerate the pipeline configs:
+```bash
+_tools/generate_gitlab_pipelines.sh
+```
+
+This will update all `_tools/gitlab/level_*/config.yml` files.
 
