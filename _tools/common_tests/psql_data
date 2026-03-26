@@ -38,9 +38,14 @@ cat $tpl | sed \
 -e "s#__PSQL_DATA_IMAGE__#${psqlDataImage}#" \
 > "${cwd}/docker-compose-${pid}.yml"
 
-docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" up -d &>/dev/null
+echo "Starting containers..."
+if ! docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" up -d; then
+    echo "ERROR: Failed to start containers"
+    docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" logs
+    exit 1
+fi
 
-
+echo "Getting container IP..."
 ip_address="$(get_container_ip test${pid}-psql-1)"
 wait_for_psql_connection "${ip_address}:5432"
 

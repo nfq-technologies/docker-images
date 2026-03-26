@@ -31,7 +31,11 @@ trap cleanup EXIT
 
 
 start_time_ms=0
-docker-compose -p "test${pid}" -f $yml up -d &>/dev/null
+if ! docker-compose -p "test${pid}" -f $yml up -d; then
+    echo "ERROR: Failed to start containers"
+    docker-compose -p "test${pid}" -f $yml logs
+    exit 1
+fi
 t1=$(date +%s%N)
 box_ip=$(get_container_ip $cname)
 until netcat -nz -w1 $box_ip $port </dev/null

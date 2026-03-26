@@ -39,7 +39,11 @@ else
 fi
 
 
-docker-compose -p "test${pid}" -f $yml up -d &>/dev/null
+if ! docker-compose -p "test${pid}" -f $yml up -d; then
+    echo "ERROR: Failed to start containers"
+    docker-compose -p "test${pid}" -f $yml logs
+    exit 1
+fi
 sleep $start_wait_s
 t1=$(date +%s%N)
 docker-compose -p "test${pid}" -f $yml stop $hostname &>/dev/null
