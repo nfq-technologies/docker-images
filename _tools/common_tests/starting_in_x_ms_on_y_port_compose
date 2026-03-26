@@ -8,7 +8,8 @@ yml="${cwd}/docker-compose.yml"
 image="$1"
 pid=${BASHPID}
 hostname=$(cat $yml | gojq -r --yaml-input '.services | keys[0]' )
-cname=test${pid}_${hostname}_1
+# Docker Compose v2 uses hyphens, v1 used underscores
+cname=test${pid}-${hostname}-1
 timeout_ms=$(basename $0 | sed 's/^.*_\([0-9]*\)_ms.*$/\1/g')
 timeout_hard_ms=$(($timeout_ms+3000))
 port=$(basename $0 | sed 's/^.*_\([0-9]*\)_port.*$/\1/g')

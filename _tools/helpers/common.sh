@@ -62,13 +62,20 @@ get_container_ip() {
 	fi
 
 	local container="$1"
-	# Try new format first (for custom networks), use println to separate multiple IPs
-	# and take only the first one (in case container is on multiple networks)
-	local IP=$(docker inspect --format '{{range .NetworkSettings.Networks}}{{println .IPAddress}}{{end}}' "$container" 2>/dev/null | grep -v '^$' | head -1)
+	local IP=""
 
-	# Fallback to old format for bridge network
+	# Try bridge network format first (most common for simple containers)
+	IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$container" 2>/dev/null)
+
+	# If empty, try custom networks format (for compose and custom networks)
 	if [ -z "$IP" ]; then
-		IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$container" 2>/dev/null)
+		# Extract first non-empty IP from Networks using Go template
+		IP=$(docker inspect --format '{{range .NetworkSettings.Networks}}{{if .IPAddress}}{{.IPAddress}}{{end}}{{end}}' "$container" 2>/dev/null | grep -E '^[0-9]+\.' | head -1)
+	fi
+
+	# Last resort: parse JSON output
+	if [ -z "$IP" ]; then
+		IP=$(docker inspect "$container" 2>/dev/null | sed -n 's/.*"IPAddress": "\([0-9.]*\)".*/\1/p' | grep -v '^$' | head -1)
 	fi
 
 	if [ -z "$IP" ]; then
