@@ -13,6 +13,7 @@ docker cp "tmp_build_$TARGET_IMAGE:/backup.tar" ./
 
 # create temp dockerfile
 echo -e 'FROM busybox\nADD backup.tar /\nADD build/entrypoint.sh /entrypoint.sh\n' > mysql-data-Dockerfile
+echo -e 'VOLUME /var/lib/mysql\n' >> mysql-data-Dockerfile
 echo -e 'CMD exec /entrypoint.sh\n' >> mysql-data-Dockerfile
 
 
