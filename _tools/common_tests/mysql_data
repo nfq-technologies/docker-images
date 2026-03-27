@@ -50,9 +50,10 @@ if ! docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" up -d;
 fi
 
 echo "Waiting for MySQL to be ready..."
-# Wait for MySQL to be ready by checking from inside the container
+# Wait for MySQL to be ready by checking TCP connection from inside the container
 for i in $(seq 1 30); do
-    if docker exec "test${pid}-mysql-1" mysqladmin ping -h localhost --silent 2>/dev/null; then
+    # Check if MySQL accepts TCP connections on 127.0.0.1 (not just socket)
+    if docker exec "test${pid}-mysql-1" mysqladmin ping -h 127.0.0.1 --silent 2>/dev/null; then
         echo "MySQL ready after $i attempts"
         break
     fi
