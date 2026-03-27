@@ -17,7 +17,16 @@ wait_for_connection() {
 	local timeout="${2:-30}"
 
 	while true; do
+		# Try multiple methods - different containers have different tools
 		if netcat -nz -w1 "$host" "$port" </dev/null 2>/dev/null; then
+			return 0
+		elif nc -z -w1 "$host" "$port" 2>/dev/null; then
+			return 0
+		elif wget -q --spider --timeout=1 "http://${host}:${port}/" 2>/dev/null; then
+			return 0
+		elif curl -s --connect-timeout 1 "http://${host}:${port}/" >/dev/null 2>&1; then
+			return 0
+		elif (echo > /dev/tcp/"$host"/"$port") 2>/dev/null; then
 			return 0
 		fi
 
