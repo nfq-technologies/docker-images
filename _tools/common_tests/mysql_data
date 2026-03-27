@@ -49,37 +49,24 @@ if ! docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" up -d;
     exit 1
 fi
 
-echo "Getting container IP..."
-echo "Container name: test${pid}-mysql-1"
-docker ps -a | grep "test${pid}" || echo "No containers found with test${pid}"
-docker inspect "test${pid}-mysql-1" --format '{{json .NetworkSettings}}' 2>&1 | head -5 || echo "Inspect failed"
-ip_address="$(get_container_ip test${pid}-mysql-1)"
-echo "Got IP: $ip_address"
-echo "Waiting for connection on ${ip_address}:3306..."
-echo "Testing netcat availability:"
-which netcat || echo "netcat not found in PATH"
-netcat -h 2>&1 | head -3 || echo "netcat -h failed"
-echo "Manual netcat test:"
-netcat -nz -w1 "$ip_address" 3306 </dev/null && echo "netcat succeeded" || echo "netcat failed with exit code $?"
-echo "Trying with timeout loop..."
-for i in 1 2 3 4 5 6 7 8 9 10; do
-    if netcat -nz -w1 "$ip_address" 3306 </dev/null 2>/dev/null; then
-        echo "Connected on attempt $i"
+echo "Waiting for MySQL to be ready..."
+# Wait for MySQL to be ready by checking from inside the container
+for i in $(seq 1 30); do
+    if docker exec "test${pid}-mysql-1" mysqladmin ping -h localhost --silent 2>/dev/null; then
+        echo "MySQL ready after $i attempts"
         break
     fi
-    echo "Attempt $i failed, sleeping..."
-    sleep 2
+    if [ $i -eq 30 ]; then
+        echo "ERROR: MySQL not ready after 30 attempts"
+        docker logs "test${pid}-mysql-1" 2>&1 | tail -30
+        exit 1
+    fi
+    sleep 1
 done
-if ! wait_for_connection "${ip_address}:3306"; then
-    echo "ERROR: wait_for_connection failed"
-    docker logs "test${pid}-mysql-1" 2>&1 | tail -30
-    exit 1
-fi
-echo "Connection ready"
 
 # actual tests
-testQuery "$ip_address" project project "use project"
-testQuery "$ip_address" project project "show databases"
-testQuery "$ip_address" project project "create database project_test"
-testQuery "$ip_address" project project "use project_test"
+testQuery "localhost" project project "use project"
+testQuery "localhost" project project "show databases"
+testQuery "localhost" project project "create database project_test"
+testQuery "localhost" project project "use project_test"
 
