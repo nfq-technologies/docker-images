@@ -57,6 +57,7 @@ apt-get install -y --no-install-recommends \
 	iproute2 \
 	acl \
 	openssh-client \
+	pigz \
 	gojq # used to replace phyaml
 
 # configure user project

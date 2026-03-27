@@ -1,12 +1,17 @@
 include: _tools/gitlab/*/*.yml
 
-# Control pipeline creation to avoid detached MR pipeline issues
+# Pipeline runs automatically only on:
+# - Merge requests (MR pipelines)
+# - Push to master branch
+# - Scheduled pipelines
+# - Manual "Run pipeline" from web UI
+# Other branch pushes without MR won't create pipelines
 workflow:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-    - if: '$CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS'
-      when: never  # Avoid duplicate pipelines for MR branches
-    - if: '$CI_COMMIT_BRANCH'
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+    - if: '$CI_COMMIT_BRANCH == "master"'
 
 stages:
   - validate
