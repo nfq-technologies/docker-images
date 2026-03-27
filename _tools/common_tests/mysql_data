@@ -55,7 +55,13 @@ docker ps -a | grep "test${pid}" || echo "No containers found with test${pid}"
 docker inspect "test${pid}-mysql-1" --format '{{json .NetworkSettings}}' 2>&1 | head -5 || echo "Inspect failed"
 ip_address="$(get_container_ip test${pid}-mysql-1)"
 echo "Got IP: $ip_address"
-wait_for_connection "${ip_address}:3306"
+echo "Waiting for connection on ${ip_address}:3306..."
+if ! wait_for_connection "${ip_address}:3306"; then
+    echo "ERROR: wait_for_connection failed"
+    docker logs "test${pid}-mysql-1" 2>&1 | tail -30
+    exit 1
+fi
+echo "Connection ready"
 
 # actual tests
 testQuery "$ip_address" project project "use project"
