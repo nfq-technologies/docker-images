@@ -6,17 +6,18 @@ error() {
 
 wait_for_connection() {
 	if [ -z "$1" ]; then
-		error "Usage: $0 host [timeout]"
+		error "Usage: $0 host:port [timeout]"
 		return 1
 	fi
 
 	local t1=$(date +%s)
 	local t2=0
-	local host="$1"
-	local timeout="${2:-10}"
+	local host="$(echo $1 | cut -d: -f1)"
+	local port="$(echo $1 | cut -d: -f2)"
+	local timeout="${2:-30}"
 
 	while true; do
-		if [[ $(wget -q --retry-connrefused --waitretry=1 -t 1 -T 1 "$host" -O /dev/null || echo $?) -ne 4 ]]; then
+		if nc -z -w1 "$host" "$port" 2>/dev/null; then
 			return 0
 		fi
 
