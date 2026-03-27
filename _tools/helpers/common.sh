@@ -17,7 +17,7 @@ wait_for_connection() {
 	local timeout="${2:-30}"
 
 	while true; do
-		if nc -z -w1 "$host" "$port" 2>/dev/null; then
+		if netcat -nz -w1 "$host" "$port" </dev/null 2>/dev/null; then
 			return 0
 		fi
 
