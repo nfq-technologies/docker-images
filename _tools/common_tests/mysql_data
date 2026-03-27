@@ -64,9 +64,9 @@ for i in $(seq 1 30); do
     sleep 1
 done
 
-# actual tests
-testQuery "localhost" project project "use project"
-testQuery "localhost" project project "show databases"
-testQuery "localhost" project project "create database project_test"
-testQuery "localhost" project project "use project_test"
+# actual tests (use 127.0.0.1 for TCP connection, 'localhost' uses socket which doesn't match '%' host)
+testQuery "127.0.0.1" project project "use project"
+testQuery "127.0.0.1" project project "show databases"
+testQuery "127.0.0.1" project project "create database project_test"
+testQuery "127.0.0.1" project project "use project_test"
 
