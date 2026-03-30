@@ -1,4 +1,4 @@
-FROM nfqlt/php83-cli:amd64
+FROM nfqlt/php83-cli
 
 EXPOSE 9000
 CMD exec /entrypoint.sh

@@ -1,6 +1,0 @@
-services:
-    php:
-      image: nfqlt/php83-cli:amd64
-      volumes:
-        - /var/run/docker.sock:/var/run/docker.sock
-      command: sleep infinity
