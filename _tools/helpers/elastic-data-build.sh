@@ -31,6 +31,7 @@ docker cp "$buildName":/backup.tar ./
 
 # create temp dockerfile
 echo -e 'FROM busybox\nADD backup.tar /\nADD build/entrypoint.sh /entrypoint.sh\n' > es-data-Dockerfile
+echo -e 'VOLUME /var/elasticsearch/data\n' >> es-data-Dockerfile
 echo -e 'CMD exec /entrypoint.sh\n' >> es-data-Dockerfile
 
 # build volume image

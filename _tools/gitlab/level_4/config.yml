@@ -1,16 +1,3 @@
-
-php74-vscode:
-  stage: level_4
-  script: 'cd php74-vscode && make all && make publish && make clean'
-  needs: ["php74-dev"]
-  when: on_success
-
-xhgui:
-  stage: level_4
-  script: 'cd xhgui && make all && make publish && make clean'
-  needs: ["php81-dev"]
-  when: on_success
-
 aws-docker-tools:
   stage: level_4
   before_script:
@@ -20,7 +7,8 @@ aws-docker-tools:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd aws-docker-tools && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [aws-docker-tools_arm64]
-  when: on_success
+  rules:
+    - when: on_success
   tags: [nfq_ip]
 aws-docker-tools_arm64:
   stage: level_4
@@ -32,14 +20,13 @@ aws-docker-tools_arm64:
   script: 'cd aws-docker-tools && make all-arm64 && make clean'
   tags: [arm]
   needs: ["aws-tools"]
-  when: on_success
-
-cypress9:
-  stage: level_4
-  script: 'cd cypress9 && make all && make publish && make clean'
-  needs: ["node16"]
-  when: on_success
-
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
 cypress12:
   stage: level_4
   before_script:
@@ -49,7 +36,8 @@ cypress12:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd cypress12 && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [cypress12_arm64]
-  when: on_success
+  rules:
+    - when: on_success
   tags: [nfq_ip]
 cypress12_arm64:
   stage: level_4
@@ -61,4 +49,43 @@ cypress12_arm64:
   script: 'cd cypress12 && make all-arm64 && make clean'
   tags: [arm]
   needs: ["node20"]
-  when: on_success
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
+cypress9:
+  stage: level_4
+  script: 'cd cypress9 && make all && make publish && make clean'
+  needs: ["node16"]
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
+php74-vscode:
+  stage: level_4
+  script: 'cd php74-vscode && make all && make publish && make clean'
+  needs: ["php74-dev"]
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
+xhgui:
+  stage: level_4
+  script: 'cd xhgui && make all && make publish && make clean'
+  needs: ["php81-dev"]
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success

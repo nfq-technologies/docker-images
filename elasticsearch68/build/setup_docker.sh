@@ -5,7 +5,8 @@ set -e
 
 # setup
 apt-get update
-apt-get install -y --no-install-recommends ca-certificates-java
+# ES 6.8 requires Java (unlike 7.x+ which bundles its own JDK)
+apt-get install -y --no-install-recommends ca-certificates-java openjdk-11-jre-headless
 
 
 ES_PKG_NAME=elasticsearch-6.8.0

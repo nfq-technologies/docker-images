@@ -6,17 +6,27 @@ error() {
 
 wait_for_connection() {
 	if [ -z "$1" ]; then
-		error "Usage: $0 host [timeout]"
+		error "Usage: $0 host:port [timeout]"
 		return 1
 	fi
 
 	local t1=$(date +%s)
 	local t2=0
-	local host="$1"
-	local timeout="${2:-10}"
+	local host="$(echo $1 | cut -d: -f1)"
+	local port="$(echo $1 | cut -d: -f2)"
+	local timeout="${2:-30}"
 
 	while true; do
-		if [[ $(wget -q --retry-connrefused --waitretry=1 -t 1 -T 1 "$host" -O /dev/null || echo $?) -ne 4 ]]; then
+		# Try multiple methods - different containers have different tools
+		if netcat -nz -w1 "$host" "$port" </dev/null 2>/dev/null; then
+			return 0
+		elif nc -z -w1 "$host" "$port" 2>/dev/null; then
+			return 0
+		elif wget -q --spider --timeout=1 "http://${host}:${port}/" 2>/dev/null; then
+			return 0
+		elif curl -s --connect-timeout 1 "http://${host}:${port}/" >/dev/null 2>&1; then
+			return 0
+		elif (echo > /dev/tcp/"$host"/"$port") 2>/dev/null; then
 			return 0
 		fi
 
@@ -62,7 +72,21 @@ get_container_ip() {
 	fi
 
 	local container="$1"
-	local IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$container")
+	local IP=""
+
+	# Try bridge network format first (most common for simple containers)
+	IP=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$container" 2>/dev/null)
+
+	# If empty, try custom networks format (for compose and custom networks)
+	if [ -z "$IP" ]; then
+		# Extract first non-empty IP from Networks using Go template
+		IP=$(docker inspect --format '{{range .NetworkSettings.Networks}}{{if .IPAddress}}{{.IPAddress}}{{end}}{{end}}' "$container" 2>/dev/null | grep -E '^[0-9]+\.' | head -1)
+	fi
+
+	# Last resort: parse JSON output
+	if [ -z "$IP" ]; then
+		IP=$(docker inspect "$container" 2>/dev/null | sed -n 's/.*"IPAddress": "\([0-9.]*\)".*/\1/p' | grep -v '^$' | head -1)
+	fi
 
 	if [ -z "$IP" ]; then
 		error "Failed to get container: '$container' ip address"

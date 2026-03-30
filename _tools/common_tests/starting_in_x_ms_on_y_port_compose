@@ -8,7 +8,8 @@ yml="${cwd}/docker-compose.yml"
 image="$1"
 pid=${BASHPID}
 hostname=$(cat $yml | gojq -r --yaml-input '.services | keys[0]' )
-cname=test${pid}_${hostname}_1
+# Docker Compose v2 uses hyphens, v1 used underscores
+cname=test${pid}-${hostname}-1
 timeout_ms=$(basename $0 | sed 's/^.*_\([0-9]*\)_ms.*$/\1/g')
 timeout_hard_ms=$(($timeout_ms+3000))
 port=$(basename $0 | sed 's/^.*_\([0-9]*\)_port.*$/\1/g')
@@ -30,7 +31,11 @@ trap cleanup EXIT
 
 
 start_time_ms=0
-docker-compose -p "test${pid}" -f $yml up -d &>/dev/null
+if ! docker-compose -p "test${pid}" -f $yml up -d; then
+    echo "ERROR: Failed to start containers"
+    docker-compose -p "test${pid}" -f $yml logs
+    exit 1
+fi
 t1=$(date +%s%N)
 box_ip=$(get_container_ip $cname)
 until netcat -nz -w1 $box_ip $port </dev/null

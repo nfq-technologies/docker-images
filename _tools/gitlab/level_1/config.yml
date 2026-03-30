@@ -1,341 +1,3 @@
-
-postgres12:
-  stage: level_1
-  script: 'cd postgres12 && make all && make publish && make clean'
-  needs: []
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-      allow_failure: false
-    - when: manual
-      allow_failure: false
-
-opentripplanner:
-  stage: level_1
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd opentripplanner && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [opentripplanner_arm64]
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-      allow_failure: false
-    - when: manual
-      allow_failure: false
-  tags: [nfq_ip]
-opentripplanner_arm64:
-  stage: level_1
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd opentripplanner && make all-arm64 && make clean'
-  tags: [arm]
-  needs: []
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-      allow_failure: false
-    - when: manual
-      allow_failure: false
-
-mysql84:
-  stage: level_1
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mysql84 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [mysql84_arm64]
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-      allow_failure: false
-    - when: manual
-      allow_failure: false
-  tags: [nfq_ip]
-mysql84_arm64:
-  stage: level_1
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mysql84 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: []
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-      allow_failure: false
-    - when: manual
-      allow_failure: false
-
-mysql80:
-  stage: level_1
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mysql80 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [mysql80_arm64]
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-      allow_failure: false
-    - when: manual
-      allow_failure: false
-  tags: [nfq_ip]
-mysql80_arm64:
-  stage: level_1
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mysql80 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: []
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-      allow_failure: false
-    - when: manual
-      allow_failure: false
-
-mysql57:
-  stage: level_1
-  script: 'cd mysql57 && make all && make publish && make clean'
-  needs: []
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-      allow_failure: false
-    - when: manual
-      allow_failure: false
-
-mariadb10:
-  stage: level_1
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mariadb10 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [mariadb10_arm64]
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-      allow_failure: false
-    - when: manual
-      allow_failure: false
-  tags: [nfq_ip]
-mariadb10_arm64:
-  stage: level_1
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mariadb10 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: []
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-      allow_failure: false
-    - when: manual
-      allow_failure: false
-
-lib-smartclient130:
-  stage: level_1
-  script: 'cd lib-smartclient130 && make all && make publish && make clean'
-  needs: []
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-      allow_failure: false
-    - when: manual
-      allow_failure: false
-
-lib-smartclient121:
-  stage: level_1
-  script: 'cd lib-smartclient121 && make all && make publish && make clean'
-  needs: []
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-      allow_failure: false
-    - when: manual
-      allow_failure: false
-
-lib-smartclient120:
-  stage: level_1
-  script: 'cd lib-smartclient120 && make all && make publish && make clean'
-  needs: []
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-      allow_failure: false
-    - when: manual
-      allow_failure: false
-
-lib-smartclient111:
-  stage: level_1
-  script: 'cd lib-smartclient111 && make all && make publish && make clean'
-  needs: []
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-      allow_failure: false
-    - when: manual
-      allow_failure: false
-
-lib-smartclient100:
-  stage: level_1
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd lib-smartclient100 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [lib-smartclient100_arm64]
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-      allow_failure: false
-    - when: manual
-      allow_failure: false
-  tags: [nfq_ip]
-lib-smartclient100_arm64:
-  stage: level_1
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd lib-smartclient100 && make all-arm64 && make clean'
-  tags: [arm]
-  needs: []
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-      allow_failure: false
-    - when: manual
-      allow_failure: false
-
-dib:
-  stage: level_1
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd dib && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [dib_arm64]
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-      allow_failure: false
-    - when: manual
-      allow_failure: false
-  tags: [nfq_ip]
-dib_arm64:
-  stage: level_1
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd dib && make all-arm64 && make clean'
-  tags: [arm]
-  needs: []
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-      allow_failure: false
-    - when: manual
-      allow_failure: false
-
-debian-bullseye:
-  stage: level_1
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd debian-bullseye && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [debian-bullseye_arm64]
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-      allow_failure: false
-    - when: manual
-      allow_failure: false
-  tags: [nfq_ip]
-debian-bullseye_arm64:
-  stage: level_1
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd debian-bullseye && make all-arm64 && make clean'
-  tags: [arm]
-  needs: []
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-      allow_failure: false
-    - when: manual
-      allow_failure: false
-
 debian-bookworm:
   stage: level_1
   before_script:
@@ -346,13 +8,7 @@ debian-bookworm:
   script: 'cd debian-bookworm && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [debian-bookworm_arm64]
   rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
-      when: manual
-      allow_failure: false
-    - when: manual
-      allow_failure: false
+    - when: on_success
   tags: [nfq_ip]
 debian-bookworm_arm64:
   stage: level_1
@@ -367,8 +23,276 @@ debian-bookworm_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $CI_PIPELINE_SOURCE == "web"
+    - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: manual
+    - when: on_success
+debian-bullseye:
+  stage: level_1
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd debian-bullseye && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [debian-bullseye_arm64]
+  rules:
+    - when: on_success
+  tags: [nfq_ip]
+debian-bullseye_arm64:
+  stage: level_1
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd debian-bullseye && make all-arm64 && make clean'
+  tags: [arm]
+  needs: []
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $MANUAL == "true"
+      when: manual
       allow_failure: false
+    - when: on_success
+dib:
+  stage: level_1
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd dib && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [dib_arm64]
+  rules:
+    - when: on_success
+  tags: [nfq_ip]
+dib_arm64:
+  stage: level_1
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd dib && make all-arm64 && make clean'
+  tags: [arm]
+  needs: []
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
+lib-smartclient100:
+  stage: level_1
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd lib-smartclient100 && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [lib-smartclient100_arm64]
+  rules:
+    - when: on_success
+  tags: [nfq_ip]
+lib-smartclient100_arm64:
+  stage: level_1
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd lib-smartclient100 && make all-arm64 && make clean'
+  tags: [arm]
+  needs: []
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
+lib-smartclient111:
+  stage: level_1
+  script: 'cd lib-smartclient111 && make all && make publish && make clean'
+  needs: []
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
+lib-smartclient120:
+  stage: level_1
+  script: 'cd lib-smartclient120 && make all && make publish && make clean'
+  needs: []
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
+lib-smartclient121:
+  stage: level_1
+  script: 'cd lib-smartclient121 && make all && make publish && make clean'
+  needs: []
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
+lib-smartclient130:
+  stage: level_1
+  script: 'cd lib-smartclient130 && make all && make publish && make clean'
+  needs: []
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
+mariadb10:
+  stage: level_1
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd mariadb10 && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [mariadb10_arm64]
+  rules:
+    - when: on_success
+  tags: [nfq_ip]
+mariadb10_arm64:
+  stage: level_1
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd mariadb10 && make all-arm64 && make clean'
+  tags: [arm]
+  needs: []
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
+mysql57:
+  stage: level_1
+  script: 'cd mysql57 && make all && make publish && make clean'
+  needs: []
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
+mysql80:
+  stage: level_1
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd mysql80 && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [mysql80_arm64]
+  rules:
+    - when: on_success
+  tags: [nfq_ip]
+mysql80_arm64:
+  stage: level_1
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd mysql80 && make all-arm64 && make clean'
+  tags: [arm]
+  needs: []
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
+mysql84:
+  stage: level_1
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd mysql84 && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [mysql84_arm64]
+  rules:
+    - when: on_success
+  tags: [nfq_ip]
+mysql84_arm64:
+  stage: level_1
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd mysql84 && make all-arm64 && make clean'
+  tags: [arm]
+  needs: []
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
+opentripplanner:
+  stage: level_1
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd opentripplanner && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [opentripplanner_arm64]
+  rules:
+    - when: on_success
+  tags: [nfq_ip]
+opentripplanner_arm64:
+  stage: level_1
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd opentripplanner && make all-arm64 && make clean'
+  tags: [arm]
+  needs: []
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
+postgres12:
+  stage: level_1
+  script: 'cd postgres12 && make all && make publish && make clean'
+  needs: []
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success

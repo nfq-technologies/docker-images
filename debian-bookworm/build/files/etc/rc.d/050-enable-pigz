@@ -1,0 +1,26 @@
+#!/bin/bash
+# Enable pigz (parallel gzip) as a drop-in replacement for gzip
+# Set FF_USE_PIGZ=1 in your docker-compose environment to enable
+
+if [ "${FF_USE_PIGZ}" = "1" ]; then
+    echo "++ Enabling pigz as gzip replacement"
+
+    # Create wrapper scripts in /usr/local/bin (takes precedence in PATH)
+    cat > /usr/local/bin/gzip << 'EOF'
+#!/bin/bash
+exec /usr/bin/pigz "$@"
+EOF
+    chmod +x /usr/local/bin/gzip
+
+    cat > /usr/local/bin/gunzip << 'EOF'
+#!/bin/bash
+exec /usr/bin/unpigz "$@"
+EOF
+    chmod +x /usr/local/bin/gunzip
+
+    cat > /usr/local/bin/zcat << 'EOF'
+#!/bin/bash
+exec /usr/bin/unpigz -c "$@"
+EOF
+    chmod +x /usr/local/bin/zcat
+fi

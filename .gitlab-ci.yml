@@ -1,18 +1,51 @@
 include: _tools/gitlab/*/*.yml
+
+# Pipeline runs automatically only on:
+# - Merge requests (MR pipelines)
+# - Push to master branch
+# - Scheduled pipelines
+# - Manual "Run pipeline" from web UI
+# Other branch pushes without MR won't create pipelines
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_PIPELINE_SOURCE == "schedule"'
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+    - if: '$CI_COMMIT_BRANCH == "master"'
+
 stages:
+  - validate
   - level_1
   - level_2
   - level_3
   - level_4
   - level_5
 
+# Default: All jobs cascade automatically (like before)
+# For selective builds: Run Pipeline -> Add variable MANUAL=true -> Run
+# With MANUAL=true, only _arm64 entry points are manual, manifest jobs auto-follow
+
 default:
   image: nfqlt/aws-docker-tools
   tags: [nfq_ip]
   before_script:
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+    - echo "$dockerhub_token" | docker login -u $dockerhub_user --password-stdin
+    - echo "$nfqhub_token" | docker login -u $nfqhub_user --password-stdin https://docker.nfq.lt
   after_script:
     - docker logout
     - docker logout docker.nfq.lt
   retry: 2
+
+# Validate that generated configs are up to date
+validate:generated-configs:
+  stage: validate
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache bash git graphviz
+  script:
+    - bash _tools/validate-generated.sh
+  after_script: []  # Override default after_script (no docker needed)
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - if: '$CI_COMMIT_BRANCH == "master"'
+  tags: [nfq_ip]

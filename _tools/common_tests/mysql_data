@@ -28,7 +28,7 @@ testQuery() {
     query="$4"
 
     echo -n "Testing query: '$query' .... "
-    if ! docker exec "test${pid}_mysql_1" bash -c "mysql -h ${mysql_ip} -u ${user} -p${password} -e \"${query}\"" >/dev/null; then
+    if ! docker exec "test${pid}-mysql-1" bash -c "mysql -h ${mysql_ip} -u ${user} -p${password} -e \"${query}\"" >/dev/null; then
 		echo "ERROR"
         exit 1
     fi
@@ -42,14 +42,32 @@ cat $tpl | sed \
 -e "s#__MYSQL_DATA_IMAGE__#${mysqlDataImage}#" \
 > "${cwd}/docker-compose-${pid}.yml"
 
-docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" up -d &>/dev/null
+echo "Starting containers..."
+if ! docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" up -d; then
+    echo "ERROR: Failed to start containers"
+    docker-compose -p "test${pid}" -f "${cwd}/docker-compose-${pid}.yml" logs
+    exit 1
+fi
 
-ip_address="$(get_container_ip test${pid}_mysql_1)"
-wait_for_connection "${ip_address}:3306"
+echo "Waiting for MySQL to be ready..."
+# Wait for MySQL to be ready by checking TCP connection from inside the container
+for i in $(seq 1 30); do
+    # Check if MySQL accepts TCP connections on 127.0.0.1 (not just socket)
+    if docker exec "test${pid}-mysql-1" mysqladmin ping -h 127.0.0.1 --silent 2>/dev/null; then
+        echo "MySQL ready after $i attempts"
+        break
+    fi
+    if [ $i -eq 30 ]; then
+        echo "ERROR: MySQL not ready after 30 attempts"
+        docker logs "test${pid}-mysql-1" 2>&1 | tail -30
+        exit 1
+    fi
+    sleep 1
+done
 
-# actual tests
-testQuery "$ip_address" project project "use project"
-testQuery "$ip_address" project project "show databases"
-testQuery "$ip_address" project project "create database project_test"
-testQuery "$ip_address" project project "use project_test"
+# actual tests (use 127.0.0.1 for TCP connection, 'localhost' uses socket which doesn't match '%' host)
+testQuery "127.0.0.1" project project "use project"
+testQuery "127.0.0.1" project project "show databases"
+testQuery "127.0.0.1" project project "create database project_test"
+testQuery "127.0.0.1" project project "use project_test"
 

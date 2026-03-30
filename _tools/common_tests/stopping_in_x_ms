@@ -2,9 +2,14 @@
 set -e
 
 timeout_ms=$(basename $0 | sed 's/[^0-9]//g')
-timeout_hard=$((($timeout_ms/1000)+3))
 name=test_box_$(date +%s%N)
 cwd=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+
+# Apply 3x multiplier for arm64 images (they're slower)
+if [[ "$1" == *":arm64"* ]]; then
+	timeout_ms=$(($timeout_ms * 3))
+fi
+timeout_hard=$((($timeout_ms/1000)+3))
 
 
 if [[ -r "${cwd}/../../_tools/helpers/common.sh" ]]; then
@@ -31,6 +36,10 @@ trap cleanup EXIT
 start_wait_ms=$(echo $(dirname $0)/starting_in_* | sed 's/^.*_\([0-9]*\)_ms.*$/\1/g')
 if echo "$start_wait_ms" | grep -q ^[0-9]*$
 then
+	# Apply 3x multiplier for arm64 images
+	if [[ "$1" == *":arm64"* ]]; then
+		start_wait_ms=$(($start_wait_ms * 3))
+	fi
 	start_wait_s=$(( (($start_wait_ms-1)/1000)+1 ))
 else
 	start_wait_s=1

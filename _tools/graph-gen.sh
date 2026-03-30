@@ -25,7 +25,12 @@ trap "rm -rf $tmp_dir" EXIT
 # === Status Detection ===
 
 # EOL images (no longer maintained, should not be used for new projects)
-EOL_PATTERNS="php71 php72 php73 mysql55 mysql56 elasticsearch56 linker buster"
+# Auto-detect from _deprecated/ directory
+if [ -d "_deprecated" ]; then
+	EOL_PATTERNS=$(ls -d _deprecated/*/ 2>/dev/null | xargs -n1 basename | tr '\n' ' ' || echo "")
+else
+	EOL_PATTERNS=""
+fi
 
 # Maintenance images (security fixes only, migrate when possible)
 MAINTENANCE_PATTERNS="php74 php80 bullseye"
@@ -100,8 +105,12 @@ all_images_file="$tmp_dir/all_images.txt"
 edges_file="$tmp_dir/edges.txt"
 external_file="$tmp_dir/external.txt"
 
-# First pass: collect all our images and edges
-for docker_file in ./*/Dockerfile; do
+# First pass: collect all our images and edges (exclude _deprecated)
+# Sort Dockerfiles for deterministic output using find
+while IFS= read -r docker_file; do
+	# Skip deprecated images
+	[[ "$docker_file" == "./_deprecated/"* ]] && continue
+
 	image=$(basename "$(dirname "$docker_file")")
 	echo "$image" >> "$all_images_file"
 
@@ -114,7 +123,7 @@ for docker_file in ./*/Dockerfile; do
 	if ! grep -q "^${parent_image}$" "$all_images_file" 2>/dev/null; then
 		echo "$parent_image" >> "$external_file"
 	fi
-done
+done < <(find . -maxdepth 2 -name "Dockerfile" -path "./*/Dockerfile" | sort)
 
 # Deduplicate external images
 if [ -f "$external_file" ]; then

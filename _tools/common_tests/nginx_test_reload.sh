@@ -17,7 +17,7 @@ docker run -d --name "test${pid}" \
 
 container_ip="$(get_container_ip "test${pid}")"
 
-wait_for_connection "${container_ip}"
+wait_for_connection "${container_ip}:80"
 
 function test_response () {
 	local expected="$1"

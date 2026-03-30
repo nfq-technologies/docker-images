@@ -13,3 +13,5 @@ ENV LANGUAGE=en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8
 ENV TERM=xterm
 
+WORKDIR /home/project
+

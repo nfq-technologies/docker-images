@@ -67,6 +67,9 @@ apt-get install -y --no-install-recommends acl
 # install ssh client
 apt-get install -y --no-install-recommends openssh-client
 
+# install pigz (parallel gzip) - enabled via FF_USE_PIGZ=1
+apt-get install -y --no-install-recommends pigz
+
 # configure user project
 useradd -d /home/project -m -s /bin/bash -u 1000 -U project
 echo 'project:project' | chpasswd

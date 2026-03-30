@@ -7,7 +7,8 @@ yml="${cwd}/docker-compose.yml"
 image="$1"
 pid=${BASHPID}
 hostname=$(cat $yml | gojq -r --yaml-input '.services | keys[0]' )
-cname=test${pid}_${hostname}_1
+# Docker Compose v2 uses hyphens, v1 used underscores
+cname=test${pid}-${hostname}-1
 
 timeout_ms=$(basename $0 | sed 's/[^0-9]//g')
 timeout_hard=$((($timeout_ms/1000)+3))
@@ -38,7 +39,11 @@ else
 fi
 
 
-docker-compose -p "test${pid}" -f $yml up -d &>/dev/null
+if ! docker-compose -p "test${pid}" -f $yml up -d; then
+    echo "ERROR: Failed to start containers"
+    docker-compose -p "test${pid}" -f $yml logs
+    exit 1
+fi
 sleep $start_wait_s
 t1=$(date +%s%N)
 docker-compose -p "test${pid}" -f $yml stop $hostname &>/dev/null
