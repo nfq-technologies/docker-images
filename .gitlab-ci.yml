@@ -34,7 +34,13 @@ default:
   after_script:
     - docker logout
     - docker logout docker.nfq.lt
-  retry: 2
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - script_failure
+      - unknown_failure
+      - stuck_or_timeout_failure
 
 # Validate that generated configs are up to date
 validate:generated-configs:
