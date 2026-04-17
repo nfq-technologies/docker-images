@@ -92,16 +92,19 @@ function get_project_name() {
 	if [ -f /.dockerenv ]; then
 		local container_id=""
 
-		if [ -f /proc/self/cgroup ]; then
+		# Method 1: cgroups v1 - container ID directly in cgroup path
+		if [ -z "$container_id" ] && [ -f /proc/self/cgroup ]; then
 			container_id=$(grep -oE '[0-9a-f]{64}' /proc/self/cgroup 2>/dev/null | head -1)
 		fi
 
+		# Method 2: mountinfo - container ID in /docker/containers/ path (works on both v1 and v2)
 		if [ -z "$container_id" ] && [ -f /proc/self/mountinfo ]; then
-			container_id=$(grep -oE '/docker/containers/[0-9a-f]{64}' /proc/self/mountinfo 2>/dev/null | head -1 | grep -oE '[0-9a-f]{64}')
+			container_id=$(sed -n 's/.*\/containers\/\([0-9a-f]\{64\}\).*/\1/p' /proc/self/mountinfo 2>/dev/null | head -1)
 		fi
 
+		# Method 3: hostname - Docker sets this to short container ID by default
 		if [ -z "$container_id" ]; then
-			container_id=$(hostname)
+			container_id=$(cat /etc/hostname 2>/dev/null || hostname)
 		fi
 
 		if [ -n "$container_id" ]; then
@@ -129,7 +132,7 @@ function get_php_containers() {
 	docker_api GET "/containers/json?filters=%7B%22label%22%3A%5B%22com.docker.compose.project%3D${project}%22%5D%7D" \
 		| jq -r '.[].Id' \
 		| while read -r container_id; do
-			if docker_exec "$container_id" "test -f /etc/php/*/mods-available/xdebug.ini" 2>/dev/null; then
+			if docker_exec "$container_id" "ls /etc/php/*/mods-available/xdebug.ini" 2>/dev/null | grep -q xdebug; then
 				echo "$container_id"
 			fi
 		done
