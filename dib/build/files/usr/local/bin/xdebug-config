@@ -108,12 +108,36 @@ function get_project_name() {
 		fi
 
 		if [ -n "$container_id" ]; then
-			local project
-			project=$(docker_api GET "/containers/${container_id}/json" \
-				| jq -r '.Config.Labels["com.docker.compose.project"] // empty')
-			if [ -n "$project" ]; then
-				echo "$project"
-				return
+			local container_json project container_name
+			container_json=$(docker_api GET "/containers/${container_id}/json" 2>/dev/null)
+
+			# Check if we got a valid response
+			if [ -n "$container_json" ]; then
+				# Try getting project from compose label
+				project=$(echo "$container_json" | jq -r '.Config.Labels["com.docker.compose.project"] // empty' 2>/dev/null)
+				if [ -n "$project" ]; then
+					echo "$project"
+					return
+				fi
+
+				# Fallback: extract project from container name (format: projectname-servicename-1 or projectname_servicename_1)
+				container_name=$(echo "$container_json" | jq -r '.Name // empty' 2>/dev/null | sed 's/^\///')
+				if [ -n "$container_name" ]; then
+					# Try hyphen format first (docker compose v2): project-service-1
+					# Use greedy match (.*) to handle project names containing hyphens
+					project=$(echo "$container_name" | sed -n 's/\(.*\)-[^-]*-[0-9]*$/\1/p')
+					if [ -n "$project" ]; then
+						echo "$project"
+						return
+					fi
+					# Try underscore format (docker-compose v1): project_service_1
+					# Use greedy match (.*) to handle project names containing underscores
+					project=$(echo "$container_name" | sed -n 's/\(.*\)_[^_]*_[0-9]*$/\1/p')
+					if [ -n "$project" ]; then
+						echo "$project"
+						return
+					fi
+				fi
 			fi
 		fi
 	fi
