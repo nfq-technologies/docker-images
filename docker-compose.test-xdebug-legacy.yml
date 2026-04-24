@@ -1,0 +1,42 @@
+# Test compose file for legacy xdebug-config (linker-based)
+#
+# This tests backward compatibility with linker-based setups.
+# PHP containers run xdebug-config daemon, client uses netcat via links.
+#
+# Usage:
+#   docker compose -f docker-compose.test-xdebug-legacy.yml up -d
+#   docker compose -f docker-compose.test-xdebug-legacy.yml exec dev bash
+#   # Inside dev container (no docker socket):
+#   xdebug-config enable
+#   xdebug-config disable
+
+services:
+  linker:
+    image: nfqlt/linker18ce
+    volumes:
+      - "/run/docker.sock:/run/docker.sock"
+
+  php:
+    image: nfqlt/php83-fpm:amd64
+    environment:
+      - NFQ_ENABLE_PHP_MODULES=xdebug
+    # Start daemon in background for legacy mode
+    entrypoint: ["/bin/sh", "-c", "xdebug-config daemon & exec /entrypoint.sh"]
+    links:
+      - linker
+    depends_on:
+      - linker
+
+  dev:
+    image: nfqlt/php83-dev:amd64
+    environment:
+      - NFQ_ENABLE_PHP_MODULES=xdebug
+    # Start daemon in background, then sleep
+    command: ["/bin/sh", "-c", "xdebug-config daemon & sleep infinity"]
+    links:
+      - linker
+      - php
+    depends_on:
+      - linker
+      - php
+    # Note: NO docker socket mounted - forces legacy mode

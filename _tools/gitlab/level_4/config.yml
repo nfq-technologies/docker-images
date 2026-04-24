@@ -8,6 +8,9 @@ aws-docker-tools:
   script: 'cd aws-docker-tools && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [aws-docker-tools_arm64]
   rules:
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - when: on_success
   tags: [nfq_ip]
 aws-docker-tools_arm64:
@@ -23,6 +26,9 @@ aws-docker-tools_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -37,6 +43,9 @@ cypress12:
   script: 'cd cypress12 && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [cypress12_arm64]
   rules:
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - when: on_success
   tags: [nfq_ip]
 cypress12_arm64:
@@ -52,6 +61,9 @@ cypress12_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -63,6 +75,9 @@ cypress9:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -74,6 +89,9 @@ php74-vscode:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -85,6 +103,9 @@ xhgui:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false

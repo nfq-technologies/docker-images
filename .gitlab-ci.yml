@@ -2,16 +2,22 @@ include: _tools/gitlab/*/*.yml
 
 # Pipeline runs automatically only on:
 # - Merge requests (MR pipelines)
-# - Push to master branch
 # - Scheduled pipelines
-# - Manual "Run pipeline" from web UI
-# Other branch pushes without MR won't create pipelines
+# - Manual "Run pipeline" from web UI (BUILD_MODE variable controls behavior)
+# Push to master branch requires manual trigger
 workflow:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
     - if: '$CI_PIPELINE_SOURCE == "web"'
-    - if: '$CI_COMMIT_BRANCH == "master"'
+
+variables:
+  BUILD_MODE:
+    value: "automatic"
+    description: "Build mode: 'automatic' runs all jobs, 'manual' requires manual trigger for each job"
+    options:
+      - "automatic"
+      - "manual"
 
 stages:
   - validate

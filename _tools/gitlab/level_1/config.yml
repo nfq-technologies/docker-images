@@ -8,6 +8,9 @@ debian-bookworm:
   script: 'cd debian-bookworm && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [debian-bookworm_arm64]
   rules:
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - when: on_success
   tags: [nfq_ip]
 debian-bookworm_arm64:
@@ -23,6 +26,9 @@ debian-bookworm_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -37,6 +43,9 @@ debian-bullseye:
   script: 'cd debian-bullseye && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [debian-bullseye_arm64]
   rules:
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - when: on_success
   tags: [nfq_ip]
 debian-bullseye_arm64:
@@ -52,6 +61,9 @@ debian-bullseye_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -66,6 +78,9 @@ dib:
   script: 'cd dib && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [dib_arm64]
   rules:
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - when: on_success
   tags: [nfq_ip]
 dib_arm64:
@@ -81,6 +96,9 @@ dib_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -95,6 +113,9 @@ lib-smartclient100:
   script: 'cd lib-smartclient100 && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [lib-smartclient100_arm64]
   rules:
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - when: on_success
   tags: [nfq_ip]
 lib-smartclient100_arm64:
@@ -110,6 +131,9 @@ lib-smartclient100_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -121,6 +145,9 @@ lib-smartclient111:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -132,6 +159,9 @@ lib-smartclient120:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -143,6 +173,9 @@ lib-smartclient121:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -154,6 +187,9 @@ lib-smartclient130:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -168,6 +204,9 @@ mariadb10:
   script: 'cd mariadb10 && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [mariadb10_arm64]
   rules:
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - when: on_success
   tags: [nfq_ip]
 mariadb10_arm64:
@@ -183,6 +222,9 @@ mariadb10_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -194,6 +236,9 @@ mysql57:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -208,6 +253,9 @@ mysql80:
   script: 'cd mysql80 && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [mysql80_arm64]
   rules:
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - when: on_success
   tags: [nfq_ip]
 mysql80_arm64:
@@ -223,6 +271,9 @@ mysql80_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -237,6 +288,9 @@ mysql84:
   script: 'cd mysql84 && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [mysql84_arm64]
   rules:
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - when: on_success
   tags: [nfq_ip]
 mysql84_arm64:
@@ -252,6 +306,9 @@ mysql84_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -266,6 +323,9 @@ opentripplanner:
   script: 'cd opentripplanner && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [opentripplanner_arm64]
   rules:
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - when: on_success
   tags: [nfq_ip]
 opentripplanner_arm64:
@@ -281,6 +341,9 @@ opentripplanner_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -292,6 +355,9 @@ postgres12:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
