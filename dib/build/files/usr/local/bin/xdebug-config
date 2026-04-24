@@ -294,8 +294,11 @@ function xdebug_disable() {
 
 function configure_xdebug_for_host() {
 	if [ -f "$ini" ]; then
+		# Determine host IP: DEV_IP (from docker-compose) > fallback to 10.24.0.1 (legacy)
+		local host_ip="${DEV_IP:-10.24.0.1}"
 		sed -i '/^xdebug.client_host=.*$/d' "$ini"
-		sed -i 's/^#xdebug.client_host=/xdebug.client_host=/' "$ini"
+		sed -i '/^#xdebug.client_host=/d' "$ini"
+		echo "xdebug.client_host=$host_ip" >> "$ini"
 	fi
 }
 
