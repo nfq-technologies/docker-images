@@ -101,7 +101,7 @@ push-manifest:
 	@echo "# Creating manifest of multiarch image..."
 	@echo
 	docker manifest rm $(IMAGE_FULL_NAME):latest || true
-	docker manifest create $(IMAGE_FULL_NAME):latest $(IMAGE_FULL_NAME):amd64 $(IMAGE_FULL_NAME):arm64
+	docker manifest create $(IMAGE_FULL_NAME):latest --amend $(IMAGE_FULL_NAME):amd64 $(IMAGE_FULL_NAME):arm64
 	docker manifest push $(IMAGE_FULL_NAME):latest
 
 push-amd64:
@@ -180,7 +180,7 @@ publish-manifest:
 	@echo "# Publishing manifest of multiarch image..."
 	@echo
 	docker manifest rm $(IMAGE_PUBLISH_NAME):latest || true
-	docker manifest create $(IMAGE_PUBLISH_NAME):latest $(IMAGE_PUBLISH_NAME):amd64 $(IMAGE_PUBLISH_NAME):arm64
+	docker manifest create $(IMAGE_PUBLISH_NAME):latest --amend $(IMAGE_PUBLISH_NAME):amd64 $(IMAGE_PUBLISH_NAME):arm64
 	docker manifest push $(IMAGE_PUBLISH_NAME):latest
 
 publish-arm64:
