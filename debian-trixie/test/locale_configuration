@@ -1,0 +1,38 @@
+#!/bin/bash
+set -e
+
+CMD="docker run --rm $1"
+EXIT_CODE=0
+
+echo "Checking locale configuration..."
+
+# Check LANG is set to en_US.UTF-8
+echo -n "Checking LANG=en_US.UTF-8 ... "
+LANG_VALUE=$($CMD bash -c 'echo $LANG')
+if [ "$LANG_VALUE" = "en_US.UTF-8" ]; then
+	echo "OK"
+else
+	echo "FAILED (got: $LANG_VALUE)"
+	EXIT_CODE=1
+fi
+
+# Check LC_ALL is set to en_US.UTF-8
+echo -n "Checking LC_ALL=en_US.UTF-8 ... "
+LC_ALL_VALUE=$($CMD bash -c 'echo $LC_ALL')
+if [ "$LC_ALL_VALUE" = "en_US.UTF-8" ]; then
+	echo "OK"
+else
+	echo "FAILED (got: $LC_ALL_VALUE)"
+	EXIT_CODE=1
+fi
+
+# Check locale is actually generated
+echo -n "Checking en_US.UTF-8 locale is generated ... "
+if $CMD locale -a 2>/dev/null | grep -q "en_US.utf8"; then
+	echo "OK"
+else
+	echo "FAILED"
+	EXIT_CODE=1
+fi
+
+exit $EXIT_CODE

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+set -e
+
+for key in $(printenv | grep NFQ_REMOTE_TOOL_ | cut -d= -f1 | cut -d_ -f4-)
+do
+	toolEnv="NFQ_REMOTE_TOOL_$key"
+
+	echo "Parsing remote tools from $toolEnv"
+	for paths in ${!toolEnv}
+	do
+		localPath=$(echo "$paths" | cut -d: -f1)
+		remotePath=$(echo "$paths" | cut -d: -f2)
+
+		host=$(echo "$key" | tr '[:upper:]' '[:lower:]')
+
+		echo "Mapping remote tool $localPath -> $remotePath for host $host"
+
+		mkdir -p $(dirname "$localPath")
+
+		cat /usr/local/share/toolbox/remote_tool.tpl \
+		| sed "s~{{ remote_path }}~$remotePath~" \
+		| sed "s~{{ host }}~$host~" \
+		> "$localPath"
+
+		chmod +x "$localPath"
+	done
+done
+

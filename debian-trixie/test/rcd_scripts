@@ -1,0 +1,59 @@
+#!/bin/bash
+set -e
+
+CMD="docker run --rm $1"
+EXIT_CODE=0
+
+echo "Checking rc.d scripts..."
+
+# Check rc.d directory exists
+echo -n "Checking /etc/rc.d directory exists ... "
+if $CMD test -d /etc/rc.d; then
+	echo "OK"
+else
+	echo "FAILED"
+	EXIT_CODE=1
+fi
+
+# Check rc.d scripts are executable
+echo -n "Checking rc.d scripts are executable ... "
+NON_EXEC=$($CMD find /etc/rc.d -type f ! -name '.gitkeep' ! -executable 2>/dev/null | wc -l | tr -d ' ')
+TOTAL=$($CMD find /etc/rc.d -type f ! -name '.gitkeep' 2>/dev/null | wc -l | tr -d ' ')
+if [ "$TOTAL" = "0" ]; then
+	echo "FAILED (no scripts found)"
+	EXIT_CODE=1
+elif [ "$NON_EXEC" = "0" ]; then
+	echo "OK ($TOTAL scripts)"
+else
+	echo "FAILED ($NON_EXEC of $TOTAL non-executable)"
+	EXIT_CODE=1
+fi
+
+# Check pigz enabler script exists and is executable
+echo -n "Checking 050-enable-pigz script ... "
+if $CMD test -x /etc/rc.d/050-enable-pigz; then
+	echo "OK"
+else
+	echo "FAILED"
+	EXIT_CODE=1
+fi
+
+# Check map-remote-tools script exists
+echo -n "Checking 100-map-remote-tools script ... "
+if $CMD test -e /etc/rc.d/100-map-remote-tools; then
+	echo "OK"
+else
+	echo "FAILED"
+	EXIT_CODE=1
+fi
+
+# Check startup-triggers script exists
+echo -n "Checking 100-startup-triggers script ... "
+if $CMD test -e /etc/rc.d/100-startup-triggers; then
+	echo "OK"
+else
+	echo "FAILED"
+	EXIT_CODE=1
+fi
+
+exit $EXIT_CODE

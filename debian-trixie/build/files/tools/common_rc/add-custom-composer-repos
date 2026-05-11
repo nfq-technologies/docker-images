@@ -1,0 +1,30 @@
+#!/bin/bash
+set -e
+source "/tools/common_rc/functions.sh"
+
+JSON_ENABLED=0
+if ! php -m | grep -q json; then
+	phpEnableModule json
+else
+	JSON_ENABLED=1
+fi
+
+if [[ ! -z "${NFQ_COMPOSER_REPOS}" ]]; then
+	for repostring in ${NFQ_COMPOSER_REPOS}; do
+		name="$(echo "$repostring" | cut -d"|" -f1)"
+		repo="$(echo "$repostring" | cut -d"|" -f2)"
+		if [[ ! -z $repo ]]; then
+			echo "++ Adding custom repository: ${repo} with name: ${name}"
+			sudo -u project composer --no-interaction -q config -g "repositories.${name}" vcs "$repo"
+		else
+			echo "-- Invalid repo string: ${repostring}"
+		fi
+	done
+else
+	echo "~~ No custom repos provided in $NFQ_COMPOSER_REPOS"
+fi
+
+if [[ $JSON_ENABLED -eq 0 ]]; then
+	phpDisableModule json
+fi
+

@@ -1,0 +1,56 @@
+#!/bin/bash
+set -e
+
+CMD="docker run --rm $1"
+EXIT_CODE=0
+
+echo "Checking user configuration..."
+
+# Check project user exists
+echo -n "Checking project user exists ... "
+if $CMD id project >/dev/null 2>&1; then
+	echo "OK"
+else
+	echo "FAILED"
+	EXIT_CODE=1
+fi
+
+# Check project user has UID 1000
+echo -n "Checking project user UID=1000 ... "
+UID_VALUE=$($CMD id -u project 2>/dev/null)
+if [ "$UID_VALUE" = "1000" ]; then
+	echo "OK"
+else
+	echo "FAILED (got: $UID_VALUE)"
+	EXIT_CODE=1
+fi
+
+# Check project user has GID 1000
+echo -n "Checking project user GID=1000 ... "
+GID_VALUE=$($CMD id -g project 2>/dev/null)
+if [ "$GID_VALUE" = "1000" ]; then
+	echo "OK"
+else
+	echo "FAILED (got: $GID_VALUE)"
+	EXIT_CODE=1
+fi
+
+# Check project user home directory
+echo -n "Checking project home directory ... "
+if $CMD test -d /home/project; then
+	echo "OK"
+else
+	echo "FAILED"
+	EXIT_CODE=1
+fi
+
+# Check project user can sudo without password
+echo -n "Checking project user sudo access ... "
+if $CMD sudo -u project sudo -n true 2>/dev/null; then
+	echo "OK"
+else
+	echo "FAILED"
+	EXIT_CODE=1
+fi
+
+exit $EXIT_CODE

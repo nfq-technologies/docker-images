@@ -1,0 +1,54 @@
+#!/bin/bash -e
+
+# ============================================================================
+# Configure Xdebug client_host dynamically based on container's network
+# This allows xdebug to connect back to the IDE on the host machine
+# in modern (Traefik) mode where the hardcoded 10.24.0.1 is not routable
+# ============================================================================
+
+# Skip in legacy mode - the hardcoded 10.24.0.1 works correctly there
+# via the special subnet route: Mac -> VM -> Container
+if [ "$DVM_MODE" = "legacy" ]; then
+	exit 0
+fi
+
+# Find xdebug.ini - skip if xdebug is not installed
+ini="$(echo /etc/php/*/mods-available/xdebug.ini 2>/dev/null)"
+if [ ! -f "$ini" ]; then
+	exit 0
+fi
+
+# Get host IP from environment or detect from default route
+# DEV_IP may be set in docker-compose.yml or .env, otherwise detect automatically
+if [ -z "$DEV_IP" ]; then
+	# Get default gateway IP
+	DEV_IP="$(ip r | grep '^default ' | awk '{print $3}')"
+
+	# Validate IP is not from known virtual/problematic interfaces
+	# Skip if IP looks like multipass (192.168.64.x), docker bridge (172.17.x.x), or other common virtual IPs
+	if [ -n "$DEV_IP" ]; then
+		case "$DEV_IP" in
+			192.168.64.*|172.17.*|172.18.*|10.0.2.*)
+				# Likely a virtual network (multipass, docker bridge, VirtualBox NAT)
+				# Try to find a better gateway from other routes
+				DEV_IP="$(ip r | grep -v '^default ' | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}' | grep -E '^(192\.168\.|10\.|172\.(1[6-9]|2[0-9]|3[01])\.)' | head -1)"
+				;;
+		esac
+	fi
+fi
+
+if [ -z "$DEV_IP" ]; then
+	echo "-- Xdebug: Could not detect host IP, keeping default configuration"
+	exit 0
+fi
+
+echo "++ Xdebug: Configuring client_host=$DEV_IP"
+
+# Update xdebug.ini with correct host IP
+sed -i "s/^xdebug.client_host=.*/xdebug.client_host=$DEV_IP/" "$ini"
+sed -i "s/^#xdebug.client_host=.*/xdebug.client_host=$DEV_IP/" "$ini"
+
+# Update port to 9003 (modern xdebug 3.x default, PHPStorm default)
+sed -i "s/^xdebug.client_port=9000/xdebug.client_port=9003/" "$ini"
+
+exit 0

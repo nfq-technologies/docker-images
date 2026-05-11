@@ -1,0 +1,27 @@
+#!/bin/bash
+set -e
+
+CMD="docker run --rm $1"
+EXIT_CODE=0
+
+echo "Checking git configuration..."
+
+# Check git safe.directory is configured for root
+echo -n "Checking git safe.directory for root ... "
+if $CMD git config --global --get-all safe.directory 2>/dev/null | grep -q '^\*$'; then
+	echo "OK"
+else
+	echo "FAILED"
+	EXIT_CODE=1
+fi
+
+# Check git safe.directory is configured for project user
+echo -n "Checking git safe.directory for project user ... "
+if $CMD sudo -u project git config --global --get-all safe.directory 2>/dev/null | grep -q '^\*$'; then
+	echo "OK"
+else
+	echo "FAILED"
+	EXIT_CODE=1
+fi
+
+exit $EXIT_CODE

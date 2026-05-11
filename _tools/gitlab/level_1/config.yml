@@ -1,3 +1,38 @@
+debian-trixie:
+  stage: level_1
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd debian-trixie && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [debian-trixie_arm64]
+  rules:
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
+    - when: on_success
+  tags: [nfq_ip]
+debian-trixie_arm64:
+  stage: level_1
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd debian-trixie && make all-arm64 && make clean'
+  tags: [arm]
+  needs: []
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
 debian-bookworm:
   stage: level_1
   before_script:
