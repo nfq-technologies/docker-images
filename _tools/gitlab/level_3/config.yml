@@ -1,3 +1,143 @@
+php85-cron:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php85-cron && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [php85-cron_arm64]
+  rules:
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
+    - when: on_success
+  tags: [nfq_ip]
+php85-cron_arm64:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php85-cron && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["php85-cli"]
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
+php85-dev:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php85-dev && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [php85-dev_arm64]
+  rules:
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
+    - when: on_success
+  tags: [nfq_ip]
+php85-dev_arm64:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php85-dev && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["php85-cli"]
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
+php85-fpm:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php85-fpm && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [php85-fpm_arm64]
+  rules:
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
+    - when: on_success
+  tags: [nfq_ip]
+php85-fpm_arm64:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php85-fpm && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["php85-cli"]
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
+php85-supervisor:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php85-supervisor && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [php85-supervisor_arm64]
+  rules:
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
+    - when: on_success
+  tags: [nfq_ip]
+php85-supervisor_arm64:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php85-supervisor && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["php85-cli"]
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
 aws-tools:
   stage: level_3
   before_script:

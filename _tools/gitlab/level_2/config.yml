@@ -1,3 +1,38 @@
+php85-cli:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php85-cli && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [php85-cli_arm64]
+  rules:
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
+    - when: on_success
+  tags: [nfq_ip]
+php85-cli_arm64:
+  stage: level_2
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php85-cli && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["debian-trixie"]
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $BUILD_MODE == "manual"
+      when: manual
+      allow_failure: false
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
 apache24:
   stage: level_2
   before_script:

@@ -91,7 +91,7 @@ chown -R project:project /home/project/.vim
 # Fix vim mouse integration - find the defaults.vim dynamically
 VIM_DEFAULTS=$(find /usr/share/vim -name defaults.vim 2>/dev/null | head -1)
 if [ -n "$VIM_DEFAULTS" ]; then
-    sed -ri 's/^([ ]*set mouse=a)/"\1/' "$VIM_DEFAULTS"
+    sed -ri 's/^([[:space:]]*set mouse=a)/"\1/' "$VIM_DEFAULTS"
 fi
 
 cp -frv /build/files/* /
