@@ -30,7 +30,7 @@ apt-get install -y --no-install-recommends \
 	php8.5-gd \
 	php8.5-gmp \
 	php8.5-igbinary \
-	php8.5-imagick libmagickcore-6.q16-6-extra \
+	php8.5-imagick libmagickcore-7.q16-10-extra \
 	php8.5-imap \
 	php8.5-interbase \
 	php8.5-intl \
@@ -44,8 +44,7 @@ apt-get install -y --no-install-recommends \
 	php8.5-mysql \
 	php8.5-oauth \
 	php8.5-odbc odbc-mdbtools \
-	php8.5-opcache \
-	php8.5-pcov \
+		php8.5-pcov \
 	php8.5-pgsql \
 	php8.5-phpdbg \
 	php8.5-pspell \
@@ -53,8 +52,7 @@ apt-get install -y --no-install-recommends \
 	php8.5-raphf \
 	php8.5-readline \
 	php8.5-redis \
-	php8.5-rrd \
-	php8.5-smbclient \
+		php8.5-smbclient \
 	php8.5-snmp snmp \
 	php8.5-soap \
 	php8.5-sqlite3 \
