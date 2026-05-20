@@ -33,7 +33,7 @@ stages:
 
 default:
   image: nfqlt/aws-docker-tools
-  tags: [nfq_ip]
+  tags: [docker]
   before_script:
     - echo "$dockerhub_token" | docker login -u $dockerhub_user --password-stdin
     - echo "$nfqhub_token" | docker login -u $nfqhub_user --password-stdin https://docker.nfq.lt
@@ -60,4 +60,4 @@ validate:generated-configs:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
     - if: '$CI_COMMIT_BRANCH == "master"'
-  tags: [nfq_ip]
+  tags: [docker]

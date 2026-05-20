@@ -12,7 +12,7 @@ php85-cron:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php85-cron_arm64:
   stage: level_3
   before_script:
@@ -47,7 +47,7 @@ php85-dev:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php85-dev_arm64:
   stage: level_3
   before_script:
@@ -82,7 +82,7 @@ php85-fpm:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php85-fpm_arm64:
   stage: level_3
   before_script:
@@ -117,7 +117,7 @@ php85-supervisor:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php85-supervisor_arm64:
   stage: level_3
   before_script:
@@ -152,7 +152,7 @@ aws-tools:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 aws-tools_arm64:
   stage: level_3
   before_script:
@@ -201,7 +201,7 @@ cloud-tools:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 cloud-tools_arm64:
   stage: level_3
   before_script:
@@ -376,7 +376,7 @@ ghostscript:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 ghostscript_arm64:
   stage: level_3
   before_script:
@@ -425,7 +425,7 @@ node16:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 node16_arm64:
   stage: level_3
   before_script:
@@ -460,7 +460,7 @@ node18:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 node18_arm64:
   stage: level_3
   before_script:
@@ -495,7 +495,7 @@ node20:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 node20_arm64:
   stage: level_3
   before_script:
@@ -530,7 +530,7 @@ node21:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 node21_arm64:
   stage: level_3
   before_script:
@@ -565,7 +565,7 @@ node22:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 node22_arm64:
   stage: level_3
   before_script:
@@ -614,7 +614,7 @@ pdftk:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 pdftk_arm64:
   stage: level_3
   before_script:
@@ -761,7 +761,7 @@ php81-cron:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php81-cron_arm64:
   stage: level_3
   before_script:
@@ -796,7 +796,7 @@ php81-dev:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php81-dev_arm64:
   stage: level_3
   before_script:
@@ -831,7 +831,7 @@ php81-fpm:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php81-fpm_arm64:
   stage: level_3
   before_script:
@@ -866,7 +866,7 @@ php81-supervisor:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php81-supervisor_arm64:
   stage: level_3
   before_script:
@@ -901,7 +901,7 @@ php82-cron:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php82-cron_arm64:
   stage: level_3
   before_script:
@@ -936,7 +936,7 @@ php82-dev:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php82-dev_arm64:
   stage: level_3
   before_script:
@@ -971,7 +971,7 @@ php82-fpm:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php82-fpm_arm64:
   stage: level_3
   before_script:
@@ -1006,7 +1006,7 @@ php82-supervisor:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php82-supervisor_arm64:
   stage: level_3
   before_script:
@@ -1041,7 +1041,7 @@ php83-cron:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php83-cron_arm64:
   stage: level_3
   before_script:
@@ -1076,7 +1076,7 @@ php83-dev:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php83-dev_arm64:
   stage: level_3
   before_script:
@@ -1111,7 +1111,7 @@ php83-fpm:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php83-fpm_arm64:
   stage: level_3
   before_script:
@@ -1146,7 +1146,7 @@ php83-supervisor:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php83-supervisor_arm64:
   stage: level_3
   before_script:
@@ -1181,7 +1181,7 @@ php84-cron:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php84-cron_arm64:
   stage: level_3
   before_script:
@@ -1216,7 +1216,7 @@ php84-dev:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php84-dev_arm64:
   stage: level_3
   before_script:
@@ -1251,7 +1251,7 @@ php84-fpm:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php84-fpm_arm64:
   stage: level_3
   before_script:
@@ -1286,7 +1286,7 @@ php84-supervisor:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php84-supervisor_arm64:
   stage: level_3
   before_script:
@@ -1377,7 +1377,7 @@ thrift0110:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 thrift0110_arm64:
   stage: level_3
   before_script:
@@ -1440,7 +1440,7 @@ wkhtmltopdf126-broken:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 wkhtmltopdf126-broken_arm64:
   stage: level_3
   before_script:

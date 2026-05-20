@@ -1,0 +1,46 @@
+#!/bin/bash
+set -e
+
+CMD="docker run --rm $1"
+EXIT_CODE=0
+
+echo "Checking vim configuration..."
+
+# Check ale plugin is installed
+echo -n "Checking vim ale plugin installed ... "
+if $CMD test -d /home/project/.vim/pack/git-plugins/start/ale; then
+	echo "OK"
+else
+	echo "FAILED"
+	EXIT_CODE=1
+fi
+
+# Check ale plugin is owned by project user
+echo -n "Checking ale plugin ownership ... "
+OWNER=$($CMD stat -c '%U' /home/project/.vim 2>/dev/null)
+if [ "$OWNER" = "project" ]; then
+	echo "OK"
+else
+	echo "FAILED (owner: $OWNER)"
+	EXIT_CODE=1
+fi
+
+# Check custom vimrc exists
+echo -n "Checking /etc/vim/vimrc exists ... "
+if $CMD test -f /etc/vim/vimrc; then
+	echo "OK"
+else
+	echo "FAILED"
+	EXIT_CODE=1
+fi
+
+# Check mouse is disabled in defaults.vim
+echo -n "Checking vim mouse is disabled ... "
+if $CMD grep -r '".*set mouse=a' /usr/share/vim/*/defaults.vim >/dev/null 2>&1; then
+	echo "OK"
+else
+	echo "FAILED (mouse may still be enabled)"
+	EXIT_CODE=1
+fi
+
+exit $EXIT_CODE

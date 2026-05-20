@@ -12,7 +12,7 @@ aws-docker-tools:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 aws-docker-tools_arm64:
   stage: level_4
   before_script:
@@ -47,7 +47,7 @@ cypress12:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 cypress12_arm64:
   stage: level_4
   before_script:

@@ -18,8 +18,13 @@ if [ ! -f "$ini" ]; then
 	exit 0
 fi
 
-# Get host IP from environment or detect from default route
-# DEV_IP may be set in docker-compose.yml or .env, otherwise detect automatically
+# Prefer fresh IP from mounted VM config (handles container not being recreated)
+if [ -f /etc/dvm-config ]; then
+	source /etc/dvm-config
+	DEV_IP="${DVM_HOST_IP:-$DEV_IP}"
+fi
+
+# Fallback: detect from default route if not set
 if [ -z "$DEV_IP" ]; then
 	# Get default gateway IP
 	DEV_IP="$(ip r | grep '^default ' | awk '{print $3}')"

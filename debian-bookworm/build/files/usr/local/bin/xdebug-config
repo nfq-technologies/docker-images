@@ -20,6 +20,12 @@ DOCKER_SOCKET="${DOCKER_SOCKET:-/var/run/docker.sock}"
 DOCKER_API="http://localhost"
 LEGACY_PORT=4096
 
+# Prefer fresh IP from mounted VM config (handles container not being recreated)
+if [ -f /etc/dvm-config ]; then
+	source /etc/dvm-config
+	DEV_IP="${DVM_HOST_IP:-$DEV_IP}"
+fi
+
 # === Helper Functions ===
 
 function print_help() {

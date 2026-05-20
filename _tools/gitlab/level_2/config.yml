@@ -12,7 +12,7 @@ php85-cli:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php85-cli_arm64:
   stage: level_2
   before_script:
@@ -47,7 +47,7 @@ apache24:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 apache24_arm64:
   stage: level_2
   before_script:
@@ -82,7 +82,7 @@ aws-mock:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 aws-mock_arm64:
   stage: level_2
   before_script:
@@ -117,7 +117,7 @@ chromedriver:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 chromedriver_arm64:
   stage: level_2
   before_script:
@@ -152,7 +152,7 @@ dev:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 dev_arm64:
   stage: level_2
   before_script:
@@ -187,7 +187,7 @@ docker18ce:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 docker18ce_arm64:
   stage: level_2
   before_script:
@@ -250,7 +250,7 @@ elasticsearch716:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 elasticsearch716_arm64:
   stage: level_2
   before_script:
@@ -341,7 +341,7 @@ elasticsearch84:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 elasticsearch84_arm64:
   stage: level_2
   before_script:
@@ -390,7 +390,7 @@ memcached16:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 memcached16_arm64:
   stage: level_2
   before_script:
@@ -467,7 +467,7 @@ nginx118:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 nginx118_arm64:
   stage: level_2
   before_script:
@@ -502,7 +502,7 @@ nginx122:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 nginx122_arm64:
   stage: level_2
   before_script:
@@ -537,7 +537,7 @@ nodeserver16:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 nodeserver16_arm64:
   stage: level_2
   before_script:
@@ -572,7 +572,7 @@ nodeserver18:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 nodeserver18_arm64:
   stage: level_2
   before_script:
@@ -607,7 +607,7 @@ nodeserver20:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 nodeserver20_arm64:
   stage: level_2
   before_script:
@@ -642,7 +642,7 @@ nodeserver21:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 nodeserver21_arm64:
   stage: level_2
   before_script:
@@ -677,7 +677,7 @@ nodeserver22:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 nodeserver22_arm64:
   stage: level_2
   before_script:
@@ -768,7 +768,7 @@ php81-cli:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php81-cli_arm64:
   stage: level_2
   before_script:
@@ -803,7 +803,7 @@ php82-cli:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php82-cli_arm64:
   stage: level_2
   before_script:
@@ -838,7 +838,7 @@ php83-cli:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php83-cli_arm64:
   stage: level_2
   before_script:
@@ -873,7 +873,7 @@ php84-cli:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 php84-cli_arm64:
   stage: level_2
   before_script:
@@ -908,7 +908,7 @@ rabbitmq310:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 rabbitmq310_arm64:
   stage: level_2
   before_script:
@@ -943,7 +943,7 @@ rabbitmq312:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 rabbitmq312_arm64:
   stage: level_2
   before_script:
@@ -978,7 +978,7 @@ rabbitmq38:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 rabbitmq38_arm64:
   stage: level_2
   before_script:
@@ -1013,7 +1013,7 @@ rabbitmq4:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 rabbitmq4_arm64:
   stage: level_2
   before_script:
@@ -1048,7 +1048,7 @@ redis60:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 redis60_arm64:
   stage: level_2
   before_script:
@@ -1083,7 +1083,7 @@ redis70:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 redis70_arm64:
   stage: level_2
   before_script:
@@ -1118,7 +1118,7 @@ toolbox-bookworm:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 toolbox-bookworm_arm64:
   stage: level_2
   before_script:
@@ -1153,7 +1153,7 @@ toolbox-bullseye:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 toolbox-bullseye_arm64:
   stage: level_2
   before_script:

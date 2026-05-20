@@ -12,7 +12,7 @@ debian-trixie:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 debian-trixie_arm64:
   stage: level_1
   before_script:
@@ -47,7 +47,7 @@ debian-bookworm:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 debian-bookworm_arm64:
   stage: level_1
   before_script:
@@ -82,7 +82,7 @@ debian-bullseye:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 debian-bullseye_arm64:
   stage: level_1
   before_script:
@@ -117,7 +117,7 @@ dib:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 dib_arm64:
   stage: level_1
   before_script:
@@ -152,7 +152,7 @@ lib-smartclient100:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 lib-smartclient100_arm64:
   stage: level_1
   before_script:
@@ -243,7 +243,7 @@ mariadb10:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 mariadb10_arm64:
   stage: level_1
   before_script:
@@ -292,7 +292,7 @@ mysql80:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 mysql80_arm64:
   stage: level_1
   before_script:
@@ -327,7 +327,7 @@ mysql84:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 mysql84_arm64:
   stage: level_1
   before_script:
@@ -362,7 +362,7 @@ opentripplanner:
       when: manual
       allow_failure: false
     - when: on_success
-  tags: [nfq_ip]
+  tags: [docker]
 opentripplanner_arm64:
   stage: level_1
   before_script:
