@@ -27,7 +27,13 @@ MODE="debug"
 IDEKEY="phpstorm"
 PHP_OPTS=""
 
-# Detect host IP if not set (for client_host in XDEBUG_CONFIG)
+# Prefer fresh IP from mounted VM config (handles container not being recreated)
+if [ -f /etc/dvm-config ]; then
+	source /etc/dvm-config
+	DEV_IP="${DVM_HOST_IP:-$DEV_IP}"
+fi
+
+# Fallback: detect from default route/gateway if not set
 if [ -z "$DEV_IP" ]; then
 	DEV_IP="$(ip r | grep '^default ' | awk '{print $3}')"
 

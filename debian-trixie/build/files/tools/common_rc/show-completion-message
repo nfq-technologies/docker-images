@@ -54,7 +54,13 @@ cat - <<'EOF'
 Now you can connect via http or ssh.
 EOF
 
-# Retrieve container IP address (only if not already provided by docker-compose)
+# Prefer fresh IP from mounted VM config (handles container not being recreated)
+if [ -f /etc/dvm-config ]; then
+	source /etc/dvm-config
+	DEV_IP="${DVM_HOST_IP:-$DEV_IP}"
+fi
+
+# Fallback: detect from default route/gateway if not set
 if [ -z "$DEV_IP" ]; then
 	DEV_IP="$(ip r | grep '^default ' | awk '{print $3}')"
 fi
