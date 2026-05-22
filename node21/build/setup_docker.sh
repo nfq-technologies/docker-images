@@ -17,8 +17,12 @@ npm install -g yarn
 # grunt
 npm install -g grunt-cli
 
-# sass
-npm install -g sass --unsafe
+# sass (may not have ARM64 binaries)
+if [ "$arch" = "amd64" ]; then
+    npm install -g sass --unsafe
+else
+    npm install -g sass || echo "Warning: sass not available for ARM64"
+fi
 
 # gulp
 npm install -g gulp-cli

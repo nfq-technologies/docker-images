@@ -14,7 +14,8 @@ check_command node --version
 check_command npm --version
 check_command gulp --version
 check_command grunt --version
-check_command sass --version
+# sass may not be available on ARM64
+$CMD sass --version >/dev/null 2>&1 && check_command sass --version || echo "Skipping sass (not available on this arch)"
 check_command bower --version
 check_command uglifycss
 check_command uglifyjs --version
