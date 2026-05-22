@@ -72,6 +72,7 @@ apt-get install -y --no-install-recommends pigz
 
 # configure user project
 useradd -d /home/project -m -s /bin/bash -u 1000 -U project
+chmod 755 /home/project  # ensure www-data can traverse for PHP-FPM
 echo 'project:project' | chpasswd
 echo 'project ALL=NOPASSWD: ALL' >> /etc/sudoers
 
