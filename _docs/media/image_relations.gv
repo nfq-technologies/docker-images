@@ -29,6 +29,7 @@ digraph image_relations {
     fontsize=11;
     "debian-bookworm" [fillcolor="#ccffcc"];
     "debian-bullseye" [fillcolor="#ffffcc"];
+    "debian-trixie" [fillcolor="#ccffcc"];
     "dib" [fillcolor="#ccffcc"];
     "toolbox-bookworm" [fillcolor="#ccffcc"];
     "toolbox-bullseye" [fillcolor="#ffffcc"];
@@ -90,6 +91,11 @@ digraph image_relations {
     "php84-dev" [fillcolor="#ccffcc"];
     "php84-fpm" [fillcolor="#ccffcc"];
     "php84-supervisor" [fillcolor="#ccffcc"];
+    "php85-cli" [fillcolor="#ccffcc"];
+    "php85-cron" [fillcolor="#ccffcc"];
+    "php85-dev" [fillcolor="#ccffcc"];
+    "php85-fpm" [fillcolor="#ccffcc"];
+    "php85-supervisor" [fillcolor="#ccffcc"];
     "phpmyadmin" [fillcolor="#ccffcc"];
   }
 
@@ -133,11 +139,13 @@ digraph image_relations {
     "node20" [fillcolor="#ccffcc"];
     "node21" [fillcolor="#ccffcc"];
     "node22" [fillcolor="#ccffcc"];
+    "node24" [fillcolor="#ccffcc"];
     "nodeserver16" [fillcolor="#ccffcc"];
     "nodeserver18" [fillcolor="#ccffcc"];
     "nodeserver20" [fillcolor="#ccffcc"];
     "nodeserver21" [fillcolor="#ccffcc"];
     "nodeserver22" [fillcolor="#ccffcc"];
+    "nodeserver24" [fillcolor="#ccffcc"];
   }
 
   subgraph cluster_webserver {
@@ -237,6 +245,7 @@ digraph image_relations {
   "toolbox-bullseye" -> "db-tools";
   "debian:bookworm" -> "debian-bookworm";
   "debian:bullseye" -> "debian-bullseye";
+  "debian:trixie" -> "debian-trixie";
   "debian-bookworm" -> "dev";
   "debian:bullseye" -> "dib";
   "debian-bullseye" -> "docker18ce";
@@ -281,11 +290,13 @@ digraph image_relations {
   "toolbox-bookworm" -> "node20";
   "toolbox-bookworm" -> "node21";
   "toolbox-bookworm" -> "node22";
+  "toolbox-bookworm" -> "node24";
   "debian-bookworm" -> "nodeserver16";
   "debian-bookworm" -> "nodeserver18";
   "debian-bookworm" -> "nodeserver20";
   "debian-bookworm" -> "nodeserver21";
   "debian-bookworm" -> "nodeserver22";
+  "debian-bookworm" -> "nodeserver24";
   "opentripplanner/opentripplanner" -> "opentripplanner";
   "toolbox-bookworm" -> "packager";
   "toolbox-bookworm" -> "pdftk";
@@ -322,6 +333,11 @@ digraph image_relations {
   "php84-cli" -> "php84-dev";
   "php84-cli" -> "php84-fpm";
   "php84-cli" -> "php84-supervisor";
+  "debian-trixie" -> "php85-cli";
+  "php85-cli" -> "php85-cron";
+  "php85-cli" -> "php85-dev";
+  "php85-cli" -> "php85-fpm";
+  "php85-cli" -> "php85-supervisor";
   "php82-cli" -> "phpmyadmin";
   "postgres:12" -> "postgres12";
   "toolbox-bookworm" -> "qpdf";
@@ -345,6 +361,7 @@ digraph image_relations {
   "alpine" [fillcolor=white style="filled,rounded,dashed"];
   "debian:bookworm" [fillcolor=white style="filled,rounded,dashed"];
   "debian:bullseye" [fillcolor=white style="filled,rounded,dashed"];
+  "debian:trixie" [fillcolor=white style="filled,rounded,dashed"];
   "mariadb:10" [fillcolor=white style="filled,rounded,dashed"];
   "mysql:5.7-debian" [fillcolor=white style="filled,rounded,dashed"];
   "mysql:8.0" [fillcolor=white style="filled,rounded,dashed"];

@@ -1,143 +1,3 @@
-php85-cron:
-  stage: level_3
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php85-cron && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php85-cron_arm64]
-  rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
-    - when: on_success
-  tags: [docker]
-php85-cron_arm64:
-  stage: level_3
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php85-cron && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["php85-cli"]
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
-    - if: $MANUAL == "true"
-      when: manual
-      allow_failure: false
-    - when: on_success
-php85-dev:
-  stage: level_3
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php85-dev && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php85-dev_arm64]
-  rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
-    - when: on_success
-  tags: [docker]
-php85-dev_arm64:
-  stage: level_3
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php85-dev && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["php85-cli"]
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
-    - if: $MANUAL == "true"
-      when: manual
-      allow_failure: false
-    - when: on_success
-php85-fpm:
-  stage: level_3
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php85-fpm && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php85-fpm_arm64]
-  rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
-    - when: on_success
-  tags: [docker]
-php85-fpm_arm64:
-  stage: level_3
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php85-fpm && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["php85-cli"]
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
-    - if: $MANUAL == "true"
-      when: manual
-      allow_failure: false
-    - when: on_success
-php85-supervisor:
-  stage: level_3
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php85-supervisor && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php85-supervisor_arm64]
-  rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
-    - when: on_success
-  tags: [docker]
-php85-supervisor_arm64:
-  stage: level_3
-  before_script:
-    # this ip has to go to host
-    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
-    - docker login -u $dockerhub_user -p $dockerhub_token
-    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php85-supervisor && make all-arm64 && make clean'
-  tags: [arm]
-  needs: ["php85-cli"]
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
-    - if: $MANUAL == "true"
-      when: manual
-      allow_failure: false
-    - when: on_success
 aws-tools:
   stage: level_3
   before_script:
@@ -148,11 +8,8 @@ aws-tools:
   script: 'cd aws-tools && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [aws-tools_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 aws-tools_arm64:
   stage: level_3
   before_script:
@@ -166,9 +23,6 @@ aws-tools_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -180,9 +34,6 @@ chromium:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -197,11 +48,8 @@ cloud-tools:
   script: 'cd cloud-tools && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [cloud-tools_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 cloud-tools_arm64:
   stage: level_3
   before_script:
@@ -215,9 +63,6 @@ cloud-tools_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -229,9 +74,6 @@ db-tools:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -243,9 +85,6 @@ elasticsearch68-data:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -257,9 +96,6 @@ elasticsearch710-data:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -271,9 +107,6 @@ elasticsearch716-data:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -285,9 +118,6 @@ elasticsearch72-data:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -299,9 +129,6 @@ elasticsearch75-data:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -313,9 +140,6 @@ elasticsearch77-data:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -327,9 +151,6 @@ elasticsearch79-data:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -341,9 +162,6 @@ ffmpeg:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -355,9 +173,6 @@ fontforge:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -372,11 +187,8 @@ ghostscript:
   script: 'cd ghostscript && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [ghostscript_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 ghostscript_arm64:
   stage: level_3
   before_script:
@@ -390,9 +202,6 @@ ghostscript_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -404,9 +213,6 @@ graphic-tools:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -421,11 +227,8 @@ node16:
   script: 'cd node16 && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [node16_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 node16_arm64:
   stage: level_3
   before_script:
@@ -439,9 +242,6 @@ node16_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -456,11 +256,8 @@ node18:
   script: 'cd node18 && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [node18_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 node18_arm64:
   stage: level_3
   before_script:
@@ -474,9 +271,6 @@ node18_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -491,11 +285,8 @@ node20:
   script: 'cd node20 && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [node20_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 node20_arm64:
   stage: level_3
   before_script:
@@ -509,9 +300,6 @@ node20_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -526,11 +314,8 @@ node21:
   script: 'cd node21 && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [node21_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 node21_arm64:
   stage: level_3
   before_script:
@@ -544,9 +329,6 @@ node21_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -561,11 +343,8 @@ node22:
   script: 'cd node22 && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [node22_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 node22_arm64:
   stage: level_3
   before_script:
@@ -579,9 +358,35 @@ node22_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
+    - if: $MANUAL == "true"
       when: manual
       allow_failure: false
+    - when: on_success
+node24:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd node24 && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [node24_arm64]
+  rules:
+    - when: on_success
+  tags: [nfq_ip]
+node24_arm64:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd node24 && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["toolbox-bookworm"]
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -593,9 +398,6 @@ packager:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -610,11 +412,8 @@ pdftk:
   script: 'cd pdftk && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [pdftk_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 pdftk_arm64:
   stage: level_3
   before_script:
@@ -628,9 +427,6 @@ pdftk_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -642,9 +438,6 @@ php74-cron:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -656,9 +449,6 @@ php74-dev:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -670,9 +460,6 @@ php74-fpm:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -684,9 +471,6 @@ php74-supervisor:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -698,9 +482,6 @@ php80-cron:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -712,9 +493,6 @@ php80-dev:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -726,9 +504,6 @@ php80-fpm:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -740,9 +515,6 @@ php80-supervisor:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -757,11 +529,8 @@ php81-cron:
   script: 'cd php81-cron && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [php81-cron_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 php81-cron_arm64:
   stage: level_3
   before_script:
@@ -775,9 +544,6 @@ php81-cron_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -792,11 +558,8 @@ php81-dev:
   script: 'cd php81-dev && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [php81-dev_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 php81-dev_arm64:
   stage: level_3
   before_script:
@@ -810,9 +573,6 @@ php81-dev_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -827,11 +587,8 @@ php81-fpm:
   script: 'cd php81-fpm && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [php81-fpm_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 php81-fpm_arm64:
   stage: level_3
   before_script:
@@ -845,9 +602,6 @@ php81-fpm_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -862,11 +616,8 @@ php81-supervisor:
   script: 'cd php81-supervisor && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [php81-supervisor_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 php81-supervisor_arm64:
   stage: level_3
   before_script:
@@ -880,9 +631,6 @@ php81-supervisor_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -897,11 +645,8 @@ php82-cron:
   script: 'cd php82-cron && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [php82-cron_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 php82-cron_arm64:
   stage: level_3
   before_script:
@@ -915,9 +660,6 @@ php82-cron_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -932,11 +674,8 @@ php82-dev:
   script: 'cd php82-dev && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [php82-dev_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 php82-dev_arm64:
   stage: level_3
   before_script:
@@ -950,9 +689,6 @@ php82-dev_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -967,11 +703,8 @@ php82-fpm:
   script: 'cd php82-fpm && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [php82-fpm_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 php82-fpm_arm64:
   stage: level_3
   before_script:
@@ -985,9 +718,6 @@ php82-fpm_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1002,11 +732,8 @@ php82-supervisor:
   script: 'cd php82-supervisor && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [php82-supervisor_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 php82-supervisor_arm64:
   stage: level_3
   before_script:
@@ -1020,9 +747,6 @@ php82-supervisor_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1037,11 +761,8 @@ php83-cron:
   script: 'cd php83-cron && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [php83-cron_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 php83-cron_arm64:
   stage: level_3
   before_script:
@@ -1055,9 +776,6 @@ php83-cron_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1072,11 +790,8 @@ php83-dev:
   script: 'cd php83-dev && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [php83-dev_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 php83-dev_arm64:
   stage: level_3
   before_script:
@@ -1090,9 +805,6 @@ php83-dev_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1107,11 +819,8 @@ php83-fpm:
   script: 'cd php83-fpm && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [php83-fpm_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 php83-fpm_arm64:
   stage: level_3
   before_script:
@@ -1125,9 +834,6 @@ php83-fpm_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1142,11 +848,8 @@ php83-supervisor:
   script: 'cd php83-supervisor && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [php83-supervisor_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 php83-supervisor_arm64:
   stage: level_3
   before_script:
@@ -1160,9 +863,6 @@ php83-supervisor_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1177,11 +877,8 @@ php84-cron:
   script: 'cd php84-cron && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [php84-cron_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 php84-cron_arm64:
   stage: level_3
   before_script:
@@ -1195,9 +892,6 @@ php84-cron_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1212,11 +906,8 @@ php84-dev:
   script: 'cd php84-dev && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [php84-dev_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 php84-dev_arm64:
   stage: level_3
   before_script:
@@ -1230,9 +921,6 @@ php84-dev_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1247,11 +935,8 @@ php84-fpm:
   script: 'cd php84-fpm && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [php84-fpm_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 php84-fpm_arm64:
   stage: level_3
   before_script:
@@ -1265,9 +950,6 @@ php84-fpm_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1282,11 +964,8 @@ php84-supervisor:
   script: 'cd php84-supervisor && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [php84-supervisor_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 php84-supervisor_arm64:
   stage: level_3
   before_script:
@@ -1300,9 +979,122 @@ php84-supervisor_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
+    - if: $MANUAL == "true"
       when: manual
       allow_failure: false
+    - when: on_success
+php85-cron:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php85-cron && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [php85-cron_arm64]
+  rules:
+    - when: on_success
+  tags: [nfq_ip]
+php85-cron_arm64:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php85-cron && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["php85-cli"]
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
+php85-dev:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php85-dev && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [php85-dev_arm64]
+  rules:
+    - when: on_success
+  tags: [nfq_ip]
+php85-dev_arm64:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php85-dev && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["php85-cli"]
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
+php85-fpm:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php85-fpm && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [php85-fpm_arm64]
+  rules:
+    - when: on_success
+  tags: [nfq_ip]
+php85-fpm_arm64:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php85-fpm && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["php85-cli"]
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - when: on_success
+php85-supervisor:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php85-supervisor && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [php85-supervisor_arm64]
+  rules:
+    - when: on_success
+  tags: [nfq_ip]
+php85-supervisor_arm64:
+  stage: level_3
+  before_script:
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd php85-supervisor && make all-arm64 && make clean'
+  tags: [arm]
+  needs: ["php85-cli"]
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1314,9 +1106,6 @@ phpmyadmin:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1328,9 +1117,6 @@ qpdf:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1342,9 +1128,6 @@ ruby2:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1356,9 +1139,6 @@ sonar-scanner-cli7:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1373,11 +1153,8 @@ thrift0110:
   script: 'cd thrift0110 && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [thrift0110_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 thrift0110_arm64:
   stage: level_3
   before_script:
@@ -1391,9 +1168,6 @@ thrift0110_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1405,9 +1179,6 @@ thrift093:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1419,9 +1190,6 @@ wkhtmltopdf126:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1436,11 +1204,8 @@ wkhtmltopdf126-broken:
   script: 'cd wkhtmltopdf126-broken && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [wkhtmltopdf126-broken_arm64]
   rules:
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - when: on_success
-  tags: [docker]
+  tags: [nfq_ip]
 wkhtmltopdf126-broken_arm64:
   stage: level_3
   before_script:
@@ -1454,9 +1219,6 @@ wkhtmltopdf126-broken_arm64:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
-    - if: $BUILD_MODE == "manual"
-      when: manual
-      allow_failure: false
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
