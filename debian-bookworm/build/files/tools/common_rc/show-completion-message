@@ -66,8 +66,9 @@ if [ -z "$DEV_IP" ]; then
 fi
 
 # For legacy mode: check if DEV_URL responds to appropriate IP address
-# For modern mode: skip this check since hostname is for host machine, not container
-if [[ "$DVM_MODE" != "modern" ]]; then
+# For modern/standalone mode: skip this check since hostname is for the host
+# machine, not the container (in standalone it resolves to 127.0.0.1 = container)
+if [[ "$DVM_MODE" != "modern" && -z "$STANDALONE" ]]; then
 	if ! ping -qc 1 "$DEV_URL" 2>&1 | grep -q "($DEV_IP)"; then
 		# Show error message if DEV_URL is set but not resolvable,
 		# otherwise it is intended behavior, so no error
@@ -83,7 +84,20 @@ echo
 # ============================================================================
 # Display connection info based on DVM mode
 # ============================================================================
-if [[ "$DVM_MODE" == "modern" ]]; then
+if [ -n "$STANDALONE" ]; then
+	# Standalone Mode (no DVM — local Docker with shared standalone Traefik)
+	echo -e "\e[1;32m=== Standalone Mode (Traefik + SSL) ===\e[0m"
+	echo
+	echo -e "\e[1mWeb Access (from host machine):\e[0m"
+	echo -e "  \e[1;36mhttps://$DEV_URL/\e[0m"
+	echo
+	echo -e "\e[1mSSH Access (from host machine):\e[0m"
+	echo -e "  \e[1mssh -p ${SSH_PORT:-2222} project@localhost\e[0m"
+	echo
+	echo -e "\e[33mTraefik Dashboard:\e[0m"
+	echo -e "  http://localhost:8080/"
+	echo
+elif [[ "$DVM_MODE" == "modern" ]]; then
 	# Modern Mode (Traefik + SSL)
 	echo -e "\e[1;32m=== Modern Mode (Traefik + SSL) ===\e[0m"
 	echo
