@@ -32,8 +32,9 @@ npm install -g uglify-js
 # uglifycss
 npm install -g uglifycss
 
-# typescript
-npm install -g typescript
+# typescript (pinned: 7.x is ESM-only and its extensionless bin/tsc cannot
+# be loaded by node 16 — ERR_UNKNOWN_FILE_EXTENSION)
+npm install -g typescript@6
 
 # typescript linter
 npm install -g tslint
