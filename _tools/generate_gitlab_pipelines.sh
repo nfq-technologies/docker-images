@@ -39,8 +39,8 @@ function ci_yml() {
 		echo "${image}:
   stage: $level
   before_script:
-    # this ip has to go to host
-    - echo "\$nfqhub_ip_os docker.nfq.lt" >> /etc/hosts
+    # IP override removed - using DNS now
+    # - echo \$nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u \$dockerhub_user -p \$dockerhub_token
     - docker login -u \$nfqhub_user -p \$nfqhub_token https://docker.nfq.lt
   script: 'cd $image && make all-amd64 && make push-manifest && make publish && make clean'
@@ -50,8 +50,8 @@ function ci_yml() {
 ${image}_arm64:
   stage: $level
   before_script:
-    # this ip has to go to host
-    - echo "\$nfqhub_ip_aws docker.nfq.lt" >> /etc/hosts
+    # IP override removed - using DNS now
+    # - echo \$nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u \$dockerhub_user -p \$dockerhub_token
     - docker login -u \$nfqhub_user -p \$nfqhub_token https://docker.nfq.lt
   script: 'cd $image && make all-arm64 && make clean'
