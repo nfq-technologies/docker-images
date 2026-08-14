@@ -1,0 +1,15 @@
+#!/bin/bash
+set -e
+
+BROKEN="$(docker run --rm $1 find /etc/rc.d -type l ! -exec test -e {} \; -print)"
+
+
+if [ "x$BROKEN" != "x" ]; then
+    echo "ERROR: /etc/rc.d contains broken links."
+	echo "$BROKEN"
+    exit 1
+fi
+
+exit 0
+
+~        
