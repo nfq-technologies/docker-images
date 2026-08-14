@@ -225,6 +225,7 @@ digraph image_relations {
     "qpdf" [fillcolor="#ccffcc"];
     "ruby2" [fillcolor="#ccffcc"];
     "sonar-scanner-cli7" [fillcolor="#ccffcc"];
+    "sonar-scanner-cli8" [fillcolor="#ccffcc"];
     "thrift0110" [fillcolor="#ccffcc"];
     "thrift093" [fillcolor="#ccffcc"];
     "wkhtmltopdf126-broken" [fillcolor="#ccffcc"];
@@ -297,7 +298,7 @@ digraph image_relations {
   "debian-bookworm" -> "nodeserver21";
   "debian-bookworm" -> "nodeserver22";
   "debian-bookworm" -> "nodeserver24";
-  "opentripplanner/opentripplanner" -> "opentripplanner";
+  "opentripplanner/opentripplanner:2.8.1" -> "opentripplanner";
   "toolbox-bookworm" -> "packager";
   "toolbox-bookworm" -> "pdftk";
   "debian-bookworm" -> "phantomjs19";
@@ -349,6 +350,7 @@ digraph image_relations {
   "debian-bookworm" -> "redis70";
   "toolbox-bookworm" -> "ruby2";
   "toolbox-bookworm" -> "sonar-scanner-cli7";
+  "toolbox-bookworm" -> "sonar-scanner-cli8";
   "toolbox-bookworm" -> "thrift0110";
   "toolbox-bookworm" -> "thrift093";
   "debian-bookworm" -> "toolbox-bookworm";
@@ -366,6 +368,6 @@ digraph image_relations {
   "mysql:5.7-debian" [fillcolor=white style="filled,rounded,dashed"];
   "mysql:8.0" [fillcolor=white style="filled,rounded,dashed"];
   "mysql:8.4" [fillcolor=white style="filled,rounded,dashed"];
-  "opentripplanner/opentripplanner" [fillcolor=white style="filled,rounded,dashed"];
+  "opentripplanner/opentripplanner:2.8.1" [fillcolor=white style="filled,rounded,dashed"];
   "postgres:12" [fillcolor=white style="filled,rounded,dashed"];
 }

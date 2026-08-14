@@ -1,8 +1,8 @@
 debian-bookworm:
   stage: level_1
   before_script:
-    # IP override removed - using DNS now
-    # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd debian-bookworm && make all-amd64 && make push-manifest && make publish && make clean'
@@ -13,8 +13,8 @@ debian-bookworm:
 debian-bookworm_arm64:
   stage: level_1
   before_script:
-    # IP override removed - using DNS now
-    # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd debian-bookworm && make all-arm64 && make clean'
@@ -30,8 +30,8 @@ debian-bookworm_arm64:
 debian-bullseye:
   stage: level_1
   before_script:
-    # IP override removed - using DNS now
-    # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd debian-bullseye && make all-amd64 && make push-manifest && make publish && make clean'
@@ -42,8 +42,8 @@ debian-bullseye:
 debian-bullseye_arm64:
   stage: level_1
   before_script:
-    # IP override removed - using DNS now
-    # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd debian-bullseye && make all-arm64 && make clean'
@@ -59,8 +59,8 @@ debian-bullseye_arm64:
 debian-trixie:
   stage: level_1
   before_script:
-    # IP override removed - using DNS now
-    # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd debian-trixie && make all-amd64 && make push-manifest && make publish && make clean'
@@ -71,8 +71,8 @@ debian-trixie:
 debian-trixie_arm64:
   stage: level_1
   before_script:
-    # IP override removed - using DNS now
-    # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd debian-trixie && make all-arm64 && make clean'
@@ -88,8 +88,8 @@ debian-trixie_arm64:
 dib:
   stage: level_1
   before_script:
-    # IP override removed - using DNS now
-    # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd dib && make all-amd64 && make push-manifest && make publish && make clean'
@@ -100,8 +100,8 @@ dib:
 dib_arm64:
   stage: level_1
   before_script:
-    # IP override removed - using DNS now
-    # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd dib && make all-arm64 && make clean'
@@ -117,8 +117,8 @@ dib_arm64:
 lib-smartclient100:
   stage: level_1
   before_script:
-    # IP override removed - using DNS now
-    # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd lib-smartclient100 && make all-amd64 && make push-manifest && make publish && make clean'
@@ -129,8 +129,8 @@ lib-smartclient100:
 lib-smartclient100_arm64:
   stage: level_1
   before_script:
-    # IP override removed - using DNS now
-    # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd lib-smartclient100 && make all-arm64 && make clean'
@@ -190,8 +190,8 @@ lib-smartclient130:
 mariadb10:
   stage: level_1
   before_script:
-    # IP override removed - using DNS now
-    # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd mariadb10 && make all-amd64 && make push-manifest && make publish && make clean'
@@ -202,8 +202,8 @@ mariadb10:
 mariadb10_arm64:
   stage: level_1
   before_script:
-    # IP override removed - using DNS now
-    # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd mariadb10 && make all-arm64 && make clean'
@@ -230,8 +230,8 @@ mysql57:
 mysql80:
   stage: level_1
   before_script:
-    # IP override removed - using DNS now
-    # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd mysql80 && make all-amd64 && make push-manifest && make publish && make clean'
@@ -242,8 +242,8 @@ mysql80:
 mysql80_arm64:
   stage: level_1
   before_script:
-    # IP override removed - using DNS now
-    # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd mysql80 && make all-arm64 && make clean'
@@ -259,8 +259,8 @@ mysql80_arm64:
 mysql84:
   stage: level_1
   before_script:
-    # IP override removed - using DNS now
-    # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd mysql84 && make all-amd64 && make push-manifest && make publish && make clean'
@@ -271,8 +271,8 @@ mysql84:
 mysql84_arm64:
   stage: level_1
   before_script:
-    # IP override removed - using DNS now
-    # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd mysql84 && make all-arm64 && make clean'
@@ -288,8 +288,8 @@ mysql84_arm64:
 opentripplanner:
   stage: level_1
   before_script:
-    # IP override removed - using DNS now
-    # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
+    # this ip has to go to host
+    - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd opentripplanner && make all-amd64 && make push-manifest && make publish && make clean'
@@ -300,8 +300,8 @@ opentripplanner:
 opentripplanner_arm64:
   stage: level_1
   before_script:
-    # IP override removed - using DNS now
-    # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
+    # this ip has to go to host
+    - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd opentripplanner && make all-arm64 && make clean'
