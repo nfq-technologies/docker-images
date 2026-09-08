@@ -8,6 +8,17 @@ arch_aws="$([ "`uname -m`" = "aarch64" ] && echo "aarch64" || echo "x86_64")"
 
 echo force-unsafe-io > /etc/dpkg/dpkg.cfg.d/02apt-speedup
 
+# Debian 11 LTS ended 2026-08-31 and Debian removed the bullseye-security pool
+# from deb.debian.org while the bullseye-security index still lists those files,
+# so apt gets 404s. Serve bullseye-security from snapshot.debian.org, frozen at
+# the final LTS publish, until bullseye-security shows up on archive.debian.org.
+# The snapshot's Release file is past its Valid-Until, hence the apt.conf override.
+sed -i 's|http://deb.debian.org/debian-security|http://snapshot.debian.org/archive/debian-security/20260901T000000Z|' /etc/apt/sources.list
+cat > /etc/apt/apt.conf.d/99snapshot <<'EOF'
+Acquire::Check-Valid-Until "false";
+Acquire::Retries "3";
+EOF
+
 apt update
 
 # Install Docker CE CLI from official Docker repo (API 1.44+)
