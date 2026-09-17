@@ -204,6 +204,7 @@ digraph image_relations {
     "aws-tools" [fillcolor="#ccffcc"];
     "chromedriver" [fillcolor="#ccffcc"];
     "chromium" [fillcolor="#ccffcc"];
+    "claude" [fillcolor="#ccffcc"];
     "cloud-tools" [fillcolor="#ccffcc"];
     "db-tools" [fillcolor="#ccffcc"];
     "dev" [fillcolor="#ccffcc"];
@@ -240,6 +241,7 @@ digraph image_relations {
   "toolbox-bookworm" -> "aws-tools";
   "debian-bookworm" -> "chromedriver";
   "toolbox-bookworm" -> "chromium";
+  "debian-trixie" -> "claude";
   "toolbox-bookworm" -> "cloud-tools";
   "node20" -> "cypress12";
   "node16" -> "cypress9";
