@@ -74,6 +74,10 @@ docker compose exec claude claude
   wrapper in the claude container that runs the same path inside
   `<service>` via `ssh project@<service>` in the same working directory. This
   is why the project must be mounted at the same path in both containers.
+  The login uses the `project` user's repo-wide default password; the image
+  ships an `SSH_ASKPASS` helper that answers it, because the `*-dev` images
+  (unlike the toolbox images) do not permit empty passwords and neither side
+  has key material.
 - Everything else on the compose network is reachable normally
   (`curl web`, `mysql -h mysql`, etc.).
 - The container has no Docker socket, no Docker CLI, no host paths other than
@@ -92,6 +96,8 @@ Follows the repo convention: `Dockerfile`, `build/setup_docker.sh`,
 FROM nfqlt/debian-trixie
 
 ENV CLAUDE_CONFIG_DIR=/home/project/.claude
+ENV SSH_ASKPASS=/usr/local/bin/ssh-askpass-project \
+    SSH_ASKPASS_REQUIRE=force
 CMD exec /entrypoint.sh
 
 ADD build /build
@@ -150,6 +156,18 @@ bookworm interoperate fine because the only link is SSH.
   root needs `CAP_SETUID`/`CAP_SETGID`, hence `cap_add` in the compose snippet.
   `no-new-privileges` does not block a root process voluntarily dropping.
 
+- `usr/local/bin/ssh-askpass-project`
+  ```sh
+  #!/bin/sh
+  echo project
+  ```
+  OpenSSH's `SSH_ASKPASS` hook. With `SSH_ASKPASS_REQUIRE=force` the client
+  calls it for the password prompt even on a TTY (the remote-tool wrappers use
+  `ssh -t`). `project` is the password every nfqlt image gives the `project`
+  user, so this adds no secret the images did not already carry. The `claude`
+  wrapper preserves the environment across the uid drop, so it applies to
+  Claude's own tool calls as well as to `docker compose exec`.
+
 - `etc/claude-code/managed-settings.json`
   ```json
   { "env": { "DISABLE_AUTOUPDATER": "1" } }
@@ -175,13 +193,16 @@ Each script receives the image reference as `$1` and uses `docker run --rm $1`.
 4. `no_docker_cli` — `command -v docker` fails.
 5. `stopping_in_2000_ms` — start the container detached, `docker stop`, assert
    it took under 2 s (mirrors `toolbox-bookworm/test/stopping_in_2000_ms`).
+6. `ssh_askpass_configured` — `SSH_ASKPASS` and `SSH_ASKPASS_REQUIRE` are set,
+   the helper is executable and prints exactly `project`, and the value
+   survives the `claude` wrapper's uid drop (checked with `CLAUDE_BIN=/usr/bin/printenv`).
 
 ### Manual end-to-end check on dvm (not part of `make test`)
 
 Compose file in the scratchpad with `claude` and a `dev: nfqlt/php85-dev`
 service sharing a bind-mounted directory and `NFQ_REMOTE_TOOL_DEV=/usr/bin/php`.
 `docker compose exec claude php -v` must print the PHP version from the dev
-container. `docker compose exec claude claude --version` must print the Claude
+container, as root and as `project`, with and without a TTY (`exec -T`). `docker compose exec claude claude --version` must print the Claude
 Code version. Login itself is not automated; it is verified once by hand.
 
 ## Other repo changes
@@ -218,3 +239,9 @@ anonymous pulls from that registry work from dvm. amd64 is built by CI.
 - Runtime user: `project` (uid 1000) via wrapper, root only for rc.d.
 - Where team defaults go: managed settings only disable auto-update; anything
   project-specific lives in the project repo.
+- SSH auth to dev services: the first end-to-end run showed `ssh project@dev`
+  stopping at a password prompt. Chosen: answer it with `SSH_ASKPASS` inside
+  the claude image. Rejected: deleting the `project` password in the `*-dev`
+  images as the toolbox images do (dev containers often publish port 22 to
+  the host) and key provisioning through a new base-image rc script (level-1
+  rebuild, larger change for the same result).
