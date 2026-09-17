@@ -139,7 +139,7 @@ bookworm interoperate fine because the only link is SSH.
 - `usr/local/bin/claude`
   ```bash
   #!/bin/bash
-  BIN=/home/project/.local/bin/claude
+  BIN="${CLAUDE_BIN:-/home/project/.local/bin/claude}"   # override exists for tests
   if [ "$(id -u)" = "0" ]; then
       exec setpriv --reuid=project --regid=project --init-groups \
            env HOME=/home/project USER=project "$BIN" "$@"
