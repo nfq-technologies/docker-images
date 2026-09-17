@@ -21,7 +21,7 @@ Spec: `docs/superpowers/specs/2026-09-17-claude-image-design.md`
 - Compose contract for users: `cap_drop: [ALL]`, `cap_add: [SETUID, SETGID]`, `security_opt: [no-new-privileges:true]`. Every test that runs `claude` as root must pass under exactly those flags.
 - Image directory layout must match the repo convention: `Dockerfile`, `build/setup_docker.sh`, `build/files/`, `Makefile -> ../_tools/makefiles/base-image-Makefile`, `test/`, `README.md`.
 - Test scripts live in `test/`, are executable, take the image reference as `$1`, and use `docker run --rm $1 ...`. `make test-arm64` runs them via `run-parts -v -a <image> test`.
-- Commit messages follow the repo style (`feat:`, `fix:`, `docs:`, `chore:`) and end with `Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>`.
+- Commit messages use Conventional Commits (`type(scope): summary`), subject line only, imperative, at most 50 characters, no body and no trailers of any kind.
 
 ## Build and test environment
 
@@ -278,9 +278,7 @@ Expected: every line ends with `OK`, exit code 0.
 
 ```bash
 git add claude/Dockerfile claude/Makefile claude/build claude/test/claude_available claude/test/config_present
-git commit -m "feat: add nfqlt/claude image with Claude Code for project-scoped use
-
-Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
+git commit -m "feat(claude): add nfqlt/claude image"
 ```
 
 ---
@@ -309,10 +307,11 @@ IMG="$1"
 
 echo -n "Checking NFQ_REMOTE_TOOL_DEV generates SSH wrappers ... "
 docker run --rm -e NFQ_REMOTE_TOOL_DEV="/usr/bin/php /usr/local/bin/composer" "$IMG" bash -c '
+	set -e
 	run-parts /etc/rc.d >/dev/null
 	test -x /usr/bin/php
 	test -x /usr/local/bin/composer
-	grep -q "project@dev" /usr/bin/php
+	grep -q "host=\"dev\"" /usr/bin/php
 	grep -q "remote_path=\"/usr/local/bin/composer\"" /usr/local/bin/composer
 ' && echo OK
 ```
@@ -407,9 +406,7 @@ Expected: `make test-arm64` prints each script name via `run-parts -v`, all `OK`
 
 ```bash
 git add claude/build/files/entrypoint.sh claude/test
-git commit -m "feat(claude): signal-aware entrypoint and remote-tool, lifecycle tests
-
-Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
+git commit -m "feat(claude): signal-aware entrypoint and tests"
 ```
 
 ---
@@ -604,9 +601,7 @@ Expected: the only difference is the `image:` line (`nfqlt/claude` vs the dvm re
 
 ```bash
 git add claude/README.md
-git commit -m "docs(claude): usage, first login, remote tools, and limits
-
-Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
+git commit -m "docs(claude): add image README"
 ```
 
 ---
@@ -644,9 +639,7 @@ Expected: exit code 0 (the validator confirms the committed generated files matc
 
 ```bash
 git add _tools/gitlab _docs/media
-git commit -m "chore: register claude image in CI pipeline and relations graph
-
-Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
+git commit -m "chore(claude): register image in ci and graph"
 ```
 
 ---

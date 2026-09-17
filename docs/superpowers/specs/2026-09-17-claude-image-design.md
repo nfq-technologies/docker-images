@@ -171,7 +171,7 @@ Each script receives the image reference as `$1` and uses `docker run --rm $1`.
    with `jq`.
 3. `remote_tools_mapped` — with `-e NFQ_REMOTE_TOOL_DEV=/usr/bin/php`, running
    `run-parts /etc/rc.d` produces an executable `/usr/bin/php` containing
-   `project@dev`.
+   `host="dev"`.
 4. `no_docker_cli` — `command -v docker` fails.
 5. `stopping_in_2000_ms` — start the container detached, `docker stop`, assert
    it took under 2 s (mirrors `toolbox-bookworm/test/stopping_in_2000_ms`).
