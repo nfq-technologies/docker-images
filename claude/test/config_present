@@ -21,9 +21,10 @@ else
 	exit 1
 fi
 
-echo -n "Checking managed settings disable the auto-updater ... "
-VAL="$(docker run --rm "$IMG" jq -r '.env.DISABLE_AUTOUPDATER' /etc/claude-code/managed-settings.json)"
-if [ "$VAL" = "1" ]; then
+echo -n "Checking managed settings contain only DISABLE_AUTOUPDATER ... "
+VAL="$(docker run --rm "$IMG" jq -cS . /etc/claude-code/managed-settings.json)"
+EXPECTED='{"env":{"DISABLE_AUTOUPDATER":"1"}}'
+if [ "$VAL" = "$EXPECTED" ]; then
 	echo OK
 else
 	echo "FAILED (got '$VAL')"

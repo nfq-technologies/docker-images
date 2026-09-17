@@ -2,13 +2,15 @@
 set -e
 
 IMG="$1"
-CAPS="--cap-drop ALL --cap-add SETUID --cap-add SETGID --security-opt no-new-privileges"
+CAPS="--cap-drop ALL --cap-add SETUID --cap-add SETGID --security-opt no-new-privileges:true"
 
 echo -n "Checking 'claude --version' as root via wrapper under documented caps ... "
-docker run --rm $CAPS "$IMG" claude --version >/dev/null && echo OK
+docker run --rm $CAPS "$IMG" claude --version >/dev/null
+echo OK
 
 echo -n "Checking 'claude --version' directly as project ... "
-docker run --rm -u project "$IMG" claude --version >/dev/null && echo OK
+docker run --rm -u project "$IMG" claude --version >/dev/null
+echo OK
 
 echo -n "Checking wrapper drops root to uid 1000 ... "
 UID_SEEN="$(docker run --rm $CAPS -e CLAUDE_BIN=/usr/bin/id "$IMG" claude -u)"

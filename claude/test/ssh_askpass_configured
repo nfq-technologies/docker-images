@@ -10,8 +10,25 @@ docker run --rm "$IMG" bash -c '
 	test "$SSH_ASKPASS_REQUIRE" = force
 	test -x "$SSH_ASKPASS"
 	test "$("$SSH_ASKPASS")" = project
-' && echo OK
+'
+echo OK
+
+CAPS="--cap-drop ALL --cap-add SETUID --cap-add SETGID --security-opt no-new-privileges:true"
+
+echo -n "Checking the wrapper keeps SSH_ASKPASS_REQUIRE for the dropped user ... "
+SEEN="$(docker run --rm $CAPS -e CLAUDE_BIN=/usr/bin/printenv "$IMG" claude SSH_ASKPASS_REQUIRE)"
+if [ "$SEEN" = "force" ]; then
+	echo OK
+else
+	echo "FAILED (got '$SEEN')"
+	exit 1
+fi
 
 echo -n "Checking the wrapper keeps SSH_ASKPASS for the dropped user ... "
-docker run --rm --cap-drop ALL --cap-add SETUID --cap-add SETGID --security-opt no-new-privileges \
-	-e CLAUDE_BIN=/usr/bin/printenv "$IMG" claude SSH_ASKPASS_REQUIRE | grep -qx force && echo OK
+SEEN="$(docker run --rm $CAPS -e CLAUDE_BIN=/usr/bin/printenv "$IMG" claude SSH_ASKPASS)"
+if [ "$SEEN" = "/usr/local/bin/ssh-askpass-project" ]; then
+	echo OK
+else
+	echo "FAILED (got '$SEEN')"
+	exit 1
+fi
