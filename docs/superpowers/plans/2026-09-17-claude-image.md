@@ -64,48 +64,17 @@ multipass exec dvm -- bash -lc 'cd /home/ubuntu/git/docker-images/claude && bash
 | `claude/test/common_rc_scripts_linked` | No broken symlinks in `/etc/rc.d` (copied from toolbox) |
 | `claude/test/stopping_in_2000_ms` | Container stops quickly (copied from toolbox) |
 | `claude/README.md` | Colleague-facing docs |
-| `debian-bookworm/build/files/usr/local/bin/.claude/settings.local.json` | Delete (stray) |
-| `debian-trixie/build/files/usr/local/bin/.claude/settings.local.json` | Delete (stray) |
 | `_tools/gitlab/level_2/config.yml`, `_docs/media/image_relations.*` | Regenerated |
 
 ---
 
 ### Task 1: Remove the stray Claude settings file from the base images
 
-**Files:**
-- Delete: `debian-bookworm/build/files/usr/local/bin/.claude/settings.local.json`
-- Delete: `debian-trixie/build/files/usr/local/bin/.claude/settings.local.json`
-
-**Interfaces:** none.
-
-- [ ] **Step 1: Confirm the files exist and nothing references them**
-
-Run:
-```bash
-ls debian-*/build/files/usr/local/bin/.claude/settings.local.json
-grep -rn "usr/local/bin/.claude" --exclude-dir=.git . || echo "no references"
-```
-Expected: two files listed (bookworm, trixie), then `no references`.
-
-- [ ] **Step 2: Delete them**
-
-```bash
-git rm -q debian-bookworm/build/files/usr/local/bin/.claude/settings.local.json \
-          debian-trixie/build/files/usr/local/bin/.claude/settings.local.json
-```
-
-- [ ] **Step 3: Verify the directories are gone (git does not track empty dirs)**
-
-Run: `ls debian-bookworm/build/files/usr/local/bin/ debian-trixie/build/files/usr/local/bin/`
-Expected: `xdebug-config  xdebug-run` in each, no `.claude`. If a `.claude` directory remains on disk, `rmdir` it.
-
-- [ ] **Step 4: Commit**
-
-```bash
-git commit -m "fix: remove accidental Claude Code settings file from base images
-
-Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>"
-```
+**Resolved without a code change.** The two `settings.local.json` files were
+untracked local artifacts hidden by the developer's global gitignore
+(`**/.claude/settings.local.json`), not tracked files, so CI-built images never
+contained them. They were deleted from the local checkout with `rm`. Nothing to
+commit.
 
 ---
 

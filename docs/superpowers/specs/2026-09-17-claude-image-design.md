@@ -192,10 +192,12 @@ Code version. Login itself is not automated; it is verified once by hand.
   host access).
 - Run `_tools/regenerate-all.sh` so `_tools/gitlab/level_2/config.yml` gains
   the `claude` jobs and `_docs/media/image_relations.*` include the node.
-- Remove `build/files/usr/local/bin/.claude/settings.local.json` from
-  `debian-bookworm` and `debian-trixie`. It is a Claude Code permissions file
-  committed by accident and currently baked into every image. `debian-bullseye`
-  does not have it.
+- The `build/files/usr/local/bin/.claude/settings.local.json` files seen in
+  `debian-bookworm` and `debian-trixie` turned out to be untracked local
+  artifacts (created by a Claude Code session run inside those directories and
+  hidden by the developer's global gitignore rule `**/.claude/settings.local.json`).
+  They were never in git or in CI-built images. They were deleted from the
+  local checkout; no repository change was needed.
 
 ## Build and verification loop
 
