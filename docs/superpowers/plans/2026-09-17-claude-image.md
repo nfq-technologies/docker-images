@@ -63,8 +63,8 @@ multipass exec dvm -- bash -lc 'cd /home/ubuntu/git/docker-images/claude && bash
 | `claude/test/config_present` | `CLAUDE_CONFIG_DIR`, config dir ownership, managed settings valid JSON |
 | `claude/test/remote_tools_mapped` | `NFQ_REMOTE_TOOL_DEV` produces SSH wrappers |
 | `claude/test/no_docker_cli` | Negative: no `docker` binary |
-| `claude/test/common_rc_scripts_linked` | No broken symlinks in `/etc/rc.d` (copied from toolbox) |
-| `claude/test/stopping_in_2000_ms` | Container stops quickly (copied from toolbox) |
+| `claude/test/common_rc_scripts_linked` | No broken symlinks in `/etc/rc.d` (symlinked from `_tools/common_tests/`) |
+| `claude/test/stopping_in_2000_ms` | Container stops quickly (symlinked from `_tools/common_tests/`) |
 | `claude/test/ssh_askpass_configured` | `SSH_ASKPASS` env, helper output, and survival through the uid-dropping wrapper |
 | `claude/README.md` | Colleague-facing docs |
 | `_tools/gitlab/level_2/config.yml`, `_docs/media/image_relations.*` | Regenerated |
@@ -341,31 +341,18 @@ fi
 echo OK
 ```
 
-`claude/test/common_rc_scripts_linked` (identical to `toolbox-bookworm/test/common_rc_scripts_linked`):
+`claude/test/common_rc_scripts_linked` and `claude/test/stopping_in_2000_ms`
+are symlinks to the shared tests, the same way every sibling image links them:
 ```bash
-#!/bin/bash
-set -e
-
-BROKEN="$(docker run --rm $1 find /etc/rc.d -type l ! -exec test -e {} \; -print)"
-
-
-if [ "x$BROKEN" != "x" ]; then
-    echo "ERROR: /etc/rc.d contains broken links."
-	echo "$BROKEN"
-    exit 1
-fi
-
-exit 0
+ln -sfn ../../_tools/common_tests/common_rc_scripts_linked claude/test/common_rc_scripts_linked
+ln -sfn ../../_tools/common_tests/stopping_in_x_ms claude/test/stopping_in_2000_ms
 ```
-
-`claude/test/stopping_in_2000_ms`: copy verbatim from the toolbox image so the two stay identical:
-```bash
-cp toolbox-bookworm/test/stopping_in_2000_ms claude/test/stopping_in_2000_ms
-```
-(That script starts the container detached, waits 1 s because there is no `starting_in_*` test in this directory, runs `docker stop`, and fails if it took over 2000 ms, or 6000 ms for `:arm64` images.)
+(The stopping test starts the container detached, waits 1 s because there is
+no `starting_in_*` test in this directory, runs `docker stop`, and fails if it
+took over 2000 ms, or 6000 ms for `:arm64` images.)
 
 ```bash
-chmod +x claude/test/remote_tools_mapped claude/test/no_docker_cli claude/test/common_rc_scripts_linked claude/test/stopping_in_2000_ms
+chmod +x claude/test/remote_tools_mapped claude/test/no_docker_cli
 ```
 
 - [ ] **Step 2: Sync and run the tests to see which fail**
