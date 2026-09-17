@@ -16,7 +16,7 @@ install -d -o project -g project -m 700 /home/project/.claude
 
 # Copy runtime files
 cp -frv /build/files/* /
-chmod +x /entrypoint.sh /usr/local/bin/claude
+chmod +x /entrypoint.sh /usr/local/bin/claude /usr/local/bin/ssh-askpass-project
 
 # Fail the build if the install is broken
 sudo -u project -H /home/project/.local/bin/claude --version

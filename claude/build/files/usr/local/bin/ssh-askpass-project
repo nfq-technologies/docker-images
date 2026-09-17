@@ -1,0 +1,4 @@
+#!/bin/sh
+# OpenSSH SSH_ASKPASS hook. Answers the password prompt for the `project` user
+# in sibling nfqlt containers so NFQ_REMOTE_TOOL_* wrappers work unattended.
+echo project

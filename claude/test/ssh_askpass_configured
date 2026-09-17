@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+
+IMG="$1"
+
+echo -n "Checking SSH_ASKPASS answers the project password ... "
+docker run --rm "$IMG" bash -c '
+	set -e
+	test "$SSH_ASKPASS" = /usr/local/bin/ssh-askpass-project
+	test "$SSH_ASKPASS_REQUIRE" = force
+	test -x "$SSH_ASKPASS"
+	test "$("$SSH_ASKPASS")" = project
+' && echo OK
+
+echo -n "Checking the wrapper keeps SSH_ASKPASS for the dropped user ... "
+docker run --rm --cap-drop ALL --cap-add SETUID --cap-add SETGID --security-opt no-new-privileges \
+	-e CLAUDE_BIN=/usr/bin/printenv "$IMG" claude SSH_ASKPASS_REQUIRE | grep -qx force && echo OK
