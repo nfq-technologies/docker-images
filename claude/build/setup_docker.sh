@@ -8,7 +8,7 @@ CLAUDE_VERSION=stable
 
 # Install Claude Code natively for the project user (no Node.js needed).
 # Binary lands in /home/project/.local/bin/claude.
-sudo -u project -H bash -c "curl -fsSL https://claude.ai/install.sh | bash -s '$CLAUDE_VERSION'"
+sudo -u project -H bash -c "set -o pipefail; curl -fsSL https://claude.ai/install.sh | bash -s '$CLAUDE_VERSION'"
 
 # Config dir: a named volume mounted here inherits this ownership on first use,
 # which is what lets the project user write the OAuth token.
