@@ -42,6 +42,10 @@ volumes:
   claude-home:
 ```
 
+The `cap_drop`, `cap_add`, and `security_opt` lines are required, not
+decorative: the base image gives `project` passwordless sudo, and these are
+what keep root out of reach inside the container.
+
 ### Usage
 ```
 docker compose up -d claude
@@ -50,7 +54,8 @@ docker compose exec claude claude
 
 `docker compose exec` runs as root, but the `claude` command drops to the
 `project` user before starting Claude Code, so files it creates in the project
-are owned by uid 1000 like everything the dev container writes.
+are owned by uid 1000 like everything the dev container writes. `CLAUDE_BIN`
+overrides which binary the wrapper drops privileges to run, for testing.
 
 ### First login
 On the first run Claude Code shows a login URL. Open it in your browser on the
@@ -84,9 +89,6 @@ them up and they are shared with the team through git.
   need explicitly via environment variables.
 - Log in to SSH hosts that expect a key or another password: `ssh` inside
   this container always answers `project`. To let Claude push over SSH,
-  mount a key and set `SSH_ASKPASS_REQUIRE=never` on the service.
-
-### Configuration
-Available binary paths for export:
-
-- /usr/local/bin/claude
+  mount a key and set `SSH_ASKPASS_REQUIRE=never` on the service — but that
+  also disables the askpass answer for the `NFQ_REMOTE_TOOL_*` wrappers, so
+  pick one or the other.
