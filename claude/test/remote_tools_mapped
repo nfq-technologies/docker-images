@@ -1,0 +1,13 @@
+#!/bin/bash
+set -e
+
+IMG="$1"
+
+echo -n "Checking NFQ_REMOTE_TOOL_DEV generates SSH wrappers ... "
+docker run --rm -e NFQ_REMOTE_TOOL_DEV="/usr/bin/php /usr/local/bin/composer" "$IMG" bash -c '
+	run-parts /etc/rc.d >/dev/null
+	test -x /usr/bin/php
+	test -x /usr/local/bin/composer
+	grep -q "project@dev" /usr/bin/php
+	grep -q "remote_path=\"/usr/local/bin/composer\"" /usr/local/bin/composer
+' && echo OK

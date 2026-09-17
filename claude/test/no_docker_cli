@@ -1,0 +1,18 @@
+#!/bin/bash
+set -e
+
+IMG="$1"
+
+echo -n "Checking docker CLI is absent ... "
+if docker run --rm "$IMG" bash -c 'command -v docker' >/dev/null 2>&1; then
+	echo "FAILED (docker binary found)"
+	exit 1
+fi
+echo OK
+
+echo -n "Checking node is absent (native Claude install) ... "
+if docker run --rm "$IMG" bash -c 'command -v node' >/dev/null 2>&1; then
+	echo "FAILED (node binary found)"
+	exit 1
+fi
+echo OK
