@@ -1,0 +1,31 @@
+#!/bin/bash
+set -e
+
+IMG="$1"
+
+echo -n "Checking CLAUDE_CONFIG_DIR ... "
+VAL="$(docker run --rm "$IMG" printenv CLAUDE_CONFIG_DIR)"
+if [ "$VAL" = "/home/project/.claude" ]; then
+	echo OK
+else
+	echo "FAILED (got '$VAL')"
+	exit 1
+fi
+
+echo -n "Checking /home/project/.claude is owned by project with mode 700 ... "
+STAT="$(docker run --rm "$IMG" stat -c '%U:%G %a' /home/project/.claude)"
+if [ "$STAT" = "project:project 700" ]; then
+	echo OK
+else
+	echo "FAILED (got '$STAT')"
+	exit 1
+fi
+
+echo -n "Checking managed settings disable the auto-updater ... "
+VAL="$(docker run --rm "$IMG" jq -r '.env.DISABLE_AUTOUPDATER' /etc/claude-code/managed-settings.json)"
+if [ "$VAL" = "1" ]; then
+	echo OK
+else
+	echo "FAILED (got '$VAL')"
+	exit 1
+fi

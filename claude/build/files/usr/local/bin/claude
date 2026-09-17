@@ -1,0 +1,12 @@
+#!/bin/bash
+# Run Claude Code as the project user even when invoked as root
+# (e.g. `docker compose exec claude claude`). Needs CAP_SETUID/CAP_SETGID.
+
+BIN="${CLAUDE_BIN:-/home/project/.local/bin/claude}"
+
+if [ "$(id -u)" = "0" ]; then
+	exec setpriv --reuid=project --regid=project --init-groups \
+		env HOME=/home/project USER=project LOGNAME=project "$BIN" "$@"
+fi
+
+exec "$BIN" "$@"

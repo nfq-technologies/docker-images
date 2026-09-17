@@ -1,0 +1,29 @@
+#!/bin/bash
+set -e
+
+IMG="$1"
+CAPS="--cap-drop ALL --cap-add SETUID --cap-add SETGID --security-opt no-new-privileges"
+
+echo -n "Checking 'claude --version' as root via wrapper under documented caps ... "
+docker run --rm $CAPS "$IMG" claude --version >/dev/null && echo OK
+
+echo -n "Checking 'claude --version' directly as project ... "
+docker run --rm -u project "$IMG" claude --version >/dev/null && echo OK
+
+echo -n "Checking wrapper drops root to uid 1000 ... "
+UID_SEEN="$(docker run --rm $CAPS -e CLAUDE_BIN=/usr/bin/id "$IMG" claude -u)"
+if [ "$UID_SEEN" = "1000" ]; then
+	echo OK
+else
+	echo "FAILED (got '$UID_SEEN')"
+	exit 1
+fi
+
+echo -n "Checking wrapper sets HOME for the dropped user ... "
+HOME_SEEN="$(docker run --rm $CAPS -e CLAUDE_BIN=/usr/bin/printenv "$IMG" claude HOME)"
+if [ "$HOME_SEEN" = "/home/project" ]; then
+	echo OK
+else
+	echo "FAILED (got '$HOME_SEEN')"
+	exit 1
+fi
