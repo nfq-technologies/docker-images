@@ -1,4 +1,10 @@
-include: _tools/gitlab/*/*.yml
+include:
+  - local: '_tools/gitlab/*/*.yml'
+  - project: nfq-technologies/internal-devops/modules/gitlab
+    ref: 2.5.1
+    file:
+      - /templates/security/renovatebot/index.yml
+      - /templates/security/trivy/index.yml
 
 # Pipeline runs automatically only on:
 # - Merge requests (MR pipelines)
@@ -12,15 +18,30 @@ workflow:
     - if: '$CI_PIPELINE_SOURCE == "web"'
 
 variables:
+  RENOVATE_CHECK_DRY_RUN: "true"
+  ENABLE_RENOVATE: "true"
+  ENABLE_TRIVY: "true"
+  TRIVY_COMMENT_MUTE: "true"
+  MANUAL:
+    value: "true"
   BUILD_MODE:
-    value: "automatic"
+    value: "manual"
     description: "Build mode: 'automatic' runs all jobs, 'manual' requires manual trigger for each job"
     options:
       - "automatic"
       - "manual"
 
+# Trivy scan target(s) - single repo-wide entry to start
+.config:
+  trivy:
+    - APP_NAME: "docker-images"
+      APP_PATH: "."
+      SCANNER: "fs repo"
+
 stages:
   - validate
+  - dependencies
+  - security
   - level_1
   - level_2
   - level_3
@@ -61,3 +82,14 @@ validate:generated-configs:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
     - if: '$CI_COMMIT_BRANCH == "master"'
   tags: [docker]
+
+
+#decouple from stage ordering
+renovate-check:
+  needs: []
+
+trivy-fs:
+  needs: []
+
+trivy-repo:
+  needs: []
