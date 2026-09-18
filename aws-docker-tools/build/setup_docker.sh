@@ -13,7 +13,7 @@ curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/doc
 chmod a+r /etc/apt/keyrings/docker.asc
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian bookworm stable" > /etc/apt/sources.list.d/docker.list
 apt-get update
-apt-get install --no-install-recommends -y docker-ce-cli docker-compose-plugin
+apt-get install --no-install-recommends -y docker-ce-cli docker-compose-plugin docker-buildx-plugin
 
 # Add compatibility symlink for old docker-compose calls
 ln -s /usr/libexec/docker/cli-plugins/docker-compose /usr/local/bin/docker-compose
