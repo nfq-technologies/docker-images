@@ -77,6 +77,18 @@ needs to be configured on the dev side.
 Other services are reachable normally on the compose network
 (`curl web`, `mysql -h mysql -u root`, ...).
 
+### On dvm
+dvm mounts the VM's `/etc/ssh` into the dev container, and the Ubuntu cloud
+image ships a drop-in there that turns password login off. Blank it out on the
+dev service so the sample above works unchanged:
+```
+  dev:
+    volumes:
+      - '/dev/null:/etc/ssh/sshd_config.d/60-cloudimg-settings.conf:ro'
+```
+This restores the dev image's default (password login for `project`), so the
+dev container's SSH port routed through traefik accepts that password too.
+
 ### Project-level Claude settings
 Put `CLAUDE.md`, `.claude/settings.json`, hooks, and MCP configuration in the
 project repository as usual. They are inside the bind mount, so Claude picks
