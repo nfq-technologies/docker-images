@@ -6,9 +6,19 @@ aws-docker-tools:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd aws-docker-tools && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [aws-docker-tools_arm64]
+  needs: [{job: aws-docker-tools_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "aws-docker-tools/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "aws-tools/**/*"
+        - "toolbox-bookworm/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 aws-docker-tools_arm64:
   stage: level_4
@@ -19,14 +29,22 @@ aws-docker-tools_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd aws-docker-tools && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["aws-tools"]
+  needs: [{job: "aws-tools", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "aws-docker-tools/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "aws-tools/**/*"
+        - "toolbox-bookworm/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 cypress12:
   stage: level_4
   before_script:
@@ -35,9 +53,19 @@ cypress12:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd cypress12 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [cypress12_arm64]
+  needs: [{job: cypress12_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "cypress12/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "node20/**/*"
+        - "toolbox-bookworm/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 cypress12_arm64:
   stage: level_4
@@ -48,44 +76,76 @@ cypress12_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd cypress12 && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["node20"]
+  needs: [{job: "node20", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "cypress12/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "node20/**/*"
+        - "toolbox-bookworm/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 cypress9:
   stage: level_4
   script: 'cd cypress9 && make all && make publish && make clean'
-  needs: ["node16"]
+  needs: [{job: "node16", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "cypress9/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "node16/**/*"
+        - "toolbox-bookworm/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 php74-vscode:
   stage: level_4
   script: 'cd php74-vscode && make all && make publish && make clean'
-  needs: ["php74-dev"]
+  needs: [{job: "php74-dev", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "php74-vscode/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "php74-dev/**/*"
+        - "php74-cli/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
 xhgui:
   stage: level_4
   script: 'cd xhgui && make all && make publish && make clean'
-  needs: ["php81-dev"]
+  needs: [{job: "php81-dev", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "xhgui/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "php81-dev/**/*"
+        - "php81-cli/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never

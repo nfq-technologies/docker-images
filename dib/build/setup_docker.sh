@@ -8,7 +8,7 @@ arch_aws="$([ "`uname -m`" = "aarch64" ] && echo "aarch64" || echo "x86_64")"
 
 echo force-unsafe-io > /etc/dpkg/dpkg.cfg.d/02apt-speedup
 
-# Debian 11 LTS ended 2026-08-31 and Debian removed the bullseye-security pool
+# Debian 11 LTS ended 2026-08-31 and Debian removed the bullseye-security pool 
 # from deb.debian.org while the bullseye-security index still lists those files,
 # so apt gets 404s. Serve bullseye-security from snapshot.debian.org, frozen at
 # the final LTS publish, until bullseye-security shows up on archive.debian.org.

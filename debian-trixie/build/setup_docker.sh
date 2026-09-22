@@ -10,7 +10,7 @@ echo force-unsafe-io > /etc/dpkg/dpkg.cfg.d/02apt-speedup
 apt-get update
 apt-get upgrade -y
 
-# install standard tools and various helper tools
+# install standard tools and various helper tools 
 apt-get install -y --no-install-recommends \
 	bash-completion \
 	bzip2 dnsutils \

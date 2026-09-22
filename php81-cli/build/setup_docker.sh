@@ -80,7 +80,7 @@ apt-get install -y --no-install-recommends \
 #	php8.1-gmagick \ provides more stable api but conflicts with imagick
 #	php8.1-yac \ conflicts with php8.1-apcu
 #	php8.1-swoole \ Missing files
-#	php8.1-gearman \ Missing files
+#	php8.1-gearman \ Missing files 
 
 # disable all php modules
 ls -1 /etc/php/8.1/mods-available/ | sed 's/\.ini$//g' | xargs -I{} -n1 phpdismod -v ALL -s ALL {} 2>/dev/null

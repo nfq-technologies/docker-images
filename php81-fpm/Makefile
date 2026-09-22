@@ -1,6 +1,6 @@
 # PILOT: buildx-based Makefile for this image only.
 # Every other image still uses ../_tools/makefiles/base-image-Makefile.
-#
+# 
 # Converted so far: build (single native platform, via buildx, no sed hack).
 # Not converted yet, deliberately: test/push/publish/manifest/clean — those
 # still need to be reasoned through one at a time.
