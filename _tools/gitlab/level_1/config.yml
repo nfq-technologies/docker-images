@@ -6,9 +6,16 @@ debian-bookworm:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd debian-bookworm && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [debian-bookworm_arm64]
+  needs: [{job: debian-bookworm_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "debian-bookworm/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 debian-bookworm_arm64:
   stage: level_1
@@ -26,7 +33,12 @@ debian-bookworm_arm64:
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "debian-bookworm/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never
 debian-bullseye:
   stage: level_1
   before_script:
@@ -35,9 +47,16 @@ debian-bullseye:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd debian-bullseye && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [debian-bullseye_arm64]
+  needs: [{job: debian-bullseye_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "debian-bullseye/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 debian-bullseye_arm64:
   stage: level_1
@@ -55,7 +74,12 @@ debian-bullseye_arm64:
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "debian-bullseye/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never
 debian-trixie:
   stage: level_1
   before_script:
@@ -64,9 +88,16 @@ debian-trixie:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd debian-trixie && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [debian-trixie_arm64]
+  needs: [{job: debian-trixie_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "debian-trixie/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 debian-trixie_arm64:
   stage: level_1
@@ -84,7 +115,12 @@ debian-trixie_arm64:
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "debian-trixie/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never
 dib:
   stage: level_1
   before_script:
@@ -93,9 +129,16 @@ dib:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd dib && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [dib_arm64]
+  needs: [{job: dib_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "dib/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 dib_arm64:
   stage: level_1
@@ -113,7 +156,12 @@ dib_arm64:
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "dib/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never
 lib-smartclient100:
   stage: level_1
   before_script:
@@ -122,9 +170,16 @@ lib-smartclient100:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd lib-smartclient100 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [lib-smartclient100_arm64]
+  needs: [{job: lib-smartclient100_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "lib-smartclient100/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 lib-smartclient100_arm64:
   stage: level_1
@@ -142,7 +197,12 @@ lib-smartclient100_arm64:
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "lib-smartclient100/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never
 lib-smartclient111:
   stage: level_1
   script: 'cd lib-smartclient111 && make all && make publish && make clean'
@@ -153,7 +213,12 @@ lib-smartclient111:
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "lib-smartclient111/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never
 lib-smartclient120:
   stage: level_1
   script: 'cd lib-smartclient120 && make all && make publish && make clean'
@@ -164,7 +229,12 @@ lib-smartclient120:
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "lib-smartclient120/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never
 lib-smartclient121:
   stage: level_1
   script: 'cd lib-smartclient121 && make all && make publish && make clean'
@@ -175,7 +245,12 @@ lib-smartclient121:
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "lib-smartclient121/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never
 lib-smartclient130:
   stage: level_1
   script: 'cd lib-smartclient130 && make all && make publish && make clean'
@@ -186,7 +261,12 @@ lib-smartclient130:
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "lib-smartclient130/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never
 mariadb10:
   stage: level_1
   before_script:
@@ -195,9 +275,16 @@ mariadb10:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd mariadb10 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [mariadb10_arm64]
+  needs: [{job: mariadb10_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "mariadb10/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 mariadb10_arm64:
   stage: level_1
@@ -215,7 +302,12 @@ mariadb10_arm64:
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "mariadb10/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never
 mysql57:
   stage: level_1
   script: 'cd mysql57 && make all && make publish && make clean'
@@ -226,7 +318,12 @@ mysql57:
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "mysql57/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never
 mysql80:
   stage: level_1
   before_script:
@@ -235,9 +332,16 @@ mysql80:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd mysql80 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [mysql80_arm64]
+  needs: [{job: mysql80_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "mysql80/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 mysql80_arm64:
   stage: level_1
@@ -255,7 +359,12 @@ mysql80_arm64:
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "mysql80/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never
 mysql84:
   stage: level_1
   before_script:
@@ -264,9 +373,16 @@ mysql84:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd mysql84 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [mysql84_arm64]
+  needs: [{job: mysql84_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "mysql84/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 mysql84_arm64:
   stage: level_1
@@ -284,7 +400,12 @@ mysql84_arm64:
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "mysql84/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never
 opentripplanner:
   stage: level_1
   before_script:
@@ -293,9 +414,16 @@ opentripplanner:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd opentripplanner && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [opentripplanner_arm64]
+  needs: [{job: opentripplanner_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "opentripplanner/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 opentripplanner_arm64:
   stage: level_1
@@ -313,7 +441,12 @@ opentripplanner_arm64:
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "opentripplanner/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never
 postgres12:
   stage: level_1
   script: 'cd postgres12 && make all && make publish && make clean'
@@ -324,4 +457,9 @@ postgres12:
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "postgres12/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+      when: on_success
+    - when: never

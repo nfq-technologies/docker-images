@@ -6,9 +6,17 @@ apache24:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd apache24 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [apache24_arm64]
+  needs: [{job: apache24_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "apache24/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 apache24_arm64:
   stage: level_2
@@ -19,14 +27,20 @@ apache24_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd apache24 && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "apache24/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 aws-mock:
   stage: level_2
   before_script:
@@ -35,9 +49,17 @@ aws-mock:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd aws-mock && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [aws-mock_arm64]
+  needs: [{job: aws-mock_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "aws-mock/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 aws-mock_arm64:
   stage: level_2
@@ -48,14 +70,20 @@ aws-mock_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd aws-mock && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "aws-mock/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 chromedriver:
   stage: level_2
   before_script:
@@ -64,9 +92,17 @@ chromedriver:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd chromedriver && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [chromedriver_arm64]
+  needs: [{job: chromedriver_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "chromedriver/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 chromedriver_arm64:
   stage: level_2
@@ -77,14 +113,20 @@ chromedriver_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd chromedriver && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "chromedriver/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 claude:
   stage: level_2
   before_script:
@@ -93,9 +135,20 @@ claude:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd claude && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [claude_arm64]
+  needs: [{job: claude_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - changes:
+        - "claude/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-trixie/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 claude_arm64:
   stage: level_2
@@ -106,14 +159,20 @@ claude_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd claude && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-trixie"]
+  needs: [{job: "debian-trixie", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "claude/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-trixie/**/*"
+      when: on_success
+    - when: never
 dev:
   stage: level_2
   before_script:
@@ -122,9 +181,17 @@ dev:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd dev && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [dev_arm64]
+  needs: [{job: dev_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "dev/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 dev_arm64:
   stage: level_2
@@ -135,14 +202,20 @@ dev_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd dev && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "dev/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 docker18ce:
   stage: level_2
   before_script:
@@ -151,9 +224,17 @@ docker18ce:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd docker18ce && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [docker18ce_arm64]
+  needs: [{job: docker18ce_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "docker18ce/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 docker18ce_arm64:
   stage: level_2
@@ -164,36 +245,54 @@ docker18ce_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd docker18ce && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bullseye"]
+  needs: [{job: "debian-bullseye", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "docker18ce/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
 elasticsearch68:
   stage: level_2
   script: 'cd elasticsearch68 && make all && make publish && make clean'
-  needs: ["debian-bullseye"]
+  needs: [{job: "debian-bullseye", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "elasticsearch68/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
 elasticsearch710:
   stage: level_2
   script: 'cd elasticsearch710 && make all && make publish && make clean'
-  needs: ["debian-bullseye"]
+  needs: [{job: "debian-bullseye", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "elasticsearch710/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
 elasticsearch716:
   stage: level_2
   before_script:
@@ -202,9 +301,17 @@ elasticsearch716:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch716 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [elasticsearch716_arm64]
+  needs: [{job: elasticsearch716_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "elasticsearch716/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 elasticsearch716_arm64:
   stage: level_2
@@ -215,58 +322,88 @@ elasticsearch716_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch716 && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bullseye"]
+  needs: [{job: "debian-bullseye", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "elasticsearch716/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
 elasticsearch72:
   stage: level_2
   script: 'cd elasticsearch72 && make all && make publish && make clean'
-  needs: ["debian-bullseye"]
+  needs: [{job: "debian-bullseye", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "elasticsearch72/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
 elasticsearch75:
   stage: level_2
   script: 'cd elasticsearch75 && make all && make publish && make clean'
-  needs: ["debian-bullseye"]
+  needs: [{job: "debian-bullseye", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "elasticsearch75/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
 elasticsearch77:
   stage: level_2
   script: 'cd elasticsearch77 && make all && make publish && make clean'
-  needs: ["debian-bullseye"]
+  needs: [{job: "debian-bullseye", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "elasticsearch77/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
 elasticsearch79:
   stage: level_2
   script: 'cd elasticsearch79 && make all && make publish && make clean'
-  needs: ["debian-bullseye"]
+  needs: [{job: "debian-bullseye", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "elasticsearch79/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
 elasticsearch84:
   stage: level_2
   before_script:
@@ -275,9 +412,17 @@ elasticsearch84:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch84 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [elasticsearch84_arm64]
+  needs: [{job: elasticsearch84_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "elasticsearch84/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 elasticsearch84_arm64:
   stage: level_2
@@ -288,25 +433,37 @@ elasticsearch84_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd elasticsearch84 && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "elasticsearch84/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 mailhog:
   stage: level_2
   script: 'cd mailhog && make all && make publish && make clean'
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "mailhog/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 memcached16:
   stage: level_2
   before_script:
@@ -315,9 +472,17 @@ memcached16:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd memcached16 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [memcached16_arm64]
+  needs: [{job: memcached16_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "memcached16/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 memcached16_arm64:
   stage: level_2
@@ -328,47 +493,71 @@ memcached16_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd memcached16 && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "memcached16/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 mongo50:
   stage: level_2
   script: 'cd mongo50 && make all && make publish && make clean'
-  needs: ["debian-bullseye"]
+  needs: [{job: "debian-bullseye", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "mongo50/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
 mysql57-data:
   stage: level_2
   script: 'cd mysql57-data && make all && make publish && make clean'
-  needs: ["mysql57"]
+  needs: [{job: "mysql57", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "mysql57-data/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "mysql57/**/*"
+      when: on_success
+    - when: never
 mysql80-data:
   stage: level_2
   script: 'cd mysql80-data && make all && make publish && make clean'
-  needs: ["mysql80"]
+  needs: [{job: "mysql80", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "mysql80-data/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "mysql80/**/*"
+      when: on_success
+    - when: never
 nginx118:
   stage: level_2
   before_script:
@@ -377,9 +566,17 @@ nginx118:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd nginx118 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [nginx118_arm64]
+  needs: [{job: nginx118_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "nginx118/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 nginx118_arm64:
   stage: level_2
@@ -390,14 +587,20 @@ nginx118_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd nginx118 && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bullseye"]
+  needs: [{job: "debian-bullseye", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "nginx118/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
 nginx122:
   stage: level_2
   before_script:
@@ -406,9 +609,17 @@ nginx122:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd nginx122 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [nginx122_arm64]
+  needs: [{job: nginx122_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "nginx122/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 nginx122_arm64:
   stage: level_2
@@ -419,14 +630,20 @@ nginx122_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd nginx122 && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "nginx122/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 nodeserver16:
   stage: level_2
   before_script:
@@ -435,9 +652,17 @@ nodeserver16:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd nodeserver16 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [nodeserver16_arm64]
+  needs: [{job: nodeserver16_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "nodeserver16/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 nodeserver16_arm64:
   stage: level_2
@@ -448,14 +673,20 @@ nodeserver16_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd nodeserver16 && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "nodeserver16/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 nodeserver18:
   stage: level_2
   before_script:
@@ -464,9 +695,17 @@ nodeserver18:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd nodeserver18 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [nodeserver18_arm64]
+  needs: [{job: nodeserver18_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "nodeserver18/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 nodeserver18_arm64:
   stage: level_2
@@ -477,14 +716,20 @@ nodeserver18_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd nodeserver18 && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "nodeserver18/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 nodeserver20:
   stage: level_2
   before_script:
@@ -493,9 +738,17 @@ nodeserver20:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd nodeserver20 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [nodeserver20_arm64]
+  needs: [{job: nodeserver20_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "nodeserver20/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 nodeserver20_arm64:
   stage: level_2
@@ -506,14 +759,20 @@ nodeserver20_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd nodeserver20 && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "nodeserver20/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 nodeserver21:
   stage: level_2
   before_script:
@@ -522,9 +781,17 @@ nodeserver21:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd nodeserver21 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [nodeserver21_arm64]
+  needs: [{job: nodeserver21_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "nodeserver21/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 nodeserver21_arm64:
   stage: level_2
@@ -535,14 +802,20 @@ nodeserver21_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd nodeserver21 && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "nodeserver21/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 nodeserver22:
   stage: level_2
   before_script:
@@ -551,9 +824,17 @@ nodeserver22:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd nodeserver22 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [nodeserver22_arm64]
+  needs: [{job: nodeserver22_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "nodeserver22/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 nodeserver22_arm64:
   stage: level_2
@@ -564,14 +845,20 @@ nodeserver22_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd nodeserver22 && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "nodeserver22/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 nodeserver24:
   stage: level_2
   before_script:
@@ -580,9 +867,17 @@ nodeserver24:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd nodeserver24 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [nodeserver24_arm64]
+  needs: [{job: nodeserver24_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "nodeserver24/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 nodeserver24_arm64:
   stage: level_2
@@ -593,58 +888,88 @@ nodeserver24_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd nodeserver24 && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "nodeserver24/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 phantomjs19:
   stage: level_2
   script: 'cd phantomjs19 && make all && make publish && make clean'
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "phantomjs19/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 phantomjs21:
   stage: level_2
   script: 'cd phantomjs21 && make all && make publish && make clean'
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "phantomjs21/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 php74-cli:
   stage: level_2
   script: 'cd php74-cli && make all && make publish && make clean'
-  needs: ["debian-bullseye"]
+  needs: [{job: "debian-bullseye", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "php74-cli/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
 php80-cli:
   stage: level_2
   script: 'cd php80-cli && make all && make publish && make clean'
-  needs: ["debian-bullseye"]
+  needs: [{job: "debian-bullseye", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "php80-cli/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
 php81-cli:
   stage: level_2
   before_script:
@@ -653,9 +978,17 @@ php81-cli:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php81-cli && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php81-cli_arm64]
+  needs: [{job: php81-cli_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "php81-cli/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 php81-cli_arm64:
   stage: level_2
@@ -666,14 +999,20 @@ php81-cli_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php81-cli && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bullseye"]
+  needs: [{job: "debian-bullseye", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "php81-cli/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
 php82-cli:
   stage: level_2
   before_script:
@@ -682,9 +1021,17 @@ php82-cli:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php82-cli && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php82-cli_arm64]
+  needs: [{job: php82-cli_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "php82-cli/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 php82-cli_arm64:
   stage: level_2
@@ -695,14 +1042,20 @@ php82-cli_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php82-cli && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "php82-cli/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 php83-cli:
   stage: level_2
   before_script:
@@ -711,9 +1064,17 @@ php83-cli:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php83-cli && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php83-cli_arm64]
+  needs: [{job: php83-cli_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "php83-cli/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 php83-cli_arm64:
   stage: level_2
@@ -724,14 +1085,20 @@ php83-cli_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php83-cli && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "php83-cli/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 php84-cli:
   stage: level_2
   before_script:
@@ -740,9 +1107,17 @@ php84-cli:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php84-cli && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php84-cli_arm64]
+  needs: [{job: php84-cli_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "php84-cli/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 php84-cli_arm64:
   stage: level_2
@@ -753,14 +1128,20 @@ php84-cli_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php84-cli && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "php84-cli/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 php85-cli:
   stage: level_2
   before_script:
@@ -769,9 +1150,17 @@ php85-cli:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php85-cli && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [php85-cli_arm64]
+  needs: [{job: php85-cli_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "php85-cli/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-trixie/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 php85-cli_arm64:
   stage: level_2
@@ -782,14 +1171,20 @@ php85-cli_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd php85-cli && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-trixie"]
+  needs: [{job: "debian-trixie", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "php85-cli/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-trixie/**/*"
+      when: on_success
+    - when: never
 rabbitmq310:
   stage: level_2
   before_script:
@@ -798,9 +1193,17 @@ rabbitmq310:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd rabbitmq310 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [rabbitmq310_arm64]
+  needs: [{job: rabbitmq310_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "rabbitmq310/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 rabbitmq310_arm64:
   stage: level_2
@@ -811,14 +1214,20 @@ rabbitmq310_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd rabbitmq310 && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "rabbitmq310/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 rabbitmq312:
   stage: level_2
   before_script:
@@ -827,9 +1236,17 @@ rabbitmq312:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd rabbitmq312 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [rabbitmq312_arm64]
+  needs: [{job: rabbitmq312_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "rabbitmq312/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 rabbitmq312_arm64:
   stage: level_2
@@ -840,14 +1257,20 @@ rabbitmq312_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd rabbitmq312 && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "rabbitmq312/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 rabbitmq38:
   stage: level_2
   before_script:
@@ -856,9 +1279,17 @@ rabbitmq38:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd rabbitmq38 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [rabbitmq38_arm64]
+  needs: [{job: rabbitmq38_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "rabbitmq38/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 rabbitmq38_arm64:
   stage: level_2
@@ -869,14 +1300,20 @@ rabbitmq38_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd rabbitmq38 && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bullseye"]
+  needs: [{job: "debian-bullseye", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "rabbitmq38/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
 rabbitmq4:
   stage: level_2
   before_script:
@@ -885,9 +1322,17 @@ rabbitmq4:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd rabbitmq4 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [rabbitmq4_arm64]
+  needs: [{job: rabbitmq4_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "rabbitmq4/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 rabbitmq4_arm64:
   stage: level_2
@@ -898,14 +1343,20 @@ rabbitmq4_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd rabbitmq4 && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "rabbitmq4/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 redis60:
   stage: level_2
   before_script:
@@ -914,9 +1365,17 @@ redis60:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd redis60 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [redis60_arm64]
+  needs: [{job: redis60_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "redis60/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 redis60_arm64:
   stage: level_2
@@ -927,14 +1386,20 @@ redis60_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd redis60 && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bullseye"]
+  needs: [{job: "debian-bullseye", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "redis60/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
 redis70:
   stage: level_2
   before_script:
@@ -943,9 +1408,17 @@ redis70:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd redis70 && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [redis70_arm64]
+  needs: [{job: redis70_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "redis70/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 redis70_arm64:
   stage: level_2
@@ -956,14 +1429,20 @@ redis70_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd redis70 && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "redis70/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 toolbox-bookworm:
   stage: level_2
   before_script:
@@ -972,9 +1451,17 @@ toolbox-bookworm:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd toolbox-bookworm && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [toolbox-bookworm_arm64]
+  needs: [{job: toolbox-bookworm_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "toolbox-bookworm/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 toolbox-bookworm_arm64:
   stage: level_2
@@ -985,14 +1472,20 @@ toolbox-bookworm_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd toolbox-bookworm && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bookworm"]
+  needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "toolbox-bookworm/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 toolbox-bullseye:
   stage: level_2
   before_script:
@@ -1001,9 +1494,17 @@ toolbox-bullseye:
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd toolbox-bullseye && make all-amd64 && make push-manifest && make publish && make clean'
-  needs: [toolbox-bullseye_arm64]
+  needs: [{job: toolbox-bullseye_arm64, optional: true}]
   rules:
-    - when: on_success
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "toolbox-bullseye/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
   tags: [nfq_ip]
 toolbox-bullseye_arm64:
   stage: level_2
@@ -1014,11 +1515,17 @@ toolbox-bullseye_arm64:
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
   script: 'cd toolbox-bullseye && make all-arm64 && make clean'
   tags: [arm]
-  needs: ["debian-bullseye"]
+  needs: [{job: "debian-bullseye", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
-    - when: on_success
+    - changes:
+        - "toolbox-bullseye/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bullseye/**/*"
+      when: on_success
+    - when: never
