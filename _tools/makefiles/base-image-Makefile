@@ -44,10 +44,30 @@ all:
 	make build && make test && make push
 
 all-arm64:
+	$(MAKE) rotate-previous-arm64
 	make build-arm64 && make test-arm64 && make push-arm64
 
 all-amd64:
+	$(MAKE) rotate-previous-amd64
 	make build-amd64 && make test-amd64 && make push-amd64
+
+rotate-previous-amd64:
+	@echo
+	@echo "# Tagging current amd64 as :1-amd64 before build..."
+	@echo
+	docker pull $(IMAGE_FULL_NAME):amd64 2>/dev/null && \
+		docker tag $(IMAGE_FULL_NAME):amd64 $(IMAGE_FULL_NAME):1-amd64 && \
+		docker push $(IMAGE_FULL_NAME):1-amd64 || \
+		echo "# (no existing amd64 image yet, first build)"
+
+rotate-previous-arm64:
+	@echo
+	@echo "# Tagging current arm64 as :1-arm64 before build..."
+	@echo
+	docker pull $(IMAGE_FULL_NAME):arm64 2>/dev/null && \
+		docker tag $(IMAGE_FULL_NAME):arm64 $(IMAGE_FULL_NAME):1-arm64 && \
+		docker push $(IMAGE_FULL_NAME):1-arm64 || \
+		echo "# (no existing arm64 image yet, first build)"
 
 build:
 	$(MAKE) -j2 build-arm64 build-amd64 # Parallel build amd/arm images
@@ -97,6 +117,12 @@ push:
 	$(MAKE) push-manifest
 
 push-manifest:
+	@echo
+	@echo "# Creating manifest for :1 (previous build)..."
+	@echo
+	docker manifest rm $(IMAGE_FULL_NAME):1 2>/dev/null || true
+	docker manifest create $(IMAGE_FULL_NAME):1 $(IMAGE_FULL_NAME):1-amd64 $(IMAGE_FULL_NAME):1-arm64 2>/dev/null || echo "# (nothing to build :1 from yet)"
+	docker manifest push $(IMAGE_FULL_NAME):1 2>/dev/null || true
 	@echo
 	@echo "# Creating manifest of multiarch image..."
 	@echo
@@ -177,6 +203,14 @@ publish:
 
 publish-manifest:
 	@echo
+	@echo "# Publishing manifest for :1 (previous build)..."
+	@echo
+	docker manifest rm $(IMAGE_PUBLISH_NAME):1 2>/dev/null || true
+	docker manifest create $(IMAGE_PUBLISH_NAME):1 \
+		$(IMAGE_PUBLISH_NAME):1-amd64 $(IMAGE_PUBLISH_NAME):1-arm64 2>/dev/null || \
+		echo "# (nothing to build :1 from yet)"
+	docker manifest push $(IMAGE_PUBLISH_NAME):1 2>/dev/null || true
+	@echo
 	@echo "# Publishing manifest of multiarch image..."
 	@echo
 	docker manifest rm $(IMAGE_PUBLISH_NAME):latest || true
@@ -194,4 +228,5 @@ publish-arch:
 	docker tag ${IMAGE_FULL_NAME}:$(ARCH) ${IMAGE_PUBLISH_NAME}:$(ARCH)
 	docker push ${IMAGE_PUBLISH_NAME}:$(ARCH)
 	docker rmi ${IMAGE_PUBLISH_NAME}:$(ARCH)
+	docker pull ${IMAGE_FULL_NAME}:1-$(ARCH) 2>/dev/null && docker tag ${IMAGE_FULL_NAME}:1-$(ARCH) ${IMAGE_PUBLISH_NAME}:1-$(ARCH) && docker push ${IMAGE_PUBLISH_NAME}:1-$(ARCH) && docker rmi ${IMAGE_PUBLISH_NAME}:1-$(ARCH) || echo "# (no :1-$(ARCH) on internal registry yet, nothing to republish)"
 

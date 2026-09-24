@@ -923,10 +923,8 @@ php81-fpm:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php81-fpm && make all ARCH=amd64 DRY_RUN=false NO_CACHE=$NO_CACHE && make push-manifest DRY_RUN=false && make publish DRY_RUN=false && make clean'
+  script: 'cd php81-fpm && make all-amd64 && make push-manifest && make publish && make clean'
   needs: [{job: php81-fpm_arm64, optional: true}]
-  variables:
-    NO_CACHE: "false"
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
@@ -946,11 +944,9 @@ php81-fpm_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php81-fpm && make all ARCH=arm64 DRY_RUN=false NO_CACHE=$NO_CACHE && make clean'
+  script: 'cd php81-fpm && make all-arm64 && make clean'
   tags: [arm]
-  needs: [{job: php81-cli, optional: true}]
-  variables:
-    NO_CACHE: "false"
+  needs: [{job: "php81-cli", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
