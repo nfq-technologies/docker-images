@@ -20,8 +20,8 @@ variables:
   RENOVATE_CHECK_DRY_RUN: "true"
   ENABLE_RENOVATE: "true"
   # Uncomment this for manual mode
-  MANUAL:
-    value: "true"
+  # MANUAL:
+  #   value: "true"
   BUILD_MODE:
     value: "manual"
     description: "Build mode: 'automatic' runs all jobs, 'manual' requires manual trigger for each job"

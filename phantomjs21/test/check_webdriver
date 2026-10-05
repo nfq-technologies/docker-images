@@ -65,7 +65,7 @@ docker run --name "$cname" -d $image &>/dev/null
 box_ip=$(get_container_ip $cname)
 
 wait_for_connection $box_ip:4444
-run_test $box_ip "http://example.org" "/html/body/div/h1[text()='Example Domain']"
+run_test $box_ip "http://example.org" "//p[contains(text(),'This domain is for use in documentation examples')]"
 
 exit 0
 
