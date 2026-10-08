@@ -7,7 +7,7 @@ IMAGE_FULL_NAME = $(IMAGE_REGISTRY)$(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
 CHILDREN = $(shell ../_tools/sorting.sh)
 
 
-COMMANDS = all build test push pull clean branch-all branch-build run run-bash
+COMMANDS = all build test push rotate-previous pull clean branch-all branch-build run run-bash publish
 SILENT_COMMANDS = help status calc-start calc-stop get-image-name
 
 .PHONY: $(COMMANDS) $(SILENT_COMMANDS)
@@ -62,7 +62,17 @@ test:
 	@echo
 
 
-push:
+rotate-previous:
+	@echo
+	@echo "# Tagging current $(IMAGE_FULL_NAME) as :1 before push..."
+	@echo
+	docker pull $(IMAGE_FULL_NAME):latest 2>/dev/null && \
+		docker tag $(IMAGE_FULL_NAME):latest $(IMAGE_FULL_NAME):1 && \
+		docker push $(IMAGE_FULL_NAME):1 || \
+		echo "# (no existing image yet, first build)"
+
+
+push: rotate-previous
 	@echo
 	@echo "# Pushing image to registry..."
 	@echo
@@ -105,6 +115,7 @@ publish:
 	docker tag ${IMAGE_FULL_NAME} $(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
 	docker push $(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
 	docker rmi $(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
+	docker pull ${IMAGE_FULL_NAME}:1 2>/dev/null && docker tag ${IMAGE_FULL_NAME}:1 $(IMAGE_TYPE)/$(IMAGE_BASE_NAME):1 && docker push $(IMAGE_TYPE)/$(IMAGE_BASE_NAME):1 && docker rmi $(IMAGE_TYPE)/$(IMAGE_BASE_NAME):1 || echo "# (no :1 on internal registry yet, nothing to republish)"
 
 status:
 	echo

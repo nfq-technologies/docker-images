@@ -7,7 +7,7 @@ IMAGE_FULL_NAME = $(IMAGE_REGISTRY)$(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
 CHILDREN = $(shell ../_tools/sorting.sh)
 IMAGE_PUBLISH_NAME=$(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
 
-COMMANDS = help all build test push pull
+COMMANDS = help all build test push rotate-previous pull clean publish
 SILENT_COMMANDS = status registry-status registry-status-full calc-start calc-stop get-image-name inheritance-status inheritance-status-full
 
 .PHONY: $(COMMANDS) $(SILENT_COMMANDS)
@@ -44,7 +44,17 @@ test:
 	@echo
 
 
-push:
+rotate-previous:
+	@echo
+	@echo "# Tagging current $(IMAGE_FULL_NAME) as :1 before push..."
+	@echo
+	docker pull $(IMAGE_FULL_NAME):latest 2>/dev/null && \
+		docker tag $(IMAGE_FULL_NAME):latest $(IMAGE_FULL_NAME):1 && \
+		docker push $(IMAGE_FULL_NAME):1 || \
+		echo "# (no existing image yet, first build)"
+
+
+push: rotate-previous
 	@echo
 	@echo "# Pushing image to registry..."
 	@echo
@@ -67,6 +77,7 @@ publish:
 	docker tag ${IMAGE_FULL_NAME} ${IMAGE_PUBLISH_NAME}
 	docker push ${IMAGE_PUBLISH_NAME}
 	docker rmi ${IMAGE_PUBLISH_NAME}
+	docker pull ${IMAGE_FULL_NAME}:1 2>/dev/null && docker tag ${IMAGE_FULL_NAME}:1 ${IMAGE_PUBLISH_NAME}:1 && docker push ${IMAGE_PUBLISH_NAME}:1 && docker rmi ${IMAGE_PUBLISH_NAME}:1 || echo "# (no :1 on internal registry yet, nothing to republish)"
 
 
 clean:
