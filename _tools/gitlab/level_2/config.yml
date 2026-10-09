@@ -515,6 +515,49 @@ mailhog:
         - "debian-bookworm/**/*"
       when: on_success
     - when: never
+mailpit:
+  stage: level_2
+  before_script:
+    # IP override removed - using DNS now
+    # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd mailpit && make all-amd64 && make push-manifest && make publish && make clean'
+  needs: [{job: mailpit_arm64, optional: true}]
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - changes:
+        - "mailpit/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
+  tags: [nfq_ip]
+mailpit_arm64:
+  stage: level_2
+  before_script:
+    # IP override removed - using DNS now
+    # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
+    - docker login -u $dockerhub_user -p $dockerhub_token
+    - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+  script: 'cd mailpit && make all-arm64 && make clean'
+  tags: [arm]
+  needs: [{job: "debian-bookworm", optional: true}]
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: on_success
+    - if: $MANUAL == "true"
+      when: manual
+      allow_failure: false
+    - changes:
+        - "mailpit/**/*"
+        - "_tools/makefiles/**/*"
+        - "_tools/helpers/**/*"
+        - "debian-bookworm/**/*"
+      when: on_success
+    - when: never
 memcached16:
   stage: level_2
   before_script:
