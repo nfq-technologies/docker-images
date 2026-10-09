@@ -34,7 +34,7 @@ mv /etc/apache2/apache2.conf /etc/apache2/apache2.conf.dist
 cp -frv /build/files/* /
 
 
-# Clean up APT when done.
+# Clean up APT when done. 
 source /usr/local/build_scripts/cleanup_apt.sh
 rm -rf /tmp/*
 

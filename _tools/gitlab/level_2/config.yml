@@ -1,15 +1,22 @@
+# TEMP PILOT
 apache24:
   stage: level_2
   before_script:
-    # IP override removed - using DNS now
-    # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd apache24 && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd apache24 && make -f Makefile.buildx build test push promote publish && make -f Makefile.buildx clean'
   needs: [{job: apache24_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "apache24/**/*"
         - "_tools/makefiles/**/*"
@@ -21,16 +28,16 @@ apache24:
 apache24_arm64:
   stage: level_2
   before_script:
-    # IP override removed - using DNS now
-    # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd apache24 && make all-arm64 && make clean'
+  script: 'cd apache24 && make -f Makefile.buildx build test push && make -f Makefile.buildx clean'
   tags: [arm]
   needs: [{job: "debian-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -41,6 +48,50 @@ apache24_arm64:
         - "debian-bookworm/**/*"
       when: on_success
     - when: never
+# --- OLD apache24 jobs ---
+# apache24:
+#   stage: level_2
+#   before_script:
+#     # IP override removed - using DNS now
+#     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
+#     - docker login -u $dockerhub_user -p $dockerhub_token
+#     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+#   script: 'cd apache24 && make all-amd64 && make push-manifest && make publish && make clean'
+#   needs: [{job: apache24_arm64, optional: true}]
+#   rules:
+#     - if: $CI_PIPELINE_SOURCE == "schedule"
+#       when: on_success
+#     - changes:
+#         - "apache24/**/*"
+#         - "_tools/makefiles/**/*"
+#         - "_tools/helpers/**/*"
+#         - "debian-bookworm/**/*"
+#       when: on_success
+#     - when: never
+#   tags: [nfq_ip]
+# apache24_arm64:
+#   stage: level_2
+#   before_script:
+#     # IP override removed - using DNS now
+#     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
+#     - docker login -u $dockerhub_user -p $dockerhub_token
+#     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
+#   script: 'cd apache24 && make all-arm64 && make clean'
+#   tags: [arm]
+#   needs: [{job: "debian-bookworm", optional: true}]
+#   rules:
+#     - if: $CI_PIPELINE_SOURCE == "schedule"
+#       when: on_success
+#     - if: $MANUAL == "true"
+#       when: manual
+#       allow_failure: false
+#     - changes:
+#         - "apache24/**/*"
+#         - "_tools/makefiles/**/*"
+#         - "_tools/helpers/**/*"
+#         - "debian-bookworm/**/*"
+#       when: on_success
+#     - when: never
 aws-mock:
   stage: level_2
   before_script:
