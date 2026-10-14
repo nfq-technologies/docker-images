@@ -52,6 +52,8 @@ function ci_yml() {
 	automation_entry="rules:
     - if: \$CI_PIPELINE_SOURCE == \"schedule\"
       when: on_success
+      variables:
+        NO_CACHE: \"true\"
     - if: \$MANUAL == \"true\"
       when: manual
       allow_failure: false
@@ -65,6 +67,8 @@ $changes_yaml
       automation_manifest="rules:
     - if: \$CI_PIPELINE_SOURCE == \"schedule\"
       when: on_success
+      variables:
+        NO_CACHE: \"true\"
     - changes:
 $changes_yaml
       when: on_success
@@ -90,8 +94,14 @@ $changes_yaml
     # - echo \$nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u \$dockerhub_user -p \$dockerhub_token
     - docker login -u \$nfqhub_user -p \$nfqhub_token https://docker.nfq.lt
-  script: 'cd $image && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd $image && make build test push promote publish && make clean'
   needs: [{job: ${image}_arm64, optional: true}]
+  # Only retry on runner problems: a retry after \`promote\` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   $automation_manifest
   tags: [nfq_ip]
 ${image}_arm64:
@@ -101,7 +111,7 @@ ${image}_arm64:
     # - echo \$nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u \$dockerhub_user -p \$dockerhub_token
     - docker login -u \$nfqhub_user -p \$nfqhub_token https://docker.nfq.lt
-  script: 'cd $image && make all-arm64 && make clean'
+  script: 'cd $image && make build test push && make clean'
   tags: [arm]
   $parent_needs
   $automation_entry
