@@ -5,11 +5,19 @@ aws-tools:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd aws-tools && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd aws-tools && make build test push promote publish && make clean'
   needs: [{job: aws-tools_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "aws-tools/**/*"
         - "_tools/makefiles/**/*"
@@ -26,12 +34,14 @@ aws-tools_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd aws-tools && make all-arm64 && make clean'
+  script: 'cd aws-tools && make build test push && make clean'
   tags: [arm]
   needs: [{job: "toolbox-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -50,6 +60,8 @@ chromium:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -68,11 +80,19 @@ cloud-tools:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd cloud-tools && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd cloud-tools && make build test push promote publish && make clean'
   needs: [{job: cloud-tools_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "cloud-tools/**/*"
         - "_tools/makefiles/**/*"
@@ -89,12 +109,14 @@ cloud-tools_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd cloud-tools && make all-arm64 && make clean'
+  script: 'cd cloud-tools && make build test push && make clean'
   tags: [arm]
   needs: [{job: "toolbox-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -113,6 +135,8 @@ db-tools:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -131,6 +155,8 @@ elasticsearch68-data:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -149,6 +175,8 @@ elasticsearch710-data:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -167,6 +195,8 @@ elasticsearch716-data:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -185,6 +215,8 @@ elasticsearch72-data:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -203,6 +235,8 @@ elasticsearch75-data:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -221,6 +255,8 @@ elasticsearch77-data:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -239,6 +275,8 @@ elasticsearch79-data:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -257,6 +295,8 @@ ffmpeg:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -275,6 +315,8 @@ fontforge:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -293,11 +335,19 @@ ghostscript:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd ghostscript && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd ghostscript && make build test push promote publish && make clean'
   needs: [{job: ghostscript_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "ghostscript/**/*"
         - "_tools/makefiles/**/*"
@@ -314,12 +364,14 @@ ghostscript_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd ghostscript && make all-arm64 && make clean'
+  script: 'cd ghostscript && make build test push && make clean'
   tags: [arm]
   needs: [{job: "toolbox-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -338,6 +390,8 @@ graphic-tools:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -356,11 +410,19 @@ node16:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node16 && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd node16 && make build test push promote publish && make clean'
   needs: [{job: node16_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "node16/**/*"
         - "_tools/makefiles/**/*"
@@ -377,12 +439,14 @@ node16_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node16 && make all-arm64 && make clean'
+  script: 'cd node16 && make build test push && make clean'
   tags: [arm]
   needs: [{job: "toolbox-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -401,11 +465,19 @@ node18:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node18 && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd node18 && make build test push promote publish && make clean'
   needs: [{job: node18_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "node18/**/*"
         - "_tools/makefiles/**/*"
@@ -422,12 +494,14 @@ node18_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node18 && make all-arm64 && make clean'
+  script: 'cd node18 && make build test push && make clean'
   tags: [arm]
   needs: [{job: "toolbox-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -446,11 +520,19 @@ node20:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node20 && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd node20 && make build test push promote publish && make clean'
   needs: [{job: node20_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "node20/**/*"
         - "_tools/makefiles/**/*"
@@ -467,12 +549,14 @@ node20_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node20 && make all-arm64 && make clean'
+  script: 'cd node20 && make build test push && make clean'
   tags: [arm]
   needs: [{job: "toolbox-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -491,11 +575,19 @@ node21:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node21 && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd node21 && make build test push promote publish && make clean'
   needs: [{job: node21_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "node21/**/*"
         - "_tools/makefiles/**/*"
@@ -512,12 +604,14 @@ node21_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node21 && make all-arm64 && make clean'
+  script: 'cd node21 && make build test push && make clean'
   tags: [arm]
   needs: [{job: "toolbox-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -536,11 +630,19 @@ node22:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node22 && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd node22 && make build test push promote publish && make clean'
   needs: [{job: node22_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "node22/**/*"
         - "_tools/makefiles/**/*"
@@ -557,12 +659,14 @@ node22_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node22 && make all-arm64 && make clean'
+  script: 'cd node22 && make build test push && make clean'
   tags: [arm]
   needs: [{job: "toolbox-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -581,11 +685,19 @@ node24:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node24 && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd node24 && make build test push promote publish && make clean'
   needs: [{job: node24_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "node24/**/*"
         - "_tools/makefiles/**/*"
@@ -602,12 +714,14 @@ node24_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd node24 && make all-arm64 && make clean'
+  script: 'cd node24 && make build test push && make clean'
   tags: [arm]
   needs: [{job: "toolbox-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -626,6 +740,8 @@ packager:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -644,11 +760,19 @@ pdftk:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd pdftk && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd pdftk && make build test push promote publish && make clean'
   needs: [{job: pdftk_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "pdftk/**/*"
         - "_tools/makefiles/**/*"
@@ -665,12 +789,14 @@ pdftk_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd pdftk && make all-arm64 && make clean'
+  script: 'cd pdftk && make build test push && make clean'
   tags: [arm]
   needs: [{job: "toolbox-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -689,6 +815,8 @@ php74-cron:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -707,6 +835,8 @@ php74-dev:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -725,6 +855,8 @@ php74-fpm:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -743,6 +875,8 @@ php74-supervisor:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -761,6 +895,8 @@ php80-cron:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -779,6 +915,8 @@ php80-dev:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -797,6 +935,8 @@ php80-fpm:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -815,6 +955,8 @@ php80-supervisor:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -833,11 +975,19 @@ php81-cron:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php81-cron && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd php81-cron && make build test push promote publish && make clean'
   needs: [{job: php81-cron_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "php81-cron/**/*"
         - "_tools/makefiles/**/*"
@@ -854,12 +1004,14 @@ php81-cron_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php81-cron && make all-arm64 && make clean'
+  script: 'cd php81-cron && make build test push && make clean'
   tags: [arm]
   needs: [{job: "php81-cli", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -878,11 +1030,19 @@ php81-dev:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php81-dev && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd php81-dev && make build test push promote publish && make clean'
   needs: [{job: php81-dev_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "php81-dev/**/*"
         - "_tools/makefiles/**/*"
@@ -899,12 +1059,14 @@ php81-dev_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php81-dev && make all-arm64 && make clean'
+  script: 'cd php81-dev && make build test push && make clean'
   tags: [arm]
   needs: [{job: "php81-cli", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -923,12 +1085,19 @@ php81-fpm:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  #script: 'cd php81-fpm && make all-amd64 && make push-manifest && make publish && make clean'
-  script: 'cd php81-fpm && make -f Makefile.buildx build test push promote publish && make -f Makefile.buildx clean'
+  script: 'cd php81-fpm && make build test push promote publish && make clean'
   needs: [{job: php81-fpm_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "php81-fpm/**/*"
         - "_tools/makefiles/**/*"
@@ -945,13 +1114,14 @@ php81-fpm_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  #script: 'cd php81-fpm && make all-arm64 && make clean'
-  script: 'cd php81-fpm && make -f Makefile.buildx build test push && make -f Makefile.buildx clean'
+  script: 'cd php81-fpm && make build test push && make clean'
   tags: [arm]
   needs: [{job: "php81-cli", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -970,11 +1140,19 @@ php81-supervisor:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php81-supervisor && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd php81-supervisor && make build test push promote publish && make clean'
   needs: [{job: php81-supervisor_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "php81-supervisor/**/*"
         - "_tools/makefiles/**/*"
@@ -991,12 +1169,14 @@ php81-supervisor_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php81-supervisor && make all-arm64 && make clean'
+  script: 'cd php81-supervisor && make build test push && make clean'
   tags: [arm]
   needs: [{job: "php81-cli", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1015,11 +1195,19 @@ php82-cron:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php82-cron && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd php82-cron && make build test push promote publish && make clean'
   needs: [{job: php82-cron_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "php82-cron/**/*"
         - "_tools/makefiles/**/*"
@@ -1036,12 +1224,14 @@ php82-cron_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php82-cron && make all-arm64 && make clean'
+  script: 'cd php82-cron && make build test push && make clean'
   tags: [arm]
   needs: [{job: "php82-cli", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1060,11 +1250,19 @@ php82-dev:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php82-dev && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd php82-dev && make build test push promote publish && make clean'
   needs: [{job: php82-dev_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "php82-dev/**/*"
         - "_tools/makefiles/**/*"
@@ -1081,12 +1279,14 @@ php82-dev_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php82-dev && make all-arm64 && make clean'
+  script: 'cd php82-dev && make build test push && make clean'
   tags: [arm]
   needs: [{job: "php82-cli", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1105,12 +1305,19 @@ php82-fpm:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  #script: 'cd php82-fpm && make all-amd64 && make push-manifest && make publish && make clean'
-  script: 'cd php82-fpm && make -f Makefile.buildx build test push promote publish && make -f Makefile.buildx clean'
+  script: 'cd php82-fpm && make build test push promote publish && make clean'
   needs: [{job: php82-fpm_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "php82-fpm/**/*"
         - "_tools/makefiles/**/*"
@@ -1127,13 +1334,14 @@ php82-fpm_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  #script: 'cd php82-fpm && make all-arm64 && make clean'
-  script: 'cd php82-fpm && make -f Makefile.buildx build test push && make -f Makefile.buildx clean'
+  script: 'cd php82-fpm && make build test push && make clean'
   tags: [arm]
   needs: [{job: "php82-cli", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1152,11 +1360,19 @@ php82-supervisor:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php82-supervisor && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd php82-supervisor && make build test push promote publish && make clean'
   needs: [{job: php82-supervisor_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "php82-supervisor/**/*"
         - "_tools/makefiles/**/*"
@@ -1173,12 +1389,14 @@ php82-supervisor_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php82-supervisor && make all-arm64 && make clean'
+  script: 'cd php82-supervisor && make build test push && make clean'
   tags: [arm]
   needs: [{job: "php82-cli", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1197,11 +1415,19 @@ php83-cron:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php83-cron && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd php83-cron && make build test push promote publish && make clean'
   needs: [{job: php83-cron_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "php83-cron/**/*"
         - "_tools/makefiles/**/*"
@@ -1218,12 +1444,14 @@ php83-cron_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php83-cron && make all-arm64 && make clean'
+  script: 'cd php83-cron && make build test push && make clean'
   tags: [arm]
   needs: [{job: "php83-cli", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1242,11 +1470,19 @@ php83-dev:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php83-dev && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd php83-dev && make build test push promote publish && make clean'
   needs: [{job: php83-dev_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "php83-dev/**/*"
         - "_tools/makefiles/**/*"
@@ -1263,12 +1499,14 @@ php83-dev_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php83-dev && make all-arm64 && make clean'
+  script: 'cd php83-dev && make build test push && make clean'
   tags: [arm]
   needs: [{job: "php83-cli", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1287,11 +1525,19 @@ php83-fpm:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php83-fpm && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd php83-fpm && make build test push promote publish && make clean'
   needs: [{job: php83-fpm_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "php83-fpm/**/*"
         - "_tools/makefiles/**/*"
@@ -1308,12 +1554,14 @@ php83-fpm_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php83-fpm && make all-arm64 && make clean'
+  script: 'cd php83-fpm && make build test push && make clean'
   tags: [arm]
   needs: [{job: "php83-cli", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1332,11 +1580,19 @@ php83-supervisor:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php83-supervisor && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd php83-supervisor && make build test push promote publish && make clean'
   needs: [{job: php83-supervisor_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "php83-supervisor/**/*"
         - "_tools/makefiles/**/*"
@@ -1353,12 +1609,14 @@ php83-supervisor_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php83-supervisor && make all-arm64 && make clean'
+  script: 'cd php83-supervisor && make build test push && make clean'
   tags: [arm]
   needs: [{job: "php83-cli", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1377,11 +1635,19 @@ php84-cron:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php84-cron && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd php84-cron && make build test push promote publish && make clean'
   needs: [{job: php84-cron_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "php84-cron/**/*"
         - "_tools/makefiles/**/*"
@@ -1398,12 +1664,14 @@ php84-cron_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php84-cron && make all-arm64 && make clean'
+  script: 'cd php84-cron && make build test push && make clean'
   tags: [arm]
   needs: [{job: "php84-cli", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1422,11 +1690,19 @@ php84-dev:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php84-dev && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd php84-dev && make build test push promote publish && make clean'
   needs: [{job: php84-dev_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "php84-dev/**/*"
         - "_tools/makefiles/**/*"
@@ -1443,12 +1719,14 @@ php84-dev_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php84-dev && make all-arm64 && make clean'
+  script: 'cd php84-dev && make build test push && make clean'
   tags: [arm]
   needs: [{job: "php84-cli", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1467,11 +1745,19 @@ php84-fpm:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php84-fpm && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd php84-fpm && make build test push promote publish && make clean'
   needs: [{job: php84-fpm_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "php84-fpm/**/*"
         - "_tools/makefiles/**/*"
@@ -1488,12 +1774,14 @@ php84-fpm_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php84-fpm && make all-arm64 && make clean'
+  script: 'cd php84-fpm && make build test push && make clean'
   tags: [arm]
   needs: [{job: "php84-cli", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1512,11 +1800,19 @@ php84-supervisor:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php84-supervisor && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd php84-supervisor && make build test push promote publish && make clean'
   needs: [{job: php84-supervisor_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "php84-supervisor/**/*"
         - "_tools/makefiles/**/*"
@@ -1533,12 +1829,14 @@ php84-supervisor_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php84-supervisor && make all-arm64 && make clean'
+  script: 'cd php84-supervisor && make build test push && make clean'
   tags: [arm]
   needs: [{job: "php84-cli", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1557,11 +1855,19 @@ php85-cron:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php85-cron && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd php85-cron && make build test push promote publish && make clean'
   needs: [{job: php85-cron_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "php85-cron/**/*"
         - "_tools/makefiles/**/*"
@@ -1578,12 +1884,14 @@ php85-cron_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php85-cron && make all-arm64 && make clean'
+  script: 'cd php85-cron && make build test push && make clean'
   tags: [arm]
   needs: [{job: "php85-cli", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1602,11 +1910,19 @@ php85-dev:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php85-dev && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd php85-dev && make build test push promote publish && make clean'
   needs: [{job: php85-dev_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "php85-dev/**/*"
         - "_tools/makefiles/**/*"
@@ -1623,12 +1939,14 @@ php85-dev_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php85-dev && make all-arm64 && make clean'
+  script: 'cd php85-dev && make build test push && make clean'
   tags: [arm]
   needs: [{job: "php85-cli", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1647,11 +1965,19 @@ php85-fpm:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php85-fpm && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd php85-fpm && make build test push promote publish && make clean'
   needs: [{job: php85-fpm_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "php85-fpm/**/*"
         - "_tools/makefiles/**/*"
@@ -1668,12 +1994,14 @@ php85-fpm_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php85-fpm && make all-arm64 && make clean'
+  script: 'cd php85-fpm && make build test push && make clean'
   tags: [arm]
   needs: [{job: "php85-cli", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1692,11 +2020,19 @@ php85-supervisor:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php85-supervisor && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd php85-supervisor && make build test push promote publish && make clean'
   needs: [{job: php85-supervisor_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "php85-supervisor/**/*"
         - "_tools/makefiles/**/*"
@@ -1713,12 +2049,14 @@ php85-supervisor_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd php85-supervisor && make all-arm64 && make clean'
+  script: 'cd php85-supervisor && make build test push && make clean'
   tags: [arm]
   needs: [{job: "php85-cli", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1737,6 +2075,8 @@ phpmyadmin:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1755,6 +2095,8 @@ qpdf:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1773,6 +2115,8 @@ ruby2:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1791,6 +2135,8 @@ sonar-scanner-cli7:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1809,6 +2155,8 @@ sonar-scanner-cli8:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1827,11 +2175,19 @@ thrift0110:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd thrift0110 && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd thrift0110 && make build test push promote publish && make clean'
   needs: [{job: thrift0110_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "thrift0110/**/*"
         - "_tools/makefiles/**/*"
@@ -1848,12 +2204,14 @@ thrift0110_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd thrift0110 && make all-arm64 && make clean'
+  script: 'cd thrift0110 && make build test push && make clean'
   tags: [arm]
   needs: [{job: "toolbox-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1872,6 +2230,8 @@ thrift093:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1890,6 +2250,8 @@ wkhtmltopdf126:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -1908,11 +2270,19 @@ wkhtmltopdf126-broken:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd wkhtmltopdf126-broken && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd wkhtmltopdf126-broken && make build test push promote publish && make clean'
   needs: [{job: wkhtmltopdf126-broken_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "wkhtmltopdf126-broken/**/*"
         - "_tools/makefiles/**/*"
@@ -1929,12 +2299,14 @@ wkhtmltopdf126-broken_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd wkhtmltopdf126-broken && make all-arm64 && make clean'
+  script: 'cd wkhtmltopdf126-broken && make build test push && make clean'
   tags: [arm]
   needs: [{job: "toolbox-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false

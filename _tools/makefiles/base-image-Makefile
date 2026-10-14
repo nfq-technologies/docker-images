@@ -1,232 +1,135 @@
-# base-image-Makefile
+# The registry holds exactly six tags per image, same as the old process:
+#   :amd64 :arm64        newest build of each arch (written by `push`, after tests pass)
+#   :1-amd64 :1-arm64    previous build of each arch  } written only by `promote`
+#   :1                   previous multi-arch build    }
+#   :latest              newest multi-arch build      }
+#
+# Flow: each arch job runs `make build test push`; one final job runs
+# `make promote publish`. Consumers only ever see :latest / :1, and those
+# move together in `promote`, so a failed arch build never leaves them mixed.
 
-IMAGE_BASE_NAME = $(shell basename $(shell pwd))
-IMAGE_TYPE = nfqlt
-IMAGE_REGISTRY = docker.nfq.lt/
-IMAGE_FULL_NAME = $(IMAGE_REGISTRY)$(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
-CHILDREN = $(shell ../_tools/sorting.sh)
-IMAGE_PUBLISH_NAME = $(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
+IMAGE_NAME         = $(notdir $(CURDIR))
+IMAGE_TYPE         = nfqlt
+IMAGE_REGISTRY    ?= docker.nfq.lt/
+PARENT_REGISTRY   ?= $(IMAGE_REGISTRY)
+IMAGE_FULL_NAME    = $(IMAGE_REGISTRY)$(IMAGE_TYPE)/$(IMAGE_NAME)
+IMAGE_PUBLISH_NAME = $(IMAGE_TYPE)/$(IMAGE_NAME)
+NO_CACHE ?= false
+ARCHES ?= amd64 arm64
+# Every tag that exists in the registry for this image (mirrored by `publish`).
+TAGS = latest 1 $(ARCHES) $(addprefix 1-,$(ARCHES))
+# Parent image this Dockerfile FROMs, e.g. "nfqlt/php81-cli".
+PARENT_IMAGE = $(shell grep '^FROM ' Dockerfile | head -1 | awk '{print $$2}')
+ARCH ?= $(shell docker version -f '{{.Server.Arch}}')
 
-ARM64_CONTEXT = $(shell [ "`uname -m`" = "x86_64" ] && echo "arm" || echo "default" )
-AMD64_CONTEXT = "default"
 
-COMMANDS = all all-arm64 all-amd64 build build-arm64 build-amd64 test test-arm64 test-amd64 push push-arm64 push-amd64 pull clean branch-all branch-build run run-bash publish publish-amd64 publish-arm64
-SILENT_COMMANDS = help status calc-start calc-stop get-image-name
+# External parents (debian:bookworm, mysql:8.4, ...) are left to the Dockerfile's own FROM.
+# Override for a fully offline test, e.g.: make build PARENT_REF=docker.nfq.lt/nfqlt/php81-cli:local
+ifneq ($(filter nfqlt/%,$(PARENT_IMAGE)),)
+PARENT_REF  ?= $(PARENT_REGISTRY)$(PARENT_IMAGE):latest
+PARENT_CONTEXT = --build-context $(PARENT_IMAGE)=docker-image://$(PARENT_REF)
+else
+PARENT_REF  ?= $(PARENT_IMAGE)
+PARENT_CONTEXT =
+endif
+ifeq ($(PARENT_IMAGE),)
+$(error could not determine parent image from Dockerfile)
+endif
 
-.PHONY: $(COMMANDS) $(SILENT_COMMANDS)
-.SILENT: $(SILENT_COMMANDS)
-#.NOTPARALLEL:
-
+.PHONY: help build test push all promote publish run run-bash clean status get-image-name
+.SILENT: status get-image-name
 
 help:
-	echo
-	echo "Core image name: $(IMAGE_TYPE)/$(IMAGE_BASE_NAME)"
-	echo "Image name: $(IMAGE_FULL_NAME)"
-	echo "Available commands: $(COMMANDS) $(SILENT_COMMANDS)"
-	echo
-
-
-branch-all:
-	make all
-	for dir in $(CHILDREN); do \
-		$(MAKE) all -C ../$$dir; \
-	done
-
-
-branch-build:
-	make build
-	for dir in $(CHILDREN); do \
-		$(MAKE) build -C ../$$dir; \
-	done
-
-
-all:
-	make build && make test && make push
-
-all-arm64:
-	$(MAKE) rotate-previous-arm64
-	make build-arm64 && make test-arm64 && make push-arm64
-
-all-amd64:
-	$(MAKE) rotate-previous-amd64
-	make build-amd64 && make test-amd64 && make push-amd64
-
-rotate-previous-amd64:
 	@echo
-	@echo "# Tagging current amd64 as :1-amd64 before build..."
+	@echo "Image:   $(IMAGE_FULL_NAME)"
+	@echo "Arch:    $(ARCH)"
+	@echo "Parent:  $(PARENT_IMAGE) <- $(PARENT_REF)"
+	@echo "Tags:    $(TAGS)"
+	@echo "Targets: build test push all promote publish run run-bash clean status"
 	@echo
-	docker pull $(IMAGE_FULL_NAME):amd64 2>/dev/null && \
-		docker tag $(IMAGE_FULL_NAME):amd64 $(IMAGE_FULL_NAME):1-amd64 && \
-		docker push $(IMAGE_FULL_NAME):1-amd64 || \
-		echo "# (no existing amd64 image yet, first build)"
-
-rotate-previous-arm64:
-	@echo
-	@echo "# Tagging current arm64 as :1-arm64 before build..."
-	@echo
-	docker pull $(IMAGE_FULL_NAME):arm64 2>/dev/null && \
-		docker tag $(IMAGE_FULL_NAME):arm64 $(IMAGE_FULL_NAME):1-arm64 && \
-		docker push $(IMAGE_FULL_NAME):1-arm64 || \
-		echo "# (no existing arm64 image yet, first build)"
 
 build:
-	$(MAKE) -j2 build-arm64 build-amd64 # Parallel build amd/arm images
-	make status
-
-build-arm64:
-	$(MAKE) CONTEXT=$(ARM64_CONTEXT) ARCH=arm64 build-arch
-
-build-amd64:
-	$(MAKE) CONTEXT=$(AMD64_CONTEXT) ARCH=amd64 build-arch
-
-build-arch:
 	@echo
-	@echo "# Building $(ARCH) image..."
-	@echo "# Building context $(CONTEXT)..."
+	@echo "# [buildx] Building $(IMAGE_FULL_NAME):$(ARCH) (parent: $(PARENT_REF))"
 	@echo
-	sed 's~FROM nfqlt~FROM ${IMAGE_REGISTRY}nfqlt~' Dockerfile > .Dockerfile_$(ARCH)
-	DOCKER_CONTEXT=$(CONTEXT) docker build --pull --no-cache -f .Dockerfile_$(ARCH) -t $(IMAGE_FULL_NAME):$(ARCH) ./
-	rm -f .Dockerfile_$(ARCH)
-	make status
+	docker buildx build \
+	    --pull \
+	    --platform linux/$(ARCH) \
+	    $(PARENT_CONTEXT) \
+	    $(if $(filter true,$(NO_CACHE)),--no-cache,) \
+	    --load \
+	    -t $(IMAGE_FULL_NAME):$(ARCH) \
+	    .
+	$(MAKE) status
 
 test:
-	$(MAKE) test-amd64 test-arm64
-
-test-amd64:
-	$(MAKE) CONTEXT=$(AMD64_CONTEXT) ARCH=amd64 test-arch
-
-test-arm64:
-	$(MAKE) CONTEXT=$(ARM64_CONTEXT) ARCH=arm64 test-arch
-
-test-arch:
 	@echo
 	@echo "# Testing image..."
 	@echo
-	if [ -d test ];	then\
-		DOCKER_CONTEXT=$(CONTEXT) run-parts -v -a $(IMAGE_FULL_NAME):$(ARCH) test; \
+	if [ -d test ]; then \
+	    run-parts -v -a $(IMAGE_FULL_NAME):$(ARCH) test; \
 	fi
 	@echo
 	@echo "Tests passed. ($(shell run-parts --test test | wc -l))"
 	@echo
 
+all: build test push
+
 push:
 	@echo
-	@echo "# Pushing images to docker registry..."
+	@echo "# Pushing $(IMAGE_FULL_NAME):$(ARCH) to registry..."
 	@echo
-	$(MAKE) -j2 push-amd64 push-arm64
-	$(MAKE) push-manifest
+	docker push $(IMAGE_FULL_NAME):$(ARCH)
 
-push-manifest:
+# Promotion after every arch has been pushed. The only target that touches :latest, :1 and :1-<arch>.
+promote:
 	@echo
-	@echo "# Creating manifest for :1 (previous build)..."
+	@echo "# Promoting :$(ARCHES) to :latest (previous :latest -> :1)..."
 	@echo
-	docker manifest rm $(IMAGE_FULL_NAME):1 2>/dev/null || true
-	docker manifest create $(IMAGE_FULL_NAME):1 $(IMAGE_FULL_NAME):1-amd64 $(IMAGE_FULL_NAME):1-arm64 2>/dev/null || echo "# (nothing to build :1 from yet)"
-	docker manifest push $(IMAGE_FULL_NAME):1 2>/dev/null || true
-	@echo
-	@echo "# Creating manifest of multiarch image..."
-	@echo
-	docker manifest rm $(IMAGE_FULL_NAME):latest || true
-	docker manifest create $(IMAGE_FULL_NAME):latest $(IMAGE_FULL_NAME):amd64 $(IMAGE_FULL_NAME):arm64
-	docker manifest push $(IMAGE_FULL_NAME):latest
+	set -e; \
+	plat() { docker buildx imagetools inspect "$$1" 2>/dev/null | awk -v p="linux/$$2" '/^Digest:/ && d=="" {d=$$2} /^ *Name:/ && $$2 ~ /@sha256:/ {cur=$$2; sub(/.*@/,"",cur)} /^ *Platform:/ && $$2==p && cur!="" {print cur; f=1; exit} END {if(!f && d!="") print d}'; }; \
+	for a in $(ARCHES); do \
+	    [ -n "$$(plat $(IMAGE_FULL_NAME):$$a $$a)" ] || { echo "ERROR: $(IMAGE_FULL_NAME):$$a not found, push it first"; exit 1; }; \
+	done; \
+	SAME=1; \
+	for a in $(ARCHES); do \
+	    [ "$$(plat $(IMAGE_FULL_NAME):$$a $$a)" = "$$(plat $(IMAGE_FULL_NAME):latest $$a)" ] || SAME=0; \
+	done; \
+	if [ $$SAME = 1 ]; then echo "# :latest already built from the current :<arch> images, nothing to do"; exit 0; fi; \
+	OLD=$$(docker buildx imagetools inspect $(IMAGE_FULL_NAME):latest 2>/dev/null | awk '/^Digest:/ {print $$2; exit}' || true); \
+	if [ -n "$$OLD" ]; then \
+	    for a in $(ARCHES); do \
+	        d=$$(plat $(IMAGE_FULL_NAME):latest $$a); \
+	        [ -z "$$d" ] || docker buildx imagetools create --tag $(IMAGE_FULL_NAME):1-$$a $(IMAGE_FULL_NAME)@$$d; \
+	    done; \
+	    docker buildx imagetools create --tag $(IMAGE_FULL_NAME):1 $(IMAGE_FULL_NAME)@$$OLD; \
+	fi; \
+	docker buildx imagetools create --tag $(IMAGE_FULL_NAME):latest $(foreach a,$(ARCHES),$(IMAGE_FULL_NAME):$(a)); \
+	if [ -z "$$OLD" ]; then \
+	    echo "# first build: :1 and :1-<arch> start out equal to the new build"; \
+	    for a in $(ARCHES); do docker buildx imagetools create --tag $(IMAGE_FULL_NAME):1-$$a $(IMAGE_FULL_NAME):$$a; done; \
+	    docker buildx imagetools create --tag $(IMAGE_FULL_NAME):1 $(IMAGE_FULL_NAME):latest; \
+	fi
 
-push-amd64:
+# Copies all six tags to Docker Hub, registry to registry
+publish:
 	@echo
-	@echo "# Pushing amd64 image to registry..."
+	@echo "# Mirroring $(TAGS) -> $(IMAGE_PUBLISH_NAME) (Docker Hub)..."
 	@echo
-	DOCKER_CONTEXT=$(AMD64_CONTEXT) docker push $(IMAGE_FULL_NAME):amd64
-
-push-arm64:
-	@echo
-	@echo "# Pushing arm image to registry..."
-	@echo
-	DOCKER_CONTEXT=$(ARM64_CONTEXT) docker push $(IMAGE_FULL_NAME):arm64
-
-pull:
-	@echo
-	@echo "# Pulling image from registry..."
-	@echo
-	docker pull $(IMAGE_TYPE)/$(IMAGE_BASE_NAME)
-	docker tag $(IMAGE_TYPE)/$(IMAGE_BASE_NAME) $(IMAGE_FULL_NAME)
-
-
-clean:
-	@echo
-	@echo "# Removing local containers and images..."
-	@echo
-	docker stop $(shell docker ps -a | grep ' $(IMAGE_FULL_NAME):' | cut -d' ' -f1) 2>/dev/null || true
-	docker stop $(shell docker ps -a | grep ' $(IMAGE_FULL_NAME) ' | cut -d' ' -f1) 2>/dev/null || true
-	docker rm -f $(shell docker ps -a | grep ' $(IMAGE_FULL_NAME):' | cut -d' ' -f1) 2>/dev/null || true
-	docker rm -f $(shell docker ps -a | grep ' $(IMAGE_FULL_NAME) ' | cut -d' ' -f1) 2>/dev/null || true
-	bash -c "docker images |\
-		grep '^$(IMAGE_FULL_NAME) ' |\
-		tr -s ' ' ':' |\
-		cut -d: -f2 |\
-		xargs -n1 -IT docker rmi $(IMAGE_FULL_NAME):T 2>/dev/null || true"
-	bash -c "docker images |\
-		grep '^$(IMAGE_TYPE)/$(IMAGE_BASE_NAME) ' |\
-		tr -s ' ' ':' |\
-		cut -d: -f2 |\
-		xargs -n1 -IT docker rmi $(IMAGE_TYPE)/$(IMAGE_BASE_NAME):T 2>/dev/null || true"
-	make status
-
-
-status:
-	echo
-	echo "# Showing image status..."
-	echo
-	docker images | grep -i "$(IMAGE_FULL_NAME) " || true
-	echo
+	$(foreach t,$(TAGS),docker buildx imagetools create --tag $(IMAGE_PUBLISH_NAME):$(t) $(IMAGE_FULL_NAME):$(t) && ) true
 
 run:
-	docker run -it --rm $(IMAGE_FULL_NAME)
+	docker run -it --rm $(IMAGE_FULL_NAME):$(ARCH)
 
 run-bash:
-	docker run -it --rm $(IMAGE_FULL_NAME) env TERM=xterm bash -l
+	docker run -it --rm $(IMAGE_FULL_NAME):$(ARCH) env TERM=xterm bash -l
 
-calc-start:
-	../_tools/start-stop-time-calc.php --start
+clean:
+	docker rmi $(IMAGE_FULL_NAME):$(ARCH) 2>/dev/null || true
+	$(MAKE) status
 
-calc-stop:
-	../_tools/start-stop-time-calc.php --stop
+status:
+	docker images | grep -i "$(IMAGE_FULL_NAME) " || true
 
 get-image-name:
 	echo $(IMAGE_FULL_NAME)
-
-
-publish:
-	@echo
-	@echo "# Publishing images to docker hub..."
-	@echo
-	$(MAKE) -j2 publish-amd64 publish-arm64
-	$(MAKE) publish-manifest
-
-publish-manifest:
-	@echo
-	@echo "# Publishing manifest for :1 (previous build)..."
-	@echo
-	docker manifest rm $(IMAGE_PUBLISH_NAME):1 2>/dev/null || true
-	docker manifest create $(IMAGE_PUBLISH_NAME):1 \
-		$(IMAGE_PUBLISH_NAME):1-amd64 $(IMAGE_PUBLISH_NAME):1-arm64 2>/dev/null || \
-		echo "# (nothing to build :1 from yet)"
-	docker manifest push $(IMAGE_PUBLISH_NAME):1 2>/dev/null || true
-	@echo
-	@echo "# Publishing manifest of multiarch image..."
-	@echo
-	docker manifest rm $(IMAGE_PUBLISH_NAME):latest || true
-	docker manifest create $(IMAGE_PUBLISH_NAME):latest $(IMAGE_PUBLISH_NAME):amd64 $(IMAGE_PUBLISH_NAME):arm64
-	docker manifest push $(IMAGE_PUBLISH_NAME):latest
-
-publish-arm64:
-	$(MAKE) ARCH=arm64 publish-arch
-
-publish-amd64:
-	$(MAKE) ARCH=amd64 publish-arch
-
-publish-arch:
-	docker pull ${IMAGE_FULL_NAME}:$(ARCH)
-	docker tag ${IMAGE_FULL_NAME}:$(ARCH) ${IMAGE_PUBLISH_NAME}:$(ARCH)
-	docker push ${IMAGE_PUBLISH_NAME}:$(ARCH)
-	docker rmi ${IMAGE_PUBLISH_NAME}:$(ARCH)
-	docker pull ${IMAGE_FULL_NAME}:1-$(ARCH) 2>/dev/null && docker tag ${IMAGE_FULL_NAME}:1-$(ARCH) ${IMAGE_PUBLISH_NAME}:1-$(ARCH) && docker push ${IMAGE_PUBLISH_NAME}:1-$(ARCH) && docker rmi ${IMAGE_PUBLISH_NAME}:1-$(ARCH) || echo "# (no :1-$(ARCH) on internal registry yet, nothing to republish)"
-

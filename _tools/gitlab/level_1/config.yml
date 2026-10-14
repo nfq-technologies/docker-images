@@ -5,11 +5,19 @@ debian-bookworm:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd debian-bookworm && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd debian-bookworm && make build test push promote publish && make clean'
   needs: [{job: debian-bookworm_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "debian-bookworm/**/*"
         - "_tools/makefiles/**/*"
@@ -24,12 +32,14 @@ debian-bookworm_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd debian-bookworm && make all-arm64 && make clean'
+  script: 'cd debian-bookworm && make build test push && make clean'
   tags: [arm]
   needs: []
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -46,11 +56,19 @@ debian-bullseye:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd debian-bullseye && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd debian-bullseye && make build test push promote publish && make clean'
   needs: [{job: debian-bullseye_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "debian-bullseye/**/*"
         - "_tools/makefiles/**/*"
@@ -65,12 +83,14 @@ debian-bullseye_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd debian-bullseye && make all-arm64 && make clean'
+  script: 'cd debian-bullseye && make build test push && make clean'
   tags: [arm]
   needs: []
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -87,11 +107,19 @@ debian-trixie:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd debian-trixie && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd debian-trixie && make build test push promote publish && make clean'
   needs: [{job: debian-trixie_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "debian-trixie/**/*"
         - "_tools/makefiles/**/*"
@@ -106,12 +134,14 @@ debian-trixie_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd debian-trixie && make all-arm64 && make clean'
+  script: 'cd debian-trixie && make build test push && make clean'
   tags: [arm]
   needs: []
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -128,11 +158,19 @@ dib:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd dib && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd dib && make build test push promote publish && make clean'
   needs: [{job: dib_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "dib/**/*"
         - "_tools/makefiles/**/*"
@@ -147,12 +185,14 @@ dib_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd dib && make all-arm64 && make clean'
+  script: 'cd dib && make build test push && make clean'
   tags: [arm]
   needs: []
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -169,11 +209,19 @@ lib-smartclient100:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd lib-smartclient100 && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd lib-smartclient100 && make build test push promote publish && make clean'
   needs: [{job: lib-smartclient100_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "lib-smartclient100/**/*"
         - "_tools/makefiles/**/*"
@@ -188,12 +236,14 @@ lib-smartclient100_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd lib-smartclient100 && make all-arm64 && make clean'
+  script: 'cd lib-smartclient100 && make build test push && make clean'
   tags: [arm]
   needs: []
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -210,6 +260,8 @@ lib-smartclient111:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -226,6 +278,8 @@ lib-smartclient120:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -242,6 +296,8 @@ lib-smartclient121:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -258,6 +314,8 @@ lib-smartclient130:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -274,11 +332,19 @@ mariadb10:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mariadb10 && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd mariadb10 && make build test push promote publish && make clean'
   needs: [{job: mariadb10_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "mariadb10/**/*"
         - "_tools/makefiles/**/*"
@@ -293,12 +359,14 @@ mariadb10_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mariadb10 && make all-arm64 && make clean'
+  script: 'cd mariadb10 && make build test push && make clean'
   tags: [arm]
   needs: []
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -315,6 +383,8 @@ mysql57:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -331,11 +401,19 @@ mysql80:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mysql80 && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd mysql80 && make build test push promote publish && make clean'
   needs: [{job: mysql80_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "mysql80/**/*"
         - "_tools/makefiles/**/*"
@@ -350,12 +428,14 @@ mysql80_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mysql80 && make all-arm64 && make clean'
+  script: 'cd mysql80 && make build test push && make clean'
   tags: [arm]
   needs: []
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -372,11 +452,19 @@ mysql84:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mysql84 && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd mysql84 && make build test push promote publish && make clean'
   needs: [{job: mysql84_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "mysql84/**/*"
         - "_tools/makefiles/**/*"
@@ -391,12 +479,14 @@ mysql84_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd mysql84 && make all-arm64 && make clean'
+  script: 'cd mysql84 && make build test push && make clean'
   tags: [arm]
   needs: []
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -413,11 +503,19 @@ opentripplanner:
     # - echo $nfqhub_ip_os docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd opentripplanner && make all-amd64 && make push-manifest && make publish && make clean'
+  script: 'cd opentripplanner && make build test push promote publish && make clean'
   needs: [{job: opentripplanner_arm64, optional: true}]
+  # Only retry on runner problems: a retry after `promote` succeeded would rebuild :amd64 and push the just-promoted build into :1.
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - changes:
         - "opentripplanner/**/*"
         - "_tools/makefiles/**/*"
@@ -432,12 +530,14 @@ opentripplanner_arm64:
     # - echo $nfqhub_ip_aws docker.nfq.lt >> /etc/hosts  # Commented out - using DNS now
     - docker login -u $dockerhub_user -p $dockerhub_token
     - docker login -u $nfqhub_user -p $nfqhub_token https://docker.nfq.lt
-  script: 'cd opentripplanner && make all-arm64 && make clean'
+  script: 'cd opentripplanner && make build test push && make clean'
   tags: [arm]
   needs: []
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
@@ -454,6 +554,8 @@ postgres12:
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
+      variables:
+        NO_CACHE: "true"
     - if: $MANUAL == "true"
       when: manual
       allow_failure: false
