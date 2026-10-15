@@ -131,7 +131,7 @@ cloud-tools_arm64:
 db-tools:
   stage: level_3
   script: 'cd db-tools && make all && make publish && make clean'
-  needs: [{job: "toolbox-bullseye", optional: true}]
+  needs: [{job: "toolbox-bookworm", optional: true}]
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
       when: on_success
@@ -144,8 +144,8 @@ db-tools:
         - "db-tools/**/*"
         - "_tools/makefiles/**/*"
         - "_tools/helpers/**/*"
-        - "toolbox-bullseye/**/*"
-        - "debian-bullseye/**/*"
+        - "toolbox-bookworm/**/*"
+        - "debian-bookworm/**/*"
       when: on_success
     - when: never
 ffmpeg:
@@ -473,7 +473,7 @@ php81-cron:
         - "_tools/makefiles/**/*"
         - "_tools/helpers/**/*"
         - "php81-cli/**/*"
-        - "debian-bullseye/**/*"
+        - "debian-bookworm/**/*"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -500,7 +500,7 @@ php81-cron_arm64:
         - "_tools/makefiles/**/*"
         - "_tools/helpers/**/*"
         - "php81-cli/**/*"
-        - "debian-bullseye/**/*"
+        - "debian-bookworm/**/*"
       when: on_success
     - when: never
 php81-dev:
@@ -528,7 +528,7 @@ php81-dev:
         - "_tools/makefiles/**/*"
         - "_tools/helpers/**/*"
         - "php81-cli/**/*"
-        - "debian-bullseye/**/*"
+        - "debian-bookworm/**/*"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -555,7 +555,7 @@ php81-dev_arm64:
         - "_tools/makefiles/**/*"
         - "_tools/helpers/**/*"
         - "php81-cli/**/*"
-        - "debian-bullseye/**/*"
+        - "debian-bookworm/**/*"
       when: on_success
     - when: never
 php81-fpm:
@@ -583,7 +583,7 @@ php81-fpm:
         - "_tools/makefiles/**/*"
         - "_tools/helpers/**/*"
         - "php81-cli/**/*"
-        - "debian-bullseye/**/*"
+        - "debian-bookworm/**/*"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -610,7 +610,7 @@ php81-fpm_arm64:
         - "_tools/makefiles/**/*"
         - "_tools/helpers/**/*"
         - "php81-cli/**/*"
-        - "debian-bullseye/**/*"
+        - "debian-bookworm/**/*"
       when: on_success
     - when: never
 php81-supervisor:
@@ -638,7 +638,7 @@ php81-supervisor:
         - "_tools/makefiles/**/*"
         - "_tools/helpers/**/*"
         - "php81-cli/**/*"
-        - "debian-bullseye/**/*"
+        - "debian-bookworm/**/*"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -665,7 +665,7 @@ php81-supervisor_arm64:
         - "_tools/makefiles/**/*"
         - "_tools/helpers/**/*"
         - "php81-cli/**/*"
-        - "debian-bullseye/**/*"
+        - "debian-bookworm/**/*"
       when: on_success
     - when: never
 php82-cron:

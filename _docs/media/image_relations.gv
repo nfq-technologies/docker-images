@@ -28,11 +28,9 @@ digraph image_relations {
     fontname="Helvetica-Bold";
     fontsize=11;
     "debian-bookworm" [fillcolor="#ccffcc"];
-    "debian-bullseye" [fillcolor="#ffffcc"];
     "debian-trixie" [fillcolor="#ccffcc"];
     "dib" [fillcolor="#ccffcc"];
     "toolbox-bookworm" [fillcolor="#ccffcc"];
-    "toolbox-bullseye" [fillcolor="#ffffcc"];
   }
 
   subgraph cluster_database {
@@ -120,7 +118,6 @@ digraph image_relations {
     fontname="Helvetica-Bold";
     fontsize=11;
     "apache24" [fillcolor="#ccffcc"];
-    "nginx118" [fillcolor="#ccffcc"];
     "nginx122" [fillcolor="#ccffcc"];
   }
 
@@ -133,8 +130,6 @@ digraph image_relations {
     fontname="Helvetica-Bold";
     fontsize=11;
     "memcached16" [fillcolor="#ccffcc"];
-    "mongo50-data" [fillcolor="#ccffcc"];
-    "mongo50" [fillcolor="#ccffcc"];
     "rabbitmq310" [fillcolor="#ccffcc"];
     "rabbitmq312" [fillcolor="#ccffcc"];
     "rabbitmq4" [fillcolor="#ccffcc"];
@@ -187,7 +182,6 @@ digraph image_relations {
     "sonar-scanner-cli7" [fillcolor="#ccffcc"];
     "sonar-scanner-cli8" [fillcolor="#ccffcc"];
     "wkhtmltopdf126" [fillcolor="#ccffcc"];
-    "xhgui" [fillcolor="#ccffcc"];
   }
 
   // Dependencies
@@ -199,13 +193,12 @@ digraph image_relations {
   "toolbox-bookworm" -> "chromium";
   "debian-trixie" -> "claude";
   "toolbox-bookworm" -> "cloud-tools";
-  "toolbox-bullseye" -> "db-tools";
+  "toolbox-bookworm" -> "db-tools";
   "debian:bookworm" -> "debian-bookworm";
-  "debian:bullseye" -> "debian-bullseye";
   "debian:trixie" -> "debian-trixie";
   "debian-bookworm" -> "dev";
-  "debian:bullseye" -> "dib";
-  "debian-bullseye" -> "docker18ce";
+  "debian:bookworm" -> "dib";
+  "debian-bookworm" -> "docker18ce";
   "debian-bookworm" -> "elasticsearch84";
   "toolbox-bookworm" -> "ffmpeg";
   "toolbox-bookworm" -> "fontforge";
@@ -219,12 +212,9 @@ digraph image_relations {
   "debian-bookworm" -> "mailpit";
   "mariadb:10" -> "mariadb10";
   "debian-bookworm" -> "memcached16";
-  "mongo50" -> "mongo50-data";
-  "debian-bullseye" -> "mongo50";
   "mysql80" -> "mysql80-data";
   "mysql:8.0" -> "mysql80";
   "mysql:8.4" -> "mysql84";
-  "debian-bullseye" -> "nginx118";
   "debian-bookworm" -> "nginx122";
   "toolbox-bookworm" -> "node22";
   "toolbox-bookworm" -> "node24";
@@ -233,7 +223,7 @@ digraph image_relations {
   "opentripplanner/opentripplanner:2.8.1" -> "opentripplanner";
   "toolbox-bookworm" -> "packager";
   "toolbox-bookworm" -> "pdftk";
-  "debian-bullseye" -> "php81-cli";
+  "debian-bookworm" -> "php81-cli";
   "php81-cli" -> "php81-cron";
   "php81-cli" -> "php81-dev";
   "php81-cli" -> "php81-fpm";
@@ -269,14 +259,11 @@ digraph image_relations {
   "toolbox-bookworm" -> "sonar-scanner-cli7";
   "toolbox-bookworm" -> "sonar-scanner-cli8";
   "debian-bookworm" -> "toolbox-bookworm";
-  "debian-bullseye" -> "toolbox-bullseye";
   "toolbox-bookworm" -> "wkhtmltopdf126";
-  "php81-dev" -> "xhgui";
 
   // External base images
   "alpine" [fillcolor=white style="filled,rounded,dashed"];
   "debian:bookworm" [fillcolor=white style="filled,rounded,dashed"];
-  "debian:bullseye" [fillcolor=white style="filled,rounded,dashed"];
   "debian:trixie" [fillcolor=white style="filled,rounded,dashed"];
   "mariadb:10" [fillcolor=white style="filled,rounded,dashed"];
   "mysql:8.0" [fillcolor=white style="filled,rounded,dashed"];

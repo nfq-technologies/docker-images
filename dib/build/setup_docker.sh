@@ -13,11 +13,11 @@ echo force-unsafe-io > /etc/dpkg/dpkg.cfg.d/02apt-speedup
 # so apt gets 404s. Serve bullseye-security from snapshot.debian.org, frozen at
 # the final LTS publish, until bullseye-security shows up on archive.debian.org.
 # The snapshot's Release file is past its Valid-Until, hence the apt.conf override.
-sed -i 's|http://deb.debian.org/debian-security|http://snapshot.debian.org/archive/debian-security/20260901T000000Z|' /etc/apt/sources.list
-cat > /etc/apt/apt.conf.d/99snapshot <<'EOF'
-Acquire::Check-Valid-Until "false";
-Acquire::Retries "3";
-EOF
+# sed -i 's|http://deb.debian.org/debian-security|http://snapshot.debian.org/archive/debian-security/20260901T000000Z|' /etc/apt/sources.list
+# cat > /etc/apt/apt.conf.d/99snapshot <<'EOF'
+# Acquire::Check-Valid-Until "false";
+# Acquire::Retries "3";
+# EOF
 
 apt update
 
@@ -26,7 +26,7 @@ apt-get install -y --no-install-recommends ca-certificates curl
 install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/debian/gpg -o /etc/apt/keyrings/docker.asc
 chmod a+r /etc/apt/keyrings/docker.asc
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian bullseye stable" > /etc/apt/sources.list.d/docker.list
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian bookworm stable" > /etc/apt/sources.list.d/docker.list
 apt-get update
 apt-get install -y --no-install-recommends docker-ce-cli docker-compose-plugin
 
@@ -103,7 +103,7 @@ apt install ./gojq.deb
 rm ./gojq.deb
 
 # Fix vim mouse integration
-sed -ri 's/^([ ]*set mouse=a)/"\1/' /usr/share/vim/vim82/defaults.vim
+sed -ri 's/^([ ]*set mouse=a)/"\1/' /usr/share/vim/vim90/defaults.vim
 
 cp -frv /build/files/* /
 
