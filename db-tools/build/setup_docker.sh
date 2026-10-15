@@ -6,7 +6,7 @@ set -e
 # Preparing MongoDB repository
 wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | \
 gpg --dearmor > /etc/apt/trusted.gpg.d/mongodb-org-5.0.gpg
-echo "deb http://repo.mongodb.org/apt/debian buster/mongodb-org/5.0 main" | \
+echo "deb http://repo.mongodb.org/apt/debian bookworm/mongodb-org/5.0 main" | \
 tee /etc/apt/sources.list.d/mongodb-org-5.0.list
 
 # Update apt repos
