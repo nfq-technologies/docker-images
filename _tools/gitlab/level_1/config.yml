@@ -376,24 +376,6 @@ mariadb10_arm64:
         - "_tools/helpers/**/*"
       when: on_success
     - when: never
-mysql57:
-  stage: level_1
-  script: 'cd mysql57 && make all && make publish && make clean'
-  needs: []
-  rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
-      when: on_success
-      variables:
-        NO_CACHE: "true"
-    - if: $MANUAL == "true"
-      when: manual
-      allow_failure: false
-    - changes:
-        - "mysql57/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-      when: on_success
-    - when: never
 mysql80:
   stage: level_1
   before_script:
