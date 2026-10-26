@@ -40,37 +40,50 @@ function ci_yml() {
 	local parent="$3"
   local ancestors
   ancestors="$(get_ancestors "$image")"
-  local changes_yaml="        - \"$image/**/*\"
-        - \"_tools/makefiles/**/*\"
-        - \"_tools/helpers/**/*\""
+  local changes_yaml="          - \"$image/**/*\"
+          - \"_tools/makefiles/**/*\"
+          - \"_tools/helpers/**/*\""
   for anc in $ancestors; do
           changes_yaml="$changes_yaml
-        - \"$anc/**/*\""
+          - \"$anc/**/*\""
   done
 
-	# Entry point jobs (_arm64 or single-arch): manual when MANUAL=true, otherwise cascade
+	# Entry point jobs (_arm64 or single-arch):
+	#  - schedule:  always build, no cache
+	#  - manual:    every job is a manual button
+	#  - automatic: only build images whose files (or ancestors') changed vs master
+	#    (compare_to is required: plain changes: is always true for web pipelines)
 	automation_entry="rules:
     - if: \$CI_PIPELINE_SOURCE == \"schedule\"
       when: on_success
       variables:
         NO_CACHE: \"true\"
-    - if: \$MANUAL == \"true\"
+    - if: \$BUILD_MODE == \"manual\"
       when: manual
       allow_failure: false
-    - changes:
+    - if: \$BUILD_MODE == \"automatic\"
+      changes:
+        paths:
 $changes_yaml
+        compare_to: \"refs/heads/master\"
       when: on_success
     - when: never"
 
-      # Manifest jobs (depend on _arm64): same condition, so it only
-      # runs when its sibling _arm64 job actually ran.
+      # Manifest jobs (depend on _arm64): follow the sibling job.
+      # manual mode -> wait until the _arm64 job is played
+      # automatic   -> same changes condition as the sibling
       automation_manifest="rules:
     - if: \$CI_PIPELINE_SOURCE == \"schedule\"
       when: on_success
       variables:
         NO_CACHE: \"true\"
-    - changes:
+    - if: \$BUILD_MODE == \"manual\"
+      when: on_success
+    - if: \$BUILD_MODE == \"automatic\"
+      changes:
+        paths:
 $changes_yaml
+        compare_to: \"refs/heads/master\"
       when: on_success
     - when: never"
 	if [ -n "$parent" ]; then

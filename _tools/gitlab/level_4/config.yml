@@ -18,13 +18,18 @@ aws-docker-tools:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "aws-docker-tools/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "aws-tools/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "aws-docker-tools/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "aws-tools/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -43,15 +48,18 @@ aws-docker-tools_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "aws-docker-tools/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "aws-tools/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "aws-docker-tools/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "aws-tools/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
