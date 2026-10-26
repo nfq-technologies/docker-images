@@ -28,6 +28,8 @@ debian-bookworm:
           - "_tools/helpers/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 debian-bookworm_arm64:
@@ -55,6 +57,8 @@ debian-bookworm_arm64:
           - "_tools/makefiles/**/*"
           - "_tools/helpers/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 debian-trixie:
@@ -87,6 +91,8 @@ debian-trixie:
           - "_tools/helpers/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 debian-trixie_arm64:
@@ -114,6 +120,8 @@ debian-trixie_arm64:
           - "_tools/makefiles/**/*"
           - "_tools/helpers/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 dib:
@@ -146,6 +154,8 @@ dib:
           - "_tools/helpers/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 dib_arm64:
@@ -173,6 +183,8 @@ dib_arm64:
           - "_tools/makefiles/**/*"
           - "_tools/helpers/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 lib-smartclient100:
@@ -205,6 +217,8 @@ lib-smartclient100:
           - "_tools/helpers/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 lib-smartclient100_arm64:
@@ -233,6 +247,8 @@ lib-smartclient100_arm64:
           - "_tools/helpers/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
 lib-smartclient111:
   stage: level_1
@@ -253,6 +269,8 @@ lib-smartclient111:
           - "_tools/makefiles/**/*"
           - "_tools/helpers/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 lib-smartclient120:
@@ -275,6 +293,8 @@ lib-smartclient120:
           - "_tools/helpers/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
 lib-smartclient121:
   stage: level_1
@@ -296,6 +316,8 @@ lib-smartclient121:
           - "_tools/helpers/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
 lib-smartclient130:
   stage: level_1
@@ -316,6 +338,8 @@ lib-smartclient130:
           - "_tools/makefiles/**/*"
           - "_tools/helpers/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 mariadb10:
@@ -348,6 +372,8 @@ mariadb10:
           - "_tools/helpers/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 mariadb10_arm64:
@@ -375,6 +401,8 @@ mariadb10_arm64:
           - "_tools/makefiles/**/*"
           - "_tools/helpers/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 mysql80:
@@ -407,6 +435,8 @@ mysql80:
           - "_tools/helpers/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 mysql80_arm64:
@@ -434,6 +464,8 @@ mysql80_arm64:
           - "_tools/makefiles/**/*"
           - "_tools/helpers/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 mysql84:
@@ -466,6 +498,8 @@ mysql84:
           - "_tools/helpers/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 mysql84_arm64:
@@ -493,6 +527,8 @@ mysql84_arm64:
           - "_tools/makefiles/**/*"
           - "_tools/helpers/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 opentripplanner:
@@ -525,6 +561,8 @@ opentripplanner:
           - "_tools/helpers/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 opentripplanner_arm64:
@@ -553,6 +591,8 @@ opentripplanner_arm64:
           - "_tools/helpers/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
 postgres12:
   stage: level_1
@@ -573,5 +613,7 @@ postgres12:
           - "_tools/makefiles/**/*"
           - "_tools/helpers/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never

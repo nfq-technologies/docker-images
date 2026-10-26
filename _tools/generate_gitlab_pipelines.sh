@@ -67,6 +67,8 @@ function ci_yml() {
 $changes_yaml
         compare_to: \"refs/heads/master\"
       when: on_success
+    - if: \$BUILD_MODE == \"full\"
+      when: on_success
     - when: never"
 
       # Manifest jobs (depend on _arm64): follow the sibling job.
@@ -84,6 +86,8 @@ $changes_yaml
         paths:
 $changes_yaml
         compare_to: \"refs/heads/master\"
+      when: on_success
+    - if: \$BUILD_MODE == \"full\"
       when: on_success
     - when: never"
 	if [ -n "$parent" ]; then

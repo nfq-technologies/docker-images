@@ -30,6 +30,8 @@ aws-tools:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 aws-tools_arm64:
@@ -60,6 +62,8 @@ aws-tools_arm64:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
 chromium:
   stage: level_3
@@ -82,6 +86,8 @@ chromium:
           - "toolbox-bookworm/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 cloud-tools:
@@ -116,6 +122,8 @@ cloud-tools:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 cloud-tools_arm64:
@@ -146,6 +154,8 @@ cloud-tools_arm64:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
 db-tools:
   stage: level_3
@@ -168,6 +178,8 @@ db-tools:
           - "toolbox-bookworm/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 ffmpeg:
@@ -192,6 +204,8 @@ ffmpeg:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
 fontforge:
   stage: level_3
@@ -214,6 +228,8 @@ fontforge:
           - "toolbox-bookworm/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 ghostscript:
@@ -248,6 +264,8 @@ ghostscript:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 ghostscript_arm64:
@@ -278,6 +296,8 @@ ghostscript_arm64:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
 graphic-tools:
   stage: level_3
@@ -300,6 +320,8 @@ graphic-tools:
           - "toolbox-bookworm/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 node22:
@@ -334,6 +356,8 @@ node22:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 node22_arm64:
@@ -363,6 +387,8 @@ node22_arm64:
           - "toolbox-bookworm/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 node24:
@@ -397,6 +423,8 @@ node24:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 node24_arm64:
@@ -427,6 +455,8 @@ node24_arm64:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
 packager:
   stage: level_3
@@ -449,6 +479,8 @@ packager:
           - "toolbox-bookworm/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 pdftk:
@@ -483,6 +515,8 @@ pdftk:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 pdftk_arm64:
@@ -512,6 +546,8 @@ pdftk_arm64:
           - "toolbox-bookworm/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 php81-cron:
@@ -546,6 +582,8 @@ php81-cron:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 php81-cron_arm64:
@@ -575,6 +613,8 @@ php81-cron_arm64:
           - "php81-cli/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 php81-dev:
@@ -609,6 +649,8 @@ php81-dev:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 php81-dev_arm64:
@@ -638,6 +680,8 @@ php81-dev_arm64:
           - "php81-cli/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 php81-fpm:
@@ -672,6 +716,8 @@ php81-fpm:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 php81-fpm_arm64:
@@ -701,6 +747,8 @@ php81-fpm_arm64:
           - "php81-cli/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 php81-supervisor:
@@ -735,6 +783,8 @@ php81-supervisor:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 php81-supervisor_arm64:
@@ -764,6 +814,8 @@ php81-supervisor_arm64:
           - "php81-cli/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 php82-cron:
@@ -798,6 +850,8 @@ php82-cron:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 php82-cron_arm64:
@@ -827,6 +881,8 @@ php82-cron_arm64:
           - "php82-cli/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 php82-dev:
@@ -861,6 +917,8 @@ php82-dev:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 php82-dev_arm64:
@@ -890,6 +948,8 @@ php82-dev_arm64:
           - "php82-cli/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 php82-fpm:
@@ -924,6 +984,8 @@ php82-fpm:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 php82-fpm_arm64:
@@ -953,6 +1015,8 @@ php82-fpm_arm64:
           - "php82-cli/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 php82-supervisor:
@@ -987,6 +1051,8 @@ php82-supervisor:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 php82-supervisor_arm64:
@@ -1016,6 +1082,8 @@ php82-supervisor_arm64:
           - "php82-cli/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 php83-cron:
@@ -1050,6 +1118,8 @@ php83-cron:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 php83-cron_arm64:
@@ -1079,6 +1149,8 @@ php83-cron_arm64:
           - "php83-cli/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 php83-dev:
@@ -1113,6 +1185,8 @@ php83-dev:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 php83-dev_arm64:
@@ -1142,6 +1216,8 @@ php83-dev_arm64:
           - "php83-cli/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 php83-fpm:
@@ -1176,6 +1252,8 @@ php83-fpm:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 php83-fpm_arm64:
@@ -1205,6 +1283,8 @@ php83-fpm_arm64:
           - "php83-cli/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 php83-supervisor:
@@ -1239,6 +1319,8 @@ php83-supervisor:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 php83-supervisor_arm64:
@@ -1268,6 +1350,8 @@ php83-supervisor_arm64:
           - "php83-cli/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 php84-cron:
@@ -1302,6 +1386,8 @@ php84-cron:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 php84-cron_arm64:
@@ -1331,6 +1417,8 @@ php84-cron_arm64:
           - "php84-cli/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 php84-dev:
@@ -1365,6 +1453,8 @@ php84-dev:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 php84-dev_arm64:
@@ -1394,6 +1484,8 @@ php84-dev_arm64:
           - "php84-cli/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 php84-fpm:
@@ -1428,6 +1520,8 @@ php84-fpm:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 php84-fpm_arm64:
@@ -1457,6 +1551,8 @@ php84-fpm_arm64:
           - "php84-cli/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 php84-supervisor:
@@ -1491,6 +1587,8 @@ php84-supervisor:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 php84-supervisor_arm64:
@@ -1520,6 +1618,8 @@ php84-supervisor_arm64:
           - "php84-cli/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 php85-cron:
@@ -1554,6 +1654,8 @@ php85-cron:
           - "debian-trixie/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 php85-cron_arm64:
@@ -1583,6 +1685,8 @@ php85-cron_arm64:
           - "php85-cli/**/*"
           - "debian-trixie/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 php85-dev:
@@ -1617,6 +1721,8 @@ php85-dev:
           - "debian-trixie/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 php85-dev_arm64:
@@ -1646,6 +1752,8 @@ php85-dev_arm64:
           - "php85-cli/**/*"
           - "debian-trixie/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 php85-fpm:
@@ -1680,6 +1788,8 @@ php85-fpm:
           - "debian-trixie/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 php85-fpm_arm64:
@@ -1709,6 +1819,8 @@ php85-fpm_arm64:
           - "php85-cli/**/*"
           - "debian-trixie/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 php85-supervisor:
@@ -1743,6 +1855,8 @@ php85-supervisor:
           - "debian-trixie/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 php85-supervisor_arm64:
@@ -1773,6 +1887,8 @@ php85-supervisor_arm64:
           - "debian-trixie/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
 phpmyadmin:
   stage: level_3
@@ -1795,6 +1911,8 @@ phpmyadmin:
           - "php82-cli/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 qpdf:
@@ -1819,6 +1937,8 @@ qpdf:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
 ruby2:
   stage: level_3
@@ -1841,6 +1961,8 @@ ruby2:
           - "toolbox-bookworm/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
 sonar-scanner-cli7:
@@ -1865,6 +1987,8 @@ sonar-scanner-cli7:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
 sonar-scanner-cli8:
   stage: level_3
@@ -1888,6 +2012,8 @@ sonar-scanner-cli8:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
 wkhtmltopdf126:
   stage: level_3
@@ -1910,5 +2036,7 @@ wkhtmltopdf126:
           - "toolbox-bookworm/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
