@@ -18,10 +18,15 @@ debian-bookworm:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "debian-bookworm/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "debian-bookworm/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -40,13 +45,16 @@ debian-bookworm_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "debian-bookworm/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "debian-bookworm/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 debian-trixie:
@@ -69,10 +77,15 @@ debian-trixie:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "debian-trixie/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "debian-trixie/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -91,13 +104,16 @@ debian-trixie_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "debian-trixie/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "debian-trixie/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 dib:
@@ -120,10 +136,15 @@ dib:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "dib/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "dib/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -142,13 +163,16 @@ dib_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "dib/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "dib/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 lib-smartclient100:
@@ -171,10 +195,15 @@ lib-smartclient100:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "lib-smartclient100/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "lib-smartclient100/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -193,13 +222,16 @@ lib-smartclient100_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "lib-smartclient100/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "lib-smartclient100/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 lib-smartclient111:
@@ -211,13 +243,16 @@ lib-smartclient111:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "lib-smartclient111/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "lib-smartclient111/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 lib-smartclient120:
@@ -229,13 +264,16 @@ lib-smartclient120:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "lib-smartclient120/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "lib-smartclient120/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 lib-smartclient121:
@@ -247,13 +285,16 @@ lib-smartclient121:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "lib-smartclient121/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "lib-smartclient121/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 lib-smartclient130:
@@ -265,13 +306,16 @@ lib-smartclient130:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "lib-smartclient130/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "lib-smartclient130/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 mariadb10:
@@ -294,10 +338,15 @@ mariadb10:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "mariadb10/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "mariadb10/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -316,13 +365,16 @@ mariadb10_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "mariadb10/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "mariadb10/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 mysql80:
@@ -345,10 +397,15 @@ mysql80:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "mysql80/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "mysql80/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -367,13 +424,16 @@ mysql80_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "mysql80/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "mysql80/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 mysql84:
@@ -396,10 +456,15 @@ mysql84:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "mysql84/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "mysql84/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -418,13 +483,16 @@ mysql84_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "mysql84/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "mysql84/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 opentripplanner:
@@ -447,10 +515,15 @@ opentripplanner:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "opentripplanner/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "opentripplanner/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -469,13 +542,16 @@ opentripplanner_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "opentripplanner/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "opentripplanner/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 postgres12:
@@ -487,12 +563,15 @@ postgres12:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "postgres12/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "postgres12/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never

@@ -18,12 +18,17 @@ aws-tools:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "aws-tools/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "aws-tools/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -42,15 +47,18 @@ aws-tools_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "aws-tools/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "aws-tools/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 chromium:
@@ -62,15 +70,18 @@ chromium:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "chromium/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "chromium/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 cloud-tools:
@@ -93,12 +104,17 @@ cloud-tools:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "cloud-tools/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "cloud-tools/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -117,15 +133,18 @@ cloud-tools_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "cloud-tools/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "cloud-tools/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 db-tools:
@@ -137,15 +156,18 @@ db-tools:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "db-tools/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "db-tools/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 ffmpeg:
@@ -157,15 +179,18 @@ ffmpeg:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "ffmpeg/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "ffmpeg/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 fontforge:
@@ -177,15 +202,18 @@ fontforge:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "fontforge/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "fontforge/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 ghostscript:
@@ -208,12 +236,17 @@ ghostscript:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "ghostscript/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "ghostscript/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -232,15 +265,18 @@ ghostscript_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "ghostscript/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "ghostscript/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 graphic-tools:
@@ -252,15 +288,18 @@ graphic-tools:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "graphic-tools/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "graphic-tools/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 node22:
@@ -283,12 +322,17 @@ node22:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "node22/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "node22/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -307,15 +351,18 @@ node22_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "node22/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "node22/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 node24:
@@ -338,12 +385,17 @@ node24:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "node24/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "node24/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -362,15 +414,18 @@ node24_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "node24/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "node24/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 packager:
@@ -382,15 +437,18 @@ packager:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "packager/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "packager/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 pdftk:
@@ -413,12 +471,17 @@ pdftk:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "pdftk/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "pdftk/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -437,15 +500,18 @@ pdftk_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "pdftk/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "pdftk/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 php81-cron:
@@ -468,12 +534,17 @@ php81-cron:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "php81-cron/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php81-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php81-cron/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php81-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -492,15 +563,18 @@ php81-cron_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "php81-cron/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php81-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php81-cron/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php81-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 php81-dev:
@@ -523,12 +597,17 @@ php81-dev:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "php81-dev/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php81-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php81-dev/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php81-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -547,15 +626,18 @@ php81-dev_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "php81-dev/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php81-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php81-dev/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php81-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 php81-fpm:
@@ -578,12 +660,17 @@ php81-fpm:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "php81-fpm/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php81-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php81-fpm/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php81-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -602,15 +689,18 @@ php81-fpm_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "php81-fpm/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php81-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php81-fpm/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php81-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 php81-supervisor:
@@ -633,12 +723,17 @@ php81-supervisor:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "php81-supervisor/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php81-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php81-supervisor/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php81-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -657,15 +752,18 @@ php81-supervisor_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "php81-supervisor/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php81-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php81-supervisor/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php81-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 php82-cron:
@@ -688,12 +786,17 @@ php82-cron:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "php82-cron/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php82-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php82-cron/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php82-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -712,15 +815,18 @@ php82-cron_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "php82-cron/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php82-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php82-cron/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php82-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 php82-dev:
@@ -743,12 +849,17 @@ php82-dev:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "php82-dev/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php82-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php82-dev/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php82-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -767,15 +878,18 @@ php82-dev_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "php82-dev/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php82-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php82-dev/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php82-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 php82-fpm:
@@ -798,12 +912,17 @@ php82-fpm:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "php82-fpm/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php82-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php82-fpm/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php82-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -822,15 +941,18 @@ php82-fpm_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "php82-fpm/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php82-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php82-fpm/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php82-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 php82-supervisor:
@@ -853,12 +975,17 @@ php82-supervisor:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "php82-supervisor/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php82-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php82-supervisor/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php82-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -877,15 +1004,18 @@ php82-supervisor_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "php82-supervisor/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php82-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php82-supervisor/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php82-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 php83-cron:
@@ -908,12 +1038,17 @@ php83-cron:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "php83-cron/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php83-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php83-cron/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php83-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -932,15 +1067,18 @@ php83-cron_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "php83-cron/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php83-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php83-cron/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php83-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 php83-dev:
@@ -963,12 +1101,17 @@ php83-dev:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "php83-dev/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php83-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php83-dev/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php83-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -987,15 +1130,18 @@ php83-dev_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "php83-dev/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php83-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php83-dev/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php83-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 php83-fpm:
@@ -1018,12 +1164,17 @@ php83-fpm:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "php83-fpm/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php83-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php83-fpm/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php83-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -1042,15 +1193,18 @@ php83-fpm_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "php83-fpm/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php83-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php83-fpm/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php83-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 php83-supervisor:
@@ -1073,12 +1227,17 @@ php83-supervisor:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "php83-supervisor/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php83-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php83-supervisor/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php83-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -1097,15 +1256,18 @@ php83-supervisor_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "php83-supervisor/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php83-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php83-supervisor/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php83-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 php84-cron:
@@ -1128,12 +1290,17 @@ php84-cron:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "php84-cron/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php84-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php84-cron/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php84-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -1152,15 +1319,18 @@ php84-cron_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "php84-cron/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php84-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php84-cron/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php84-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 php84-dev:
@@ -1183,12 +1353,17 @@ php84-dev:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "php84-dev/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php84-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php84-dev/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php84-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -1207,15 +1382,18 @@ php84-dev_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "php84-dev/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php84-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php84-dev/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php84-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 php84-fpm:
@@ -1238,12 +1416,17 @@ php84-fpm:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "php84-fpm/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php84-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php84-fpm/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php84-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -1262,15 +1445,18 @@ php84-fpm_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "php84-fpm/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php84-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php84-fpm/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php84-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 php84-supervisor:
@@ -1293,12 +1479,17 @@ php84-supervisor:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "php84-supervisor/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php84-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php84-supervisor/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php84-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -1317,15 +1508,18 @@ php84-supervisor_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "php84-supervisor/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php84-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php84-supervisor/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php84-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 php85-cron:
@@ -1348,12 +1542,17 @@ php85-cron:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "php85-cron/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php85-cli/**/*"
-        - "debian-trixie/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php85-cron/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php85-cli/**/*"
+          - "debian-trixie/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -1372,15 +1571,18 @@ php85-cron_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "php85-cron/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php85-cli/**/*"
-        - "debian-trixie/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php85-cron/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php85-cli/**/*"
+          - "debian-trixie/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 php85-dev:
@@ -1403,12 +1605,17 @@ php85-dev:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "php85-dev/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php85-cli/**/*"
-        - "debian-trixie/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php85-dev/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php85-cli/**/*"
+          - "debian-trixie/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -1427,15 +1634,18 @@ php85-dev_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "php85-dev/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php85-cli/**/*"
-        - "debian-trixie/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php85-dev/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php85-cli/**/*"
+          - "debian-trixie/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 php85-fpm:
@@ -1458,12 +1668,17 @@ php85-fpm:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "php85-fpm/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php85-cli/**/*"
-        - "debian-trixie/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php85-fpm/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php85-cli/**/*"
+          - "debian-trixie/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -1482,15 +1697,18 @@ php85-fpm_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "php85-fpm/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php85-cli/**/*"
-        - "debian-trixie/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php85-fpm/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php85-cli/**/*"
+          - "debian-trixie/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 php85-supervisor:
@@ -1513,12 +1731,17 @@ php85-supervisor:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - changes:
-        - "php85-supervisor/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php85-cli/**/*"
-        - "debian-trixie/**/*"
+    - if: $BUILD_MODE == "manual"
+      when: on_success
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php85-supervisor/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php85-cli/**/*"
+          - "debian-trixie/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
   tags: [nfq_ip]
@@ -1537,15 +1760,18 @@ php85-supervisor_arm64:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "php85-supervisor/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php85-cli/**/*"
-        - "debian-trixie/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "php85-supervisor/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php85-cli/**/*"
+          - "debian-trixie/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 phpmyadmin:
@@ -1557,15 +1783,18 @@ phpmyadmin:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "phpmyadmin/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "php82-cli/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "phpmyadmin/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "php82-cli/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 qpdf:
@@ -1577,15 +1806,18 @@ qpdf:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "qpdf/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "qpdf/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 ruby2:
@@ -1597,15 +1829,18 @@ ruby2:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "ruby2/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "ruby2/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 sonar-scanner-cli7:
@@ -1617,15 +1852,18 @@ sonar-scanner-cli7:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "sonar-scanner-cli7/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "sonar-scanner-cli7/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 sonar-scanner-cli8:
@@ -1637,15 +1875,18 @@ sonar-scanner-cli8:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "sonar-scanner-cli8/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "sonar-scanner-cli8/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
 wkhtmltopdf126:
@@ -1657,14 +1898,17 @@ wkhtmltopdf126:
       when: on_success
       variables:
         NO_CACHE: "true"
-    - if: $MANUAL == "true"
+    - if: $BUILD_MODE == "manual"
       when: manual
       allow_failure: false
-    - changes:
-        - "wkhtmltopdf126/**/*"
-        - "_tools/makefiles/**/*"
-        - "_tools/helpers/**/*"
-        - "toolbox-bookworm/**/*"
-        - "debian-bookworm/**/*"
+    - if: $BUILD_MODE == "automatic"
+      changes:
+        paths:
+          - "wkhtmltopdf126/**/*"
+          - "_tools/makefiles/**/*"
+          - "_tools/helpers/**/*"
+          - "toolbox-bookworm/**/*"
+          - "debian-bookworm/**/*"
+        compare_to: "refs/heads/master"
       when: on_success
     - when: never
