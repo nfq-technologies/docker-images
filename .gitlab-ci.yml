@@ -22,10 +22,11 @@ variables:
   # Uncomment this for manual mode
   BUILD_MODE:
     value: "automatic"
-    description: "'automatic' builds only images affected by changes vs master; 'manual' makes every job a manual button"
+    description: "'automatic' builds only images affected by changes vs master; 'manual' makes every job a manual button; 'full' rebuilds everything"
     options:
       - "automatic"
       - "manual"
+      - "full"
 
 
 stages:

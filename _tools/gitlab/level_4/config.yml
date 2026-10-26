@@ -31,6 +31,8 @@ aws-docker-tools:
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
       when: on_success
+    - if: $BUILD_MODE == "full"
+      when: on_success
     - when: never
   tags: [nfq_ip]
 aws-docker-tools_arm64:
@@ -61,5 +63,7 @@ aws-docker-tools_arm64:
           - "toolbox-bookworm/**/*"
           - "debian-bookworm/**/*"
         compare_to: "refs/heads/master"
+      when: on_success
+    - if: $BUILD_MODE == "full"
       when: on_success
     - when: never
